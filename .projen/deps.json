@@ -7,7 +7,7 @@
     },
     {
       "name": "@types/node",
-      "version": "^14",
+      "version": "^16",
       "type": "build"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.1.0",
+      "version": "2.83.0",
       "type": "build"
     },
     {
@@ -74,6 +74,10 @@
       "type": "build"
     },
     {
+      "name": "jsii-rosetta",
+      "type": "build"
+    },
+    {
       "name": "jsii",
       "version": "1.x",
       "type": "build"
@@ -85,6 +89,11 @@
     },
     {
       "name": "projen",
+      "type": "build"
+    },
+    {
+      "name": "standard-version",
+      "version": "^9",
       "type": "build"
     },
     {
@@ -122,7 +131,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "^2.1.0",
+      "version": "^2.83.0",
       "type": "peer"
     },
     {
