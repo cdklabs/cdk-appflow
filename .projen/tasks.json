@@ -158,6 +158,474 @@
         }
       ]
     },
+    "integ:ondemand-googleanalytics4-to-s3:assert": {
+      "name": "integ:ondemand-googleanalytics4-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-googleanalytics4-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-googleanalytics4-to-s3'. Run 'projen integ:ondemand-googleanalytics4-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-googleanalytics4-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-googleanalytics4-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-googleanalytics4-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-googleanalytics4-to-s3:deploy": {
+      "name": "integ:ondemand-googleanalytics4-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-googleanalytics4-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-googleanalytics4-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-googleanalytics4-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-googleanalytics4-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-googleanalytics4-to-s3.integ/deploy.cdk.out test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-googleanalytics4-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-googleanalytics4-to-s3:destroy": {
+      "name": "integ:ondemand-googleanalytics4-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-googleanalytics4-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-googleanalytics4-to-s3:snapshot": {
+      "name": "integ:ondemand-googleanalytics4-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-googleanalytics4-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-googleanalytics4-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-googleanalytics4-to-s3:watch": {
+      "name": "integ:ondemand-googleanalytics4-to-s3:watch",
+      "description": "watch integration test 'ondemand-googleanalytics4-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-googleanalytics4-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-googleanalytics4-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-redshift:assert": {
+      "name": "integ:ondemand-salesforce-to-redshift:assert",
+      "description": "assert the snapshot of integration test 'ondemand-salesforce-to-redshift'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-salesforce-to-redshift.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-salesforce-to-redshift'. Run 'projen integ:ondemand-salesforce-to-redshift:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-salesforce-to-redshift.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-salesforce-to-redshift.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-salesforce-to-redshift.integ.snapshot/ test/integ/.tmp/ondemand-salesforce-to-redshift.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-redshift:deploy": {
+      "name": "integ:ondemand-salesforce-to-redshift:deploy",
+      "description": "deploy integration test 'ondemand-salesforce-to-redshift' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-salesforce-to-redshift.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-salesforce-to-redshift.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-salesforce-to-redshift.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-salesforce-to-redshift.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-salesforce-to-redshift.integ/deploy.cdk.out test/integ/ondemand-salesforce-to-redshift.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-salesforce-to-redshift:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-redshift:destroy": {
+      "name": "integ:ondemand-salesforce-to-redshift:destroy",
+      "description": "destroy integration test 'ondemand-salesforce-to-redshift'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-salesforce-to-redshift.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-redshift:snapshot": {
+      "name": "integ:ondemand-salesforce-to-redshift:snapshot",
+      "description": "update snapshot for integration test \"ondemand-salesforce-to-redshift\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-salesforce-to-redshift.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-salesforce-to-redshift.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-redshift:watch": {
+      "name": "integ:ondemand-salesforce-to-redshift:watch",
+      "description": "watch integration test 'ondemand-salesforce-to-redshift' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-salesforce-to-redshift.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-salesforce-to-redshift.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-s3:assert": {
+      "name": "integ:ondemand-salesforce-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-salesforce-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-salesforce-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-salesforce-to-s3'. Run 'projen integ:ondemand-salesforce-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-salesforce-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-salesforce-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-salesforce-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-salesforce-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-s3:deploy": {
+      "name": "integ:ondemand-salesforce-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-salesforce-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-salesforce-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-salesforce-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-salesforce-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-salesforce-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-salesforce-to-s3.integ/deploy.cdk.out test/integ/ondemand-salesforce-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-salesforce-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-s3:destroy": {
+      "name": "integ:ondemand-salesforce-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-salesforce-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-salesforce-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-s3:snapshot": {
+      "name": "integ:ondemand-salesforce-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-salesforce-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-salesforce-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-salesforce-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-salesforce-to-s3:watch": {
+      "name": "integ:ondemand-salesforce-to-s3:watch",
+      "description": "watch integration test 'ondemand-salesforce-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-salesforce-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-salesforce-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-slack-to-s3:assert": {
+      "name": "integ:ondemand-slack-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-slack-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-slack-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-slack-to-s3'. Run 'projen integ:ondemand-slack-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-slack-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-slack-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-slack-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-slack-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-slack-to-s3:deploy": {
+      "name": "integ:ondemand-slack-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-slack-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-slack-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-slack-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-slack-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-slack-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-slack-to-s3.integ/deploy.cdk.out test/integ/ondemand-slack-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-slack-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-slack-to-s3:destroy": {
+      "name": "integ:ondemand-slack-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-slack-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-slack-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-slack-to-s3:snapshot": {
+      "name": "integ:ondemand-slack-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-slack-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-slack-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-slack-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-slack-to-s3:watch": {
+      "name": "integ:ondemand-slack-to-s3:watch",
+      "description": "watch integration test 'ondemand-slack-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-slack-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-slack-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:onevent-salesforce-to-eventbridge:assert": {
+      "name": "integ:onevent-salesforce-to-eventbridge:assert",
+      "description": "assert the snapshot of integration test 'onevent-salesforce-to-eventbridge'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/onevent-salesforce-to-eventbridge.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'onevent-salesforce-to-eventbridge'. Run 'projen integ:onevent-salesforce-to-eventbridge:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/onevent-salesforce-to-eventbridge.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/onevent-salesforce-to-eventbridge.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/onevent-salesforce-to-eventbridge.integ.snapshot/ test/integ/.tmp/onevent-salesforce-to-eventbridge.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:onevent-salesforce-to-eventbridge:deploy": {
+      "name": "integ:onevent-salesforce-to-eventbridge:deploy",
+      "description": "deploy integration test 'onevent-salesforce-to-eventbridge' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/onevent-salesforce-to-eventbridge.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/onevent-salesforce-to-eventbridge.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/onevent-salesforce-to-eventbridge.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/onevent-salesforce-to-eventbridge.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/onevent-salesforce-to-eventbridge.integ/deploy.cdk.out test/integ/onevent-salesforce-to-eventbridge.integ.snapshot"
+        },
+        {
+          "spawn": "integ:onevent-salesforce-to-eventbridge:destroy"
+        }
+      ]
+    },
+    "integ:onevent-salesforce-to-eventbridge:destroy": {
+      "name": "integ:onevent-salesforce-to-eventbridge:destroy",
+      "description": "destroy integration test 'onevent-salesforce-to-eventbridge'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/onevent-salesforce-to-eventbridge.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:onevent-salesforce-to-eventbridge:snapshot": {
+      "name": "integ:onevent-salesforce-to-eventbridge:snapshot",
+      "description": "update snapshot for integration test \"onevent-salesforce-to-eventbridge\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/onevent-salesforce-to-eventbridge.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/onevent-salesforce-to-eventbridge.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:onevent-salesforce-to-eventbridge:watch": {
+      "name": "integ:onevent-salesforce-to-eventbridge:watch",
+      "description": "watch integration test 'onevent-salesforce-to-eventbridge' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/onevent-salesforce-to-eventbridge.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/onevent-salesforce-to-eventbridge.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:onschedule-s3-to-salesforce:assert": {
+      "name": "integ:onschedule-s3-to-salesforce:assert",
+      "description": "assert the snapshot of integration test 'onschedule-s3-to-salesforce'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/onschedule-s3-to-salesforce.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'onschedule-s3-to-salesforce'. Run 'projen integ:onschedule-s3-to-salesforce:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/onschedule-s3-to-salesforce.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/onschedule-s3-to-salesforce.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/onschedule-s3-to-salesforce.integ.snapshot/ test/integ/.tmp/onschedule-s3-to-salesforce.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:onschedule-s3-to-salesforce:deploy": {
+      "name": "integ:onschedule-s3-to-salesforce:deploy",
+      "description": "deploy integration test 'onschedule-s3-to-salesforce' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/onschedule-s3-to-salesforce.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/onschedule-s3-to-salesforce.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/onschedule-s3-to-salesforce.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/onschedule-s3-to-salesforce.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/onschedule-s3-to-salesforce.integ/deploy.cdk.out test/integ/onschedule-s3-to-salesforce.integ.snapshot"
+        },
+        {
+          "spawn": "integ:onschedule-s3-to-salesforce:destroy"
+        }
+      ]
+    },
+    "integ:onschedule-s3-to-salesforce:destroy": {
+      "name": "integ:onschedule-s3-to-salesforce:destroy",
+      "description": "destroy integration test 'onschedule-s3-to-salesforce'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/onschedule-s3-to-salesforce.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:onschedule-s3-to-salesforce:snapshot": {
+      "name": "integ:onschedule-s3-to-salesforce:snapshot",
+      "description": "update snapshot for integration test \"onschedule-s3-to-salesforce\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/onschedule-s3-to-salesforce.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/onschedule-s3-to-salesforce.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:onschedule-s3-to-salesforce:watch": {
+      "name": "integ:onschedule-s3-to-salesforce:watch",
+      "description": "watch integration test 'onschedule-s3-to-salesforce' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/onschedule-s3-to-salesforce.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/onschedule-s3-to-salesforce.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:onschedule-salesforce-marketing-cloud-to-s3:assert": {
+      "name": "integ:onschedule-salesforce-marketing-cloud-to-s3:assert",
+      "description": "assert the snapshot of integration test 'onschedule-salesforce-marketing-cloud-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'onschedule-salesforce-marketing-cloud-to-s3'. Run 'projen integ:onschedule-salesforce-marketing-cloud-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/onschedule-salesforce-marketing-cloud-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot/ test/integ/.tmp/onschedule-salesforce-marketing-cloud-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:onschedule-salesforce-marketing-cloud-to-s3:deploy": {
+      "name": "integ:onschedule-salesforce-marketing-cloud-to-s3:deploy",
+      "description": "deploy integration test 'onschedule-salesforce-marketing-cloud-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/onschedule-salesforce-marketing-cloud-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/onschedule-salesforce-marketing-cloud-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/onschedule-salesforce-marketing-cloud-to-s3.integ/deploy.cdk.out test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:onschedule-salesforce-marketing-cloud-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:onschedule-salesforce-marketing-cloud-to-s3:destroy": {
+      "name": "integ:onschedule-salesforce-marketing-cloud-to-s3:destroy",
+      "description": "destroy integration test 'onschedule-salesforce-marketing-cloud-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:onschedule-salesforce-marketing-cloud-to-s3:snapshot": {
+      "name": "integ:onschedule-salesforce-marketing-cloud-to-s3:snapshot",
+      "description": "update snapshot for integration test \"onschedule-salesforce-marketing-cloud-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:onschedule-salesforce-marketing-cloud-to-s3:watch": {
+      "name": "integ:onschedule-salesforce-marketing-cloud-to-s3:watch",
+      "description": "watch integration test 'onschedule-salesforce-marketing-cloud-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/onschedule-salesforce-marketing-cloud-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:snapshot-all": {
+      "name": "integ:snapshot-all",
+      "description": "update snapshot for all integration tests",
+      "steps": [
+        {
+          "spawn": "integ:ondemand-googleanalytics4-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-salesforce-to-redshift:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-salesforce-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-slack-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:onevent-salesforce-to-eventbridge:snapshot"
+        },
+        {
+          "spawn": "integ:onschedule-s3-to-salesforce:snapshot"
+        },
+        {
+          "spawn": "integ:onschedule-salesforce-marketing-cloud-to-s3:snapshot"
+        }
+      ]
+    },
     "integ:update": {
       "name": "integ:update",
       "description": "Run and update integration snapshot tests",
@@ -308,6 +776,27 @@
           "spawn": "eslint"
         },
         {
+          "spawn": "integ:ondemand-googleanalytics4-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-salesforce-to-redshift:assert"
+        },
+        {
+          "spawn": "integ:ondemand-salesforce-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-slack-to-s3:assert"
+        },
+        {
+          "spawn": "integ:onevent-salesforce-to-eventbridge:assert"
+        },
+        {
+          "spawn": "integ:onschedule-s3-to-salesforce:assert"
+        },
+        {
+          "spawn": "integ:onschedule-salesforce-marketing-cloud-to-s3:assert"
+        },
+        {
           "spawn": "integ"
         }
       ]
@@ -348,19 +837,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
         },
         {
           "exec": "yarn install --check-files"

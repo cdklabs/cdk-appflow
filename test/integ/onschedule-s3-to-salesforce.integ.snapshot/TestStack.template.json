@@ -1,0 +1,1082 @@
+{
+ "Resources": {
+  "TestBucket560B80BC": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     },
+     {
+      "Key": "aws-cdk:cr-owned:account:a91b1dfe",
+      "Value": "true"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "TestBucketPolicyBA12ED38": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "TestBucket560B80BC"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TestBucket560B80BC",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TestBucket560B80BC",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+       ],
+       "Condition": {
+        "StringEquals": {
+         "aws:SourceAccount": {
+          "Ref": "AWS::AccountId"
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appflow.amazonaws.com"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TestBucket560B80BC",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TestBucket560B80BC",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "TestBucketAutoDeleteObjectsCustomResource8FEAABD5": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "TestBucket560B80BC"
+    }
+   },
+   "DependsOn": [
+    "TestBucketPolicyBA12ED38"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "350185a1069fa20a23a583e20c77f6844218bd73097902362dc94f1a108f5d89.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "TestBucket560B80BC"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ]
+  },
+  "TestDeploymentAwsCliLayerACB69B63": {
+   "Type": "AWS::Lambda::LayerVersion",
+   "Properties": {
+    "Content": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "cff916937906abb9c99e0ecbb4accbc091c734ce975c7ff64b3f4bfae4372b9c.zip"
+    },
+    "Description": "/opt/awscli/aws"
+   }
+  },
+  "TestDeploymentCustomResource6C695E22": {
+   "Type": "Custom::CDKBucketDeployment",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+      "Arn"
+     ]
+    },
+    "SourceBucketNames": [
+     {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     }
+    ],
+    "SourceObjectKeys": [
+     "b7a00a65c9fbbf4751a2ff83a7978df76a9502f91f38166662688fee371134ce.zip"
+    ],
+    "SourceMarkers": [
+     {}
+    ],
+    "DestinationBucketName": {
+     "Ref": "TestBucket560B80BC"
+    },
+    "DestinationBucketKeyPrefix": "account",
+    "Prune": true
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::",
+           {
+            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::",
+           {
+            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TestBucket560B80BC",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TestBucket560B80BC",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+    "Roles": [
+     {
+      "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+     }
+    ]
+   }
+  },
+  "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "9eb41a5505d37607ac419321497a4f8c21cf0ee1f9b4a6b29aa04301aea5c7fd.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "AWS_CA_BUNDLE": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
+     }
+    },
+    "Handler": "index.handler",
+    "Layers": [
+     {
+      "Ref": "TestDeploymentAwsCliLayerACB69B63"
+     }
+    ],
+    "Runtime": "python3.9",
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+   ]
+  },
+  "TestConnectorProfileD7470107": {
+   "Type": "AWS::AppFlow::ConnectorProfile",
+   "Properties": {
+    "ConnectionMode": "Public",
+    "ConnectorProfileName": "TestConnectorProfile",
+    "ConnectorType": "Salesforce",
+    "ConnectorProfileConfig": {
+     "ConnectorProfileCredentials": {
+      "Salesforce": {
+       "AccessToken": "dummyAccessToken",
+       "ClientCredentialsArn": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":secret:appflow/salesforce/client"
+         ]
+        ]
+       },
+       "RefreshToken": {
+        "Fn::Join": [
+         "",
+         [
+          "{{resolve:secretsmanager:arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":secret:appflow/salesforce/client:SecretString:refreshToken::}}"
+         ]
+        ]
+       }
+      }
+     },
+     "ConnectorProfileProperties": {
+      "Salesforce": {
+       "InstanceUrl": {
+        "Fn::Join": [
+         "",
+         [
+          "{{resolve:secretsmanager:arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":secret:appflow/salesforce/client:SecretString:instanceUrl::}}"
+         ]
+        ]
+       },
+       "isSandboxEnvironment": false
+      }
+     }
+    }
+   }
+  },
+  "OnScheduleFlow9A474F3B": {
+   "Type": "AWS::AppFlow::Flow",
+   "Properties": {
+    "DestinationFlowConfigList": [
+     {
+      "ConnectorProfileName": "TestConnectorProfile",
+      "ConnectorType": "Salesforce",
+      "DestinationConnectorProperties": {
+       "Salesforce": {
+        "Object": "Account",
+        "WriteOperationType": "INSERT"
+       }
+      }
+     }
+    ],
+    "FlowName": "OnScheduleFlow",
+    "SourceFlowConfig": {
+     "ConnectorType": "S3",
+     "SourceConnectorProperties": {
+      "S3": {
+       "BucketName": {
+        "Ref": "TestBucket560B80BC"
+       },
+       "BucketPrefix": "account",
+       "S3InputFormatConfig": {
+        "S3InputFileType": "JSON"
+       }
+      }
+     }
+    },
+    "Tasks": [
+     {
+      "ConnectorOperator": {
+       "S3": "PROJECTION"
+      },
+      "SourceFields": [
+       "Name"
+      ],
+      "TaskType": "Filter"
+     },
+     {
+      "ConnectorOperator": {
+       "S3": "NO_OP"
+      },
+      "DestinationField": "Name",
+      "SourceFields": [
+       "Name"
+      ],
+      "TaskProperties": [
+       {
+        "Key": "SOURCE_DATA_TYPE",
+        "Value": "string"
+       },
+       {
+        "Key": "DESTINATION_DATA_TYPE",
+        "Value": "string"
+       }
+      ],
+      "TaskType": "Map"
+     },
+     {
+      "ConnectorOperator": {
+       "S3": "MASK_ALL"
+      },
+      "SourceFields": [
+       "Name"
+      ],
+      "TaskProperties": [
+       {
+        "Key": "MASK_LENGTH",
+        "Value": "5"
+       },
+       {
+        "Key": "MASK_VALUE",
+        "Value": "*"
+       }
+      ],
+      "TaskType": "Mask"
+     },
+     {
+      "ConnectorOperator": {
+       "S3": "VALIDATE_NON_NULL"
+      },
+      "SourceFields": [
+       "Name"
+      ],
+      "TaskProperties": [
+       {
+        "Key": "VALIDATION_ACTION",
+        "Value": "DropRecord"
+       }
+      ],
+      "TaskType": "Validate"
+     }
+    ],
+    "TriggerConfig": {
+     "TriggerProperties": {
+      "DataPullMode": "Incremental",
+      "ScheduleExpression": {
+       "Fn::GetAtt": [
+        "OnScheduleFlowUpdater39178314",
+        "Schedule"
+       ]
+      },
+      "ScheduleStartTime": {
+       "Fn::GetAtt": [
+        "OnScheduleFlowUpdater39178314",
+        "StartTime"
+       ]
+      }
+     },
+     "TriggerType": "Scheduled"
+    }
+   },
+   "DependsOn": [
+    "OnScheduleFlowUpdater39178314",
+    "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
+    "TestBucketPolicyBA12ED38",
+    "TestBucket560B80BC",
+    "TestConnectorProfileD7470107",
+    "TestDeploymentAwsCliLayerACB69B63",
+    "TestDeploymentCustomResource6C695E22"
+   ]
+  },
+  "OnScheduleFlowcaptureOnRunCompletedB9E179F4": {
+   "Type": "AWS::Events::Rule",
+   "Properties": {
+    "EventPattern": {
+     "source": [
+      "aws.appflow"
+     ],
+     "resources": [
+      {
+       "Fn::GetAtt": [
+        "OnScheduleFlow9A474F3B",
+        "FlowArn"
+       ]
+      }
+     ],
+     "detail-type": [
+      "AppFlow End Flow Run Report"
+     ]
+    },
+    "State": "ENABLED"
+   },
+   "DependsOn": [
+    "OnScheduleFlowUpdater39178314",
+    "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
+    "TestBucketPolicyBA12ED38",
+    "TestBucket560B80BC",
+    "TestConnectorProfileD7470107",
+    "TestDeploymentAwsCliLayerACB69B63",
+    "TestDeploymentCustomResource6C695E22"
+   ]
+  },
+  "OnScheduleFlowcaptureOnDeactivatedF7603006": {
+   "Type": "AWS::Events::Rule",
+   "Properties": {
+    "EventPattern": {
+     "source": [
+      "aws.appflow"
+     ],
+     "resources": [
+      {
+       "Fn::GetAtt": [
+        "OnScheduleFlow9A474F3B",
+        "FlowArn"
+       ]
+      }
+     ],
+     "detail-type": [
+      "AppFlow Scheduled Flow Deactivated"
+     ]
+    },
+    "State": "ENABLED"
+   },
+   "DependsOn": [
+    "OnScheduleFlowUpdater39178314",
+    "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
+    "TestBucketPolicyBA12ED38",
+    "TestBucket560B80BC",
+    "TestConnectorProfileD7470107",
+    "TestDeploymentAwsCliLayerACB69B63",
+    "TestDeploymentCustomResource6C695E22"
+   ]
+  },
+  "OnScheduleFlowUpdater39178314": {
+   "Type": "Custom::FlowTimeUpdater",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEvent01F8E5FF",
+      "Arn"
+     ]
+    },
+    "Schedule": "rate(10 minutes)",
+    "StartTime": "2024-01-01T00:00:00.000Z"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventED9FCF4A": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "85b8ed11986c2c5949ded4f72054587a0abc0b6851f0b9890db35d5280769727.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE",
+      "Arn"
+     ]
+    },
+    "Handler": "index.onEvent",
+    "Runtime": "nodejs16.x"
+   },
+   "DependsOn": [
+    "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE"
+   ]
+  },
+  "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRoleDefaultPolicyDE524CE6": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventED9FCF4A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventED9FCF4A",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRoleDefaultPolicyDE524CE6",
+    "Roles": [
+     {
+      "Ref": "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640"
+     }
+    ]
+   }
+  },
+  "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEvent01F8E5FF": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640",
+      "Arn"
+     ]
+    },
+    "Description": "AWS CDK resource provider framework - onEvent (TestStack/com.amazonaws.cdk.custom-resources.flow-time-provider/flow-time-provider)",
+    "Environment": {
+     "Variables": {
+      "USER_ON_EVENT_FUNCTION_ARN": {
+       "Fn::GetAtt": [
+        "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventED9FCF4A",
+        "Arn"
+       ]
+      }
+     }
+    },
+    "Handler": "framework.onEvent",
+    "Runtime": "nodejs14.x",
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRoleDefaultPolicyDE524CE6",
+    "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640"
+   ]
+  },
+  "OnScheduleFlowActivatorEF04E46F": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": "{\"service\":\"Appflow\",\"action\":\"startFlow\",\"parameters\":{\"flowName\":\"OnScheduleFlow\"},\"physicalResourceId\":{\"id\":\"OnScheduleFlowActivator\"}}",
+    "Delete": "{\"service\":\"Appflow\",\"action\":\"stopFlow\",\"parameters\":{\"flowName\":\"OnScheduleFlow\"}}",
+    "InstallLatestAwsSdk": true
+   },
+   "DependsOn": [
+    "OnScheduleFlowcaptureOnDeactivatedF7603006",
+    "OnScheduleFlowcaptureOnRunCompletedB9E179F4",
+    "OnScheduleFlow9A474F3B",
+    "OnScheduleFlowActivatorCustomResourcePolicyEE06504E"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "OnScheduleFlowActivatorCustomResourcePolicyEE06504E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "appflow:StartFlow",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "appflow:StopFlow",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "OnScheduleFlowActivatorCustomResourcePolicyEE06504E",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "OnScheduleFlowcaptureOnDeactivatedF7603006",
+    "OnScheduleFlowcaptureOnRunCompletedB9E179F4",
+    "OnScheduleFlow9A474F3B"
+   ]
+  },
+  "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd22872D164C4C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "f9346b940b724b094a16ca051c017799995fa93df6da38a0539bf7c000fee50a.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+      "Arn"
+     ]
+    },
+    "Handler": "index.handler",
+    "Runtime": {
+     "Fn::FindInMap": [
+      "DefaultCrNodeVersionMap",
+      {
+       "Ref": "AWS::Region"
+      },
+      "value"
+     ]
+    },
+    "Timeout": 120
+   },
+   "DependsOn": [
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+   ]
+  }
+ },
+ "Mappings": {
+  "DefaultCrNodeVersionMap": {
+   "af-south-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-east-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-northeast-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-northeast-2": {
+    "value": "nodejs16.x"
+   },
+   "ap-northeast-3": {
+    "value": "nodejs16.x"
+   },
+   "ap-south-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-south-2": {
+    "value": "nodejs16.x"
+   },
+   "ap-southeast-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-southeast-2": {
+    "value": "nodejs16.x"
+   },
+   "ap-southeast-3": {
+    "value": "nodejs16.x"
+   },
+   "ca-central-1": {
+    "value": "nodejs16.x"
+   },
+   "cn-north-1": {
+    "value": "nodejs16.x"
+   },
+   "cn-northwest-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-central-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-central-2": {
+    "value": "nodejs16.x"
+   },
+   "eu-north-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-south-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-south-2": {
+    "value": "nodejs16.x"
+   },
+   "eu-west-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-west-2": {
+    "value": "nodejs16.x"
+   },
+   "eu-west-3": {
+    "value": "nodejs16.x"
+   },
+   "me-central-1": {
+    "value": "nodejs16.x"
+   },
+   "me-south-1": {
+    "value": "nodejs16.x"
+   },
+   "sa-east-1": {
+    "value": "nodejs16.x"
+   },
+   "us-east-1": {
+    "value": "nodejs16.x"
+   },
+   "us-east-2": {
+    "value": "nodejs16.x"
+   },
+   "us-gov-east-1": {
+    "value": "nodejs16.x"
+   },
+   "us-gov-west-1": {
+    "value": "nodejs16.x"
+   },
+   "us-iso-east-1": {
+    "value": "nodejs14.x"
+   },
+   "us-iso-west-1": {
+    "value": "nodejs14.x"
+   },
+   "us-isob-east-1": {
+    "value": "nodejs14.x"
+   },
+   "us-west-1": {
+    "value": "nodejs16.x"
+   },
+   "us-west-2": {
+    "value": "nodejs16.x"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
