@@ -1,6 +1,16 @@
 {
   "dependencies": [
     {
+      "name": "@aws-cdk/aws-glue-alpha",
+      "version": "2.84.0-alpha.0",
+      "type": "build"
+    },
+    {
+      "name": "@aws-cdk/aws-redshift-alpha",
+      "version": "2.84.0-alpha.0",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "version": "^27",
       "type": "build"
@@ -22,7 +32,12 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.83.0",
+      "version": "2.84.0",
+      "type": "build"
+    },
+    {
+      "name": "aws-cdk",
+      "version": "^2",
       "type": "build"
     },
     {
@@ -130,8 +145,18 @@
       "type": "override"
     },
     {
+      "name": "@aws-cdk/aws-glue-alpha",
+      "version": "2.84.0-alpha.0",
+      "type": "peer"
+    },
+    {
+      "name": "@aws-cdk/aws-redshift-alpha",
+      "version": "2.84.0-alpha.0",
+      "type": "peer"
+    },
+    {
       "name": "aws-cdk-lib",
-      "version": "^2.83.0",
+      "version": "^2.84.0",
       "type": "peer"
     },
     {

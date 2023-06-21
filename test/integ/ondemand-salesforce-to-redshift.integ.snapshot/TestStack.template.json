@@ -1,0 +1,1628 @@
+{
+ "Resources": {
+  "TestProfile45C36389": {
+   "Type": "AWS::AppFlow::ConnectorProfile",
+   "Properties": {
+    "ConnectionMode": "Public",
+    "ConnectorProfileName": "TestProfile",
+    "ConnectorType": "Salesforce",
+    "ConnectorProfileConfig": {
+     "ConnectorProfileCredentials": {
+      "Salesforce": {
+       "AccessToken": {
+        "Fn::Join": [
+         "",
+         [
+          "{{resolve:secretsmanager:arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":secret:appflow/salesforce:SecretString:accessToken::}}"
+         ]
+        ]
+       },
+       "RefreshToken": "dummyRefreshToken"
+      }
+     },
+     "ConnectorProfileProperties": {
+      "Salesforce": {
+       "InstanceUrl": {
+        "Fn::Join": [
+         "",
+         [
+          "{{resolve:secretsmanager:arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":secret:appflow/salesforce:SecretString:instanceUrl::}}"
+         ]
+        ]
+       },
+       "isSandboxEnvironment": false
+      }
+     }
+    }
+   }
+  },
+  "TestBucket560B80BC": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "TestBucketPolicyBA12ED38": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "TestBucket560B80BC"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TestBucket560B80BC",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TestBucket560B80BC",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:PutObject",
+        "s3:AbortMultipartUpload",
+        "s3:ListMultipartUploadParts",
+        "s3:ListBucketMultipartUploads",
+        "s3:GetBucketAcl",
+        "s3:PutObjectAcl"
+       ],
+       "Condition": {
+        "StringEquals": {
+         "aws:SourceAccount": {
+          "Ref": "AWS::AccountId"
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appflow.amazonaws.com"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TestBucket560B80BC",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TestBucket560B80BC",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "TestBucketAutoDeleteObjectsCustomResource8FEAABD5": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "TestBucket560B80BC"
+    }
+   },
+   "DependsOn": [
+    "TestBucketPolicyBA12ED38"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "350185a1069fa20a23a583e20c77f6844218bd73097902362dc94f1a108f5d89.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs16.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "TestBucket560B80BC"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ]
+  },
+  "TestVpcE77CE678": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc"
+     }
+    ]
+   }
+  },
+  "TestVpcPublicSubnet1SubnetA7DB1EDF": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PublicSubnet1"
+     }
+    ]
+   }
+  },
+  "TestVpcPublicSubnet1RouteTable4CBFF871": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PublicSubnet1"
+     }
+    ]
+   }
+  },
+  "TestVpcPublicSubnet1RouteTableAssociation7D1DECD9": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TestVpcPublicSubnet1RouteTable4CBFF871"
+    },
+    "SubnetId": {
+     "Ref": "TestVpcPublicSubnet1SubnetA7DB1EDF"
+    }
+   }
+  },
+  "TestVpcPublicSubnet1DefaultRoute6C0F0315": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TestVpcPublicSubnet1RouteTable4CBFF871"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "TestVpcIGW9DD53F70"
+    }
+   },
+   "DependsOn": [
+    "TestVpcVPCGWF1827B84"
+   ]
+  },
+  "TestVpcPublicSubnet1EIP4884338C": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PublicSubnet1"
+     }
+    ]
+   }
+  },
+  "TestVpcPublicSubnet1NATGatewayA323E3EC": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "SubnetId": {
+     "Ref": "TestVpcPublicSubnet1SubnetA7DB1EDF"
+    },
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "TestVpcPublicSubnet1EIP4884338C",
+      "AllocationId"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PublicSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "TestVpcPublicSubnet1DefaultRoute6C0F0315",
+    "TestVpcPublicSubnet1RouteTableAssociation7D1DECD9"
+   ]
+  },
+  "TestVpcPublicSubnet2Subnet80A14523": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.64.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PublicSubnet2"
+     }
+    ]
+   }
+  },
+  "TestVpcPublicSubnet2RouteTable75B88314": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PublicSubnet2"
+     }
+    ]
+   }
+  },
+  "TestVpcPublicSubnet2RouteTableAssociationB386A819": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TestVpcPublicSubnet2RouteTable75B88314"
+    },
+    "SubnetId": {
+     "Ref": "TestVpcPublicSubnet2Subnet80A14523"
+    }
+   }
+  },
+  "TestVpcPublicSubnet2DefaultRoute054DAE0A": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TestVpcPublicSubnet2RouteTable75B88314"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "TestVpcIGW9DD53F70"
+    }
+   },
+   "DependsOn": [
+    "TestVpcVPCGWF1827B84"
+   ]
+  },
+  "TestVpcPublicSubnet2EIP83F7944C": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PublicSubnet2"
+     }
+    ]
+   }
+  },
+  "TestVpcPublicSubnet2NATGatewayA9858C31": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "SubnetId": {
+     "Ref": "TestVpcPublicSubnet2Subnet80A14523"
+    },
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "TestVpcPublicSubnet2EIP83F7944C",
+      "AllocationId"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PublicSubnet2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "TestVpcPublicSubnet2DefaultRoute054DAE0A",
+    "TestVpcPublicSubnet2RouteTableAssociationB386A819"
+   ]
+  },
+  "TestVpcPrivateSubnet1SubnetCC65D771": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.128.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PrivateSubnet1"
+     }
+    ]
+   }
+  },
+  "TestVpcPrivateSubnet1RouteTable469B0105": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PrivateSubnet1"
+     }
+    ]
+   }
+  },
+  "TestVpcPrivateSubnet1RouteTableAssociationFFD4DFF7": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TestVpcPrivateSubnet1RouteTable469B0105"
+    },
+    "SubnetId": {
+     "Ref": "TestVpcPrivateSubnet1SubnetCC65D771"
+    }
+   }
+  },
+  "TestVpcPrivateSubnet1DefaultRoute32E7B814": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TestVpcPrivateSubnet1RouteTable469B0105"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "TestVpcPublicSubnet1NATGatewayA323E3EC"
+    }
+   }
+  },
+  "TestVpcPrivateSubnet2SubnetDE0C64A2": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.192.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PrivateSubnet2"
+     }
+    ]
+   }
+  },
+  "TestVpcPrivateSubnet2RouteTableCEF29F7C": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc/PrivateSubnet2"
+     }
+    ]
+   }
+  },
+  "TestVpcPrivateSubnet2RouteTableAssociation18250AB4": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TestVpcPrivateSubnet2RouteTableCEF29F7C"
+    },
+    "SubnetId": {
+     "Ref": "TestVpcPrivateSubnet2SubnetDE0C64A2"
+    }
+   }
+  },
+  "TestVpcPrivateSubnet2DefaultRouteA7EB6930": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TestVpcPrivateSubnet2RouteTableCEF29F7C"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "TestVpcPublicSubnet2NATGatewayA9858C31"
+    }
+   }
+  },
+  "TestVpcIGW9DD53F70": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TestStack/TestVpc"
+     }
+    ]
+   }
+  },
+  "TestVpcVPCGWF1827B84": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    },
+    "InternetGatewayId": {
+     "Ref": "TestVpcIGW9DD53F70"
+    }
+   }
+  },
+  "TestClusterSubnets3F89F97D": {
+   "Type": "AWS::Redshift::ClusterSubnetGroup",
+   "Properties": {
+    "Description": "Subnets for TestCluster Redshift cluster",
+    "SubnetIds": [
+     {
+      "Ref": "TestVpcPrivateSubnet1SubnetCC65D771"
+     },
+     {
+      "Ref": "TestVpcPrivateSubnet2SubnetDE0C64A2"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "TestClusterSecurityGroup95EF3F0F": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Redshift security group",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TestVpcE77CE678"
+    }
+   }
+  },
+  "TestClusterSecret074CA71D": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "GenerateSecretString": {
+     "ExcludeCharacters": "\"@/\\ '",
+     "GenerateStringKey": "password",
+     "PasswordLength": 30,
+     "SecretStringTemplate": "{\"username\":\"admin\"}"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "TestClusterSecretAttachment3179FD91": {
+   "Type": "AWS::SecretsManager::SecretTargetAttachment",
+   "Properties": {
+    "SecretId": {
+     "Ref": "TestClusterSecret074CA71D"
+    },
+    "TargetId": {
+     "Ref": "TestClusterE0095054"
+    },
+    "TargetType": "AWS::Redshift::Cluster"
+   }
+  },
+  "TestClusterE0095054": {
+   "Type": "AWS::Redshift::Cluster",
+   "Properties": {
+    "ClusterType": "multi-node",
+    "DBName": "workshop",
+    "MasterUsername": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "TestClusterSecret074CA71D"
+       },
+       ":SecretString:username::}}"
+      ]
+     ]
+    },
+    "MasterUserPassword": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "TestClusterSecret074CA71D"
+       },
+       ":SecretString:password::}}"
+      ]
+     ]
+    },
+    "NodeType": "dc2.large",
+    "AllowVersionUpgrade": true,
+    "AutomatedSnapshotRetentionPeriod": 1,
+    "ClusterSubnetGroupName": {
+     "Ref": "TestClusterSubnets3F89F97D"
+    },
+    "Encrypted": false,
+    "NumberOfNodes": 2,
+    "PubliclyAccessible": false,
+    "VpcSecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "TestClusterSecurityGroup95EF3F0F",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "TestTableProviderframeworkonEventServiceRole585FCC2A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
+    "Roles": [
+     {
+      "Ref": "TestTableProviderframeworkonEventServiceRole585FCC2A"
+     }
+    ]
+   }
+  },
+  "TestTableProviderframeworkonEventFD35FC3D": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "TestTableProviderframeworkonEventServiceRole585FCC2A",
+      "Arn"
+     ]
+    },
+    "Description": "AWS CDK resource provider framework - onEvent (TestStack/TestTable/Resource/Provider)",
+    "Environment": {
+     "Variables": {
+      "USER_ON_EVENT_FUNCTION_ARN": {
+       "Fn::GetAtt": [
+        "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997",
+        "Arn"
+       ]
+      }
+     }
+    },
+    "Handler": "framework.onEvent",
+    "Runtime": "nodejs14.x",
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
+    "TestTableProviderframeworkonEventServiceRole585FCC2A"
+   ]
+  },
+  "TestTable82078E3B": {
+   "Type": "Custom::RedshiftDatabaseQuery",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "TestTableProviderframeworkonEventFD35FC3D",
+      "Arn"
+     ]
+    },
+    "handler": "table",
+    "clusterName": {
+     "Ref": "TestClusterE0095054"
+    },
+    "adminUserArn": {
+     "Ref": "TestClusterSecretAttachment3179FD91"
+    },
+    "databaseName": "workshop",
+    "tableName": {
+     "prefix": "contact",
+     "generateSuffix": "false"
+    },
+    "tableColumns": [
+     {
+      "name": "name",
+      "dataType": "character varying",
+      "id": "name"
+     }
+    ],
+    "sortStyle": "AUTO",
+    "useColumnIds": false
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRole0A90D717": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRoleDefaultPolicyDDD1388D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "redshift-data:DescribeStatement",
+        "redshift-data:ExecuteStatement"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "TestClusterSecretAttachment3179FD91"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRoleDefaultPolicyDDD1388D",
+    "Roles": [
+     {
+      "Ref": "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRole0A90D717"
+     }
+    ]
+   }
+  },
+  "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "1c86c854dd7bf4e9476b013497c1b08c57bf296dbc4200f2a251f79ad102d15e.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRole0A90D717",
+      "Arn"
+     ]
+    },
+    "Handler": "index.handler",
+    "Runtime": {
+     "Fn::FindInMap": [
+      "DefaultCrNodeVersionMap",
+      {
+       "Ref": "AWS::Region"
+      },
+      "value"
+     ]
+    },
+    "Timeout": 60
+   },
+   "DependsOn": [
+    "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRoleDefaultPolicyDDD1388D",
+    "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRole0A90D717"
+   ]
+  },
+  "TestRedshiftProfileC7C6727A": {
+   "Type": "AWS::AppFlow::ConnectorProfile",
+   "Properties": {
+    "ConnectionMode": "Public",
+    "ConnectorProfileName": "TestRedshiftProfile",
+    "ConnectorType": "Redshift",
+    "ConnectorProfileConfig": {
+     "ConnectorProfileCredentials": {
+      "Redshift": {
+       "Username": "admin"
+      }
+     },
+     "ConnectorProfileProperties": {
+      "Redshift": {
+       "BucketName": {
+        "Ref": "TestBucket560B80BC"
+       },
+       "BucketPrefix": "intermediate",
+       "ClusterIdentifier": {
+        "Ref": "TestClusterE0095054"
+       },
+       "DataApiRoleArn": {
+        "Fn::GetAtt": [
+         "TestRedshiftProfileAppFlowDataApiRoleFB5BEBD8",
+         "Arn"
+        ]
+       },
+       "DatabaseName": "workshop",
+       "RoleArn": {
+        "Fn::GetAtt": [
+         "TestRedshiftProfileRedshiftRole0998F9C7",
+         "Arn"
+        ]
+       }
+      }
+     }
+    }
+   },
+   "DependsOn": [
+    "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
+    "TestBucketPolicyBA12ED38",
+    "TestBucket560B80BC",
+    "TestClusterE0095054",
+    "TestClusterSecretAttachment3179FD91",
+    "TestClusterSecret074CA71D",
+    "TestClusterSecurityGroup95EF3F0F",
+    "TestClusterSubnets3F89F97D",
+    "TestRedshiftProfileAppFlowDataApiRoleFB5BEBD8",
+    "TestRedshiftProfileAppFlowDataApiRolePolicy7BF43441",
+    "TestRedshiftProfileRedshiftRoleDefaultPolicy5433A9CB",
+    "TestRedshiftProfileRedshiftRole0998F9C7",
+    "TestRedshiftProfileRedshiftRoleAttachCustomResourcePolicyEEEA831D",
+    "TestRedshiftProfileRedshiftRoleAttach7AD6717C",
+    "TestTableProviderframeworkonEventFD35FC3D",
+    "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
+    "TestTableProviderframeworkonEventServiceRole585FCC2A",
+    "TestTable82078E3B"
+   ]
+  },
+  "TestRedshiftProfileRedshiftRole0998F9C7": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "redshift.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "TestRedshiftProfileRedshiftRoleDefaultPolicy5433A9CB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TestBucket560B80BC",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TestBucket560B80BC",
+             "Arn"
+            ]
+           },
+           "/intermediate/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "TestRedshiftProfileRedshiftRoleDefaultPolicy5433A9CB",
+    "Roles": [
+     {
+      "Ref": "TestRedshiftProfileRedshiftRole0998F9C7"
+     }
+    ]
+   }
+  },
+  "TestRedshiftProfileRedshiftRoleAttach7AD6717C": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Redshift\",\"action\":\"modifyClusterIamRoles\",\"parameters\":{\"ClusterIdentifier\":\"",
+       {
+        "Ref": "TestClusterE0095054"
+       },
+       "\",\"AddIamRoles\":[\"",
+       {
+        "Fn::GetAtt": [
+         "TestRedshiftProfileRedshiftRole0998F9C7",
+         "Arn"
+        ]
+       },
+       "\"]},\"physicalResourceId\":{\"id\":\"TestRedshiftProfileRedshiftRoleAttach\"}}"
+      ]
+     ]
+    },
+    "InstallLatestAwsSdk": true
+   },
+   "DependsOn": [
+    "TestClusterE0095054",
+    "TestClusterSecretAttachment3179FD91",
+    "TestClusterSecret074CA71D",
+    "TestClusterSecurityGroup95EF3F0F",
+    "TestClusterSubnets3F89F97D",
+    "TestRedshiftProfileRedshiftRoleAttachCustomResourcePolicyEEEA831D"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "TestRedshiftProfileRedshiftRoleAttachCustomResourcePolicyEEEA831D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "iam:PassRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "TestRedshiftProfileRedshiftRole0998F9C7",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "redshift:ModifyClusterIamRoles",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":redshift:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":cluster:",
+          {
+           "Ref": "TestClusterE0095054"
+          }
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "TestRedshiftProfileRedshiftRoleAttachCustomResourcePolicyEEEA831D",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "TestClusterE0095054",
+    "TestClusterSecretAttachment3179FD91",
+    "TestClusterSecret074CA71D",
+    "TestClusterSecurityGroup95EF3F0F",
+    "TestClusterSubnets3F89F97D"
+   ]
+  },
+  "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd22872D164C4C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "f9346b940b724b094a16ca051c017799995fa93df6da38a0539bf7c000fee50a.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+      "Arn"
+     ]
+    },
+    "Handler": "index.handler",
+    "Runtime": {
+     "Fn::FindInMap": [
+      "DefaultCrNodeVersionMap",
+      {
+       "Ref": "AWS::Region"
+      },
+      "value"
+     ]
+    },
+    "Timeout": 120
+   },
+   "DependsOn": [
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+   ]
+  },
+  "TestRedshiftProfileAppFlowDataApiRoleFB5BEBD8": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appflow.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "TestRedshiftProfileAppFlowDataApiRolePolicy7BF43441": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "redshift-data:ExecuteStatement",
+        "redshift-data:GetStatementResult",
+        "redshift-data:DescribeStatement"
+       ],
+       "Effect": "Allow",
+       "Resource": "*",
+       "Sid": "DataAPIPermissions"
+      },
+      {
+       "Action": "redshift:GetClusterCredentials",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:aws:redshift:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":dbname:",
+           {
+            "Ref": "TestClusterE0095054"
+           },
+           "/workshop"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:aws:redshift:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":dbuser:",
+           {
+            "Ref": "TestClusterE0095054"
+           },
+           "/admin"
+          ]
+         ]
+        }
+       ],
+       "Sid": "GetCredentialsForAPIUser"
+      },
+      {
+       "Action": "redshift:CreateClusterUser",
+       "Effect": "Deny",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:redshift:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":dbuser:",
+          {
+           "Ref": "TestClusterE0095054"
+          },
+          "/*"
+         ]
+        ]
+       },
+       "Sid": "DenyCreateAPIUser"
+      },
+      {
+       "Action": "iam:CreateServiceLinkedRole",
+       "Condition": {
+        "StringLike": {
+         "iam:AWSServiceName": "redshift-data.amazonaws.com"
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:iam::",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":role/aws-service-role/redshift-data.amazonaws.com/AWSServiceRoleForRedshift"
+         ]
+        ]
+       },
+       "Sid": "ServiceLinkedRole"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "TestRedshiftProfileAppFlowDataApiRolePolicy7BF43441",
+    "Roles": [
+     {
+      "Ref": "TestRedshiftProfileAppFlowDataApiRoleFB5BEBD8"
+     }
+    ]
+   }
+  },
+  "SfdcToRedshiftELTFC79C6AA": {
+   "Type": "AWS::AppFlow::Flow",
+   "Properties": {
+    "DestinationFlowConfigList": [
+     {
+      "ConnectorProfileName": "TestRedshiftProfile",
+      "ConnectorType": "Redshift",
+      "DestinationConnectorProperties": {
+       "Redshift": {
+        "BucketPrefix": "intermediate",
+        "IntermediateBucketName": {
+         "Ref": "TestBucket560B80BC"
+        },
+        "Object": {
+         "Fn::Join": [
+          "",
+          [
+           "public.",
+           {
+            "Ref": "TestTable82078E3B"
+           }
+          ]
+         ]
+        }
+       }
+      }
+     }
+    ],
+    "FlowName": "SfdcToRedshiftELT",
+    "SourceFlowConfig": {
+     "ConnectorProfileName": "TestProfile",
+     "ConnectorType": "Salesforce",
+     "SourceConnectorProperties": {
+      "Salesforce": {
+       "Object": "Contact"
+      }
+     }
+    },
+    "Tasks": [
+     {
+      "ConnectorOperator": {
+       "Salesforce": "PROJECTION"
+      },
+      "SourceFields": [
+       "Name"
+      ],
+      "TaskType": "Filter"
+     },
+     {
+      "ConnectorOperator": {
+       "Salesforce": "NO_OP"
+      },
+      "DestinationField": "name",
+      "SourceFields": [
+       "Name"
+      ],
+      "TaskProperties": [
+       {
+        "Key": "SOURCE_DATA_TYPE",
+        "Value": "string"
+       },
+       {
+        "Key": "DESTINATION_DATA_TYPE",
+        "Value": "character varying"
+       }
+      ],
+      "TaskType": "Map"
+     }
+    ],
+    "TriggerConfig": {
+     "TriggerType": "OnDemand"
+    }
+   },
+   "DependsOn": [
+    "TestProfile45C36389",
+    "TestRedshiftProfileC7C6727A",
+    "TestTableProviderframeworkonEventFD35FC3D",
+    "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
+    "TestTableProviderframeworkonEventServiceRole585FCC2A",
+    "TestTable82078E3B"
+   ]
+  }
+ },
+ "Mappings": {
+  "DefaultCrNodeVersionMap": {
+   "af-south-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-east-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-northeast-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-northeast-2": {
+    "value": "nodejs16.x"
+   },
+   "ap-northeast-3": {
+    "value": "nodejs16.x"
+   },
+   "ap-south-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-south-2": {
+    "value": "nodejs16.x"
+   },
+   "ap-southeast-1": {
+    "value": "nodejs16.x"
+   },
+   "ap-southeast-2": {
+    "value": "nodejs16.x"
+   },
+   "ap-southeast-3": {
+    "value": "nodejs16.x"
+   },
+   "ca-central-1": {
+    "value": "nodejs16.x"
+   },
+   "cn-north-1": {
+    "value": "nodejs16.x"
+   },
+   "cn-northwest-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-central-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-central-2": {
+    "value": "nodejs16.x"
+   },
+   "eu-north-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-south-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-south-2": {
+    "value": "nodejs16.x"
+   },
+   "eu-west-1": {
+    "value": "nodejs16.x"
+   },
+   "eu-west-2": {
+    "value": "nodejs16.x"
+   },
+   "eu-west-3": {
+    "value": "nodejs16.x"
+   },
+   "me-central-1": {
+    "value": "nodejs16.x"
+   },
+   "me-south-1": {
+    "value": "nodejs16.x"
+   },
+   "sa-east-1": {
+    "value": "nodejs16.x"
+   },
+   "us-east-1": {
+    "value": "nodejs16.x"
+   },
+   "us-east-2": {
+    "value": "nodejs16.x"
+   },
+   "us-gov-east-1": {
+    "value": "nodejs16.x"
+   },
+   "us-gov-west-1": {
+    "value": "nodejs16.x"
+   },
+   "us-iso-east-1": {
+    "value": "nodejs14.x"
+   },
+   "us-iso-west-1": {
+    "value": "nodejs14.x"
+   },
+   "us-isob-east-1": {
+    "value": "nodejs14.x"
+   },
+   "us-west-1": {
+    "value": "nodejs16.x"
+   },
+   "us-west-2": {
+    "value": "nodejs16.x"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
