@@ -178,19 +178,19 @@
     "outdir": "dist",
     "targets": {
       "java": {
-        "package": "io.github.cdklabs.cdkappflow",
+        "package": "io.github.cdklabs.cdk.appflow",
         "maven": {
           "groupId": "io.github.cdklabs",
-          "artifactId": "cdkappflow"
+          "artifactId": "cdk-appflow"
         }
       },
       "python": {
-        "distName": "cdk-appflow",
-        "module": "cdk-apflow"
+        "distName": "cdklabs.cdk-appflow",
+        "module": "cdklabs.cdk_appflow"
       },
       "dotnet": {
-        "namespace": "Cdklabs.CdkAppFlow",
-        "packageId": "Cdklabs.CdkAppFlow"
+        "namespace": "Cdklabs.CdkAppflow",
+        "packageId": "Cdklabs.CdkAppflow"
       },
       "go": {
         "moduleName": "github.com/cdklabs/cdk-appflow-go"

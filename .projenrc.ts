@@ -22,25 +22,6 @@ const project = new CdklabsConstructLibrary({
     'appflow',
     'cdk',
   ],
-  publishToPypi: {
-    distName: 'cdk-appflow',
-    module: 'cdk-apflow',
-  },
-  publishToNuget: {
-    dotNetNamespace: 'Cdklabs.CdkAppFlow',
-    packageId: 'Cdklabs.CdkAppFlow',
-  },
-  publishToMaven: {
-    mavenGroupId: 'io.github.cdklabs',
-    javaPackage: 'io.github.cdklabs.cdkappflow',
-    mavenArtifactId: 'cdkappflow',
-    mavenEndpoint: 'https://s01.oss.sonatype.org',
-  },
-  publishToGo: {
-    moduleName: 'github.com/cdklabs/cdk-appflow-go',
-    gitUserName: 'cdklabs-automation',
-    gitUserEmail: 'cdklabs-automation@amazon.com',
-  },
   gitignore: [
     '*.rest', '.vscode', '**/.DS_Store',
   ],
