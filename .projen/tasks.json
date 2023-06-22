@@ -347,6 +347,69 @@
         }
       ]
     },
+    "integ:ondemand-sapodata-to-s3:assert": {
+      "name": "integ:ondemand-sapodata-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-sapodata-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-sapodata-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-sapodata-to-s3'. Run 'projen integ:ondemand-sapodata-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-sapodata-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-sapodata-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-sapodata-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-sapodata-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-sapodata-to-s3:deploy": {
+      "name": "integ:ondemand-sapodata-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-sapodata-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-sapodata-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-sapodata-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-sapodata-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-sapodata-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-sapodata-to-s3.integ/deploy.cdk.out test/integ/ondemand-sapodata-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-sapodata-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-sapodata-to-s3:destroy": {
+      "name": "integ:ondemand-sapodata-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-sapodata-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-sapodata-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-sapodata-to-s3:snapshot": {
+      "name": "integ:ondemand-sapodata-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-sapodata-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-sapodata-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-sapodata-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-sapodata-to-s3:watch": {
+      "name": "integ:ondemand-sapodata-to-s3:watch",
+      "description": "watch integration test 'ondemand-sapodata-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-sapodata-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-sapodata-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
     "integ:ondemand-slack-to-s3:assert": {
       "name": "integ:ondemand-slack-to-s3:assert",
       "description": "assert the snapshot of integration test 'ondemand-slack-to-s3'",
@@ -613,6 +676,9 @@
           "spawn": "integ:ondemand-salesforce-to-s3:snapshot"
         },
         {
+          "spawn": "integ:ondemand-sapodata-to-s3:snapshot"
+        },
+        {
           "spawn": "integ:ondemand-slack-to-s3:snapshot"
         },
         {
@@ -783,6 +849,9 @@
         },
         {
           "spawn": "integ:ondemand-salesforce-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-sapodata-to-s3:assert"
         },
         {
           "spawn": "integ:ondemand-slack-to-s3:assert"
