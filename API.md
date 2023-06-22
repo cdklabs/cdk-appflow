@@ -3293,6 +3293,282 @@ public readonly credentials: ISecret;
 ---
 
 
+### SAPOdataConnectorProfile <a name="SAPOdataConnectorProfile" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile"></a>
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.Initializer"></a>
+
+```typescript
+import { SAPOdataConnectorProfile } from '@cdklabs/cdk-appflow'
+
+new SAPOdataConnectorProfile(scope: Construct, id: string, props: SAPOdataConnectorProfileProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps">SAPOdataConnectorProfileProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps">SAPOdataConnectorProfileProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+
+---
+
+##### `toString` <a name="toString" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `applyRemovalPolicy` <a name="applyRemovalPolicy" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.applyRemovalPolicy"></a>
+
+```typescript
+public applyRemovalPolicy(policy: RemovalPolicy): void
+```
+
+Apply the given removal policy to this resource.
+
+The Removal Policy controls what happens to this resource when it stops
+being managed by CloudFormation, either because you've removed it from the
+CDK application or because you've made a change that requires the resource
+to be replaced.
+
+The resource can be deleted (`RemovalPolicy.DESTROY`), or left in your AWS
+account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
+
+###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.applyRemovalPolicy.parameter.policy"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | *No description.* |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isConstruct"></a>
+
+```typescript
+import { SAPOdataConnectorProfile } from '@cdklabs/cdk-appflow'
+
+SAPOdataConnectorProfile.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isOwnedResource` <a name="isOwnedResource" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isOwnedResource"></a>
+
+```typescript
+import { SAPOdataConnectorProfile } from '@cdklabs/cdk-appflow'
+
+SAPOdataConnectorProfile.isOwnedResource(construct: IConstruct)
+```
+
+Returns true if the construct was created by CDK, and false otherwise.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isOwnedResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `isResource` <a name="isResource" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isResource"></a>
+
+```typescript
+import { SAPOdataConnectorProfile } from '@cdklabs/cdk-appflow'
+
+SAPOdataConnectorProfile.isResource(construct: IConstruct)
+```
+
+Check whether the given construct is a Resource.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.isResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `fromConnectionProfileArn` <a name="fromConnectionProfileArn" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileArn"></a>
+
+```typescript
+import { SAPOdataConnectorProfile } from '@cdklabs/cdk-appflow'
+
+SAPOdataConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileArn.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
+
+- *Type:* string
+
+---
+
+##### `fromConnectionProfileName` <a name="fromConnectionProfileName" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileName"></a>
+
+```typescript
+import { SAPOdataConnectorProfile } from '@cdklabs/cdk-appflow'
+
+SAPOdataConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileName.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.fromConnectionProfileName.parameter.name"></a>
+
+- *Type:* string
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `env`<sup>Required</sup> <a name="env" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.env"></a>
+
+```typescript
+public readonly env: ResourceEnvironment;
+```
+
+- *Type:* aws-cdk-lib.ResourceEnvironment
+
+The environment this resource belongs to.
+
+For resources that are created and managed by the CDK
+(generally, those created by creating new class instances like Role, Bucket, etc.),
+this is always the same as the environment of the stack they belong to;
+however, for imported resources
+(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
+that might be different than the stack they were imported into.
+
+---
+
+##### `stack`<sup>Required</sup> <a name="stack" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.stack"></a>
+
+```typescript
+public readonly stack: Stack;
+```
+
+- *Type:* aws-cdk-lib.Stack
+
+The stack in which this resource is defined.
+
+---
+
+##### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.arn"></a>
+
+```typescript
+public readonly arn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `credentials`<sup>Optional</sup> <a name="credentials" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.property.credentials"></a>
+
+```typescript
+public readonly credentials: ISecret;
+```
+
+- *Type:* aws-cdk-lib.aws_secretsmanager.ISecret
+
+---
+
+
 ### ServiceNowConnectorProfile <a name="ServiceNowConnectorProfile" id="@cdklabs/cdk-appflow.ServiceNowConnectorProfile"></a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.ServiceNowConnectorProfile.Initializer"></a>
@@ -7282,6 +7558,464 @@ public readonly includeDeletedRecords: boolean;
 
 ---
 
+### SAPOdataBasicAuthSettings <a name="SAPOdataBasicAuthSettings" id="@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.Initializer"></a>
+
+```typescript
+import { SAPOdataBasicAuthSettings } from '@cdklabs/cdk-appflow'
+
+const sAPOdataBasicAuthSettings: SAPOdataBasicAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.property.password">password</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.property.username">username</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `password`<sup>Required</sup> <a name="password" id="@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.property.password"></a>
+
+```typescript
+public readonly password: string;
+```
+
+- *Type:* string
+
+---
+
+##### `username`<sup>Required</sup> <a name="username" id="@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.property.username"></a>
+
+```typescript
+public readonly username: string;
+```
+
+- *Type:* string
+
+---
+
+### SAPOdataConnectorProfileProps <a name="SAPOdataConnectorProfileProps" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.Initializer"></a>
+
+```typescript
+import { SAPOdataConnectorProfileProps } from '@cdklabs/cdk-appflow'
+
+const sAPOdataConnectorProfileProps: SAPOdataConnectorProfileProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.applicationHostUrl">applicationHostUrl</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.applicationServicePath">applicationServicePath</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.clientNumber">clientNumber</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.logonLanguage">logonLanguage</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings">SAPOdataBasicAuthSettings</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.oAuth">oAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings">SAPOdataOAuthSettings</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.portNumber">portNumber</a></code> | <code>number</code> | *No description.* |
+
+---
+
+##### `key`<sup>Optional</sup> <a name="key" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.key"></a>
+
+```typescript
+public readonly key: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+
+TODO: think if this should be here as not all connector profiles have that.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `applicationHostUrl`<sup>Required</sup> <a name="applicationHostUrl" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.applicationHostUrl"></a>
+
+```typescript
+public readonly applicationHostUrl: string;
+```
+
+- *Type:* string
+
+---
+
+##### `applicationServicePath`<sup>Required</sup> <a name="applicationServicePath" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.applicationServicePath"></a>
+
+```typescript
+public readonly applicationServicePath: string;
+```
+
+- *Type:* string
+
+---
+
+##### `clientNumber`<sup>Required</sup> <a name="clientNumber" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.clientNumber"></a>
+
+```typescript
+public readonly clientNumber: string;
+```
+
+- *Type:* string
+
+---
+
+##### `logonLanguage`<sup>Required</sup> <a name="logonLanguage" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.logonLanguage"></a>
+
+```typescript
+public readonly logonLanguage: string;
+```
+
+- *Type:* string
+
+---
+
+##### `basicAuth`<sup>Optional</sup> <a name="basicAuth" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.basicAuth"></a>
+
+```typescript
+public readonly basicAuth: SAPOdataBasicAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings">SAPOdataBasicAuthSettings</a>
+
+---
+
+##### `oAuth`<sup>Optional</sup> <a name="oAuth" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.oAuth"></a>
+
+```typescript
+public readonly oAuth: SAPOdataOAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings">SAPOdataOAuthSettings</a>
+
+---
+
+##### `portNumber`<sup>Optional</sup> <a name="portNumber" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfileProps.property.portNumber"></a>
+
+```typescript
+public readonly portNumber: number;
+```
+
+- *Type:* number
+
+---
+
+### SAPOdataDestinationProps <a name="SAPOdataDestinationProps" id="@cdklabs/cdk-appflow.SAPOdataDestinationProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataDestinationProps.Initializer"></a>
+
+```typescript
+import { SAPOdataDestinationProps } from '@cdklabs/cdk-appflow'
+
+const sAPOdataDestinationProps: SAPOdataDestinationProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.object">object</a></code> | <code>string</code> | The SAPOdata object for which the operation is to be set. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.operation">operation</a></code> | <code><a href="#@cdklabs/cdk-appflow.WriteOperation">WriteOperation</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.errorHandling">errorHandling</a></code> | <code><a href="#@cdklabs/cdk-appflow.ErrorHandlingConfiguration">ErrorHandlingConfiguration</a></code> | The settings that determine how Amazon AppFlow handles an error when placing data in the SAPOdata destination. |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.successResponseHandling">successResponseHandling</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataSuccessResponseHandlingConfiguration">SAPOdataSuccessResponseHandlingConfiguration</a></code> | *No description.* |
+
+---
+
+##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.object"></a>
+
+```typescript
+public readonly object: string;
+```
+
+- *Type:* string
+
+The SAPOdata object for which the operation is to be set.
+
+---
+
+##### `operation`<sup>Required</sup> <a name="operation" id="@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.operation"></a>
+
+```typescript
+public readonly operation: WriteOperation;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.WriteOperation">WriteOperation</a>
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.profile"></a>
+
+```typescript
+public readonly profile: SAPOdataConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>
+
+---
+
+##### `errorHandling`<sup>Optional</sup> <a name="errorHandling" id="@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.errorHandling"></a>
+
+```typescript
+public readonly errorHandling: ErrorHandlingConfiguration;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ErrorHandlingConfiguration">ErrorHandlingConfiguration</a>
+
+The settings that determine how Amazon AppFlow handles an error when placing data in the SAPOdata destination.
+
+For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure.
+
+---
+
+##### `successResponseHandling`<sup>Optional</sup> <a name="successResponseHandling" id="@cdklabs/cdk-appflow.SAPOdataDestinationProps.property.successResponseHandling"></a>
+
+```typescript
+public readonly successResponseHandling: SAPOdataSuccessResponseHandlingConfiguration;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataSuccessResponseHandlingConfiguration">SAPOdataSuccessResponseHandlingConfiguration</a>
+
+---
+
+### SAPOdataOAuthEndpoints <a name="SAPOdataOAuthEndpoints" id="@cdklabs/cdk-appflow.SAPOdataOAuthEndpoints"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataOAuthEndpoints.Initializer"></a>
+
+```typescript
+import { SAPOdataOAuthEndpoints } from '@cdklabs/cdk-appflow'
+
+const sAPOdataOAuthEndpoints: SAPOdataOAuthEndpoints = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthEndpoints.property.token">token</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `token`<sup>Required</sup> <a name="token" id="@cdklabs/cdk-appflow.SAPOdataOAuthEndpoints.property.token"></a>
+
+```typescript
+public readonly token: string;
+```
+
+- *Type:* string
+
+---
+
+### SAPOdataOAuthFlows <a name="SAPOdataOAuthFlows" id="@cdklabs/cdk-appflow.SAPOdataOAuthFlows"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataOAuthFlows.Initializer"></a>
+
+```typescript
+import { SAPOdataOAuthFlows } from '@cdklabs/cdk-appflow'
+
+const sAPOdataOAuthFlows: SAPOdataOAuthFlows = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthFlows.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow">SAPOdataOAuthRefreshTokenGrantFlow</a></code> | *No description.* |
+
+---
+
+##### `refreshTokenGrant`<sup>Required</sup> <a name="refreshTokenGrant" id="@cdklabs/cdk-appflow.SAPOdataOAuthFlows.property.refreshTokenGrant"></a>
+
+```typescript
+public readonly refreshTokenGrant: SAPOdataOAuthRefreshTokenGrantFlow;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow">SAPOdataOAuthRefreshTokenGrantFlow</a>
+
+---
+
+### SAPOdataOAuthRefreshTokenGrantFlow <a name="SAPOdataOAuthRefreshTokenGrantFlow" id="@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.Initializer"></a>
+
+```typescript
+import { SAPOdataOAuthRefreshTokenGrantFlow } from '@cdklabs/cdk-appflow'
+
+const sAPOdataOAuthRefreshTokenGrantFlow: SAPOdataOAuthRefreshTokenGrantFlow = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `clientId`<sup>Required</sup> <a name="clientId" id="@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientId"></a>
+
+```typescript
+public readonly clientId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `clientSecret`<sup>Required</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientSecret"></a>
+
+```typescript
+public readonly clientSecret: string;
+```
+
+- *Type:* string
+
+---
+
+##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.refreshToken"></a>
+
+```typescript
+public readonly refreshToken: string;
+```
+
+- *Type:* string
+
+---
+
+### SAPOdataOAuthSettings <a name="SAPOdataOAuthSettings" id="@cdklabs/cdk-appflow.SAPOdataOAuthSettings"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataOAuthSettings.Initializer"></a>
+
+```typescript
+import { SAPOdataOAuthSettings } from '@cdklabs/cdk-appflow'
+
+const sAPOdataOAuthSettings: SAPOdataOAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthEndpoints">SAPOdataOAuthEndpoints</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthFlows">SAPOdataOAuthFlows</a></code> | *No description.* |
+
+---
+
+##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.accessToken"></a>
+
+```typescript
+public readonly accessToken: string;
+```
+
+- *Type:* string
+
+---
+
+##### `endpoints`<sup>Optional</sup> <a name="endpoints" id="@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.endpoints"></a>
+
+```typescript
+public readonly endpoints: SAPOdataOAuthEndpoints;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataOAuthEndpoints">SAPOdataOAuthEndpoints</a>
+
+---
+
+##### `flow`<sup>Optional</sup> <a name="flow" id="@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.flow"></a>
+
+```typescript
+public readonly flow: SAPOdataOAuthFlows;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataOAuthFlows">SAPOdataOAuthFlows</a>
+
+---
+
+### SAPOdataSourceProps <a name="SAPOdataSourceProps" id="@cdklabs/cdk-appflow.SAPOdataSourceProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataSourceProps.Initializer"></a>
+
+```typescript
+import { SAPOdataSourceProps } from '@cdklabs/cdk-appflow'
+
+const sAPOdataSourceProps: SAPOdataSourceProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataSourceProps.property.object">object</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a></code> | *No description.* |
+
+---
+
+##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.SAPOdataSourceProps.property.object"></a>
+
+```typescript
+public readonly object: string;
+```
+
+- *Type:* string
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.SAPOdataSourceProps.property.profile"></a>
+
+```typescript
+public readonly profile: SAPOdataConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>
+
+---
+
+### SAPOdataSuccessResponseHandlingConfiguration <a name="SAPOdataSuccessResponseHandlingConfiguration" id="@cdklabs/cdk-appflow.SAPOdataSuccessResponseHandlingConfiguration"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SAPOdataSuccessResponseHandlingConfiguration.Initializer"></a>
+
+```typescript
+import { SAPOdataSuccessResponseHandlingConfiguration } from '@cdklabs/cdk-appflow'
+
+const sAPOdataSuccessResponseHandlingConfiguration: SAPOdataSuccessResponseHandlingConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataSuccessResponseHandlingConfiguration.property.location">location</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3Location">S3Location</a></code> | *No description.* |
+
+---
+
+##### `location`<sup>Required</sup> <a name="location" id="@cdklabs/cdk-appflow.SAPOdataSuccessResponseHandlingConfiguration.property.location"></a>
+
+```typescript
+public readonly location: S3Location;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.S3Location">S3Location</a>
+
+---
+
 ### ScheduleProperties <a name="ScheduleProperties" id="@cdklabs/cdk-appflow.ScheduleProperties"></a>
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.ScheduleProperties.Initializer"></a>
@@ -9892,6 +10626,138 @@ The AppFlow type of the connector that this source is implemented for.
 ---
 
 
+### SAPOdataDestination <a name="SAPOdataDestination" id="@cdklabs/cdk-appflow.SAPOdataDestination"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SAPOdataDestination.Initializer"></a>
+
+```typescript
+import { SAPOdataDestination } from '@cdklabs/cdk-appflow'
+
+new SAPOdataDestination(props: SAPOdataDestinationProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestination.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestinationProps">SAPOdataDestinationProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.SAPOdataDestination.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataDestinationProps">SAPOdataDestinationProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestination.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.SAPOdataDestination.bind"></a>
+
+```typescript
+public bind(flow: IFlow): DestinationFlowConfigProperty
+```
+
+###### `flow`<sup>Required</sup> <a name="flow" id="@cdklabs/cdk-appflow.SAPOdataDestination.bind.parameter.flow"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataDestination.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.SAPOdataDestination.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
+### SAPOdataSource <a name="SAPOdataSource" id="@cdklabs/cdk-appflow.SAPOdataSource"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SAPOdataSource.Initializer"></a>
+
+```typescript
+import { SAPOdataSource } from '@cdklabs/cdk-appflow'
+
+new SAPOdataSource(props: SAPOdataSourceProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataSource.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataSourceProps">SAPOdataSourceProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.SAPOdataSource.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SAPOdataSourceProps">SAPOdataSourceProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataSource.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.SAPOdataSource.bind"></a>
+
+```typescript
+public bind(flow: IFlow): SourceFlowConfigProperty
+```
+
+###### `flow`<sup>Required</sup> <a name="flow" id="@cdklabs/cdk-appflow.SAPOdataSource.bind.parameter.flow"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataSource.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.SAPOdataSource.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
 ### ServiceNowInstanceUrlBuilder <a name="ServiceNowInstanceUrlBuilder" id="@cdklabs/cdk-appflow.ServiceNowInstanceUrlBuilder"></a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.ServiceNowInstanceUrlBuilder.Initializer"></a>
@@ -10942,7 +11808,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 - *Extends:* aws-cdk-lib.IResource
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 
 #### Properties <a name="Properties" id="Properties"></a>
@@ -11035,7 +11901,7 @@ public readonly credentials: ISecret;
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
 
 A destination of an AppFlow flow.
 
@@ -11262,7 +12128,7 @@ public bind(flow: IFlow, source: ISource): TaskProperty[]
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
 
 A source of an AppFlow flow.
 
@@ -11361,7 +12227,7 @@ A representation of a validation operation, that is an operation testing records
 
 ### IVertex <a name="IVertex" id="@cdklabs/cdk-appflow.IVertex"></a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 An interface representing a vertex, i.e. a source or a destination of an AppFlow flow.
 

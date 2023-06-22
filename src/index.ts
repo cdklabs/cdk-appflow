@@ -10,6 +10,7 @@ export * from './microsoftsharepointonline';
 export * from './s3';
 export * from './salesforce';
 export * from './salesforce-marketing-cloud';
+export * from './sapodata';
 export * from './servicenow';
 export * from './slack';
 export * from './redshift';
