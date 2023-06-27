@@ -17,6 +17,7 @@ import { ISource } from '../vertices/source';
 
 export interface IFlow extends IResource {
   readonly arn: string;
+  readonly name: string;
   readonly type: FlowType;
 
   onRunStarted(id: string, options?: OnEventOptions): Rule;
