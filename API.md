@@ -12014,6 +12014,7 @@ public onRunStarted(id: string, options?: OnEventOptions): Rule
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.property.arn">arn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.property.name">name</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
 
 ---
@@ -12065,6 +12066,16 @@ The stack in which this resource is defined.
 
 ```typescript
 public readonly arn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.IFlow.property.name"></a>
+
+```typescript
+public readonly name: string;
 ```
 
 - *Type:* string
