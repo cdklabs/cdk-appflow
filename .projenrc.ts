@@ -26,4 +26,6 @@ const project = new CdklabsConstructLibrary({
     '*.rest', '.vscode', '**/.DS_Store',
   ],
 });
+// Copy Javascript Lambda to lib directory
+project.projectBuild.postCompileTask.exec("cp src/core/flows/flow-time-updater/handler/index.js lib/core/flows/flow-time-updater/handler")
 project.synth();
