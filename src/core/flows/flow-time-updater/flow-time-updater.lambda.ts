@@ -2,27 +2,34 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+import * as AWSLambda from 'aws-lambda';
+import * as API from './api';
+
 /* eslint-disable no-console */
-exports.onEvent = async function (event) {
+export async function handler(event: AWSLambda.CloudFormationCustomResourceEvent) {
   switch (event.RequestType) {
     case 'Create':
     case 'Update':
       return updateFlowTime(event);
     case 'Delete':
       return;
+    default:
+      throw new Error('Unknown signal');
   }
-}
+};
 
-async function updateFlowTime(event) {
+async function updateFlowTime(event: AWSLambda.CloudFormationCustomResourceEvent) {
 
-  let expressionString = event.ResourceProperties['Schedule'];
+  let expressionString = event.ResourceProperties[API.PROP_SCHEDULE];
 
-  const propStartTime = event.ResourceProperties['StartTime'];
+  const propStartTime = event.ResourceProperties[API.PROP_STARTTIME];
   let startTime = propStartTime
     ? new Date(Date.parse(propStartTime))
     : undefined;
 
-  const propEndTime = event.ResourceProperties['EndTime'];
+  const propEndTime = event.ResourceProperties[API.PROP_ENDTIME];
   let endTime = propEndTime
     ? new Date(Date.parse(propEndTime))
     : undefined;
@@ -38,14 +45,14 @@ async function updateFlowTime(event) {
 
   return {
     Data: {
-      ['Schedule']: expressionString,
-      ['StartTime']: startTime && startTime.getTime() / 1000,
-      ['EndTime']: endTime && endTime.getTime() / 1000,
+      [API.ATTR_SCHEDULE]: expressionString,
+      [API.ATTR_STARTTIME]: startTime && startTime.getTime() / 1000,
+      [API.ATTR_ENDTIME]: endTime && endTime.getTime() / 1000,
     },
   };
 }
 
-function buildForRateBasedSchedule(expressionString, startTime) {
+function buildForRateBasedSchedule(expressionString: string, startTime?: Date) {
 
   // TODO: the below statement is from a customer. I need to check it more thoroughly
   // Rebuilding expression string as Flows require always plural, so: hour -> hours, etc.

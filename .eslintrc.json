@@ -148,6 +148,7 @@
         "devDependencies": [
           "**/test/**",
           "**/build-tools/**",
+          "src/core/flows/flow-time-updater/flow-time-updater.lambda.ts",
           ".projenrc.ts",
           "projenrc/**/*.ts"
         ],

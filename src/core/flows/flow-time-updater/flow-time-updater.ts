@@ -2,13 +2,15 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import * as path from 'path';
+// import * as path from 'path';
 import { CustomResource, Stack, Token } from 'aws-cdk-lib';
 import { Schedule } from 'aws-cdk-lib/aws-events';
-import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
+// import { Runtime } from 'aws-cdk-lib/aws-lambda';
+// import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Provider } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
-import * as api from './handler/api';
+import * as api from './api';
+import { FlowTimeUpdaterFunction } from './flow-time-updater-function';
 
 interface FlowTimeUpdaterProps {
   readonly schedule: Schedule;
@@ -58,11 +60,7 @@ class FlowTimeUpdaterProvider extends Construct {
     super(scope, id);
 
     this.provider = new Provider(this, 'flow-time-provider', {
-      onEventHandler: new Function(this, 'flow-time-on-event', {
-        code: Code.fromAsset(path.join(__dirname, 'handler')),
-        runtime: Runtime.NODEJS_16_X,
-        handler: 'index.onEvent',
-      }),
+      onEventHandler: new FlowTimeUpdaterFunction(this, 'flow-time-on-event'),
     });
   }
 }

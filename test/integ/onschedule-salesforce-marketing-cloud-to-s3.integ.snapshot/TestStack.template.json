@@ -475,7 +475,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2"
      },
-     "S3Key": "85b8ed11986c2c5949ded4f72054587a0abc0b6851f0b9890db35d5280769727.zip"
+     "S3Key": "bda456ca3af7776e8e5ce88f2bbd621cc239ae9a3ce52dce5e34d1770b7380d2.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -483,7 +483,13 @@
       "Arn"
      ]
     },
-    "Handler": "index.onEvent",
+    "Description": "src/core/flows/flow-time-updater/flow-time-updater.lambda.ts",
+    "Environment": {
+     "Variables": {
+      "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+     }
+    },
+    "Handler": "index.handler",
     "Runtime": "nodejs16.x"
    },
    "DependsOn": [
