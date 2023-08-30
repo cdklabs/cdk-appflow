@@ -50,6 +50,10 @@
       "type": "build"
     },
     {
+      "name": "esbuild",
+      "type": "build"
+    },
+    {
       "name": "eslint-import-resolver-node",
       "type": "build"
     },
@@ -123,6 +127,10 @@
     {
       "name": "typescript",
       "type": "build"
+    },
+    {
+      "name": "@types/aws-lambda",
+      "type": "bundled"
     },
     {
       "name": "@aws-cdk/integ-runner",

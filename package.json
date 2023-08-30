@@ -7,6 +7,9 @@
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
+    "bundle": "npx projen bundle",
+    "bundle:core/flows/flow-time-updater/flow-time-updater.lambda": "npx projen bundle:core/flows/flow-time-updater/flow-time-updater.lambda",
+    "bundle:core/flows/flow-time-updater/flow-time-updater.lambda:watch": "npx projen bundle:core/flows/flow-time-updater/flow-time-updater.lambda:watch",
     "clobber": "npx projen clobber",
     "compat": "npx projen compat",
     "compile": "npx projen compile",
@@ -95,6 +98,7 @@
     "aws-cdk-lib": "2.84.0",
     "cdklabs-projen-project-types": "^0.1.153",
     "constructs": "10.0.5",
+    "esbuild": "^0.19.2",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^3.5.5",
@@ -119,6 +123,12 @@
     "aws-cdk-lib": "^2.84.0",
     "constructs": "^10.0.5"
   },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.119"
+  },
+  "bundledDependencies": [
+    "@types/aws-lambda"
+  ],
   "resolutions": {
     "@types/babel__traverse": "7.18.2",
     "@types/prettier": "2.6.0"

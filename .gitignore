@@ -55,6 +55,8 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+/assets/
+!/src/core/flows/flow-time-updater/flow-time-updater-function.ts
 test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot/asset.*
 test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot/**/asset.*
 test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot/cdk.out

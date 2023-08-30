@@ -1,11 +1,12 @@
 import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
 import { Stability } from 'projen/lib/cdk';
 
+const cdkVersion = '2.84.0';
 const project = new CdklabsConstructLibrary({
   name: '@cdklabs/cdk-appflow',
   author: 'Amazon Web Services',
   authorAddress: 'cdk-appflow-maintainers@amazon.com',
-  cdkVersion: '2.84.0',
+  cdkVersion,
   defaultReleaseBranch: 'main',
   minNodeVersion: '16.0.0',
   projenrcTs: true,
@@ -13,9 +14,11 @@ const project = new CdklabsConstructLibrary({
   repositoryUrl: 'https://github.com/cdklabs/cdk-appflow.git',
   stability: Stability.EXPERIMENTAL,
   docgen: true,
+  bundledDeps: ['@types/aws-lambda'],
+  devDeps: ['esbuild'],
   peerDeps: [
-    '@aws-cdk/aws-redshift-alpha@2.84.0-alpha.0',
-    '@aws-cdk/aws-glue-alpha@2.84.0-alpha.0',
+    `@aws-cdk/aws-redshift-alpha@${cdkVersion}-alpha.0`,
+    `@aws-cdk/aws-glue-alpha@${cdkVersion}-alpha.0`,
   ],
   keywords: [
     'aws',
