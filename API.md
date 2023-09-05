@@ -4931,6 +4931,7 @@ const flowBaseProps: FlowBaseProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.transforms">transforms</a></code> | <code><a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.validations">validations</a></code> | <code><a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.status">status</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.triggerConfig">triggerConfig</a></code> | <code><a href="#@cdklabs/cdk-appflow.TriggerConfig">TriggerConfig</a></code> | *No description.* |
 
 ---
@@ -5032,6 +5033,16 @@ public readonly type: FlowType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a>
+
+---
+
+##### `status`<sup>Optional</sup> <a name="status" id="@cdklabs/cdk-appflow.FlowBaseProps.property.status"></a>
+
+```typescript
+public readonly status: FlowStatus;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a>
 
 ---
 
@@ -6089,6 +6100,7 @@ const onEventFlowProps: OnEventFlowProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlowProps.property.transforms">transforms</a></code> | <code><a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlowProps.property.validations">validations</a></code> | <code><a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlowProps.property.autoActivate">autoActivate</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlowProps.property.status">status</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a></code> | *No description.* |
 
 ---
 
@@ -6182,13 +6194,25 @@ public readonly validations: IValidation[];
 
 ---
 
-##### `autoActivate`<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnEventFlowProps.property.autoActivate"></a>
+##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnEventFlowProps.property.autoActivate"></a>
+
+- *Deprecated:* . Use active instead
 
 ```typescript
 public readonly autoActivate: boolean;
 ```
 
 - *Type:* boolean
+
+---
+
+##### `status`<sup>Optional</sup> <a name="status" id="@cdklabs/cdk-appflow.OnEventFlowProps.property.status"></a>
+
+```typescript
+public readonly status: FlowStatus;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a>
 
 ---
 
@@ -6216,6 +6240,7 @@ const onScheduleFlowProps: OnScheduleFlowProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.transforms">transforms</a></code> | <code><a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.validations">validations</a></code> | <code><a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.autoActivate">autoActivate</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.status">status</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.pullConfig">pullConfig</a></code> | <code><a href="#@cdklabs/cdk-appflow.DataPullConfig">DataPullConfig</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.schedule">schedule</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.scheduleProperties">scheduleProperties</a></code> | <code><a href="#@cdklabs/cdk-appflow.ScheduleProperties">ScheduleProperties</a></code> | *No description.* |
@@ -6312,13 +6337,25 @@ public readonly validations: IValidation[];
 
 ---
 
-##### `autoActivate`<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnScheduleFlowProps.property.autoActivate"></a>
+##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnScheduleFlowProps.property.autoActivate"></a>
+
+- *Deprecated:* . Use active instead
 
 ```typescript
 public readonly autoActivate: boolean;
 ```
 
 - *Type:* boolean
+
+---
+
+##### `status`<sup>Optional</sup> <a name="status" id="@cdklabs/cdk-appflow.OnScheduleFlowProps.property.status"></a>
+
+```typescript
+public readonly status: FlowStatus;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a>
 
 ---
 
@@ -8501,6 +8538,7 @@ const triggeredFlowBaseProps: TriggeredFlowBaseProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.transforms">transforms</a></code> | <code><a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.validations">validations</a></code> | <code><a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.autoActivate">autoActivate</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.status">status</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a></code> | *No description.* |
 
 ---
 
@@ -8594,13 +8632,25 @@ public readonly validations: IValidation[];
 
 ---
 
-##### `autoActivate`<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.autoActivate"></a>
+##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.autoActivate"></a>
+
+- *Deprecated:* . Use active instead
 
 ```typescript
 public readonly autoActivate: boolean;
 ```
 
 - *Type:* boolean
+
+---
+
+##### `status`<sup>Optional</sup> <a name="status" id="@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.status"></a>
+
+```typescript
+public readonly status: FlowStatus;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a>
 
 ---
 
@@ -12336,6 +12386,27 @@ The AppFlow type of the connector that this source is implemented for.
 
 
 ##### `INCREMENTAL` <a name="INCREMENTAL" id="@cdklabs/cdk-appflow.DataPullMode.INCREMENTAL"></a>
+
+---
+
+
+### FlowStatus <a name="FlowStatus" id="@cdklabs/cdk-appflow.FlowStatus"></a>
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.FlowStatus.ACTIVE">ACTIVE</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowStatus.SUSPENDED">SUSPENDED</a></code> | *No description.* |
+
+---
+
+##### `ACTIVE` <a name="ACTIVE" id="@cdklabs/cdk-appflow.FlowStatus.ACTIVE"></a>
+
+---
+
+
+##### `SUSPENDED` <a name="SUSPENDED" id="@cdklabs/cdk-appflow.FlowStatus.SUSPENDED"></a>
 
 ---
 

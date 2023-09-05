@@ -20,6 +20,7 @@ import {
   Transform,
   WriteOperation,
   SalesforceConnectorProfile,
+  FlowStatus,
 } from '../../src';
 
 const app = new App({
@@ -83,7 +84,7 @@ const flow = new OnScheduleFlow(stack, 'OnScheduleFlow', {
   scheduleProperties: {
     startTime: new Date(Date.parse('2024-01-01')),
   },
-  autoActivate: true,
+  status: FlowStatus.ACTIVE,
 });
 
 flow.node.addDependency(deployment);

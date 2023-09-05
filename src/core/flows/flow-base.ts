@@ -51,6 +51,11 @@ export enum FlowType {
   SCHEDULED = 'Scheduled'
 }
 
+export enum FlowStatus {
+  ACTIVE = 'Active',
+  SUSPENDED = 'Suspended'
+}
+
 export enum DataPullMode {
   COMPLETE = 'Complete',
   INCREMENTAL = 'Incremental'
@@ -103,6 +108,7 @@ export interface FlowProps {
 export interface FlowBaseProps extends FlowProps {
   readonly type: FlowType;
   readonly triggerConfig?: TriggerConfig;
+  readonly status?: FlowStatus;
 }
 
 export abstract class FlowBase extends Resource implements IFlow {
@@ -133,6 +139,7 @@ export abstract class FlowBase extends Resource implements IFlow {
     this.name = props.name || id;
     const resource = new CfnFlow(this, id, {
       flowName: this.name,
+      flowStatus: props.status,
       triggerConfig: {
         triggerType: props.type,
         triggerProperties: props.triggerConfig
