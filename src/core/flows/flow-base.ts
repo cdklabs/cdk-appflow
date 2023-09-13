@@ -16,29 +16,45 @@ import { IDestination } from '../vertices/destination';
 import { ISource } from '../vertices/source';
 
 export interface IFlow extends IResource {
+  /**
+   * The ARN of the flow.
+   */
   readonly arn: string;
+
+  /**
+   * The name of the flow
+   */
   readonly name: string;
+
+  /**
+   * The type of the flow.
+   */
   readonly type: FlowType;
 
   onRunStarted(id: string, options?: OnEventOptions): Rule;
 
   onRunCompleted(id: string, options?: OnEventOptions): Rule;
+
   /**
    * @internal
    */
   _addMapping(mapping: IMapping): IFlow;
+
   /**
    * @internal
    */
   _addValidation(validator: IValidation): IFlow;
+
   /**
    * @internal
    */
   _addTransform(transform: ITransform): IFlow;
+
   /**
    * @internal
    */
   _addFilter(filter: IFilter): IFlow;
+
   /**
    * @internal
    */
@@ -113,9 +129,19 @@ export interface FlowBaseProps extends FlowProps {
 
 export abstract class FlowBase extends Resource implements IFlow {
 
+  /**
+   * The ARN of the flow.
+   */
   public readonly arn: string;
+
+  /**
+   * The type of the flow.
+   */
   public readonly type: FlowType;
 
+  /**
+   * The name of the flow.
+   */
   public readonly name: string;
 
   private readonly mappings: CfnFlow.TaskProperty[] = [];
