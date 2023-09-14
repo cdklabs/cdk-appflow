@@ -176,6 +176,7 @@ describe('OnEventFlow', () => {
 
     template.hasResource('AWS::AppFlow::Flow', {
       Properties: {
+        FlowStatus: 'Suspended',
         DestinationFlowConfigList: [
           {
             ConnectorType: 'EventBridge',
