@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import { Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
-import { OnEventFlow, SalesforceSource, EventBridgeDestination, EventSources, Mapping, SalesforceConnectorProfile } from '../../../src';
+import { OnEventFlow, SalesforceSource, EventBridgeDestination, EventSources, Mapping, SalesforceConnectorProfile, FlowStatus } from '../../../src';
 
 describe('OnEventFlow', () => {
   test.each([{
@@ -30,7 +30,7 @@ describe('OnEventFlow', () => {
       source: source,
       destination: destination,
       mappings: [Mapping.mapAll()],
-      autoActivate: true,
+      status: FlowStatus.ACTIVE,
     });
 
     flow.onDeactivated('OnDeactivated', namedRules ? {
@@ -72,6 +72,7 @@ describe('OnEventFlow', () => {
           },
         ],
         FlowName: 'OnEventFlow',
+        FlowStatus: 'Active',
         SourceFlowConfig: {
           ConnectorProfileName: 'appflow-tester',
           ConnectorType: 'Salesforce',
@@ -148,20 +149,6 @@ describe('OnEventFlow', () => {
       },
       State: 'ENABLED',
     });
-
-    template.resourceCountIs('Custom::AWS', 1);
-
-    template.hasResourceProperties('Custom::AWS', {
-      ServiceToken: {
-        'Fn::GetAtt': [
-          'AWS679f53fac002430cb0da5b7982bd22872D164C4C',
-          'Arn',
-        ],
-      },
-      Create: '{"service":"Appflow","action":"startFlow","parameters":{"flowName":"OnEventFlow"},"physicalResourceId":{"id":"OnEventFlowActivator"}}',
-      Delete: '{"service":"Appflow","action":"stopFlow","parameters":{"flowName":"OnEventFlow"}}',
-      InstallLatestAwsSdk: true,
-    });
   });
 
   test('autoactivated flow without status and deactivation listeners renders flow definition only', () => {
@@ -182,13 +169,14 @@ describe('OnEventFlow', () => {
       source: source,
       destination: destination,
       mappings: [Mapping.mapAll()],
-      autoActivate: false,
+      status: FlowStatus.SUSPENDED,
     });
 
     const template = Template.fromStack(stack);
 
     template.hasResource('AWS::AppFlow::Flow', {
       Properties: {
+        FlowStatus: 'Suspended',
         DestinationFlowConfigList: [
           {
             ConnectorType: 'EventBridge',

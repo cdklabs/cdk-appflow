@@ -15,7 +15,8 @@ export class OnEventFlow extends TriggeredFlowBase implements IFlow {
     super(scope, id, {
       ...props,
       type: FlowType.EVENT,
-    }, props.autoActivate);
+      status: TriggeredFlowBase.setStatus(props.autoActivate, props.status),
+    });
   }
 
   public onDeactivated(id: string, options: OnEventOptions = {}) {

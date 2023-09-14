@@ -18,6 +18,7 @@ export class OnScheduleFlow extends TriggeredFlowBase implements IFlow {
     super(scope, id, {
       ...props,
       type: FlowType.SCHEDULED,
+      status: TriggeredFlowBase.setStatus(props.autoActivate, props.status),
       triggerConfig: {
         properties: {
           schedule: props.schedule,
@@ -25,7 +26,7 @@ export class OnScheduleFlow extends TriggeredFlowBase implements IFlow {
           properties: props.scheduleProperties,
         },
       },
-    }, props.autoActivate);
+    });
   }
 
   public onDeactivated(id: string, options: OnEventOptions = {}) {

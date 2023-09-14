@@ -657,9 +657,9 @@ Check whether the given construct is a Resource.
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
-| <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.arn">arn</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.arn">arn</a></code> | <code>string</code> | The ARN of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.name">name</a></code> | <code>string</code> | The name of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | The type of the flow. |
 
 ---
 
@@ -714,6 +714,8 @@ public readonly arn: string;
 
 - *Type:* string
 
+The ARN of the flow.
+
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.FlowBase.property.name"></a>
@@ -724,6 +726,8 @@ public readonly name: string;
 
 - *Type:* string
 
+The name of the flow.
+
 ---
 
 ##### `type`<sup>Required</sup> <a name="type" id="@cdklabs/cdk-appflow.FlowBase.property.type"></a>
@@ -733,6 +737,8 @@ public readonly type: FlowType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a>
+
+The type of the flow.
 
 ---
 
@@ -1766,9 +1772,9 @@ Check whether the given construct is a Resource.
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
-| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.arn">arn</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.arn">arn</a></code> | <code>string</code> | The ARN of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.name">name</a></code> | <code>string</code> | The name of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | The type of the flow. |
 
 ---
 
@@ -1823,6 +1829,8 @@ public readonly arn: string;
 
 - *Type:* string
 
+The ARN of the flow.
+
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.OnDemandFlow.property.name"></a>
@@ -1833,6 +1841,8 @@ public readonly name: string;
 
 - *Type:* string
 
+The name of the flow.
+
 ---
 
 ##### `type`<sup>Required</sup> <a name="type" id="@cdklabs/cdk-appflow.OnDemandFlow.property.type"></a>
@@ -1842,6 +1852,8 @@ public readonly type: FlowType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a>
+
+The type of the flow.
 
 ---
 
@@ -2085,9 +2097,9 @@ Check whether the given construct is a Resource.
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
-| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.arn">arn</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.arn">arn</a></code> | <code>string</code> | The ARN of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.name">name</a></code> | <code>string</code> | The name of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | The type of the flow. |
 
 ---
 
@@ -2142,6 +2154,8 @@ public readonly arn: string;
 
 - *Type:* string
 
+The ARN of the flow.
+
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.OnEventFlow.property.name"></a>
@@ -2152,6 +2166,8 @@ public readonly name: string;
 
 - *Type:* string
 
+The name of the flow.
+
 ---
 
 ##### `type`<sup>Required</sup> <a name="type" id="@cdklabs/cdk-appflow.OnEventFlow.property.type"></a>
@@ -2161,6 +2177,8 @@ public readonly type: FlowType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a>
+
+The type of the flow.
 
 ---
 
@@ -2385,9 +2403,9 @@ Check whether the given construct is a Resource.
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
-| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.arn">arn</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.arn">arn</a></code> | <code>string</code> | The ARN of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.name">name</a></code> | <code>string</code> | The name of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | The type of the flow. |
 
 ---
 
@@ -2442,6 +2460,8 @@ public readonly arn: string;
 
 - *Type:* string
 
+The ARN of the flow.
+
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.OnScheduleFlow.property.name"></a>
@@ -2452,6 +2472,8 @@ public readonly name: string;
 
 - *Type:* string
 
+The name of the flow.
+
 ---
 
 ##### `type`<sup>Required</sup> <a name="type" id="@cdklabs/cdk-appflow.OnScheduleFlow.property.type"></a>
@@ -2461,6 +2483,8 @@ public readonly type: FlowType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a>
+
+The type of the flow.
 
 ---
 
@@ -4125,12 +4149,14 @@ public readonly credentials: ISecret;
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
 
+A base class for triggered flows.
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.TriggeredFlowBase.Initializer"></a>
 
 ```typescript
 import { TriggeredFlowBase } from '@cdklabs/cdk-appflow'
 
-new TriggeredFlowBase(scope: Construct, id: string, props: FlowBaseProps, autoActivate?: boolean)
+new TriggeredFlowBase(scope: Construct, id: string, props: FlowBaseProps)
 ```
 
 | **Name** | **Type** | **Description** |
@@ -4138,7 +4164,6 @@ new TriggeredFlowBase(scope: Construct, id: string, props: FlowBaseProps, autoAc
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps">FlowBaseProps</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.Initializer.parameter.autoActivate">autoActivate</a></code> | <code>boolean</code> | *No description.* |
 
 ---
 
@@ -4157,12 +4182,6 @@ new TriggeredFlowBase(scope: Construct, id: string, props: FlowBaseProps, autoAc
 ##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.TriggeredFlowBase.Initializer.parameter.props"></a>
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowBaseProps">FlowBaseProps</a>
-
----
-
-##### `autoActivate`<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.TriggeredFlowBase.Initializer.parameter.autoActivate"></a>
-
-- *Type:* boolean
 
 ---
 
@@ -4348,9 +4367,9 @@ Check whether the given construct is a Resource.
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.arn">arn</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.arn">arn</a></code> | <code>string</code> | The ARN of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.name">name</a></code> | <code>string</code> | The name of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | The type of the flow. |
 
 ---
 
@@ -4405,6 +4424,8 @@ public readonly arn: string;
 
 - *Type:* string
 
+The ARN of the flow.
+
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.TriggeredFlowBase.property.name"></a>
@@ -4415,6 +4436,8 @@ public readonly name: string;
 
 - *Type:* string
 
+The name of the flow.
+
 ---
 
 ##### `type`<sup>Required</sup> <a name="type" id="@cdklabs/cdk-appflow.TriggeredFlowBase.property.type"></a>
@@ -4424,6 +4447,8 @@ public readonly type: FlowType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a>
+
+The type of the flow.
 
 ---
 
@@ -4931,6 +4956,7 @@ const flowBaseProps: FlowBaseProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.transforms">transforms</a></code> | <code><a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.validations">validations</a></code> | <code><a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.status">status</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBaseProps.property.triggerConfig">triggerConfig</a></code> | <code><a href="#@cdklabs/cdk-appflow.TriggerConfig">TriggerConfig</a></code> | *No description.* |
 
 ---
@@ -5032,6 +5058,16 @@ public readonly type: FlowType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a>
+
+---
+
+##### `status`<sup>Optional</sup> <a name="status" id="@cdklabs/cdk-appflow.FlowBaseProps.property.status"></a>
+
+```typescript
+public readonly status: FlowStatus;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a>
 
 ---
 
@@ -6089,6 +6125,7 @@ const onEventFlowProps: OnEventFlowProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlowProps.property.transforms">transforms</a></code> | <code><a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlowProps.property.validations">validations</a></code> | <code><a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlowProps.property.autoActivate">autoActivate</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlowProps.property.status">status</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a></code> | The status to set on the flow. |
 
 ---
 
@@ -6182,13 +6219,29 @@ public readonly validations: IValidation[];
 
 ---
 
-##### `autoActivate`<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnEventFlowProps.property.autoActivate"></a>
+##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnEventFlowProps.property.autoActivate"></a>
+
+- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status} instead
 
 ```typescript
 public readonly autoActivate: boolean;
 ```
 
 - *Type:* boolean
+
+---
+
+##### `status`<sup>Optional</sup> <a name="status" id="@cdklabs/cdk-appflow.OnEventFlowProps.property.status"></a>
+
+```typescript
+public readonly status: FlowStatus;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a>
+
+The status to set on the flow.
+
+Use this over {@link autoActivate}.
 
 ---
 
@@ -6216,6 +6269,7 @@ const onScheduleFlowProps: OnScheduleFlowProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.transforms">transforms</a></code> | <code><a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.validations">validations</a></code> | <code><a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.autoActivate">autoActivate</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.status">status</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a></code> | The status to set on the flow. |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.pullConfig">pullConfig</a></code> | <code><a href="#@cdklabs/cdk-appflow.DataPullConfig">DataPullConfig</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.schedule">schedule</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlowProps.property.scheduleProperties">scheduleProperties</a></code> | <code><a href="#@cdklabs/cdk-appflow.ScheduleProperties">ScheduleProperties</a></code> | *No description.* |
@@ -6312,13 +6366,29 @@ public readonly validations: IValidation[];
 
 ---
 
-##### `autoActivate`<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnScheduleFlowProps.property.autoActivate"></a>
+##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnScheduleFlowProps.property.autoActivate"></a>
+
+- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status} instead
 
 ```typescript
 public readonly autoActivate: boolean;
 ```
 
 - *Type:* boolean
+
+---
+
+##### `status`<sup>Optional</sup> <a name="status" id="@cdklabs/cdk-appflow.OnScheduleFlowProps.property.status"></a>
+
+```typescript
+public readonly status: FlowStatus;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a>
+
+The status to set on the flow.
+
+Use this over {@link autoActivate}.
 
 ---
 
@@ -8501,6 +8571,7 @@ const triggeredFlowBaseProps: TriggeredFlowBaseProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.transforms">transforms</a></code> | <code><a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.validations">validations</a></code> | <code><a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.autoActivate">autoActivate</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.status">status</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a></code> | The status to set on the flow. |
 
 ---
 
@@ -8594,13 +8665,29 @@ public readonly validations: IValidation[];
 
 ---
 
-##### `autoActivate`<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.autoActivate"></a>
+##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.autoActivate"></a>
+
+- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status} instead
 
 ```typescript
 public readonly autoActivate: boolean;
 ```
 
 - *Type:* boolean
+
+---
+
+##### `status`<sup>Optional</sup> <a name="status" id="@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.status"></a>
+
+```typescript
+public readonly status: FlowStatus;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.FlowStatus">FlowStatus</a>
+
+The status to set on the flow.
+
+Use this over {@link autoActivate}.
 
 ---
 
@@ -12013,9 +12100,9 @@ public onRunStarted(id: string, options?: OnEventOptions): Rule
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
-| <code><a href="#@cdklabs/cdk-appflow.IFlow.property.arn">arn</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.IFlow.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.IFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.property.arn">arn</a></code> | <code>string</code> | The ARN of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.property.name">name</a></code> | <code>string</code> | The name of the flow. |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.property.type">type</a></code> | <code><a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a></code> | The type of the flow. |
 
 ---
 
@@ -12070,6 +12157,8 @@ public readonly arn: string;
 
 - *Type:* string
 
+The ARN of the flow.
+
 ---
 
 ##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.IFlow.property.name"></a>
@@ -12080,6 +12169,8 @@ public readonly name: string;
 
 - *Type:* string
 
+The name of the flow.
+
 ---
 
 ##### `type`<sup>Required</sup> <a name="type" id="@cdklabs/cdk-appflow.IFlow.property.type"></a>
@@ -12089,6 +12180,8 @@ public readonly type: FlowType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.FlowType">FlowType</a>
+
+The type of the flow.
 
 ---
 
@@ -12336,6 +12429,27 @@ The AppFlow type of the connector that this source is implemented for.
 
 
 ##### `INCREMENTAL` <a name="INCREMENTAL" id="@cdklabs/cdk-appflow.DataPullMode.INCREMENTAL"></a>
+
+---
+
+
+### FlowStatus <a name="FlowStatus" id="@cdklabs/cdk-appflow.FlowStatus"></a>
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.FlowStatus.ACTIVE">ACTIVE</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowStatus.SUSPENDED">SUSPENDED</a></code> | *No description.* |
+
+---
+
+##### `ACTIVE` <a name="ACTIVE" id="@cdklabs/cdk-appflow.FlowStatus.ACTIVE"></a>
+
+---
+
+
+##### `SUSPENDED` <a name="SUSPENDED" id="@cdklabs/cdk-appflow.FlowStatus.SUSPENDED"></a>
 
 ---
 
