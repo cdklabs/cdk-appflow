@@ -188,9 +188,9 @@ It is *recommended* to follow [data protection mechanisms for Amazon AppFlow](ht
 
 ## Confidential information
 
-Amazon AppFlow application integration is done using `ConnectionProfiles`. A `ConnectionProfile` requires providing sensitive information in the form of e.g. access and refresh tokens. It is *recommended* that such information is stored securely and passed to AWS CDK securely. All the sensitive fields are effectively `IResolvable` and this means they can be resolved at deploy time. With that one should follow the [best practices for credentials with CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/security-best-practices.html#creds).
+Amazon AppFlow application integration is done using `ConnectionProfiles`. A `ConnectionProfile` requires providing sensitive information in the form of e.g. access and refresh tokens. It is *recommended* that such information is stored securely and passed to AWS CDK securely. All sensitive fields are effectively `IResolvable` and this means they can be resolved at deploy time. With that one should follow the [best practices for credentials with CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/security-best-practices.html#creds).
 
-An example of using a predefined AWS Secrets Manager secret for storing the sensitive information can be found below:
+An example of using a predefined AWS Secrets Manager secret for storing sensitive information can be found below:
 
 ```ts
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
