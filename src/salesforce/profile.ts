@@ -30,7 +30,8 @@ export interface SalesforceOAuthRefreshTokenGrantFlow {
 }
 
 export interface SalesforceOAuthFlow {
-  readonly refresTokenGrant: SalesforceOAuthRefreshTokenGrantFlow;
+
+  readonly refreshTokenGrant: SalesforceOAuthRefreshTokenGrantFlow;
 }
 
 export interface SalesforceOAuthSettings {
@@ -50,7 +51,7 @@ export class SalesforceConnectorProfile extends ConnectorProfileBase {
 
   constructor(scope: Construct, id: string, props: SalesforceConnectorProfileProps) {
     super(scope, id, props, SalesforceConnectorType.instance);
-    this.tryAddNodeDependency(this, props.oAuth.flow?.refresTokenGrant.client);
+    this.tryAddNodeDependency(this, props.oAuth.flow?.refreshTokenGrant.client);
   }
 
   protected buildConnectorProfileProperties(properties: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
@@ -69,10 +70,10 @@ export class SalesforceConnectorProfile extends ConnectorProfileBase {
     let salesforce: { [key: string]: any } = {};
 
     salesforce.accessToken = props.oAuth.accessToken;
-    salesforce.refreshToken = props.oAuth.flow?.refresTokenGrant.refreshToken ?? 'dummyRefreshToken';
+    salesforce.refreshToken = props.oAuth.flow?.refreshTokenGrant.refreshToken ?? 'dummyRefreshToken';
 
-    if (props.oAuth.flow?.refresTokenGrant.client) {
-      salesforce.clientCredentialsArn = props.oAuth.flow.refresTokenGrant.client.secretArn;
+    if (props.oAuth.flow?.refreshTokenGrant.client) {
+      salesforce.clientCredentialsArn = props.oAuth.flow.refreshTokenGrant.client.secretArn;
       // TODO: make sure why this doesn't work.
       //       this doc says it should: https://docs.aws.amazon.com/appflow/latest/userguide/salesforce.html
       //       in order to obtain the access token I needed to follow: https://medium.com/@bpmmendis94/obtain-access-refresh-tokens-from-salesforce-rest-api-a324fe4ccd9b

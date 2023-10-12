@@ -38,7 +38,7 @@ const profile = new SalesforceConnectorProfile(this, 'MyConnectorProfile', {
   oAuth: {
     accessToken: accessToken,
     flow: {
-      refresTokenGrant: {
+      refreshTokenGrant: {
         refreshToken: refreshToken,
         client: clientSecret,
       },

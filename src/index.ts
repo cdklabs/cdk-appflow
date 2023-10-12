@@ -13,5 +13,6 @@ export * from './salesforce-marketing-cloud';
 export * from './sapodata';
 export * from './servicenow';
 export * from './slack';
+export * from './snowflake';
 export * from './redshift';
 export * from './zendesk';
