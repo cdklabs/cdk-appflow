@@ -11,13 +11,14 @@ import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
 import { ConnectorType } from '../core/connectors/connector-type';
 import { IDestination } from '../core/vertices';
 
+/**
+ * The destination table in Snowflake. The table needs to reside in the databas and schema provided in the profile.
+ */
 export interface SnowflakeDestinationObject {
-  readonly database: string;
 
   /**
-   * @default PUBLIC
+   * The name of the table object
    */
-  readonly schema?: string;
   readonly table: string;
 
 }
@@ -47,8 +48,8 @@ export interface SnowflakeDestinationProps {
  */
 export class SnowflakeDestination implements IDestination {
 
-  private readonly defaultSchema: string = 'PUBLIC';
   private readonly _connectorType: ConnectorType = SnowflakeConnectorType.instance;
+
   public get connectorType(): ConnectorType {
     return this._connectorType;
   }
@@ -80,13 +81,13 @@ export class SnowflakeDestination implements IDestination {
         //       for now that is the assumption and we're pulling this data from the profile
         intermediateBucketName: this.props.profile._location.bucket.bucketName,
         bucketPrefix: this.props.profile._location.prefix,
-        object: this.buildObject(this.props.object.database, this.props.object.table, this.props.object.schema),
+        object: this.buildObject(this.props.profile._database, this.props.object.table, this.props.profile._schema),
       },
     };
   }
 
-  private buildObject(database: string, table: string, schema?: string) {
-    return `${database}.${schema ?? this.defaultSchema}.${table}`;
+  private buildObject(database: string, table: string, schema: string) {
+    return `${database}.${schema}.${table}`;
   }
 
   private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string): void {

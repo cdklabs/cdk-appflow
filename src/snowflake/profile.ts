@@ -18,24 +18,34 @@ export interface SnowflakeConnectorProfileProps extends ConnectorProfileProps {
   readonly location: S3Location;
   readonly region?: string;
   readonly account: string;
-  readonly stage: SnowflakeStageDefinition;
+
+  /**
+   * The name of the Snowflake warehouse
+   */
+  readonly warehouse: string;
+
+  /**
+   * The name of the Snowflake database
+   */
+  readonly database: string;
+
+  /**
+   * The name of the Snowflake schema
+   *
+   * @default PUBLIC
+   */
+  readonly schema?: string;
+
+  /**
+   * The name of the Snowflake stage
+   */
+  readonly stage: string;
   readonly integration?: SnowflakeStorageIntegration;
 }
 
 export interface SnowflakeBasicAuthSettings {
   readonly username: string;
   readonly password: string;
-}
-
-export interface SnowflakeStageDefinition {
-  readonly warehouse: string;
-  readonly database: string;
-  readonly schema: string;
-
-  /**
-   * The name of the stage
-   */
-  readonly name: string;
 }
 
 export interface SnowflakeStorageIntegration {
@@ -54,15 +64,45 @@ export class SnowflakeConnectorProfile extends ConnectorProfileBase {
   }
 
   /**
+   * Default Snowflake schema if no schema provided
+   */
+  private static readonly defaultSchema: string = 'PUBLIC';
+
+  /**
+   * This field is used by the SnowflakeDestination to remove repetition
+   *
    * @internal
    */
   public readonly _location: S3Location;
 
+  /**
+   * This field is used by the SnowflakeDestination to remove repetition
+   *
+   * @internal
+   */
+  public readonly _database: string;
+
+  /**
+   * This field is used by the SnowflakeDestination to remove repetition
+   *
+   * @internal
+   */
+  public readonly _schema: string;
+
+  /**
+   * The AWS IAM Role for the storage integration with Snowflake.
+   *
+   * For more details see {@link https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration}
+   */
   public readonly integrationRole?: IRole;
+
 
   constructor(scope: Construct, id: string, props: SnowflakeConnectorProfileProps) {
     super(scope, id, props, SnowflakeConnectorType.instance);
     this._location = props.location;
+    this._database = props.database;
+    this._schema = props.schema ?? SnowflakeConnectorProfile.defaultSchema;
+
 
     this.integrationRole = this.tryCreateRole(scope, id, props);
   }
@@ -136,8 +176,8 @@ export class SnowflakeConnectorProfile extends ConnectorProfileBase {
       snowflake: {
         bucketName: properties.location.bucket.bucketName,
         bucketPrefix: properties.location.prefix,
-        stage: `${properties.stage.database}.${properties.stage.schema}.${properties.stage.name}`,
-        warehouse: properties.stage.warehouse,
+        stage: `${properties.database}.${properties.schema}.${properties.stage}`,
+        warehouse: properties.warehouse,
         accountName: properties.account,
         region: properties.region,
       },

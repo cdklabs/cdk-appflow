@@ -188,9 +188,9 @@ It is *recommended* to follow [data protection mechanisms for Amazon AppFlow](ht
 
 ## Confidential information
 
-Amazon AppFlow application integration is done using `ConnectionProfiles`. A `ConnectionProfile` requires providing sensitive information in the form of e.g. access and refresh tokens. It is *recommended* that such information is stored securely and passed to AWS CDK securely. All the sensitive fields are effectively `IResolvable` and this means they can be resolved at deploy time. With that one should follow the [best practices for credentials with CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/security-best-practices.html#creds).
+Amazon AppFlow application integration is done using `ConnectionProfiles`. A `ConnectionProfile` requires providing sensitive information in the form of e.g. access and refresh tokens. It is *recommended* that such information is stored securely and passed to AWS CDK securely. All sensitive fields are effectively `IResolvable` and this means they can be resolved at deploy time. With that one should follow the [best practices for credentials with CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/security-best-practices.html#creds).
 
-An example of using a predefined AWS Secrets Manager secret for storing the sensitive information can be found below:
+An example of using a predefined AWS Secrets Manager secret for storing sensitive information can be found below:
 
 ```ts
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
@@ -8811,10 +8811,13 @@ const snowflakeConnectorProfileProps: SnowflakeConnectorProfileProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.account">account</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.SnowflakeBasicAuthSettings">SnowflakeBasicAuthSettings</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.database">database</a></code> | <code>string</code> | The name of the Snowflake database. |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.location">location</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3Location">S3Location</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.stage">stage</a></code> | <code><a href="#@cdklabs/cdk-appflow.SnowflakeStageDefinition">SnowflakeStageDefinition</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.stage">stage</a></code> | <code>string</code> | The name of the Snowflake stage. |
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.warehouse">warehouse</a></code> | <code>string</code> | The name of the Snowflake warehouse. |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.integration">integration</a></code> | <code><a href="#@cdklabs/cdk-appflow.SnowflakeStorageIntegration">SnowflakeStorageIntegration</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.region">region</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.schema">schema</a></code> | <code>string</code> | The name of the Snowflake schema. |
 
 ---
 
@@ -8860,6 +8863,18 @@ public readonly basicAuth: SnowflakeBasicAuthSettings;
 
 ---
 
+##### `database`<sup>Required</sup> <a name="database" id="@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.database"></a>
+
+```typescript
+public readonly database: string;
+```
+
+- *Type:* string
+
+The name of the Snowflake database.
+
+---
+
 ##### `location`<sup>Required</sup> <a name="location" id="@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.location"></a>
 
 ```typescript
@@ -8873,10 +8888,24 @@ public readonly location: S3Location;
 ##### `stage`<sup>Required</sup> <a name="stage" id="@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.stage"></a>
 
 ```typescript
-public readonly stage: SnowflakeStageDefinition;
+public readonly stage: string;
 ```
 
-- *Type:* <a href="#@cdklabs/cdk-appflow.SnowflakeStageDefinition">SnowflakeStageDefinition</a>
+- *Type:* string
+
+The name of the Snowflake stage.
+
+---
+
+##### `warehouse`<sup>Required</sup> <a name="warehouse" id="@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.warehouse"></a>
+
+```typescript
+public readonly warehouse: string;
+```
+
+- *Type:* string
+
+The name of the Snowflake warehouse.
 
 ---
 
@@ -8900,7 +8929,24 @@ public readonly region: string;
 
 ---
 
+##### `schema`<sup>Optional</sup> <a name="schema" id="@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.schema"></a>
+
+```typescript
+public readonly schema: string;
+```
+
+- *Type:* string
+- *Default:* PUBLIC
+
+The name of the Snowflake schema.
+
+---
+
 ### SnowflakeDestinationObject <a name="SnowflakeDestinationObject" id="@cdklabs/cdk-appflow.SnowflakeDestinationObject"></a>
+
+The destination table in Snowflake.
+
+The table needs to reside in the databas and schema provided in the profile.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SnowflakeDestinationObject.Initializer"></a>
 
@@ -8914,19 +8960,7 @@ const snowflakeDestinationObject: SnowflakeDestinationObject = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeDestinationObject.property.database">database</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeDestinationObject.property.table">table</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeDestinationObject.property.schema">schema</a></code> | <code>string</code> | *No description.* |
-
----
-
-##### `database`<sup>Required</sup> <a name="database" id="@cdklabs/cdk-appflow.SnowflakeDestinationObject.property.database"></a>
-
-```typescript
-public readonly database: string;
-```
-
-- *Type:* string
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeDestinationObject.property.table">table</a></code> | <code>string</code> | The name of the table object. |
 
 ---
 
@@ -8938,16 +8972,7 @@ public readonly table: string;
 
 - *Type:* string
 
----
-
-##### `schema`<sup>Optional</sup> <a name="schema" id="@cdklabs/cdk-appflow.SnowflakeDestinationObject.property.schema"></a>
-
-```typescript
-public readonly schema: string;
-```
-
-- *Type:* string
-- *Default:* PUBLIC
+The name of the table object.
 
 ---
 
@@ -9008,69 +9033,6 @@ public readonly errorHandling: ErrorHandlingConfiguration;
 The settings that determine how Amazon AppFlow handles an error when placing data in the Salesforce destination.
 
 For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure.
-
----
-
-### SnowflakeStageDefinition <a name="SnowflakeStageDefinition" id="@cdklabs/cdk-appflow.SnowflakeStageDefinition"></a>
-
-#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SnowflakeStageDefinition.Initializer"></a>
-
-```typescript
-import { SnowflakeStageDefinition } from '@cdklabs/cdk-appflow'
-
-const snowflakeStageDefinition: SnowflakeStageDefinition = { ... }
-```
-
-#### Properties <a name="Properties" id="Properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeStageDefinition.property.database">database</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeStageDefinition.property.name">name</a></code> | <code>string</code> | The name of the stage. |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeStageDefinition.property.schema">schema</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeStageDefinition.property.warehouse">warehouse</a></code> | <code>string</code> | *No description.* |
-
----
-
-##### `database`<sup>Required</sup> <a name="database" id="@cdklabs/cdk-appflow.SnowflakeStageDefinition.property.database"></a>
-
-```typescript
-public readonly database: string;
-```
-
-- *Type:* string
-
----
-
-##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.SnowflakeStageDefinition.property.name"></a>
-
-```typescript
-public readonly name: string;
-```
-
-- *Type:* string
-
-The name of the stage.
-
----
-
-##### `schema`<sup>Required</sup> <a name="schema" id="@cdklabs/cdk-appflow.SnowflakeStageDefinition.property.schema"></a>
-
-```typescript
-public readonly schema: string;
-```
-
-- *Type:* string
-
----
-
-##### `warehouse`<sup>Required</sup> <a name="warehouse" id="@cdklabs/cdk-appflow.SnowflakeStageDefinition.property.warehouse"></a>
-
-```typescript
-public readonly warehouse: string;
-```
-
-- *Type:* string
 
 ---
 

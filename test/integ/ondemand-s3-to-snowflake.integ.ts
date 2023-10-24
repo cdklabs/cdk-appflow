@@ -48,12 +48,10 @@ const snowProfile = new SnowflakeConnectorProfile(stack, 'SnowTestConnector', {
     username: secret.secretValueFromJson('username').toString(),
     password: secret.secretValueFromJson('password').toString(),
   },
-  stage: {
-    warehouse: secret.secretValueFromJson('warehouse').toString(),
-    database: secret.secretValueFromJson('database').toString(),
-    schema: secret.secretValueFromJson('schema').toString(),
-    name: secret.secretValueFromJson('stage').toString(),
-  },
+  warehouse: secret.secretValueFromJson('warehouse').toString(),
+  database: secret.secretValueFromJson('database').toString(),
+  schema: secret.secretValueFromJson('schema').toString(),
+  stage: secret.secretValueFromJson('stage').toString(),
   location: {
     bucket: dataBucket,
   },
@@ -62,8 +60,6 @@ const snowProfile = new SnowflakeConnectorProfile(stack, 'SnowTestConnector', {
 const destination = new SnowflakeDestination({
   profile: snowProfile,
   object: {
-    database: secret.secretValueFromJson('database').toString(),
-    schema: secret.secretValueFromJson('schema').toString(),
     table: secret.secretValueFromJson('table').toString(),
   },
   errorHandling: {
