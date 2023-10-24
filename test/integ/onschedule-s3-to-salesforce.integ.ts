@@ -53,7 +53,7 @@ const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/salesforce/
 const profile = new SalesforceConnectorProfile(stack, 'TestConnectorProfile', {
   oAuth: {
     flow: {
-      refresTokenGrant: {
+      refreshTokenGrant: {
         refreshToken: secret.secretValueFromJson('refreshToken').toString(),
         client: secret,
       },

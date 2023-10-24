@@ -248,6 +248,69 @@
         }
       ]
     },
+    "integ:ondemand-s3-to-snowflake:assert": {
+      "name": "integ:ondemand-s3-to-snowflake:assert",
+      "description": "assert the snapshot of integration test 'ondemand-s3-to-snowflake'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-s3-to-snowflake.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-s3-to-snowflake'. Run 'projen integ:ondemand-s3-to-snowflake:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-snowflake.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-s3-to-snowflake.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-s3-to-snowflake.integ.snapshot/ test/integ/.tmp/ondemand-s3-to-snowflake.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-snowflake:deploy": {
+      "name": "integ:ondemand-s3-to-snowflake:deploy",
+      "description": "deploy integration test 'ondemand-s3-to-snowflake' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-s3-to-snowflake.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-snowflake.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-s3-to-snowflake.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-s3-to-snowflake.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-s3-to-snowflake.integ/deploy.cdk.out test/integ/ondemand-s3-to-snowflake.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-snowflake:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-snowflake:destroy": {
+      "name": "integ:ondemand-s3-to-snowflake:destroy",
+      "description": "destroy integration test 'ondemand-s3-to-snowflake'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-s3-to-snowflake.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-snowflake:snapshot": {
+      "name": "integ:ondemand-s3-to-snowflake:snapshot",
+      "description": "update snapshot for integration test \"ondemand-s3-to-snowflake\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-snowflake.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-s3-to-snowflake.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-snowflake:watch": {
+      "name": "integ:ondemand-s3-to-snowflake:watch",
+      "description": "watch integration test 'ondemand-s3-to-snowflake' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-snowflake.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-s3-to-snowflake.integ/deploy.cdk.out"
+        }
+      ]
+    },
     "integ:ondemand-salesforce-to-redshift:assert": {
       "name": "integ:ondemand-salesforce-to-redshift:assert",
       "description": "assert the snapshot of integration test 'ondemand-salesforce-to-redshift'",
@@ -697,6 +760,9 @@
           "spawn": "integ:ondemand-googleanalytics4-to-s3:snapshot"
         },
         {
+          "spawn": "integ:ondemand-s3-to-snowflake:snapshot"
+        },
+        {
           "spawn": "integ:ondemand-salesforce-to-redshift:snapshot"
         },
         {
@@ -875,6 +941,9 @@
         },
         {
           "spawn": "integ:ondemand-googleanalytics4-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-snowflake:assert"
         },
         {
           "spawn": "integ:ondemand-salesforce-to-redshift:assert"

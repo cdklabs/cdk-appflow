@@ -24,6 +24,7 @@ tsconfig.tsbuildinfo
 !.jsii
 !/assets/
 test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot
+test/integ/ondemand-s3-to-snowflake.integ.snapshot
 test/integ/ondemand-salesforce-to-redshift.integ.snapshot
 test/integ/ondemand-salesforce-to-s3.integ.snapshot
 test/integ/ondemand-sapodata-to-s3.integ.snapshot
