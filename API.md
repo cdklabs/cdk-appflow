@@ -4344,7 +4344,7 @@ SnowflakeConnectorProfile.fromConnectionProfileName(scope: Construct, id: string
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.integrationRole">integrationRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.integrationRole">integrationRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The AWS IAM Role for the storage integration with Snowflake. Available only if [SnowflakeConnectorProfileProps's integration property]{@link SnowflakeConnectorProfileProps#integration} is provided. |
 
 ---
 
@@ -4428,6 +4428,10 @@ public readonly integrationRole: IRole;
 ```
 
 - *Type:* aws-cdk-lib.aws_iam.IRole
+
+The AWS IAM Role for the storage integration with Snowflake. Available only if [SnowflakeConnectorProfileProps's integration property]{@link SnowflakeConnectorProfileProps#integration} is provided.
+
+For more details see {@link https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration}
 
 ---
 
@@ -5143,6 +5147,8 @@ public readonly failOnFirstError: boolean;
 
 ### EventBridgeDestinationProps <a name="EventBridgeDestinationProps" id="@cdklabs/cdk-appflow.EventBridgeDestinationProps"></a>
 
+The properties for the EventBridge destination.
+
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.EventBridgeDestinationProps.Initializer"></a>
 
 ```typescript
@@ -5536,26 +5542,28 @@ public readonly oAuth: GoogleAnalytics4OAuthSettings;
 
 ---
 
-### GoogleAnalytics4OAuthEndpointsSettings <a name="GoogleAnalytics4OAuthEndpointsSettings" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpointsSettings"></a>
+### GoogleAnalytics4OAuthEndpoints <a name="GoogleAnalytics4OAuthEndpoints" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints"></a>
 
-#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpointsSettings.Initializer"></a>
+Google's OAuth token and authorization endpoints.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints.Initializer"></a>
 
 ```typescript
-import { GoogleAnalytics4OAuthEndpointsSettings } from '@cdklabs/cdk-appflow'
+import { GoogleAnalytics4OAuthEndpoints } from '@cdklabs/cdk-appflow'
 
-const googleAnalytics4OAuthEndpointsSettings: GoogleAnalytics4OAuthEndpointsSettings = { ... }
+const googleAnalytics4OAuthEndpoints: GoogleAnalytics4OAuthEndpoints = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpointsSettings.property.authorization">authorization</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpointsSettings.property.token">token</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints.property.authorization">authorization</a></code> | <code>string</code> | The OAuth authorization endpoint URI. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints.property.token">token</a></code> | <code>string</code> | The OAuth token endpoint URI. |
 
 ---
 
-##### `authorization`<sup>Optional</sup> <a name="authorization" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpointsSettings.property.authorization"></a>
+##### `authorization`<sup>Optional</sup> <a name="authorization" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints.property.authorization"></a>
 
 ```typescript
 public readonly authorization: string;
@@ -5563,9 +5571,11 @@ public readonly authorization: string;
 
 - *Type:* string
 
+The OAuth authorization endpoint URI.
+
 ---
 
-##### `token`<sup>Optional</sup> <a name="token" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpointsSettings.property.token"></a>
+##### `token`<sup>Optional</sup> <a name="token" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints.property.token"></a>
 
 ```typescript
 public readonly token: string;
@@ -5573,9 +5583,13 @@ public readonly token: string;
 
 - *Type:* string
 
+The OAuth token endpoint URI.
+
 ---
 
 ### GoogleAnalytics4OAuthFlow <a name="GoogleAnalytics4OAuthFlow" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthFlow"></a>
+
+Represents the OAuth flow enabled for the GA4.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthFlow.Initializer"></a>
 
@@ -5589,7 +5603,7 @@ const googleAnalytics4OAuthFlow: GoogleAnalytics4OAuthFlow = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthFlow.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow">GoogleAnalytics4RefreshTokenGrantFlow</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthFlow.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow">GoogleAnalytics4RefreshTokenGrantFlow</a></code> | The details required for executing the refresh token grant flow. |
 
 ---
 
@@ -5600,6 +5614,8 @@ public readonly refreshTokenGrant: GoogleAnalytics4RefreshTokenGrantFlow;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow">GoogleAnalytics4RefreshTokenGrantFlow</a>
+
+The details required for executing the refresh token grant flow.
 
 ---
 
@@ -5618,8 +5634,8 @@ const googleAnalytics4OAuthSettings: GoogleAnalytics4OAuthSettings = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | The access token to be used when interacting with Google Analytics 4. |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpointsSettings">GoogleAnalytics4OAuthEndpointsSettings</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthFlow">GoogleAnalytics4OAuthFlow</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints">GoogleAnalytics4OAuthEndpoints</a></code> | The OAuth token and authorization endpoints. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthFlow">GoogleAnalytics4OAuthFlow</a></code> | The OAuth flow used for obtaining a new accessToken when the old is not present or expired. |
 
 ---
 
@@ -5630,6 +5646,7 @@ public readonly accessToken: string;
 ```
 
 - *Type:* string
+- *Default:* Retrieves a fresh accessToken with the information in the [flow property]{@link GoogleAnalytics4OAuthSettings#flow}
 
 The access token to be used when interacting with Google Analytics 4.
 
@@ -5640,10 +5657,12 @@ Note that if only the access token is provided AppFlow is not able to retrieve a
 ##### `endpoints`<sup>Optional</sup> <a name="endpoints" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.endpoints"></a>
 
 ```typescript
-public readonly endpoints: GoogleAnalytics4OAuthEndpointsSettings;
+public readonly endpoints: GoogleAnalytics4OAuthEndpoints;
 ```
 
-- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpointsSettings">GoogleAnalytics4OAuthEndpointsSettings</a>
+- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints">GoogleAnalytics4OAuthEndpoints</a>
+
+The OAuth token and authorization endpoints.
 
 ---
 
@@ -5654,10 +5673,15 @@ public readonly flow: GoogleAnalytics4OAuthFlow;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthFlow">GoogleAnalytics4OAuthFlow</a>
+- *Default:* undefined. AppFlow will not request any new accessToken after expiry.
+
+The OAuth flow used for obtaining a new accessToken when the old is not present or expired.
 
 ---
 
 ### GoogleAnalytics4RefreshTokenGrantFlow <a name="GoogleAnalytics4RefreshTokenGrantFlow" id="@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow"></a>
+
+The OAuth elements required for the execution of the refresh token grant flow.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.Initializer"></a>
 
@@ -5671,9 +5695,9 @@ const googleAnalytics4RefreshTokenGrantFlow: GoogleAnalytics4RefreshTokenGrantFl
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>string</code> | The id of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | The secret of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | A non-expired refresh token. |
 
 ---
 
@@ -5685,6 +5709,8 @@ public readonly clientId: string;
 
 - *Type:* string
 
+The id of the client app.
+
 ---
 
 ##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientSecret"></a>
@@ -5695,6 +5721,8 @@ public readonly clientSecret: string;
 
 - *Type:* string
 
+The secret of the client app.
+
 ---
 
 ##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.refreshToken"></a>
@@ -5704,6 +5732,8 @@ public readonly refreshToken: string;
 ```
 
 - *Type:* string
+
+A non-expired refresh token.
 
 ---
 
@@ -7751,17 +7781,34 @@ const salesforceOAuthFlow: SalesforceOAuthFlow = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a></code> | The parameters required for the refresh token grant OAuth flow. |
+| <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refresTokenGrant">refresTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a></code> | The parameters required for the refresh token grant OAuth flow. |
 
 ---
 
-##### `refreshTokenGrant`<sup>Required</sup> <a name="refreshTokenGrant" id="@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refreshTokenGrant"></a>
+##### `refreshTokenGrant`<sup>Optional</sup> <a name="refreshTokenGrant" id="@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refreshTokenGrant"></a>
 
 ```typescript
 public readonly refreshTokenGrant: SalesforceOAuthRefreshTokenGrantFlow;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a>
+
+The parameters required for the refresh token grant OAuth flow.
+
+---
+
+##### ~~`refresTokenGrant`~~<sup>Optional</sup> <a name="refresTokenGrant" id="@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refresTokenGrant"></a>
+
+- *Deprecated:* - this property will be removed in the future releases. Use refreshTokenGrant property instead.
+
+```typescript
+public readonly refresTokenGrant: SalesforceOAuthRefreshTokenGrantFlow;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a>
+
+The parameters required for the refresh token grant OAuth flow.
 
 ---
 
@@ -8754,6 +8801,8 @@ public readonly apiVersion: string;
 
 ### SnowflakeBasicAuthSettings <a name="SnowflakeBasicAuthSettings" id="@cdklabs/cdk-appflow.SnowflakeBasicAuthSettings"></a>
 
+Snowflake authorization settings required for the profile.
+
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.SnowflakeBasicAuthSettings.Initializer"></a>
 
 ```typescript
@@ -8815,7 +8864,7 @@ const snowflakeConnectorProfileProps: SnowflakeConnectorProfileProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.location">location</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3Location">S3Location</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.stage">stage</a></code> | <code>string</code> | The name of the Snowflake stage. |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.warehouse">warehouse</a></code> | <code>string</code> | The name of the Snowflake warehouse. |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.integration">integration</a></code> | <code><a href="#@cdklabs/cdk-appflow.SnowflakeStorageIntegration">SnowflakeStorageIntegration</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.integration">integration</a></code> | <code><a href="#@cdklabs/cdk-appflow.SnowflakeStorageIntegration">SnowflakeStorageIntegration</a></code> | Details of the Snowflake Storage Integration. |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.region">region</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfileProps.property.schema">schema</a></code> | <code>string</code> | The name of the Snowflake schema. |
 
@@ -8916,6 +8965,12 @@ public readonly integration: SnowflakeStorageIntegration;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.SnowflakeStorageIntegration">SnowflakeStorageIntegration</a>
+
+Details of the Snowflake Storage Integration.
+
+When provided, this construct will automatically create an IAM Role allowing access to the S3 Bucket which will be available as a [integrationROle property]{@link SnowflakeConnectorProfile#integrationRole}
+
+For details of the integration see {@link https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration}
 
 ---
 
@@ -9613,6 +9668,8 @@ public readonly asProfileConnectorLabel: string;
 ### EventBridgeDestination <a name="EventBridgeDestination" id="@cdklabs/cdk-appflow.EventBridgeDestination"></a>
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+
+This class represents AppFlow's EventBridge destination.
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.EventBridgeDestination.Initializer"></a>
 

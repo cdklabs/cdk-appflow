@@ -40,9 +40,19 @@ export interface SnowflakeConnectorProfileProps extends ConnectorProfileProps {
    * The name of the Snowflake stage
    */
   readonly stage: string;
+
+  /**
+   * Details of the Snowflake Storage Integration.
+   * When provided, this construct will automatically create an IAM Role allowing access to the S3 Bucket which will be available as a [integrationROle property]{@link SnowflakeConnectorProfile#integrationRole}
+   *
+   * For details of the integration see {@link https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration}
+   */
   readonly integration?: SnowflakeStorageIntegration;
 }
 
+/**
+ * Snowflake authorization settings required for the profile
+ */
 export interface SnowflakeBasicAuthSettings {
   readonly username: string;
   readonly password: string;
@@ -90,7 +100,7 @@ export class SnowflakeConnectorProfile extends ConnectorProfileBase {
   public readonly _schema: string;
 
   /**
-   * The AWS IAM Role for the storage integration with Snowflake.
+   * The AWS IAM Role for the storage integration with Snowflake. Available only if [SnowflakeConnectorProfileProps's integration property]{@link SnowflakeConnectorProfileProps#integration} is provided.
    *
    * For more details see {@link https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration}
    */

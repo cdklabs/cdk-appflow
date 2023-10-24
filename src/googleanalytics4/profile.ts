@@ -13,18 +13,48 @@ export interface GoogleAnalytics4ConnectorProfileProps extends ConnectorProfileP
   readonly oAuth: GoogleAnalytics4OAuthSettings;
 }
 
-export interface GoogleAnalytics4OAuthEndpointsSettings {
+/**
+ * Google's OAuth token and authorization endpoints
+ */
+export interface GoogleAnalytics4OAuthEndpoints {
+  /**
+   * The OAuth token endpoint URI
+   */
   readonly token?: string;
+
+  /**
+   * The OAuth authorization endpoint URI
+   */
   readonly authorization?: string;
 }
 
+/**
+ * The OAuth elements required for the execution of the refresh token grant flow.
+ */
 export interface GoogleAnalytics4RefreshTokenGrantFlow {
+  /**
+   * A non-expired refresh token.
+   */
   readonly refreshToken?: string;
+
+  /**
+   * The secret of the client app.
+   */
   readonly clientSecret?: string;
+
+  /**
+   * The id of the client app.
+   */
   readonly clientId?: string;
 }
 
+/**
+ * Represents the OAuth flow enabled for the GA4
+ */
 export interface GoogleAnalytics4OAuthFlow {
+  /**
+   * The details required for executing the refresh token grant flow
+   */
   readonly refreshTokenGrant: GoogleAnalytics4RefreshTokenGrantFlow;
 }
 
@@ -34,12 +64,22 @@ export interface GoogleAnalytics4OAuthSettings {
    * The access token to be used when interacting with Google Analytics 4
    *
    * Note that if only the access token is provided AppFlow is not able to retrieve a fresh access token when the current one is expired
+   *
+   * @default Retrieves a fresh accessToken with the information in the [flow property]{@link GoogleAnalytics4OAuthSettings#flow}
    */
   readonly accessToken?: string;
 
+  /**
+   * The OAuth flow used for obtaining a new accessToken when the old is not present or expired.
+   *
+   * @default undefined. AppFlow will not request any new accessToken after expiry.
+   */
   readonly flow?: GoogleAnalytics4OAuthFlow;
 
-  readonly endpoints?: GoogleAnalytics4OAuthEndpointsSettings;
+  /**
+   * The OAuth token and authorization endpoints.
+   */
+  readonly endpoints?: GoogleAnalytics4OAuthEndpoints;
 }
 
 export class GoogleAnalytics4ConnectorProfile extends ConnectorProfileBase {

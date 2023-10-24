@@ -31,7 +31,17 @@ export interface SalesforceOAuthRefreshTokenGrantFlow {
 
 export interface SalesforceOAuthFlow {
 
-  readonly refreshTokenGrant: SalesforceOAuthRefreshTokenGrantFlow;
+  /**
+   * The parameters required for the refresh token grant OAuth flow
+   *
+   * @deprecated - this property will be removed in the future releases. Use refreshTokenGrant property instead.
+   */
+  readonly refresTokenGrant?: SalesforceOAuthRefreshTokenGrantFlow;
+
+  /**
+   * The parameters required for the refresh token grant OAuth flow
+   */
+  readonly refreshTokenGrant?: SalesforceOAuthRefreshTokenGrantFlow;
 }
 
 export interface SalesforceOAuthSettings {
@@ -51,7 +61,7 @@ export class SalesforceConnectorProfile extends ConnectorProfileBase {
 
   constructor(scope: Construct, id: string, props: SalesforceConnectorProfileProps) {
     super(scope, id, props, SalesforceConnectorType.instance);
-    this.tryAddNodeDependency(this, props.oAuth.flow?.refreshTokenGrant.client);
+    this.tryAddNodeDependency(this, this.getRefreshTokenGrantFlowProperty(props.oAuth.flow)?.client);
   }
 
   protected buildConnectorProfileProperties(properties: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
@@ -64,16 +74,38 @@ export class SalesforceConnectorProfile extends ConnectorProfileBase {
     };
   }
 
+  /**
+   * This is a auxiliary method for obtaining a refreshTokeNGrandFlow. It's a temporary solution due to the typo in the properties
+   * as we don't want to abruptly fail customer solutions depending on the library.
+   * @param flow a SalesforceOAuthFlow object
+   * @returns a SalesforceOAuthRefreshTokenGrantFlow object or undefined if the flow is undefined.
+   * @throws an error if both refreshTokenGrant and refresTokenGrant are specified. This is a temporary solution due to the typo in the properties.
+   * @deprecated - this method will be removed in the future releases.
+   */
+  private getRefreshTokenGrantFlowProperty(flow?: SalesforceOAuthFlow): SalesforceOAuthRefreshTokenGrantFlow | undefined {
+
+    if (flow) {
+      if (flow.refresTokenGrant && flow.refreshTokenGrant) {
+        throw new Error('Only one of the properties refreshTokenGrant or refresTokenGrant should be specified');
+      }
+      return flow.refresTokenGrant ?? flow.refreshTokenGrant;
+    }
+    return undefined;
+  }
+
   protected buildConnectorProfileCredentials(properties: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
     const props = properties as SalesforceConnectorProfileProps;
 
     let salesforce: { [key: string]: any } = {};
 
-    salesforce.accessToken = props.oAuth.accessToken;
-    salesforce.refreshToken = props.oAuth.flow?.refreshTokenGrant.refreshToken ?? 'dummyRefreshToken';
 
-    if (props.oAuth.flow?.refreshTokenGrant.client) {
-      salesforce.clientCredentialsArn = props.oAuth.flow.refreshTokenGrant.client.secretArn;
+    salesforce.accessToken = props.oAuth.accessToken;
+
+    const refreshTokenGrant = this.getRefreshTokenGrantFlowProperty(props.oAuth.flow);
+    salesforce.refreshToken = refreshTokenGrant?.refreshToken ?? 'dummyRefreshToken';
+
+    if (refreshTokenGrant?.client) {
+      salesforce.clientCredentialsArn = refreshTokenGrant.client.secretArn;
       // TODO: make sure why this doesn't work.
       //       this doc says it should: https://docs.aws.amazon.com/appflow/latest/userguide/salesforce.html
       //       in order to obtain the access token I needed to follow: https://medium.com/@bpmmendis94/obtain-access-refresh-tokens-from-salesforce-rest-api-a324fe4ccd9b

@@ -11,11 +11,17 @@ import { ErrorHandlingConfiguration } from '../core/error-handling';
 import { FlowType, IFlow } from '../core/flows';
 import { IDestination } from '../core/vertices/destination';
 
+/**
+ * The properties for the EventBridge destination
+ */
 export interface EventBridgeDestinationProps {
   readonly partnerBus: string;
   readonly errorHandling?: ErrorHandlingConfiguration;
 }
 
+/**
+ * This class represents AppFlow's EventBridge destination
+ */
 export class EventBridgeDestination implements IDestination {
 
   private readonly compatibleFlows: FlowType[] = [FlowType.EVENT];
