@@ -4,6 +4,7 @@ SPDX-License-Identifier: Apache-2.0
 */
 export * from './core';
 export * from './eventbridge';
+export * from './github';
 export * from './googleanalytics4';
 export * from './marketo';
 export * from './microsoftsharepointonline';
