@@ -248,6 +248,69 @@
         }
       ]
     },
+    "integ:ondemand-microsoftsharepointonline-to-s3:assert": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-microsoftsharepointonline-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-microsoftsharepointonline-to-s3'. Run 'projen integ:ondemand-microsoftsharepointonline-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:deploy": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-microsoftsharepointonline-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-microsoftsharepointonline-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:destroy": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-microsoftsharepointonline-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:snapshot": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-microsoftsharepointonline-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:watch": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:watch",
+      "description": "watch integration test 'ondemand-microsoftsharepointonline-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
     "integ:ondemand-s3-to-snowflake:assert": {
       "name": "integ:ondemand-s3-to-snowflake:assert",
       "description": "assert the snapshot of integration test 'ondemand-s3-to-snowflake'",
@@ -760,6 +823,9 @@
           "spawn": "integ:ondemand-googleanalytics4-to-s3:snapshot"
         },
         {
+          "spawn": "integ:ondemand-microsoftsharepointonline-to-s3:snapshot"
+        },
+        {
           "spawn": "integ:ondemand-s3-to-snowflake:snapshot"
         },
         {
@@ -941,6 +1007,9 @@
         },
         {
           "spawn": "integ:ondemand-googleanalytics4-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-microsoftsharepointonline-to-s3:assert"
         },
         {
           "spawn": "integ:ondemand-s3-to-snowflake:assert"

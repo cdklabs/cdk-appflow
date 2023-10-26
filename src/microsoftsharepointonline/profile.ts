@@ -5,6 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { MicrosoftSharepointOnlineConnectorType } from './type';
+import { MicrosoftSharepointOnlineTokenUrlBuilder } from './util';
 import { ConnectorAuthenticationType } from '../core/connectors/connector-authentication-type';
 import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
 import { OAuth2GrantType as OAuthGrantType } from '../core/connectors/oauth2-granttype';
@@ -38,7 +39,7 @@ export interface MicrosoftSharepointOnlineOAuthSettings {
 
   readonly flow?: MicrosoftSharepointOnlineOAuthFlow;
 
-  readonly endpoints: MicrosoftSharepointOnlineOAuthEndpointsSettings;
+  readonly endpoints?: MicrosoftSharepointOnlineOAuthEndpointsSettings;
 }
 
 export class MicrosoftSharepointOnlineConnectorProfile extends ConnectorProfileBase {
@@ -50,6 +51,8 @@ export class MicrosoftSharepointOnlineConnectorProfile extends ConnectorProfileB
   public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
     return this._fromConnectorProfileAttributes(scope, id, { name }) as MicrosoftSharepointOnlineConnectorProfile;
   }
+
+  private static readonly defaultTokenEndpoint = MicrosoftSharepointOnlineTokenUrlBuilder.build();
 
   constructor(scope: Construct, id: string, props: MicrosoftSharepointOnlineConnectorProfileProps) {
     super(scope, id, props, MicrosoftSharepointOnlineConnectorType.instance);
@@ -66,7 +69,7 @@ export class MicrosoftSharepointOnlineConnectorProfile extends ConnectorProfileB
           oAuth2GrantType: OAuthGrantType.AUTHORIZATION_CODE,
           // INFO: even if we provide only the access token this property is required
           // TODO: think about if this is correct. token can be IResolvable
-          tokenUrl: properties.oAuth.endpoints?.token,
+          tokenUrl: properties.oAuth.endpoints?.token ?? MicrosoftSharepointOnlineConnectorProfile.defaultTokenEndpoint,
         },
       },
     };
