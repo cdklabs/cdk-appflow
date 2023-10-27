@@ -12,12 +12,23 @@ import { IFlow } from '../core/flows';
 import { ISource } from '../core/vertices';
 
 export interface MicrosoftSharepointObject {
+  /**
+   * The Microsoft Sharepoint Online site from which the documents are to be retrieved.
+   *
+   * Note: requires full name starting with 'sites/'
+   */
   readonly site: string;
+
+  /**
+   * An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved.
+   *
+   * Note: each drive requires full name starting with 'drives/'
+   */
   readonly drives: string[];
 }
 
 /**
- * Properties of a Google Analytics v4 Source
+ * Properties of a Microsoft Sharepoint Online Source
  */
 export interface MicrosoftSharepointOnlineSourceProps {
   readonly profile: MicrosoftSharepointOnlineConnectorProfile;
@@ -26,7 +37,7 @@ export interface MicrosoftSharepointOnlineSourceProps {
 }
 
 /**
- * A class that represents a Google Analytics v4 Source
+ * A class that represents a Microsoft Sharepoint Online Source
  */
 export class MicrosoftSharepointOnlineSource implements ISource {
 

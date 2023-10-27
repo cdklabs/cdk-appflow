@@ -24,7 +24,7 @@ const profile = new MicrosoftSharepointOnlineConnectorProfile(stack, 'TestConnec
       },
     },
     endpoints: {
-      token: MicrosoftSharepointOnlineTokenUrlBuilder.build(secret.secretValueFromJson('tenantId').toString()),
+      token: MicrosoftSharepointOnlineTokenUrlBuilder.buildTokenUrl(secret.secretValueFromJson('tenantId').toString()),
     },
   },
 });

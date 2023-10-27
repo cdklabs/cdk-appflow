@@ -31,7 +31,7 @@ export interface MicrosoftSharepointOnlineOAuthFlow {
 export interface MicrosoftSharepointOnlineOAuthSettings {
 
   /**
-   * The access token to be used when interacting with Google Analytics 4
+   * The access token to be used when interacting with Microsoft Sharepoint Online
    *
    * Note that if only the access token is provided AppFlow is not able to retrieve a fresh access token when the current one is expired
    */
@@ -42,6 +42,11 @@ export interface MicrosoftSharepointOnlineOAuthSettings {
   readonly endpoints?: MicrosoftSharepointOnlineOAuthEndpointsSettings;
 }
 
+/**
+ * A class that represents a Microsoft Sharepoint Online Connector Profile.
+ *
+ * This connector profile allows to transfer document libraries residing on a Microsoft Sharepoint Online's site to Amazon S3.
+ */
 export class MicrosoftSharepointOnlineConnectorProfile extends ConnectorProfileBase {
 
   public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
@@ -52,7 +57,7 @@ export class MicrosoftSharepointOnlineConnectorProfile extends ConnectorProfileB
     return this._fromConnectorProfileAttributes(scope, id, { name }) as MicrosoftSharepointOnlineConnectorProfile;
   }
 
-  private static readonly defaultTokenEndpoint = MicrosoftSharepointOnlineTokenUrlBuilder.build();
+  private static readonly defaultTokenEndpoint = MicrosoftSharepointOnlineTokenUrlBuilder.buildTokenUrl();
 
   constructor(scope: Construct, id: string, props: MicrosoftSharepointOnlineConnectorProfileProps) {
     super(scope, id, props, MicrosoftSharepointOnlineConnectorType.instance);
