@@ -65,7 +65,7 @@ export class MicrosoftSharepointOnlineSource implements ISource {
 
   private buildSourceConnectorProperties(): CfnFlow.SourceConnectorPropertiesProperty {
 
-    if ( this.props.object.drives.length < 1) {
+    if (this.props.object.drives.length < 1) {
       throw new Error('At least one drive must be specified');
     }
 
