@@ -11,7 +11,10 @@ import { ConnectorType } from '../core/connectors/connector-type';
 import { IFlow } from '../core/flows';
 import { ISource } from '../core/vertices';
 
-export interface MicrosoftSharepointObject {
+/**
+ * Represents a list of Microsoft Sharepoint Online site drives from which to retrieve the documents.
+ */
+export interface MicrosoftSharepointOnlineObject {
   /**
    * The Microsoft Sharepoint Online site from which the documents are to be retrieved.
    *
@@ -33,7 +36,7 @@ export interface MicrosoftSharepointObject {
 export interface MicrosoftSharepointOnlineSourceProps {
   readonly profile: MicrosoftSharepointOnlineConnectorProfile;
   readonly apiVersion: string;
-  readonly object: MicrosoftSharepointObject;
+  readonly object: MicrosoftSharepointOnlineObject;
 }
 
 /**
@@ -62,7 +65,7 @@ export class MicrosoftSharepointOnlineSource implements ISource {
 
   private buildSourceConnectorProperties(): CfnFlow.SourceConnectorPropertiesProperty {
 
-    if (this.props.object.drives.length < 1) {
+    if ( this.props.object.drives.length < 1) {
       throw new Error('At least one drive must be specified');
     }
 
