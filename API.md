@@ -6042,53 +6042,6 @@ public readonly apiVersion: string;
 
 ---
 
-### MicrosoftSharepointObject <a name="MicrosoftSharepointObject" id="@cdklabs/cdk-appflow.MicrosoftSharepointObject"></a>
-
-#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.MicrosoftSharepointObject.Initializer"></a>
-
-```typescript
-import { MicrosoftSharepointObject } from '@cdklabs/cdk-appflow'
-
-const microsoftSharepointObject: MicrosoftSharepointObject = { ... }
-```
-
-#### Properties <a name="Properties" id="Properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointObject.property.drives">drives</a></code> | <code>string[]</code> | An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved. |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointObject.property.site">site</a></code> | <code>string</code> | The Microsoft Sharepoint Online site from which the documents are to be retrieved. |
-
----
-
-##### `drives`<sup>Required</sup> <a name="drives" id="@cdklabs/cdk-appflow.MicrosoftSharepointObject.property.drives"></a>
-
-```typescript
-public readonly drives: string[];
-```
-
-- *Type:* string[]
-
-An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved.
-
-Note: each drive requires full name starting with 'drives/'
-
----
-
-##### `site`<sup>Required</sup> <a name="site" id="@cdklabs/cdk-appflow.MicrosoftSharepointObject.property.site"></a>
-
-```typescript
-public readonly site: string;
-```
-
-- *Type:* string
-
-The Microsoft Sharepoint Online site from which the documents are to be retrieved.
-
-Note: requires full name starting with 'sites/'
-
----
-
 ### MicrosoftSharepointOnlineConnectorProfileProps <a name="MicrosoftSharepointOnlineConnectorProfileProps" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfileProps"></a>
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfileProps.Initializer"></a>
@@ -6251,6 +6204,55 @@ public readonly flow: MicrosoftSharepointOnlineOAuthFlow;
 
 ---
 
+### MicrosoftSharepointOnlineObject <a name="MicrosoftSharepointOnlineObject" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject"></a>
+
+Represents a list of Microsoft Sharepoint Online site drives from which to retrieve the documents.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.Initializer"></a>
+
+```typescript
+import { MicrosoftSharepointOnlineObject } from '@cdklabs/cdk-appflow'
+
+const microsoftSharepointOnlineObject: MicrosoftSharepointOnlineObject = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives">drives</a></code> | <code>string[]</code> | An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved. |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.site">site</a></code> | <code>string</code> | The Microsoft Sharepoint Online site from which the documents are to be retrieved. |
+
+---
+
+##### `drives`<sup>Required</sup> <a name="drives" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives"></a>
+
+```typescript
+public readonly drives: string[];
+```
+
+- *Type:* string[]
+
+An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved.
+
+Note: each drive requires full name starting with 'drives/'
+
+---
+
+##### `site`<sup>Required</sup> <a name="site" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.site"></a>
+
+```typescript
+public readonly site: string;
+```
+
+- *Type:* string
+
+The Microsoft Sharepoint Online site from which the documents are to be retrieved.
+
+Note: requires full name starting with 'sites/'
+
+---
+
 ### MicrosoftSharepointOnlineRefreshTokenGrantFlow <a name="MicrosoftSharepointOnlineRefreshTokenGrantFlow" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow"></a>
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.Initializer"></a>
@@ -6318,7 +6320,7 @@ const microsoftSharepointOnlineSourceProps: MicrosoftSharepointOnlineSourceProps
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.object">object</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointObject">MicrosoftSharepointObject</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.object">object</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject">MicrosoftSharepointOnlineObject</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a></code> | *No description.* |
 
 ---
@@ -6336,10 +6338,10 @@ public readonly apiVersion: string;
 ##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.object"></a>
 
 ```typescript
-public readonly object: MicrosoftSharepointObject;
+public readonly object: MicrosoftSharepointOnlineObject;
 ```
 
-- *Type:* <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointObject">MicrosoftSharepointObject</a>
+- *Type:* <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject">MicrosoftSharepointOnlineObject</a>
 
 ---
 
