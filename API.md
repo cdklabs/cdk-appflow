@@ -1297,6 +1297,10 @@ public readonly credentials: ISecret;
 
 ### MicrosoftSharepointOnlineConnectorProfile <a name="MicrosoftSharepointOnlineConnectorProfile" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile"></a>
 
+A class that represents a Microsoft Sharepoint Online Connector Profile.
+
+This connector profile allows to transfer document libraries residing on a Microsoft Sharepoint Online's site to Amazon S3.
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -6160,19 +6164,9 @@ const microsoftSharepointOnlineOAuthSettings: MicrosoftSharepointOnlineOAuthSett
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | The access token to be used when interacting with Microsoft Sharepoint Online. |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthEndpointsSettings">MicrosoftSharepointOnlineOAuthEndpointsSettings</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | The access token to be used when interacting with Google Analytics 4. |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthFlow">MicrosoftSharepointOnlineOAuthFlow</a></code> | *No description.* |
-
----
-
-##### `endpoints`<sup>Required</sup> <a name="endpoints" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.endpoints"></a>
-
-```typescript
-public readonly endpoints: MicrosoftSharepointOnlineOAuthEndpointsSettings;
-```
-
-- *Type:* <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthEndpointsSettings">MicrosoftSharepointOnlineOAuthEndpointsSettings</a>
 
 ---
 
@@ -6184,9 +6178,19 @@ public readonly accessToken: string;
 
 - *Type:* string
 
-The access token to be used when interacting with Google Analytics 4.
+The access token to be used when interacting with Microsoft Sharepoint Online.
 
 Note that if only the access token is provided AppFlow is not able to retrieve a fresh access token when the current one is expired
+
+---
+
+##### `endpoints`<sup>Optional</sup> <a name="endpoints" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.endpoints"></a>
+
+```typescript
+public readonly endpoints: MicrosoftSharepointOnlineOAuthEndpointsSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthEndpointsSettings">MicrosoftSharepointOnlineOAuthEndpointsSettings</a>
 
 ---
 
@@ -6197,6 +6201,55 @@ public readonly flow: MicrosoftSharepointOnlineOAuthFlow;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthFlow">MicrosoftSharepointOnlineOAuthFlow</a>
+
+---
+
+### MicrosoftSharepointOnlineObject <a name="MicrosoftSharepointOnlineObject" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject"></a>
+
+Represents a list of Microsoft Sharepoint Online site drives from which to retrieve the documents.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.Initializer"></a>
+
+```typescript
+import { MicrosoftSharepointOnlineObject } from '@cdklabs/cdk-appflow'
+
+const microsoftSharepointOnlineObject: MicrosoftSharepointOnlineObject = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives">drives</a></code> | <code>string[]</code> | An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved. |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.site">site</a></code> | <code>string</code> | The Microsoft Sharepoint Online site from which the documents are to be retrieved. |
+
+---
+
+##### `drives`<sup>Required</sup> <a name="drives" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives"></a>
+
+```typescript
+public readonly drives: string[];
+```
+
+- *Type:* string[]
+
+An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved.
+
+Note: each drive requires full name starting with 'drives/'
+
+---
+
+##### `site`<sup>Required</sup> <a name="site" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.site"></a>
+
+```typescript
+public readonly site: string;
+```
+
+- *Type:* string
+
+The Microsoft Sharepoint Online site from which the documents are to be retrieved.
+
+Note: requires full name starting with 'sites/'
 
 ---
 
@@ -6252,7 +6305,7 @@ public readonly refreshToken: string;
 
 ### MicrosoftSharepointOnlineSourceProps <a name="MicrosoftSharepointOnlineSourceProps" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps"></a>
 
-Properties of a Google Analytics v4 Source.
+Properties of a Microsoft Sharepoint Online Source.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.Initializer"></a>
 
@@ -6267,7 +6320,7 @@ const microsoftSharepointOnlineSourceProps: MicrosoftSharepointOnlineSourceProps
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.object">object</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.object">object</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject">MicrosoftSharepointOnlineObject</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a></code> | *No description.* |
 
 ---
@@ -6285,10 +6338,10 @@ public readonly apiVersion: string;
 ##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSourceProps.property.object"></a>
 
 ```typescript
-public readonly object: string;
+public readonly object: MicrosoftSharepointOnlineObject;
 ```
 
-- *Type:* string
+- *Type:* <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject">MicrosoftSharepointOnlineObject</a>
 
 ---
 
@@ -10823,7 +10876,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
 
-A class that represents a Google Analytics v4 Source.
+A class that represents a Microsoft Sharepoint Online Source.
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource.Initializer"></a>
 
@@ -10889,6 +10942,8 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### MicrosoftSharepointOnlineTokenUrlBuilder <a name="MicrosoftSharepointOnlineTokenUrlBuilder" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineTokenUrlBuilder"></a>
 
+A utility class for building Microsoft Online token URLs.
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineTokenUrlBuilder.Initializer"></a>
 
 ```typescript
@@ -10907,19 +10962,19 @@ new MicrosoftSharepointOnlineTokenUrlBuilder()
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineTokenUrlBuilder.buildFromTenant">buildFromTenant</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineTokenUrlBuilder.buildTokenUrl">buildTokenUrl</a></code> | *No description.* |
 
 ---
 
-##### `buildFromTenant` <a name="buildFromTenant" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineTokenUrlBuilder.buildFromTenant"></a>
+##### `buildTokenUrl` <a name="buildTokenUrl" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineTokenUrlBuilder.buildTokenUrl"></a>
 
 ```typescript
 import { MicrosoftSharepointOnlineTokenUrlBuilder } from '@cdklabs/cdk-appflow'
 
-MicrosoftSharepointOnlineTokenUrlBuilder.buildFromTenant(tenantId: string)
+MicrosoftSharepointOnlineTokenUrlBuilder.buildTokenUrl(tenantId?: string)
 ```
 
-###### `tenantId`<sup>Required</sup> <a name="tenantId" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineTokenUrlBuilder.buildFromTenant.parameter.tenantId"></a>
+###### `tenantId`<sup>Optional</sup> <a name="tenantId" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineTokenUrlBuilder.buildTokenUrl.parameter.tenantId"></a>
 
 - *Type:* string
 
@@ -13233,15 +13288,19 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### MicrosoftSharepointOnlineApiVersion <a name="MicrosoftSharepointOnlineApiVersion" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineApiVersion"></a>
 
+An enum representing the Microsoft Sharepoint Online API versions.
+
 #### Members <a name="Members" id="Members"></a>
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineApiVersion.V1">V1</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineApiVersion.V1">V1</a></code> | Version 1.0. |
 
 ---
 
 ##### `V1` <a name="V1" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineApiVersion.V1"></a>
+
+Version 1.0.
 
 ---
 

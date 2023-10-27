@@ -22,7 +22,10 @@ describe('MicrosoftSharepointOnlineSource', () => {
     const stack = new Stack(undefined, 'TestStack');
     const source = new MicrosoftSharepointOnlineSource({
       profile: MicrosoftSharepointOnlineConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
-      object: 'dummy-object',
+      object: {
+        site: 'sites/dummysite.sharepoint.com,3f42g340-bc23-4a31-b7e5-722e57c39cb8,5bbc39fb-2b17-423b-a007-40ca508389a5',
+        drives: ['drives/b!fcPDltwTLSougEJuDFjE?U5qHuXbkzlvSaA5oNoMW4tB0y6mebcx9m-ckwA9KtKE'],
+      },
       apiVersion: MicrosoftSharepointOnlineApiVersion.V1,
     });
 
@@ -37,7 +40,10 @@ describe('MicrosoftSharepointOnlineSource', () => {
     const stack = new Stack(undefined, 'TestStack');
     const source = new MicrosoftSharepointOnlineSource({
       profile: MicrosoftSharepointOnlineConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
-      object: 'dummy-object',
+      object: {
+        site: 'sites/dummysite.sharepoint.com,3f42g340-bc23-4a31-b7e5-722e57c39cb8,5bbc39fb-2b17-423b-a007-40ca508389a5',
+        drives: ['drives/b!fcPDltwTLSougEJuDFjE?U5qHuXbkzlvSaA5oNoMW4tB0y6mebcx9m-ckwA9KtKE'],
+      },
       apiVersion: MicrosoftSharepointOnlineApiVersion.V1,
     });
 
@@ -71,7 +77,10 @@ describe('MicrosoftSharepointOnlineSource', () => {
         ConnectorType: 'CustomConnector',
         SourceConnectorProperties: {
           CustomConnector: {
-            EntityName: 'dummy-object',
+            EntityName: 'sites/dummysite.sharepoint.com,3f42g340-bc23-4a31-b7e5-722e57c39cb8,5bbc39fb-2b17-423b-a007-40ca508389a5',
+            CustomProperties: {
+              subEntities: '["drives/b!fcPDltwTLSougEJuDFjE?U5qHuXbkzlvSaA5oNoMW4tB0y6mebcx9m-ckwA9KtKE"]',
+            },
           },
         },
       },
@@ -117,7 +126,10 @@ describe('MicrosoftSharepointOnlineSource', () => {
 
     const source = new MicrosoftSharepointOnlineSource({
       profile: profile,
-      object: 'dummy-object',
+      object: {
+        site: 'sites/dummysite.sharepoint.com,3f42g340-bc23-4a31-b7e5-722e57c39cb8,5bbc39fb-2b17-423b-a007-40ca508389a5',
+        drives: ['drives/b!fcPDltwTLSougEJuDFjE?U5qHuXbkzlvSaA5oNoMW4tB0y6mebcx9m-ckwA9KtKE'],
+      },
       apiVersion: MicrosoftSharepointOnlineApiVersion.V1,
     });
 
@@ -137,7 +149,7 @@ describe('MicrosoftSharepointOnlineSource', () => {
       ConnectionMode: 'Public',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
-      ConnectorLabel: 'MS_SharePoint_Connector',
+      ConnectorLabel: 'MicrosoftSharePointOnline',
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           CustomConnector: {
@@ -182,7 +194,10 @@ describe('MicrosoftSharepointOnlineSource', () => {
           ConnectorType: 'CustomConnector',
           SourceConnectorProperties: {
             CustomConnector: {
-              EntityName: 'dummy-object',
+              EntityName: 'sites/dummysite.sharepoint.com,3f42g340-bc23-4a31-b7e5-722e57c39cb8,5bbc39fb-2b17-423b-a007-40ca508389a5',
+              CustomProperties: {
+                subEntities: '["drives/b!fcPDltwTLSougEJuDFjE?U5qHuXbkzlvSaA5oNoMW4tB0y6mebcx9m-ckwA9KtKE"]',
+              },
             },
           },
         },

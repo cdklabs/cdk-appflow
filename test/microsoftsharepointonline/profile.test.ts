@@ -36,7 +36,7 @@ describe('MicrosoftSharepointOnlineConnectorProfile', () => {
       ConnectionMode: 'Public',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
-      ConnectorLabel: 'MS_SharePoint_Connector',
+      ConnectorLabel: 'MicrosoftSharePointOnline',
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           CustomConnector: {
@@ -86,7 +86,7 @@ describe('MicrosoftSharepointOnlineConnectorProfile', () => {
       ConnectionMode: 'Public',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
-      ConnectorLabel: 'MS_SharePoint_Connector',
+      ConnectorLabel: 'MicrosoftSharePointOnline',
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           CustomConnector: {
@@ -196,7 +196,7 @@ describe('MicrosoftSharepointOnlineConnectorProfile', () => {
         ConnectionMode: 'Public',
         ConnectorProfileName: 'TestProfile',
         ConnectorType: 'CustomConnector',
-        ConnectorLabel: 'MS_SharePoint_Connector',
+        ConnectorLabel: 'MicrosoftSharePointOnline',
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {
             CustomConnector: {

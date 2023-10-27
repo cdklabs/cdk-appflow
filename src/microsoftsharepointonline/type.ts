@@ -19,6 +19,6 @@ export class MicrosoftSharepointOnlineConnectorType extends ConnectorType {
   private static actualInstance: ConnectorType;
 
   constructor() {
-    super('MS_SharePoint_Connector', true);
+    super('MicrosoftSharePointOnline', true);
   }
 }
