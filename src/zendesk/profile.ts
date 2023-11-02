@@ -12,9 +12,28 @@ export interface ZendeskConnectorProfileProps extends ConnectorProfileProps {
   readonly instanceUrl: string;
 }
 
+/**
+ * Zendesk OAuth client settings.
+ *
+ * Note: Zendesk access tokens don't expire and don't use refresh tokens. Zendesk access tokens are valid until revoked.
+ *       That is why there is no flow for refreshing the access token nor refreshToken property to be set.
+ */
 export interface ZendeskOAuthSettings {
-  readonly accessToken?: string;
+  /**
+   * Zendesk access token to the OAuth client
+   *
+   * Note: Zendesk access tokens don't expire and don't use refresh tokens.
+   */
+  readonly accessToken: string;
+
+  /**
+   * The OAuth Zendesk client id
+   */
   readonly clientId: string;
+
+  /**
+   * The OAuth Zendesk client secret
+   */
   readonly clientSecret: string;
 }
 

@@ -22,7 +22,7 @@ export interface ZendeskDestinationProps {
   readonly errorHandling?: ErrorHandlingConfiguration;
 
   /**
-   * The Zendesk object for which the operation is to be set.
+   * The Zendesk object for which the operation is to be performed.
    */
   readonly object: string;
 

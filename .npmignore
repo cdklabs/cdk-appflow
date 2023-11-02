@@ -30,6 +30,7 @@ test/integ/ondemand-salesforce-to-redshift.integ.snapshot
 test/integ/ondemand-salesforce-to-s3.integ.snapshot
 test/integ/ondemand-sapodata-to-s3.integ.snapshot
 test/integ/ondemand-slack-to-s3.integ.snapshot
+test/integ/ondemand-zendesk-to-s3.integ.snapshot
 test/integ/onevent-salesforce-to-eventbridge.integ.snapshot
 test/integ/onschedule-s3-to-salesforce.integ.snapshot
 test/integ/.tmp
