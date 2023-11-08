@@ -6220,22 +6220,9 @@ const microsoftSharepointOnlineObject: MicrosoftSharepointOnlineObject = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives">drives</a></code> | <code>string[]</code> | An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved. |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.site">site</a></code> | <code>string</code> | The Microsoft Sharepoint Online site from which the documents are to be retrieved. |
-
----
-
-##### `drives`<sup>Required</sup> <a name="drives" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives"></a>
-
-```typescript
-public readonly drives: string[];
-```
-
-- *Type:* string[]
-
-An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved.
-
-Note: each drive requires full name starting with 'drives/'
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives">drives</a></code> | <code>string[]</code> | An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved. |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.entities">entities</a></code> | <code>string[]</code> | An array of Microsoft Sharepoint Online site entities from which the documents are to be retrieved. |
 
 ---
 
@@ -6252,6 +6239,43 @@ The Microsoft Sharepoint Online site from which the documents are to be retrieve
 Note: requires full name starting with 'sites/'
 
 ---
+
+##### ~~`drives`~~<sup>Optional</sup> <a name="drives" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives"></a>
+
+- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link entities} instead
+
+```typescript
+public readonly drives: string[];
+```
+
+- *Type:* string[]
+
+An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved.
+
+Note: each drive requires full name starting with 'drives/'
+
+---
+
+##### `entities`<sup>Optional</sup> <a name="entities" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.entities"></a>
+
+```typescript
+public readonly entities: string[];
+```
+
+- *Type:* string[]
+
+An array of Microsoft Sharepoint Online site entities from which the documents are to be retrieved.
+
+Note: each entity requires full name starting with 'drives/' followed by driveID and optional '/items/' followed by itemID
+
+---
+
+*Example*
+
+```typescript
+: 'drives/${driveID}/items/${itemID}'
+```
+
 
 ### MicrosoftSharepointOnlineRefreshTokenGrantFlow <a name="MicrosoftSharepointOnlineRefreshTokenGrantFlow" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow"></a>
 

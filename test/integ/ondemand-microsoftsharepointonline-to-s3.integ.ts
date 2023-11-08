@@ -34,7 +34,7 @@ const source = new MicrosoftSharepointOnlineSource({
   apiVersion: MicrosoftSharepointOnlineApiVersion.V1,
   object: {
     site: secret.secretValueFromJson('site').toString(),
-    drives: [secret.secretValueFromJson('drive').toString()],
+    entities: [secret.secretValueFromJson('drive').toString()],
   },
 });
 
