@@ -26,8 +26,18 @@ export interface MicrosoftSharepointOnlineObject {
    * An array of Microsoft Sharepoint Online site drives from which the documents are to be retrieved.
    *
    * Note: each drive requires full name starting with 'drives/'
+   * @deprecated. This property is deprecated and will be removed in a future release. Use {@link entities} instead
    */
-  readonly drives: string[];
+  readonly drives?: string[];
+
+  /**
+   * An array of Microsoft Sharepoint Online site entities from which the documents are to be retrieved.
+   *
+   * Note: each entity requires full name starting with 'drives/' followed by driveID and optional '/items/' followed by itemID
+   * @example: 'drives/${driveID}'
+   * @example: 'drives/${driveID}/items/${itemID}'
+   */
+  readonly entities?: string[];
 }
 
 /**
@@ -65,15 +75,20 @@ export class MicrosoftSharepointOnlineSource implements ISource {
 
   private buildSourceConnectorProperties(): CfnFlow.SourceConnectorPropertiesProperty {
 
-    if (this.props.object.drives.length < 1) {
-      throw new Error('At least one drive must be specified');
+    if (this.props.object.entities && this.props.object.drives) {
+      throw new Error('Only one of the properties entities or drives should be specified');
+    }
+
+    const entities = this.props.object.entities ?? this.props.object.drives ?? [];
+    if (entities.length < 1) {
+      throw new Error('At least one entity must be specified');
     }
 
     return {
       customConnector: {
         entityName: this.props.object.site,
         customProperties: {
-          subEntities: `["${Fn.join('","', this.props.object.drives)}"]`,
+          subEntities: `["${Fn.join('","', entities)}"]`,
         },
       },
     };
