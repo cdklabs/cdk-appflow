@@ -64,9 +64,9 @@ jobs:
           commit-message: |-
             chore(deps): upgrade cdklabs-projen-project-types
 
-            Upgrades cdklabs-projen-project-types dependency. See details in [workflow run].
+            Upgrades project dependencies. See details in [workflow run].
 
-            [Workflow Run]: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            [Workflow Run]: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
             ------
 
@@ -75,9 +75,9 @@ jobs:
           title: "chore(deps): upgrade cdklabs-projen-project-types"
           labels: auto-approve
           body: |-
-            Upgrades cdklabs-projen-project-types dependency. See details in [workflow run].
+            Upgrades project dependencies. See details in [workflow run].
 
-            [Workflow Run]: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            [Workflow Run]: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
             ------
 
