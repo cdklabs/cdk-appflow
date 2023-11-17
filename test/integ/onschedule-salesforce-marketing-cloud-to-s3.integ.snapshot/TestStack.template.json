@@ -490,7 +490,7 @@
      }
     },
     "Handler": "index.handler",
-    "Runtime": "nodejs16.x"
+    "Runtime": "nodejs18.x"
    },
    "DependsOn": [
     "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE"
