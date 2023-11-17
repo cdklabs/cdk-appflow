@@ -6,6 +6,7 @@ export * from './core';
 export * from './eventbridge';
 export * from './googleanalytics4';
 export * from './marketo';
+export * from './microsoftdynamics365';
 export * from './microsoftsharepointonline';
 export * from './s3';
 export * from './salesforce';
