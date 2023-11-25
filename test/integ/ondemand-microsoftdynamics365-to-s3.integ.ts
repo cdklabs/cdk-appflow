@@ -22,6 +22,13 @@ const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/msdynamics3
 const profile = new MicrosoftDynamics365ConnectorProfile(stack, 'TestConnector', {
   oAuth: {
     accessToken: secret.secretValueFromJson('accessToken').toString(),
+    flow: {
+      refreshTokenGrant: {
+        refreshToken: secret.secretValueFromJson('refreshToken').toString(),
+        clientId: secret.secretValueFromJson('clientId').toString(),
+        clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+      },
+    },
   },
   instanceUrl: secret.secretValueFromJson('instanceUrl').toString(),
 });

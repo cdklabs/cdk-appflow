@@ -28,7 +28,54 @@
           ]
          ]
         },
-        "RefreshToken": "dummyRefreshToken"
+        "ClientId": {
+         "Fn::Join": [
+          "",
+          [
+           "{{resolve:secretsmanager:arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:us-east-1:",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":secret:appflow/msdynamics365:SecretString:clientId::}}"
+          ]
+         ]
+        },
+        "ClientSecret": {
+         "Fn::Join": [
+          "",
+          [
+           "{{resolve:secretsmanager:arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:us-east-1:",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":secret:appflow/msdynamics365:SecretString:clientSecret::}}"
+          ]
+         ]
+        },
+        "RefreshToken": {
+         "Fn::Join": [
+          "",
+          [
+           "{{resolve:secretsmanager:arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:us-east-1:",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":secret:appflow/msdynamics365:SecretString:refreshToken::}}"
+          ]
+         ]
+        }
        }
       }
      },
