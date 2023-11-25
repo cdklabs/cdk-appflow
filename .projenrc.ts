@@ -1,7 +1,7 @@
 import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
 import { Stability } from 'projen/lib/cdk';
 
-const cdkVersion = '2.84.0';
+const cdkVersion = '2.110.1';
 const project = new CdklabsConstructLibrary({
   name: '@cdklabs/cdk-appflow',
   author: 'Amazon Web Services',
