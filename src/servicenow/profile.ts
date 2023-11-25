@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { ServiceNowConnectorType } from './type';
@@ -14,7 +15,7 @@ export interface ServiceNowConnectorProfileProps extends ConnectorProfileProps {
 
 export interface ServiceNowBasicSettings {
   readonly username: string;
-  readonly password: string;
+  readonly password: SecretValue;
 }
 
 export class ServiceNowConnectorProfile extends ConnectorProfileBase {
@@ -36,7 +37,7 @@ export class ServiceNowConnectorProfile extends ConnectorProfileBase {
     return {
       serviceNow: {
         username: properties.basicAuth?.username,
-        password: properties.basicAuth?.password,
+        password: properties.basicAuth?.password.unsafeUnwrap(),
       },
     };
   }

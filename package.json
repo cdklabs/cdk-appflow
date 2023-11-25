@@ -111,13 +111,8 @@
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk": "^2",
-<<<<<<< HEAD
-    "aws-cdk-lib": "2.84.0",
-    "cdklabs-projen-project-types": "^0.1.182",
-=======
     "aws-cdk-lib": "2.110.1",
-    "cdklabs-projen-project-types": "^0.1.180",
->>>>>>> abf1cc0 (chore: mid-step commit)
+    "cdklabs-projen-project-types": "^0.1.182",
     "constructs": "10.0.5",
     "esbuild": "^0.19.7",
     "eslint": "^8",

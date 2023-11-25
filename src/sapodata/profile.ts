@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { SAPOdataConnectorType } from './type';
@@ -20,7 +21,7 @@ export interface SAPOdataConnectorProfileProps extends ConnectorProfileProps {
 
 export interface SAPOdataBasicAuthSettings {
   readonly username: string;
-  readonly password: string;
+  readonly password: SecretValue;
 }
 
 export interface SAPOdataOAuthEndpoints {
@@ -28,9 +29,9 @@ export interface SAPOdataOAuthEndpoints {
 }
 
 export interface SAPOdataOAuthRefreshTokenGrantFlow {
-  readonly refreshToken?: string;
-  readonly clientId: string;
-  readonly clientSecret: string;
+  readonly refreshToken?: SecretValue;
+  readonly clientId: SecretValue;
+  readonly clientSecret: SecretValue;
 }
 
 export interface SAPOdataOAuthFlows {
@@ -38,7 +39,7 @@ export interface SAPOdataOAuthFlows {
 }
 
 export interface SAPOdataOAuthSettings {
-  readonly accessToken?: string;
+  readonly accessToken?: SecretValue;
 
   readonly flow?: SAPOdataOAuthFlows;
 
@@ -68,14 +69,14 @@ export class SAPOdataConnectorProfile extends ConnectorProfileBase {
     if (properties.basicAuth) {
       sapOdata.basicAuthCredentials = {
         username: properties.basicAuth.username,
-        password: properties.basicAuth.password,
+        password: properties.basicAuth.password.unsafeUnwrap(),
       };
     } else if (properties.oAuth) {
       sapOdata.oAuthCredentials = {
-        accessToken: properties.oAuth.accessToken,
-        refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken,
-        clientId: properties.oAuth.flow?.refreshTokenGrant.clientId,
-        clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret,
+        accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
+        refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
+        clientId: properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
+        clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
       };
     }
 

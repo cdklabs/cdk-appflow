@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 
@@ -67,11 +67,11 @@ describe('MarketoSource', () => {
 
     const profile = new MarketoConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: 'accessToken',
+        accessToken: SecretValue.unsafePlainText('accessToken'),
         flow: {
           clientCredentials: {
-            clientId: 'clientId',
-            clientSecret: 'clientSecret',
+            clientId: SecretValue.unsafePlainText('clientId'),
+            clientSecret: SecretValue.unsafePlainText('clientSecret'),
           },
         },
       },

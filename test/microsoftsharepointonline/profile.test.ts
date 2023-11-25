@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Key } from 'aws-cdk-lib/aws-kms';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
@@ -18,12 +18,12 @@ describe('MicrosoftSharepointOnlineConnectorProfile', () => {
 
     new MicrosoftSharepointOnlineConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: 'accessToken',
+        accessToken: SecretValue.unsafePlainText('accessToken'),
         flow: {
           refreshTokenGrant: {
-            refreshToken: 'refreshToken',
-            clientId: 'clientId',
-            clientSecret: 'clientSecret',
+            refreshToken: SecretValue.unsafePlainText('refreshToken'),
+            clientId: SecretValue.unsafePlainText('clientId'),
+            clientSecret: SecretValue.unsafePlainText('clientSecret'),
           },
         },
         endpoints: {
@@ -68,12 +68,12 @@ describe('MicrosoftSharepointOnlineConnectorProfile', () => {
 
     new MicrosoftSharepointOnlineConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken').toString(),
+        accessToken: secret.secretValueFromJson('accessToken'),
         flow: {
           refreshTokenGrant: {
-            refreshToken: secret.secretValueFromJson('refreshToken').toString(),
-            clientId: secret.secretValueFromJson('clientId').toString(),
-            clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+            refreshToken: secret.secretValueFromJson('refreshToken'),
+            clientId: secret.secretValueFromJson('clientId'),
+            clientSecret: secret.secretValueFromJson('clientSecret'),
           },
         },
         endpoints: {
@@ -177,12 +177,12 @@ describe('MicrosoftSharepointOnlineConnectorProfile', () => {
     new MicrosoftSharepointOnlineConnectorProfile(stack, 'TestProfile', {
       key: key,
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken').toString(),
+        accessToken: secret.secretValueFromJson('accessToken'),
         flow: {
           refreshTokenGrant: {
-            refreshToken: secret.secretValueFromJson('refreshToken').toString(),
-            clientId: secret.secretValueFromJson('clientId').toString(),
-            clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+            refreshToken: secret.secretValueFromJson('refreshToken'),
+            clientId: secret.secretValueFromJson('clientId'),
+            clientSecret: secret.secretValueFromJson('clientSecret'),
           },
         },
         endpoints: {

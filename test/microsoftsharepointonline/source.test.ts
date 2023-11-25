@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 
@@ -110,12 +110,12 @@ describe('MicrosoftSharepointOnlineSource', () => {
 
     const profile = new MicrosoftSharepointOnlineConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: 'accessToken',
+        accessToken: SecretValue.unsafePlainText('accessToken'),
         flow: {
           refreshTokenGrant: {
-            refreshToken: 'refreshToken',
-            clientId: 'clientId',
-            clientSecret: 'clientSecret',
+            refreshToken: SecretValue.unsafePlainText('refreshToken'),
+            clientId: SecretValue.unsafePlainText('clientId'),
+            clientSecret: SecretValue.unsafePlainText('clientSecret'),
           },
         },
         endpoints: {

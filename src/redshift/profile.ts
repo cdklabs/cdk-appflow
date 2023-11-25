@@ -3,7 +3,7 @@ Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 import { ICluster } from '@aws-cdk/aws-redshift-alpha';
-import { Aws } from 'aws-cdk-lib';
+import { Aws, SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Effect, IRole, Policy, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { AwsCustomResource, AwsCustomResourcePolicy, PhysicalResourceId } from 'aws-cdk-lib/custom-resources';
@@ -15,7 +15,7 @@ import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/
 
 export interface RedshiftConnectorBasicCredentials {
   readonly username?: string;
-  readonly password?: string;
+  readonly password?: SecretValue;
 }
 
 export interface RedshiftConnectorProfileProps extends ConnectorProfileProps {
@@ -105,7 +105,7 @@ export class RedshiftConnectorProfile extends ConnectorProfileBase {
     return {
       redshift: properties && {
         username: properties.basicAuth.username,
-        password: properties.basicAuth.password,
+        password: properties.basicAuth.password?.unsafeUnwrap(),
       },
     };
   }

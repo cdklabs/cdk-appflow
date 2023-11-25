@@ -24,7 +24,7 @@ const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/sap/basic')
 const profile = new SAPOdataConnectorProfile(stack, 'TestConnectorProfile', {
   basicAuth: {
     username: secret.secretValueFromJson('username').toString(),
-    password: secret.secretValueFromJson('password').toString(),
+    password: secret.secretValueFromJson('password'),
   },
   applicationHostUrl: secret.secretValueFromJson('appHostUrl').toString(),
   applicationServicePath: secret.secretValueFromJson('servicePath').toString(),
