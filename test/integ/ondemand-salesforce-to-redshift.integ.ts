@@ -26,7 +26,7 @@ const creds = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/salesforce')
 
 const profile = new SalesforceConnectorProfile(stack, 'TestProfile', {
   oAuth: {
-    accessToken: creds.secretValueFromJson('accessToken').toString(),
+    accessToken: creds.secretValueFromJson('accessToken'),
   },
   instanceUrl: creds.secretValueFromJson('instanceUrl').toString(),
   isSandbox: false,

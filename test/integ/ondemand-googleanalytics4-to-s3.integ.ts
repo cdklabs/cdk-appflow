@@ -19,9 +19,9 @@ const profile = new GoogleAnalytics4ConnectorProfile(stack, 'TestConnector', {
   oAuth: {
     flow: {
       refreshTokenGrant: {
-        refreshToken: secret.secretValueFromJson('refreshToken').toString(),
-        clientId: secret.secretValueFromJson('clientId').toString(),
-        clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+        refreshToken: secret.secretValueFromJson('refreshToken'),
+        clientId: secret.secretValueFromJson('clientId'),
+        clientSecret: secret.secretValueFromJson('clientSecret'),
       },
     },
   },

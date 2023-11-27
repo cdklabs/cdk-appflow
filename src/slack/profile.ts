@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { SlackConnectorType } from './type';
@@ -13,9 +14,9 @@ export interface SlackConnectorProfileProps extends ConnectorProfileProps {
 }
 
 export interface SlackOAuthSettings {
-  readonly accessToken: string;
-  readonly clientId?: string;
-  readonly clientSecret?: string;
+  readonly accessToken: SecretValue;
+  readonly clientId?: SecretValue;
+  readonly clientSecret?: SecretValue;
 }
 
 export class SlackConnectorProfile extends ConnectorProfileBase {
@@ -45,9 +46,9 @@ export class SlackConnectorProfile extends ConnectorProfileBase {
     const properties = (props as SlackConnectorProfileProps);
     return {
       slack: {
-        accessToken: properties.oAuth.accessToken,
-        clientId: properties.oAuth.clientId ?? 'dummyClientId',
-        clientSecret: properties.oAuth.clientSecret ?? 'dummyClientSecret',
+        accessToken: properties.oAuth.accessToken.unsafeUnwrap(),
+        clientId: properties.oAuth.clientId?.unsafeUnwrap() ?? 'dummyClientId',
+        clientSecret: properties.oAuth.clientSecret?.unsafeUnwrap() ?? 'dummyClientSecret',
       },
     };
   }

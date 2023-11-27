@@ -11,6 +11,7 @@ For more information, see the [Amazon AppFlow User Guide](https://docs.aws.amazo
 ## Example
 
 ```ts
+import { SecretValue } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
 import {
@@ -30,8 +31,8 @@ import {
 } from '@cdklabs/cdk-appflow';
 
 declare const clientSecret: ISecret;
-declare const accessToken: string;
-declare const refreshToken: string;
+declare const accessToken: SecretValue;
+declare const refreshToken: SecretValue;
 declare const instanceUrl: string;
 
 const profile = new SalesforceConnectorProfile(this, 'MyConnectorProfile', {
@@ -188,7 +189,7 @@ It is *recommended* to follow [data protection mechanisms for Amazon AppFlow](ht
 
 ## Confidential information
 
-Amazon AppFlow application integration is done using `ConnectionProfiles`. A `ConnectionProfile` requires providing sensitive information in the form of e.g. access and refresh tokens. It is *recommended* that such information is stored securely and passed to AWS CDK securely. All sensitive fields are effectively `IResolvable` and this means they can be resolved at deploy time. With that one should follow the [best practices for credentials with CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/security-best-practices.html#creds).
+Amazon AppFlow application integration is done using `ConnectionProfiles`. A `ConnectionProfile` requires providing sensitive information in the form of e.g. access and refresh tokens. It is *recommended* that such information is stored securely and passed to AWS CDK securely. All sensitive fields are effectively `IResolvable` and this means they can be resolved at deploy time. With that one should follow the [best practices for credentials with CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/security-best-practices.html#creds). In this library, the sensitive fields are typed as `SecretValue` to emphasize these should not be plain strings.
 
 An example of using a predefined AWS Secrets Manager secret for storing sensitive information can be found below:
 
@@ -204,9 +205,9 @@ const profile = new GoogleAnalytics4ConnectorProfile(stack, 'GA4Connector', {
   oAuth: {
     flow: {
       refreshTokenGrant: {
-        refreshToken: secret.secretValueFromJson('refreshToken').toString(),
-        clientId: secret.secretValueFromJson('clientId').toString(),
-        clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+        refreshToken: secret.secretValueFromJson('refreshToken'),
+        clientId: secret.secretValueFromJson('clientId'),
+        clientSecret: secret.secretValueFromJson('clientSecret'),
       },
     },
   },
@@ -5917,7 +5918,7 @@ const googleAnalytics4OAuthSettings: GoogleAnalytics4OAuthSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | The access token to be used when interacting with Google Analytics 4. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | The access token to be used when interacting with Google Analytics 4. |
 | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthEndpoints">GoogleAnalytics4OAuthEndpoints</a></code> | The OAuth token and authorization endpoints. |
 | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4OAuthFlow">GoogleAnalytics4OAuthFlow</a></code> | The OAuth flow used for obtaining a new accessToken when the old is not present or expired. |
 
@@ -5926,10 +5927,10 @@ const googleAnalytics4OAuthSettings: GoogleAnalytics4OAuthSettings = { ... }
 ##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.GoogleAnalytics4OAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 - *Default:* Retrieves a fresh accessToken with the information in the [flow property]{@link GoogleAnalytics4OAuthSettings#flow}
 
 The access token to be used when interacting with Google Analytics 4.
@@ -5979,19 +5980,19 @@ const googleAnalytics4RefreshTokenGrantFlow: GoogleAnalytics4RefreshTokenGrantFl
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>string</code> | The id of the client app. |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | The secret of the client app. |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | A non-expired refresh token. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | The id of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | The secret of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | A non-expired refresh token. |
 
 ---
 
 ##### `clientId`<sup>Optional</sup> <a name="clientId" id="@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 The id of the client app.
 
@@ -6000,10 +6001,10 @@ The id of the client app.
 ##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 The secret of the client app.
 
@@ -6012,10 +6013,10 @@ The secret of the client app.
 ##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.GoogleAnalytics4RefreshTokenGrantFlow.property.refreshToken"></a>
 
 ```typescript
-public readonly refreshToken: string;
+public readonly refreshToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 A non-expired refresh token.
 
@@ -6180,28 +6181,28 @@ const marketoOAuthClientCredentialsFlow: MarketoOAuthClientCredentialsFlow = { .
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MarketoOAuthClientCredentialsFlow.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MarketoOAuthClientCredentialsFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MarketoOAuthClientCredentialsFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MarketoOAuthClientCredentialsFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
 ##### `clientId`<sup>Required</sup> <a name="clientId" id="@cdklabs/cdk-appflow.MarketoOAuthClientCredentialsFlow.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `clientSecret`<sup>Required</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.MarketoOAuthClientCredentialsFlow.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -6248,7 +6249,7 @@ const marketoOAuthSettings: MarketoOAuthSettings = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.MarketoOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.MarketoOAuthFlow">MarketoOAuthFlow</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MarketoOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MarketoOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
@@ -6265,10 +6266,10 @@ public readonly flow: MarketoOAuthFlow;
 ##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.MarketoOAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -6455,7 +6456,7 @@ const microsoftDynamics365OAuthSettings: MicrosoftDynamics365OAuthSettings = { .
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365OAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | The access token to be used when interacting with Microsoft Dynamics 365. |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365OAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | The access token to be used when interacting with Microsoft Dynamics 365. |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365OAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365OAuthEndpointsSettings">MicrosoftDynamics365OAuthEndpointsSettings</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365OAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365OAuthFlow">MicrosoftDynamics365OAuthFlow</a></code> | *No description.* |
 
@@ -6464,10 +6465,10 @@ const microsoftDynamics365OAuthSettings: MicrosoftDynamics365OAuthSettings = { .
 ##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.MicrosoftDynamics365OAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 The access token to be used when interacting with Microsoft Dynamics 365.
 
@@ -6509,39 +6510,39 @@ const microsoftDynamics365RefreshTokenGrantFlow: MicrosoftDynamics365RefreshToke
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
 ##### `clientId`<sup>Optional</sup> <a name="clientId" id="@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.MicrosoftDynamics365RefreshTokenGrantFlow.property.refreshToken"></a>
 
 ```typescript
-public readonly refreshToken: string;
+public readonly refreshToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -6719,7 +6720,7 @@ const microsoftSharepointOnlineOAuthSettings: MicrosoftSharepointOnlineOAuthSett
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | The access token to be used when interacting with Microsoft Sharepoint Online. |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | The access token to be used when interacting with Microsoft Sharepoint Online. |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthEndpointsSettings">MicrosoftSharepointOnlineOAuthEndpointsSettings</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthFlow">MicrosoftSharepointOnlineOAuthFlow</a></code> | *No description.* |
 
@@ -6728,10 +6729,10 @@ const microsoftSharepointOnlineOAuthSettings: MicrosoftSharepointOnlineOAuthSett
 ##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineOAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 The access token to be used when interacting with Microsoft Sharepoint Online.
 
@@ -6846,39 +6847,39 @@ const microsoftSharepointOnlineRefreshTokenGrantFlow: MicrosoftSharepointOnlineR
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
 ##### `clientId`<sup>Optional</sup> <a name="clientId" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineRefreshTokenGrantFlow.property.refreshToken"></a>
 
 ```typescript
-public readonly refreshToken: string;
+public readonly refreshToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -7385,7 +7386,7 @@ const redshiftConnectorBasicCredentials: RedshiftConnectorBasicCredentials = { .
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.RedshiftConnectorBasicCredentials.property.password">password</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.RedshiftConnectorBasicCredentials.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.RedshiftConnectorBasicCredentials.property.username">username</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -7393,10 +7394,10 @@ const redshiftConnectorBasicCredentials: RedshiftConnectorBasicCredentials = { .
 ##### `password`<sup>Optional</sup> <a name="password" id="@cdklabs/cdk-appflow.RedshiftConnectorBasicCredentials.property.password"></a>
 
 ```typescript
-public readonly password: string;
+public readonly password: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -8244,28 +8245,28 @@ const salesforceMarketingCloudOAuthClientSettings: SalesforceMarketingCloudOAuth
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthClientSettings.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthClientSettings.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthClientSettings.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthClientSettings.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
 ##### `clientId`<sup>Required</sup> <a name="clientId" id="@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthClientSettings.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `clientSecret`<sup>Required</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthClientSettings.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -8312,7 +8313,7 @@ const salesforceMarketingCloudOAuthSettings: SalesforceMarketingCloudOAuthSettin
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthEndpoints">SalesforceMarketingCloudOAuthEndpoints</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudFlowSettings">SalesforceMarketingCloudFlowSettings</a></code> | *No description.* |
 
 ---
@@ -8330,10 +8331,10 @@ public readonly endpoints: SalesforceMarketingCloudOAuthEndpoints;
 ##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.SalesforceMarketingCloudOAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -8414,7 +8415,6 @@ const salesforceOAuthFlow: SalesforceOAuthFlow = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a></code> | The parameters required for the refresh token grant OAuth flow. |
-| <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refresTokenGrant">refresTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a></code> | The parameters required for the refresh token grant OAuth flow. |
 
 ---
 
@@ -8422,20 +8422,6 @@ const salesforceOAuthFlow: SalesforceOAuthFlow = { ... }
 
 ```typescript
 public readonly refreshTokenGrant: SalesforceOAuthRefreshTokenGrantFlow;
-```
-
-- *Type:* <a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a>
-
-The parameters required for the refresh token grant OAuth flow.
-
----
-
-##### ~~`refresTokenGrant`~~<sup>Optional</sup> <a name="refresTokenGrant" id="@cdklabs/cdk-appflow.SalesforceOAuthFlow.property.refresTokenGrant"></a>
-
-- *Deprecated:* - this property will be removed in the future releases. Use refreshTokenGrant property instead.
-
-```typescript
-public readonly refresTokenGrant: SalesforceOAuthRefreshTokenGrantFlow;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow">SalesforceOAuthRefreshTokenGrantFlow</a>
@@ -8459,7 +8445,7 @@ const salesforceOAuthRefreshTokenGrantFlow: SalesforceOAuthRefreshTokenGrantFlow
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow.property.client">client</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
@@ -8476,10 +8462,10 @@ public readonly client: ISecret;
 ##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.SalesforceOAuthRefreshTokenGrantFlow.property.refreshToken"></a>
 
 ```typescript
-public readonly refreshToken: string;
+public readonly refreshToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -8497,7 +8483,7 @@ const salesforceOAuthSettings: SalesforceOAuthSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceOAuthFlow">SalesforceOAuthFlow</a></code> | *No description.* |
 
 ---
@@ -8505,10 +8491,10 @@ const salesforceOAuthSettings: SalesforceOAuthSettings = { ... }
 ##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.SalesforceOAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -8608,7 +8594,7 @@ const sAPOdataBasicAuthSettings: SAPOdataBasicAuthSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.property.password">password</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.property.username">username</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -8616,10 +8602,10 @@ const sAPOdataBasicAuthSettings: SAPOdataBasicAuthSettings = { ... }
 ##### `password`<sup>Required</sup> <a name="password" id="@cdklabs/cdk-appflow.SAPOdataBasicAuthSettings.property.password"></a>
 
 ```typescript
-public readonly password: string;
+public readonly password: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -8899,39 +8885,39 @@ const sAPOdataOAuthRefreshTokenGrantFlow: SAPOdataOAuthRefreshTokenGrantFlow = {
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
 ##### `clientId`<sup>Required</sup> <a name="clientId" id="@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `clientSecret`<sup>Required</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.SAPOdataOAuthRefreshTokenGrantFlow.property.refreshToken"></a>
 
 ```typescript
-public readonly refreshToken: string;
+public readonly refreshToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -8949,7 +8935,7 @@ const sAPOdataOAuthSettings: SAPOdataOAuthSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthEndpoints">SAPOdataOAuthEndpoints</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.SAPOdataOAuthFlows">SAPOdataOAuthFlows</a></code> | *No description.* |
 
@@ -8958,10 +8944,10 @@ const sAPOdataOAuthSettings: SAPOdataOAuthSettings = { ... }
 ##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.SAPOdataOAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -9141,7 +9127,7 @@ const serviceNowBasicSettings: ServiceNowBasicSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.ServiceNowBasicSettings.property.password">password</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.ServiceNowBasicSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.ServiceNowBasicSettings.property.username">username</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -9149,10 +9135,10 @@ const serviceNowBasicSettings: ServiceNowBasicSettings = { ... }
 ##### `password`<sup>Required</sup> <a name="password" id="@cdklabs/cdk-appflow.ServiceNowBasicSettings.property.password"></a>
 
 ```typescript
-public readonly password: string;
+public readonly password: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -9345,39 +9331,39 @@ const slackOAuthSettings: SlackOAuthSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SlackOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SlackOAuthSettings.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SlackOAuthSettings.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SlackOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SlackOAuthSettings.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SlackOAuthSettings.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
 ##### `accessToken`<sup>Required</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.SlackOAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `clientId`<sup>Optional</sup> <a name="clientId" id="@cdklabs/cdk-appflow.SlackOAuthSettings.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.SlackOAuthSettings.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -9447,7 +9433,7 @@ const snowflakeBasicAuthSettings: SnowflakeBasicAuthSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeBasicAuthSettings.property.password">password</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeBasicAuthSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeBasicAuthSettings.property.username">username</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -9455,10 +9441,10 @@ const snowflakeBasicAuthSettings: SnowflakeBasicAuthSettings = { ... }
 ##### `password`<sup>Required</sup> <a name="password" id="@cdklabs/cdk-appflow.SnowflakeBasicAuthSettings.property.password"></a>
 
 ```typescript
-public readonly password: string;
+public readonly password: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
@@ -10126,39 +10112,39 @@ const zendeskOAuthSettings: ZendeskOAuthSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.clientId">clientId</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.clientSecret">clientSecret</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
 
 ---
 
 ##### `clientId`<sup>Required</sup> <a name="clientId" id="@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `clientSecret`<sup>Required</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 
 ##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.ZendeskOAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 ---
 

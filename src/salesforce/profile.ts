@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
@@ -25,18 +26,11 @@ export interface SalesforceConnectorProfileProps extends ConnectorProfileProps {
 //       For now only 1) and 2) are implemented, but 3) is not possible due to the requirement of a user's creds
 
 export interface SalesforceOAuthRefreshTokenGrantFlow {
-  readonly refreshToken?: string;
+  readonly refreshToken?: SecretValue;
   readonly client?: ISecret;
 }
 
 export interface SalesforceOAuthFlow {
-
-  /**
-   * The parameters required for the refresh token grant OAuth flow
-   *
-   * @deprecated - this property will be removed in the future releases. Use refreshTokenGrant property instead.
-   */
-  readonly refresTokenGrant?: SalesforceOAuthRefreshTokenGrantFlow;
 
   /**
    * The parameters required for the refresh token grant OAuth flow
@@ -45,7 +39,7 @@ export interface SalesforceOAuthFlow {
 }
 
 export interface SalesforceOAuthSettings {
-  readonly accessToken?: string;
+  readonly accessToken?: SecretValue;
   readonly flow?: SalesforceOAuthFlow;
 }
 
@@ -61,7 +55,7 @@ export class SalesforceConnectorProfile extends ConnectorProfileBase {
 
   constructor(scope: Construct, id: string, props: SalesforceConnectorProfileProps) {
     super(scope, id, props, SalesforceConnectorType.instance);
-    this.tryAddNodeDependency(this, this.getRefreshTokenGrantFlowProperty(props.oAuth.flow)?.client);
+    this.tryAddNodeDependency(this, props.oAuth.flow?.refreshTokenGrant?.client);
   }
 
   protected buildConnectorProfileProperties(properties: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
@@ -74,35 +68,16 @@ export class SalesforceConnectorProfile extends ConnectorProfileBase {
     };
   }
 
-  /**
-   * This is a auxiliary method for obtaining a refreshTokeNGrandFlow. It's a temporary solution due to the typo in the properties
-   * as we don't want to abruptly fail customer solutions depending on the library.
-   * @param flow a SalesforceOAuthFlow object
-   * @returns a SalesforceOAuthRefreshTokenGrantFlow object or undefined if the flow is undefined.
-   * @throws an error if both refreshTokenGrant and refresTokenGrant are specified. This is a temporary solution due to the typo in the properties.
-   * @deprecated - this method will be removed in the future releases.
-   */
-  private getRefreshTokenGrantFlowProperty(flow?: SalesforceOAuthFlow): SalesforceOAuthRefreshTokenGrantFlow | undefined {
-
-    if (flow) {
-      if (flow.refresTokenGrant && flow.refreshTokenGrant) {
-        throw new Error('Only one of the properties refreshTokenGrant or refresTokenGrant should be specified');
-      }
-      return flow.refresTokenGrant ?? flow.refreshTokenGrant;
-    }
-    return undefined;
-  }
-
   protected buildConnectorProfileCredentials(properties: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
     const props = properties as SalesforceConnectorProfileProps;
 
     let salesforce: { [key: string]: any } = {};
 
 
-    salesforce.accessToken = props.oAuth.accessToken;
+    salesforce.accessToken = props.oAuth.accessToken?.unsafeUnwrap();
 
-    const refreshTokenGrant = this.getRefreshTokenGrantFlowProperty(props.oAuth.flow);
-    salesforce.refreshToken = refreshTokenGrant?.refreshToken ?? 'dummyRefreshToken';
+    const refreshTokenGrant = props.oAuth.flow?.refreshTokenGrant;
+    salesforce.refreshToken = refreshTokenGrant?.refreshToken?.unsafeUnwrap() ?? 'dummyRefreshToken';
 
     if (refreshTokenGrant?.client) {
       salesforce.clientCredentialsArn = refreshTokenGrant.client.secretArn;

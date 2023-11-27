@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Key } from 'aws-cdk-lib/aws-kms';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
@@ -18,11 +18,11 @@ describe('MarketoConnectorProfile', () => {
 
     new MarketoConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: 'accessToken',
+        accessToken: SecretValue.unsafePlainText('accessToken'),
         flow: {
           clientCredentials: {
-            clientId: 'clientId',
-            clientSecret: 'clientSecret',
+            clientId: SecretValue.unsafePlainText('clientId'),
+            clientSecret: SecretValue.unsafePlainText('clientSecret'),
           },
         },
       },
@@ -57,11 +57,11 @@ describe('MarketoConnectorProfile', () => {
 
     new MarketoConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken').toString(),
+        accessToken: secret.secretValueFromJson('accessToken'),
         flow: {
           clientCredentials: {
-            clientId: secret.secretValueFromJson('clientId').toString(),
-            clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+            clientId: secret.secretValueFromJson('clientId'),
+            clientSecret: secret.secretValueFromJson('clientSecret'),
           },
         },
       },
@@ -144,11 +144,11 @@ describe('MarketoConnectorProfile', () => {
     new MarketoConnectorProfile(stack, 'TestProfile', {
       key: key,
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken').toString(),
+        accessToken: secret.secretValueFromJson('accessToken'),
         flow: {
           clientCredentials: {
-            clientId: secret.secretValueFromJson('clientId').toString(),
-            clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+            clientId: secret.secretValueFromJson('clientId'),
+            clientSecret: secret.secretValueFromJson('clientSecret'),
           },
         },
       },

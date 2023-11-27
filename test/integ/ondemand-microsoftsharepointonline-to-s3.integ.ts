@@ -17,10 +17,10 @@ const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/mssharepoin
 
 const profile = new MicrosoftSharepointOnlineConnectorProfile(stack, 'TestConnector', {
   oAuth: {
-    accessToken: secret.secretValueFromJson('accessToken').toString(),
+    accessToken: secret.secretValueFromJson('accessToken'),
     flow: {
       refreshTokenGrant: {
-        refreshToken: secret.secretValueFromJson('refreshToken').toString(),
+        refreshToken: secret.secretValueFromJson('refreshToken'),
       },
     },
     endpoints: {

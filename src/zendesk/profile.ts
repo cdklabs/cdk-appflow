@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { ZendeskConnectorType } from './type';
@@ -13,9 +14,9 @@ export interface ZendeskConnectorProfileProps extends ConnectorProfileProps {
 }
 
 export interface ZendeskOAuthSettings {
-  readonly accessToken?: string;
-  readonly clientId: string;
-  readonly clientSecret: string;
+  readonly accessToken?: SecretValue;
+  readonly clientId: SecretValue;
+  readonly clientSecret: SecretValue;
 }
 
 export class ZendeskConnectorProfile extends ConnectorProfileBase {
@@ -45,9 +46,9 @@ export class ZendeskConnectorProfile extends ConnectorProfileBase {
     const properties = (props as ZendeskConnectorProfileProps);
     return {
       zendesk: {
-        accessToken: properties.oAuth.accessToken,
-        clientId: properties.oAuth.clientId,
-        clientSecret: properties.oAuth.clientSecret,
+        accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
+        clientId: properties.oAuth.clientId.unsafeUnwrap(),
+        clientSecret: properties.oAuth.clientSecret.unsafeUnwrap(),
       },
     };
   }

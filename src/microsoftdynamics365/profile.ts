@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { MicrosoftDynamics365ConnectorType } from './type';
@@ -20,9 +21,9 @@ export interface MicrosoftDynamics365OAuthEndpointsSettings {
 }
 
 export interface MicrosoftDynamics365RefreshTokenGrantFlow {
-  readonly refreshToken?: string;
-  readonly clientSecret?: string;
-  readonly clientId?: string;
+  readonly refreshToken?: SecretValue;
+  readonly clientSecret?: SecretValue;
+  readonly clientId?: SecretValue;
 }
 
 export interface MicrosoftDynamics365OAuthFlow {
@@ -36,7 +37,7 @@ export interface MicrosoftDynamics365OAuthSettings {
    *
    * Note that if only the access token is provided AppFlow is not able to retrieve a fresh access token when the current one is expired
    */
-  readonly accessToken?: string;
+  readonly accessToken?: SecretValue;
 
   readonly flow?: MicrosoftDynamics365OAuthFlow;
 
@@ -93,10 +94,10 @@ export class MicrosoftDynamics365ConnectorProfile extends ConnectorProfileBase {
       customConnector: {
         oauth2: {
           // INFO: when using Refresh Token Grant Flow - access token property is required
-          accessToken: properties.oAuth.accessToken ?? 'dummyAccessToken',
-          refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken ?? 'dummyRefreshToken',
-          clientId: properties.oAuth.flow?.refreshTokenGrant.clientId,
-          clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret,
+          accessToken: properties.oAuth.accessToken?.unsafeUnwrap() ?? 'dummyAccessToken',
+          refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap() ?? 'dummyRefreshToken',
+          clientId: properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
+          clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
         },
         authenticationType: ConnectorAuthenticationType.OAUTH2,
       },

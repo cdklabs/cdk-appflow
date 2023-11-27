@@ -102,8 +102,8 @@
     "organization": true
   },
   "devDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.84.0-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.84.0-alpha.0",
+    "@aws-cdk/aws-glue-alpha": "2.110.1-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.110.1-alpha.0",
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
     "@types/jest": "^27",
@@ -111,7 +111,7 @@
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk": "^2",
-    "aws-cdk-lib": "2.84.0",
+    "aws-cdk-lib": "2.110.1",
     "cdklabs-projen-project-types": "^0.1.182",
     "constructs": "10.0.5",
     "esbuild": "^0.19.8",
@@ -132,9 +132,9 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.84.0-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.84.0-alpha.0",
-    "aws-cdk-lib": "^2.84.0",
+    "@aws-cdk/aws-glue-alpha": "2.110.1-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.110.1-alpha.0",
+    "aws-cdk-lib": "^2.110.1",
     "constructs": "^10.0.5"
   },
   "dependencies": {

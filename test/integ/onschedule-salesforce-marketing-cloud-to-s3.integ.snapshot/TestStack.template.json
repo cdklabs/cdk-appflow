@@ -4,8 +4,6 @@
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
-    "ConnectorProfileName": "TestConnector",
-    "ConnectorType": "CustomConnector",
     "ConnectorLabel": "SalesforceMarketingCloud",
     "ConnectorProfileConfig": {
      "ConnectorProfileCredentials": {
@@ -88,7 +86,9 @@
        }
       }
      }
-    }
+    },
+    "ConnectorProfileName": "TestConnector",
+    "ConnectorType": "CustomConnector"
    }
   },
   "TestBucket560B80BC": {
@@ -114,6 +114,7 @@
      "Statement": [
       {
        "Action": [
+        "s3:PutBucketPolicy",
         "s3:GetBucket*",
         "s3:List*",
         "s3:DeleteObject*"
@@ -246,18 +247,18 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2"
      },
-     "S3Key": "350185a1069fa20a23a583e20c77f6844218bd73097902362dc94f1a108f5d89.zip"
+     "S3Key": "b7f33614a69548d6bafe224d751a7ef238cde19097415e553fe8b63a4c8fd8a6.zip"
     },
     "Timeout": 900,
     "MemorySize": 128,
-    "Handler": "__entrypoint__.handler",
+    "Handler": "index.handler",
     "Role": {
      "Fn::GetAtt": [
       "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
       "Arn"
      ]
     },
-    "Runtime": "nodejs16.x",
+    "Runtime": "nodejs18.x",
     "Description": {
      "Fn::Join": [
       "",
@@ -477,12 +478,6 @@
      },
      "S3Key": "bda456ca3af7776e8e5ce88f2bbd621cc239ae9a3ce52dce5e34d1770b7380d2.zip"
     },
-    "Role": {
-     "Fn::GetAtt": [
-      "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE",
-      "Arn"
-     ]
-    },
     "Description": "src/core/flows/flow-time-updater/flow-time-updater.lambda.ts",
     "Environment": {
      "Variables": {
@@ -490,6 +485,12 @@
      }
     },
     "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE",
+      "Arn"
+     ]
+    },
     "Runtime": "nodejs18.x"
    },
    "DependsOn": [
@@ -576,13 +577,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2"
      },
-     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
-    },
-    "Role": {
-     "Fn::GetAtt": [
-      "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640",
-      "Arn"
-     ]
+     "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (TestStack/com.amazonaws.cdk.custom-resources.flow-time-provider/flow-time-provider)",
     "Environment": {
@@ -596,7 +591,13 @@
      }
     },
     "Handler": "framework.onEvent",
-    "Runtime": "nodejs14.x",
+    "Role": {
+     "Fn::GetAtt": [
+      "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
     "Timeout": 900
    },
    "DependsOn": [
