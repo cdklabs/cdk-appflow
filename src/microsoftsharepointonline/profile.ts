@@ -91,7 +91,8 @@ export class MicrosoftSharepointOnlineConnectorProfile extends ConnectorProfileB
         oauth2: {
           // INFO: when using Refresh Token Grant Flow - access token property is required
           accessToken: properties.oAuth.accessToken?.unsafeUnwrap() ?? 'dummyAccessToken',
-          refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
+          // INFO: when passing only an access token - this value is still required
+          refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap() ?? 'dummyRefreshToken',
           clientId: properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
           clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
         },
