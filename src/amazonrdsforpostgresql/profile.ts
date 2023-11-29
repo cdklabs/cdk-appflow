@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { AmazonRdsForPostgreSqlConnectorType } from './type';
@@ -17,7 +18,7 @@ export interface AmazonRdsForPostgreSqlConnectorProfileProps extends ConnectorPr
 
 export interface AmazonRdsForPostgreSqlBasicAuthSettings {
   readonly username: string;
-  readonly password: string;
+  readonly password: SecretValue;
 }
 
 export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase {
@@ -52,7 +53,7 @@ export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase
         custom: {
           credentialsMap: {
             username: properties.basicAuth.username,
-            password: properties.basicAuth.password,
+            password: properties.basicAuth.password.unsafeUnwrap(),
             driver: 'postgresql',
             hostname: properties.hostname,
             port: properties.port ? `${properties.port}` : AmazonRdsForPostgreSqlConnectorProfile.defaultPort.toString(),

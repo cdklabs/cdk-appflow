@@ -25,7 +25,7 @@ const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/rdspostgres
 const profile = new JdbcSmallDataScaleConnectorProfile(stack, 'JdbcSmallTestConnectorProfile', {
   basicAuth: {
     username: secret.secretValueFromJson('username').toString(),
-    password: secret.secretValueFromJson('password').toString(),
+    password: secret.secretValueFromJson('password'),
   },
   hostname: secret.secretValueFromJson('hostname').toString(),
   port: Token.asNumber(secret.secretValueFromJson('port').toString()),
@@ -44,7 +44,7 @@ const source = new JdbcSmallDataScaleSource({
 const destProfile = new AmazonRdsForPostgreSqlConnectorProfile(stack, 'AmazonRdsTestConnectorProfile', {
   basicAuth: {
     username: secret.secretValueFromJson('username').toString(),
-    password: secret.secretValueFromJson('password').toString(),
+    password: secret.secretValueFromJson('password'),
   },
   hostname: secret.secretValueFromJson('hostname').toString(),
   port: Token.asNumber(secret.secretValueFromJson('port').toString()),

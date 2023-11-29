@@ -4,8 +4,6 @@
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
-    "ConnectorProfileName": "JdbcSmallTestConnectorProfile",
-    "ConnectorType": "CustomConnector",
     "ConnectorLabel": "JDBCsmall",
     "ConnectorProfileConfig": {
      "ConnectorProfileCredentials": {
@@ -143,15 +141,15 @@
        "ProfileProperties": {}
       }
      }
-    }
+    },
+    "ConnectorProfileName": "JdbcSmallTestConnectorProfile",
+    "ConnectorType": "CustomConnector"
    }
   },
   "AmazonRdsTestConnectorProfileDA7BF797": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
-    "ConnectorProfileName": "AmazonRdsTestConnectorProfile",
-    "ConnectorType": "CustomConnector",
     "ConnectorLabel": "AmazonRDSPostgreSQL",
     "ConnectorProfileConfig": {
      "ConnectorProfileCredentials": {
@@ -270,7 +268,9 @@
        "ProfileProperties": {}
       }
      }
-    }
+    },
+    "ConnectorProfileName": "AmazonRdsTestConnectorProfile",
+    "ConnectorType": "CustomConnector"
    }
   },
   "OnDemandFlow4ECA54C5": {
