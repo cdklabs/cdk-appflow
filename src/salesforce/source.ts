@@ -9,9 +9,16 @@ import { SalesforceConnectorType } from './type';
 import { ConnectorType } from '../core/connectors/connector-type';
 import { IFlow } from '../core/flows';
 import { ISource } from '../core/vertices/source';
+import { SalesforceDataTransferApi } from './util';
 
 export interface SalesforceSourceProps {
   readonly profile: SalesforceConnectorProfile;
+
+  /**
+   * Specifies which Salesforce API is used by Amazon AppFlow when your flow transfers data from Salesforce.
+   */
+  readonly dataTransferApi?: SalesforceDataTransferApi;
+
   readonly object: string;
   readonly apiVersion?: string;
   readonly enableDynamicFieldUpdate?: boolean;
@@ -39,6 +46,7 @@ export class SalesforceSource implements ISource {
   private buildSourceConnectorProperties(): CfnFlow.SourceConnectorPropertiesProperty {
     return {
       salesforce: {
+        dataTransferApi: this.props.dataTransferApi,
         enableDynamicFieldUpdate: this.props.enableDynamicFieldUpdate,
         includeDeletedRecords: this.props.includeDeletedRecords,
         object: this.props.object,
