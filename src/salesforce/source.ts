@@ -9,7 +9,7 @@ import { SalesforceConnectorType } from './type';
 import { ConnectorType } from '../core/connectors/connector-type';
 import { IFlow } from '../core/flows';
 import { ISource } from '../core/vertices/source';
-import { SalesforceDataTransferApi } from './util';
+import { SalesforceDataTransferApi } from './salesforce-data-transfer-api';
 
 export interface SalesforceSourceProps {
   readonly profile: SalesforceConnectorProfile;

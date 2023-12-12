@@ -12,7 +12,7 @@ import { ErrorHandlingConfiguration } from '../core/error-handling';
 import { IFlow } from '../core/flows';
 import { IDestination } from '../core/vertices/destination';
 import { WriteOperation } from '../core/write-operation';
-import { SalesforceDataTransferApi } from './util';
+import { SalesforceDataTransferApi } from './salesforce-data-transfer-api';
 
 
 export interface SalesforceDestinationProps {
