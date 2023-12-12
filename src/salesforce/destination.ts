@@ -5,6 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 import { IConstruct } from 'constructs';
 import { SalesforceConnectorProfile } from './profile';
+import { SalesforceDataTransferApi } from './salesforce-data-transfer-api';
 import { SalesforceConnectorType } from './type';
 import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
 import { ConnectorType } from '../core/connectors/connector-type';
@@ -12,7 +13,6 @@ import { ErrorHandlingConfiguration } from '../core/error-handling';
 import { IFlow } from '../core/flows';
 import { IDestination } from '../core/vertices/destination';
 import { WriteOperation } from '../core/write-operation';
-import { SalesforceDataTransferApi } from './salesforce-data-transfer-api';
 
 
 export interface SalesforceDestinationProps {

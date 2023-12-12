@@ -5,11 +5,11 @@ SPDX-License-Identifier: Apache-2.0
 import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 import { IConstruct } from 'constructs';
 import { SalesforceConnectorProfile } from './profile';
+import { SalesforceDataTransferApi } from './salesforce-data-transfer-api';
 import { SalesforceConnectorType } from './type';
 import { ConnectorType } from '../core/connectors/connector-type';
 import { IFlow } from '../core/flows';
 import { ISource } from '../core/vertices/source';
-import { SalesforceDataTransferApi } from './salesforce-data-transfer-api';
 
 export interface SalesforceSourceProps {
   readonly profile: SalesforceConnectorProfile;
