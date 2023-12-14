@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 
@@ -112,10 +112,10 @@ describe('SalesforceSource', () => {
     const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/salesforce/client');
     const profile = new SalesforceConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: 'accessToken',
+        accessToken: SecretValue.unsafePlainText('accessToken'),
         flow: {
           refreshTokenGrant: {
-            refreshToken: 'refreshToken',
+            refreshToken: SecretValue.unsafePlainText('refreshToken'),
             client: secret,
           },
         },

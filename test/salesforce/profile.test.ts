@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Key } from 'aws-cdk-lib/aws-kms';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
@@ -18,10 +18,10 @@ describe('SalesforceConnectorProfileProps', () => {
 
     new SalesforceConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: 'accessToken',
+        accessToken: SecretValue.unsafePlainText('accessToken'),
         flow: {
           refreshTokenGrant: {
-            refreshToken: 'refreshToken',
+            refreshToken: SecretValue.unsafePlainText('refreshToken'),
             client: clientSecret,
           },
         },
@@ -58,10 +58,10 @@ describe('SalesforceConnectorProfileProps', () => {
 
     new SalesforceConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken').toString(),
+        accessToken: secret.secretValueFromJson('accessToken'),
         flow: {
           refreshTokenGrant: {
-            refreshToken: secret.secretValueFromJson('refreshToken').toString(),
+            refreshToken: secret.secretValueFromJson('refreshToken'),
             client: secret,
           },
         },
@@ -135,10 +135,10 @@ describe('SalesforceConnectorProfileProps', () => {
     new SalesforceConnectorProfile(stack, 'TestProfile', {
       key: key,
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken').toString(),
+        accessToken: secret.secretValueFromJson('accessToken'),
         flow: {
           refreshTokenGrant: {
-            refreshToken: secret.secretValueFromJson('refreshToken').toString(),
+            refreshToken: secret.secretValueFromJson('refreshToken'),
             client: secret,
           },
         },
