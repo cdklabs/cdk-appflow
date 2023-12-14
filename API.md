@@ -8525,6 +8525,7 @@ const salesforceSourceProps: SalesforceSourceProps = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceSourceProps.property.object">object</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceSourceProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.SalesforceSourceProps.property.dataTransferApi">dataTransferApi</a></code> | <code><a href="#@cdklabs/cdk-appflow.SalesforceDataTransferApi">SalesforceDataTransferApi</a></code> | Specifies which Salesforce API is used by Amazon AppFlow when your flow transfers data from Salesforce. |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceSourceProps.property.enableDynamicFieldUpdate">enableDynamicFieldUpdate</a></code> | <code>boolean</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SalesforceSourceProps.property.includeDeletedRecords">includeDeletedRecords</a></code> | <code>boolean</code> | *No description.* |
 
@@ -8557,6 +8558,18 @@ public readonly apiVersion: string;
 ```
 
 - *Type:* string
+
+---
+
+##### `dataTransferApi`<sup>Optional</sup> <a name="dataTransferApi" id="@cdklabs/cdk-appflow.SalesforceSourceProps.property.dataTransferApi"></a>
+
+```typescript
+public readonly dataTransferApi: SalesforceDataTransferApi;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.SalesforceDataTransferApi">SalesforceDataTransferApi</a>
+
+Specifies which Salesforce API is used by Amazon AppFlow when your flow transfers data from Salesforce.
 
 ---
 
