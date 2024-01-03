@@ -13,14 +13,34 @@ import { IFlow } from '../core/flows';
 import { IDestination } from '../core/vertices/destination';
 import { WriteOperationType } from '../core/write-operation';
 
+/**
+ * The definition of the Amazon AppFlow object for JdbcSmallDestination
+ */
 export interface JdbcSmallDataScaleObject {
+  /**
+   * Database schema name of the table
+   */
   readonly schema: string;
+
+  /**
+   * Database table name
+   */
   readonly table: string;
 }
 
+/**
+ * Properties of the JdbcSmallDataScaleDestination
+ */
 export interface JdbcSmallDataScaleDestinationProps {
+
+  /**
+   * The profile to use with the destination
+   */
   readonly profile: JdbcSmallDataScaleConnectorProfile;
 
+  /**
+   * The Amazon AppFlow Api Version
+   */
   readonly apiVersion?: string;
 
   /**
@@ -28,15 +48,25 @@ export interface JdbcSmallDataScaleDestinationProps {
    */
   readonly errorHandling?: ErrorHandlingConfiguration;
 
+  /**
+   * The destination object table to write to
+   */
   readonly object: JdbcSmallDataScaleObject;
 }
 
+/**
+ * Represents a destination for the JDBC connector
+ */
 export class JdbcSmallDataScaleDestination implements IDestination {
 
   private static readonly defaultApiVersion = 'V1';
 
   public readonly connectorType: ConnectorType = JdbcSmallDataScaleConnectorType.instance;
 
+  /**
+   * Creates a new instance of the JdbcSmallDataScaleDestination
+   * @param props - properties of the destination
+   */
   constructor(private readonly props: JdbcSmallDataScaleDestinationProps) { }
 
   bind(flow: IFlow): CfnFlow.DestinationFlowConfigProperty {

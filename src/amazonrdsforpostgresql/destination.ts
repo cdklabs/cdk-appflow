@@ -13,14 +13,34 @@ import { IFlow } from '../core/flows';
 import { IDestination } from '../core/vertices/destination';
 import { WriteOperationType } from '../core/write-operation';
 
+/**
+ * The definition of the Amazon AppFlow object for Amazon RDS for PostgreSQL
+ */
 export interface AmazonRdsForPostgreSqlObject {
+  /**
+   * PostgreSQL schema name of the table
+   */
   readonly schema: string;
+
+  /**
+   * PostgreSQL table name
+   */
   readonly table: string;
 }
 
+/**
+ * Properties of the AmazonRdsForPostgreSqlDestination
+ */
 export interface AmazonRdsForPostgreSqlDestinationProps {
+
+  /**
+   * The profile to use with the destination
+   */
   readonly profile: AmazonRdsForPostgreSqlConnectorProfile;
 
+  /**
+   * The Amazon AppFlow Api Version
+   */
   readonly apiVersion?: string;
 
   /**
@@ -28,15 +48,25 @@ export interface AmazonRdsForPostgreSqlDestinationProps {
    */
   readonly errorHandling?: ErrorHandlingConfiguration;
 
+  /**
+   * The destination object table to write to
+   */
   readonly object: AmazonRdsForPostgreSqlObject;
 }
 
+/**
+ * Represents a destination for the Amazon RDS for PostgreSQL connector
+ */
 export class AmazonRdsForPostgreSqlDestination implements IDestination {
 
   private static readonly defaultApiVersion = '1.0';
 
   public readonly connectorType: ConnectorType = AmazonRdsForPostgreSqlConnectorType.instance;
 
+  /**
+   * Creates a new instance of the AmazonRdsForPostgreSqlDestination
+   * @param props - properties of the destination
+   */
   constructor(private readonly props: AmazonRdsForPostgreSqlDestinationProps) { }
 
   bind(flow: IFlow): CfnFlow.DestinationFlowConfigProperty {
