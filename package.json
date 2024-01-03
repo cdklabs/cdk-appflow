@@ -124,21 +124,21 @@
     "aws-cdk-lib": "2.110.1",
     "cdklabs-projen-project-types": "^0.1.182",
     "constructs": "10.0.5",
-    "esbuild": "^0.19.8",
+    "esbuild": "^0.19.9",
     "eslint": "^8",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-import": "^2.29.1",
     "jest": "^27",
     "jest-junit": "^15",
     "jsii": "1.x",
-    "jsii-diff": "^1.92.0",
+    "jsii-diff": "^1.93.0",
     "jsii-docgen": "^8.0.56",
-    "jsii-pacmak": "^1.92.0",
-    "jsii-rosetta": "^5.2.4",
-    "projen": "^0.77.4",
+    "jsii-pacmak": "^1.93.0",
+    "jsii-rosetta": "^5.2.7",
+    "projen": "^0.77.6",
     "standard-version": "^9",
     "ts-jest": "^27",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
@@ -148,7 +148,7 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@types/aws-lambda": "^8.10.129"
+    "@types/aws-lambda": "^8.10.130"
   },
   "bundledDependencies": [
     "@types/aws-lambda"

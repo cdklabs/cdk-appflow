@@ -6,3 +6,4 @@ export * from './type';
 export * from './profile';
 export * from './source';
 export * from './destination';
+export * from './salesforce-data-transfer-api';
