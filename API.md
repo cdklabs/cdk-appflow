@@ -228,6 +228,8 @@ Amazon AppFlow is an account-bound and a regional service. With this it is invur
 
 ### AmazonRdsForPostgreSqlConnectorProfile <a name="AmazonRdsForPostgreSqlConnectorProfile" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile"></a>
 
+The connector profile for the Amazon RDS for PostgreSQL connector.
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -238,9 +240,9 @@ new AmazonRdsForPostgreSqlConnectorProfile(scope: Construct, id: string, props: 
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps">AmazonRdsForPostgreSqlConnectorProfileProps</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | the Construct scope for this connector profile. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | the id of this connector profile. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps">AmazonRdsForPostgreSqlConnectorProfileProps</a></code> | properties to use when instantiating this connector profile. |
 
 ---
 
@@ -248,17 +250,23 @@ new AmazonRdsForPostgreSqlConnectorProfile(scope: Construct, id: string, props: 
 
 - *Type:* constructs.Construct
 
+the Construct scope for this connector profile.
+
 ---
 
 ##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.id"></a>
 
 - *Type:* string
 
+the id of this connector profile.
+
 ---
 
 ##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.props"></a>
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps">AmazonRdsForPostgreSqlConnectorProfileProps</a>
+
+properties to use when instantiating this connector profile.
 
 ---
 
@@ -308,8 +316,8 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
 | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
 | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | Imports an existing AmazonRdsForPostgreSqlConnectorProfile. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | Imports an existing AmazonRdsForPostgreSqlConnectorProfile. |
 
 ---
 
@@ -371,9 +379,13 @@ import { AmazonRdsForPostgreSqlConnectorProfile } from '@cdklabs/cdk-appflow'
 AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
 ```
 
+Imports an existing AmazonRdsForPostgreSqlConnectorProfile.
+
 ###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
 
 - *Type:* constructs.Construct
+
+the scope for the connector profile.
 
 ---
 
@@ -381,11 +393,15 @@ AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn(scope: Construct
 
 - *Type:* string
 
+the connector profile's ID.
+
 ---
 
 ###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
 
 - *Type:* string
+
+the ARN for the existing connector profile.
 
 ---
 
@@ -397,9 +413,13 @@ import { AmazonRdsForPostgreSqlConnectorProfile } from '@cdklabs/cdk-appflow'
 AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
 ```
 
+Imports an existing AmazonRdsForPostgreSqlConnectorProfile.
+
 ###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
 
 - *Type:* constructs.Construct
+
+the scope for the connector profile.
 
 ---
 
@@ -407,11 +427,15 @@ AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName(scope: Construc
 
 - *Type:* string
 
+the connector profile's ID.
+
 ---
 
 ###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName.parameter.name"></a>
 
 - *Type:* string
+
+the name for the existing connector profile.
 
 ---
 
@@ -1298,6 +1322,8 @@ public readonly credentials: ISecret;
 
 ### JdbcSmallDataScaleConnectorProfile <a name="JdbcSmallDataScaleConnectorProfile" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile"></a>
 
+The connector profile for the JDBC connector.
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -1308,9 +1334,9 @@ new JdbcSmallDataScaleConnectorProfile(scope: Construct, id: string, props: Jdbc
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps">JdbcSmallDataScaleConnectorProfileProps</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | the Construct scope for this connector profile. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | the id of this connector profile. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps">JdbcSmallDataScaleConnectorProfileProps</a></code> | properties to use when instantiating this connector profile. |
 
 ---
 
@@ -1318,17 +1344,23 @@ new JdbcSmallDataScaleConnectorProfile(scope: Construct, id: string, props: Jdbc
 
 - *Type:* constructs.Construct
 
+the Construct scope for this connector profile.
+
 ---
 
 ##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.id"></a>
 
 - *Type:* string
 
+the id of this connector profile.
+
 ---
 
 ##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.props"></a>
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps">JdbcSmallDataScaleConnectorProfileProps</a>
+
+properties to use when instantiating this connector profile.
 
 ---
 
@@ -1378,8 +1410,8 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
 | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
 | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | Imports an existing JdbcSmallDataScaleConnectorProfile. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | Imports an existing JdbcSmallDataScaleConnectorProfile. |
 
 ---
 
@@ -1441,9 +1473,13 @@ import { JdbcSmallDataScaleConnectorProfile } from '@cdklabs/cdk-appflow'
 JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
 ```
 
+Imports an existing JdbcSmallDataScaleConnectorProfile.
+
 ###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
 
 - *Type:* constructs.Construct
+
+the scope for the connector profile.
 
 ---
 
@@ -1451,11 +1487,15 @@ JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn(scope: Construct, id
 
 - *Type:* string
 
+the connector profile's ID.
+
 ---
 
 ###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
 
 - *Type:* string
+
+the ARN for the existing connector profile.
 
 ---
 
@@ -1467,9 +1507,13 @@ import { JdbcSmallDataScaleConnectorProfile } from '@cdklabs/cdk-appflow'
 JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
 ```
 
+Imports an existing JdbcSmallDataScaleConnectorProfile.
+
 ###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
 
 - *Type:* constructs.Construct
+
+the scope for the connector profile.
 
 ---
 
@@ -1477,11 +1521,15 @@ JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName(scope: Construct, i
 
 - *Type:* string
 
+the connector profile's ID.
+
 ---
 
 ###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName.parameter.name"></a>
 
 - *Type:* string
+
+the name for the existing connector profile.
 
 ---
 
@@ -5861,6 +5909,8 @@ public readonly credentials: ISecret;
 
 ### AmazonRdsForPostgreSqlBasicAuthSettings <a name="AmazonRdsForPostgreSqlBasicAuthSettings" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings"></a>
 
+Basic authentication settings for the AmazonRdsForPostgreSqlConnectorProfile.
+
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.Initializer"></a>
 
 ```typescript
@@ -5873,8 +5923,8 @@ const amazonRdsForPostgreSqlBasicAuthSettings: AmazonRdsForPostgreSqlBasicAuthSe
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.username">username</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | The password of the identity used for interacting with the Amazon RDS for PostgreSQL. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.username">username</a></code> | <code>string</code> | The username of the identity used for interacting with the Amazon RDS for PostgreSQL. |
 
 ---
 
@@ -5886,6 +5936,8 @@ public readonly password: SecretValue;
 
 - *Type:* aws-cdk-lib.SecretValue
 
+The password of the identity used for interacting with the Amazon RDS for PostgreSQL.
+
 ---
 
 ##### `username`<sup>Required</sup> <a name="username" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.username"></a>
@@ -5896,9 +5948,13 @@ public readonly username: string;
 
 - *Type:* string
 
+The username of the identity used for interacting with the Amazon RDS for PostgreSQL.
+
 ---
 
 ### AmazonRdsForPostgreSqlConnectorProfileProps <a name="AmazonRdsForPostgreSqlConnectorProfileProps" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps"></a>
+
+Properties of the AmazonRdsForPostgreSqlConnectorProfile.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.Initializer"></a>
 
@@ -5914,10 +5970,10 @@ const amazonRdsForPostgreSqlConnectorProfileProps: AmazonRdsForPostgreSqlConnect
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
 | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings">AmazonRdsForPostgreSqlBasicAuthSettings</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.database">database</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.hostname">hostname</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.port">port</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings">AmazonRdsForPostgreSqlBasicAuthSettings</a></code> | The auth settings for the profile. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.database">database</a></code> | <code>string</code> | The name of the PostgreSQL database. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.hostname">hostname</a></code> | <code>string</code> | The PostgreSQL hostname. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.port">port</a></code> | <code>number</code> | The PostgreSQL communication port. |
 
 ---
 
@@ -5951,6 +6007,8 @@ public readonly basicAuth: AmazonRdsForPostgreSqlBasicAuthSettings;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings">AmazonRdsForPostgreSqlBasicAuthSettings</a>
 
+The auth settings for the profile.
+
 ---
 
 ##### `database`<sup>Required</sup> <a name="database" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.database"></a>
@@ -5960,6 +6018,8 @@ public readonly database: string;
 ```
 
 - *Type:* string
+
+The name of the PostgreSQL database.
 
 ---
 
@@ -5971,6 +6031,8 @@ public readonly hostname: string;
 
 - *Type:* string
 
+The PostgreSQL hostname.
+
 ---
 
 ##### `port`<sup>Optional</sup> <a name="port" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.port"></a>
@@ -5981,9 +6043,13 @@ public readonly port: number;
 
 - *Type:* number
 
+The PostgreSQL communication port.
+
 ---
 
 ### AmazonRdsForPostgreSqlDestinationProps <a name="AmazonRdsForPostgreSqlDestinationProps" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps"></a>
+
+Properties of the AmazonRdsForPostgreSqlDestination.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.Initializer"></a>
 
@@ -5997,9 +6063,9 @@ const amazonRdsForPostgreSqlDestinationProps: AmazonRdsForPostgreSqlDestinationP
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.object">object</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject">AmazonRdsForPostgreSqlObject</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.object">object</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject">AmazonRdsForPostgreSqlObject</a></code> | The destination object table to write to. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a></code> | The profile to use with the destination. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | The Amazon AppFlow Api Version. |
 | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.errorHandling">errorHandling</a></code> | <code><a href="#@cdklabs/cdk-appflow.ErrorHandlingConfiguration">ErrorHandlingConfiguration</a></code> | The settings that determine how Amazon AppFlow handles an error when placing data in the destination. |
 
 ---
@@ -6012,6 +6078,8 @@ public readonly object: AmazonRdsForPostgreSqlObject;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject">AmazonRdsForPostgreSqlObject</a>
 
+The destination object table to write to.
+
 ---
 
 ##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.profile"></a>
@@ -6022,6 +6090,8 @@ public readonly profile: AmazonRdsForPostgreSqlConnectorProfile;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>
 
+The profile to use with the destination.
+
 ---
 
 ##### `apiVersion`<sup>Optional</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.apiVersion"></a>
@@ -6031,6 +6101,8 @@ public readonly apiVersion: string;
 ```
 
 - *Type:* string
+
+The Amazon AppFlow Api Version.
 
 ---
 
@@ -6050,6 +6122,8 @@ For example, this setting would determine if the flow should fail after one inse
 
 ### AmazonRdsForPostgreSqlObject <a name="AmazonRdsForPostgreSqlObject" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject"></a>
 
+The definition of the Amazon AppFlow object for Amazon RDS for PostgreSQL.
+
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.Initializer"></a>
 
 ```typescript
@@ -6062,8 +6136,8 @@ const amazonRdsForPostgreSqlObject: AmazonRdsForPostgreSqlObject = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.schema">schema</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.table">table</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.schema">schema</a></code> | <code>string</code> | PostgreSQL schema name of the table. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.table">table</a></code> | <code>string</code> | PostgreSQL table name. |
 
 ---
 
@@ -6075,6 +6149,8 @@ public readonly schema: string;
 
 - *Type:* string
 
+PostgreSQL schema name of the table.
+
 ---
 
 ##### `table`<sup>Required</sup> <a name="table" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.table"></a>
@@ -6084,6 +6160,8 @@ public readonly table: string;
 ```
 
 - *Type:* string
+
+PostgreSQL table name.
 
 ---
 
@@ -6856,6 +6934,8 @@ public readonly profile: GoogleAnalytics4ConnectorProfile;
 
 ### JdbcSmallDataScaleBasicAuthSettings <a name="JdbcSmallDataScaleBasicAuthSettings" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings"></a>
 
+Basic authentication settings for the JdbcSmallDataScaleConnectorProfile.
+
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.Initializer"></a>
 
 ```typescript
@@ -6868,8 +6948,8 @@ const jdbcSmallDataScaleBasicAuthSettings: JdbcSmallDataScaleBasicAuthSettings =
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.username">username</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | The password of the identity used for interacting with the database. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.username">username</a></code> | <code>string</code> | The username of the identity used for interacting with the database. |
 
 ---
 
@@ -6881,6 +6961,8 @@ public readonly password: SecretValue;
 
 - *Type:* aws-cdk-lib.SecretValue
 
+The password of the identity used for interacting with the database.
+
 ---
 
 ##### `username`<sup>Required</sup> <a name="username" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.username"></a>
@@ -6891,9 +6973,13 @@ public readonly username: string;
 
 - *Type:* string
 
+The username of the identity used for interacting with the database.
+
 ---
 
 ### JdbcSmallDataScaleConnectorProfileProps <a name="JdbcSmallDataScaleConnectorProfileProps" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps"></a>
+
+Properties for the JdbcSmallDataScaleConnectorProfile.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.Initializer"></a>
 
@@ -6909,11 +6995,11 @@ const jdbcSmallDataScaleConnectorProfileProps: JdbcSmallDataScaleConnectorProfil
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
 | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings">JdbcSmallDataScaleBasicAuthSettings</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.database">database</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.driver">driver</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcDriver">JdbcDriver</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.hostname">hostname</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.port">port</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings">JdbcSmallDataScaleBasicAuthSettings</a></code> | The auth settings for the profile. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.database">database</a></code> | <code>string</code> | The name of the database. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.driver">driver</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcDriver">JdbcDriver</a></code> | The driver for the database. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.hostname">hostname</a></code> | <code>string</code> | The hostname of the database to interact with. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.port">port</a></code> | <code>number</code> | The database communication port. |
 
 ---
 
@@ -6947,6 +7033,8 @@ public readonly basicAuth: JdbcSmallDataScaleBasicAuthSettings;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings">JdbcSmallDataScaleBasicAuthSettings</a>
 
+The auth settings for the profile.
+
 ---
 
 ##### `database`<sup>Required</sup> <a name="database" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.database"></a>
@@ -6956,6 +7044,8 @@ public readonly database: string;
 ```
 
 - *Type:* string
+
+The name of the database.
 
 ---
 
@@ -6967,6 +7057,10 @@ public readonly driver: JdbcDriver;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.JdbcDriver">JdbcDriver</a>
 
+The driver for the database.
+
+Effectively specifies the type of database.
+
 ---
 
 ##### `hostname`<sup>Required</sup> <a name="hostname" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.hostname"></a>
@@ -6977,6 +7071,8 @@ public readonly hostname: string;
 
 - *Type:* string
 
+The hostname of the database to interact with.
+
 ---
 
 ##### `port`<sup>Required</sup> <a name="port" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.port"></a>
@@ -6986,6 +7082,8 @@ public readonly port: number;
 ```
 
 - *Type:* number
+
+The database communication port.
 
 ---
 
@@ -11221,6 +11319,8 @@ public readonly apiVersion: string;
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
 
+Represents a destination for the Amazon RDS for PostgreSQL connector.
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.Initializer"></a>
 
 ```typescript
@@ -11231,13 +11331,15 @@ new AmazonRdsForPostgreSqlDestination(props: AmazonRdsForPostgreSqlDestinationPr
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps">AmazonRdsForPostgreSqlDestinationProps</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps">AmazonRdsForPostgreSqlDestinationProps</a></code> | - properties of the destination. |
 
 ---
 
 ##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.Initializer.parameter.props"></a>
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps">AmazonRdsForPostgreSqlDestinationProps</a>
+
+properties of the destination.
 
 ---
 
