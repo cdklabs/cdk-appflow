@@ -39,31 +39,31 @@ export interface IFlow extends IResource {
 
   /**
    * Creates a metric to report the number of flow runs started.
-   * @param options 
+   * @param options
    */
   metricFlowExecutionsStarted(options?: MetricOptions): Metric;
 
   /**
    * Creates a metric to report the number of failed flow runs.
-   * @param options 
+   * @param options
    */
   metricFlowExecutionsFailed(options?: MetricOptions): Metric;
 
   /**
    * Creates a metric to report the number of successful flow runs.
-   * @param options 
+   * @param options
    */
   metricFlowExecutionsSucceeded(options?: MetricOptions): Metric;
 
   /**
    * Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes.
-   * @param options 
+   * @param options
    */
   metricFlowExecutionTime(options?: MetricOptions): Metric;
 
   /**
    * Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run.
-   * @param options 
+   * @param options
    */
   metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric;
 

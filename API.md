@@ -149,7 +149,40 @@ const flow = new OnDemandFlow(stack, 'OnDemandFlow', {
 });
 ```
 
-## EventBridge notifications
+## Monitoring
+
+
+### Metrcis
+
+Each flow allows to access metrics through the methods:
+- `metricFlowExecutionsStarted`
+- `metricFlowExecutionsFailed`
+- `metricFlowExecutionsSucceeded`
+- `metricFlowExecutionTime`
+- `metricFlowExecutionRecordsProcessed`
+
+
+For detailed information about AppFlow metrics refer to [the documentation](https://docs.aws.amazon.com/appflow/latest/userguide/monitoring-cloudwatch.html).
+
+It can be consume by CloudWatch alert using as in the example below:
+
+
+```ts
+import { IFlow } from '@cdklabs/cdk-appflow';
+
+declare const flow: IFlow;
+declare const stack: Stack;
+
+const metric = flow.metricFlowExecutionsStarted();
+
+metric.createAlarm(stack, "FlowExecutionsStartedAlarm", {
+  threshold: 1000,
+  evaluationPeriods: 2
+});
+```
+
+
+### EventBridge notifications
 
 Each flow publishes events to the default EventBridge bus:
 
@@ -802,11 +835,11 @@ new FlowBase(scope: Construct, id: string, props: FlowBaseProps)
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.metric">metric</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run. |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | Creates a metric to report the number of failed flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | Creates a metric to report the number of flow runs started. |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | Creates a metric to report the number of successful flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes. |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -867,6 +900,8 @@ public metric(metricName: string, options?: MetricOptions): Metric
 public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionRecordsProcessed.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -878,6 +913,8 @@ public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the number of failed flow runs.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsFailed.parameter.options"></a>
 
@@ -891,6 +928,8 @@ public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of flow runs started.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsStarted.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -903,6 +942,8 @@ public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of successful flow runs.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsSucceeded.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -914,6 +955,8 @@ public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionTime(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionTime.parameter.options"></a>
 
@@ -2585,11 +2628,11 @@ new OnDemandFlow(scope: Construct, id: string, props: OnDemandFlowProps)
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metric">metric</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run. |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | Creates a metric to report the number of failed flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | Creates a metric to report the number of flow runs started. |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | Creates a metric to report the number of successful flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes. |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -2650,6 +2693,8 @@ public metric(metricName: string, options?: MetricOptions): Metric
 public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionRecordsProcessed.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -2661,6 +2706,8 @@ public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the number of failed flow runs.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsFailed.parameter.options"></a>
 
@@ -2674,6 +2721,8 @@ public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of flow runs started.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsStarted.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -2686,6 +2735,8 @@ public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of successful flow runs.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsSucceeded.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -2697,6 +2748,8 @@ public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionTime(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionTime.parameter.options"></a>
 
@@ -2956,11 +3009,11 @@ new OnEventFlow(scope: Construct, id: string, props: OnEventFlowProps)
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metric">metric</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run. |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | Creates a metric to report the number of failed flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | Creates a metric to report the number of flow runs started. |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | Creates a metric to report the number of successful flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes. |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -3023,6 +3076,8 @@ public metric(metricName: string, options?: MetricOptions): Metric
 public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionRecordsProcessed.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -3034,6 +3089,8 @@ public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the number of failed flow runs.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsFailed.parameter.options"></a>
 
@@ -3047,6 +3104,8 @@ public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of flow runs started.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsStarted.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -3059,6 +3118,8 @@ public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of successful flow runs.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsSucceeded.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -3070,6 +3131,8 @@ public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionTime(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionTime.parameter.options"></a>
 
@@ -3365,11 +3428,11 @@ new OnScheduleFlow(scope: Construct, id: string, props: OnScheduleFlowProps)
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metric">metric</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run. |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | Creates a metric to report the number of failed flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | Creates a metric to report the number of flow runs started. |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | Creates a metric to report the number of successful flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes. |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -3431,6 +3494,8 @@ public metric(metricName: string, options?: MetricOptions): Metric
 public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionRecordsProcessed.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -3442,6 +3507,8 @@ public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the number of failed flow runs.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsFailed.parameter.options"></a>
 
@@ -3455,6 +3522,8 @@ public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of flow runs started.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsStarted.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -3467,6 +3536,8 @@ public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of successful flow runs.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsSucceeded.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -3478,6 +3549,8 @@ public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionTime(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionTime.parameter.options"></a>
 
@@ -5704,11 +5777,11 @@ new TriggeredFlowBase(scope: Construct, id: string, props: FlowBaseProps)
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metric">metric</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run. |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | Creates a metric to report the number of failed flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | Creates a metric to report the number of flow runs started. |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | Creates a metric to report the number of successful flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes. |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -5770,6 +5843,8 @@ public metric(metricName: string, options?: MetricOptions): Metric
 public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionRecordsProcessed.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -5781,6 +5856,8 @@ public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the number of failed flow runs.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsFailed.parameter.options"></a>
 
@@ -5794,6 +5871,8 @@ public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of flow runs started.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsStarted.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -5806,6 +5885,8 @@ public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of successful flow runs.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsSucceeded.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -5817,6 +5898,8 @@ public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionTime(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionTime.parameter.options"></a>
 
@@ -15228,11 +15311,11 @@ A representation of a mapping operation, that is an operation filtering records 
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run. |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | Creates a metric to report the number of failed flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | Creates a metric to report the number of flow runs started. |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | Creates a metric to report the number of successful flow runs. |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes. |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.onRunStarted">onRunStarted</a></code> | *No description.* |
 
@@ -15243,6 +15326,8 @@ A representation of a mapping operation, that is an operation filtering records 
 ```typescript
 public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionRecordsProcessed.parameter.options"></a>
 
@@ -15256,6 +15341,8 @@ public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
 public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of failed flow runs.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsFailed.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -15267,6 +15354,8 @@ public metricFlowExecutionsFailed(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the number of flow runs started.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsStarted.parameter.options"></a>
 
@@ -15280,6 +15369,8 @@ public metricFlowExecutionsStarted(options?: MetricOptions): Metric
 public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```
 
+Creates a metric to report the number of successful flow runs.
+
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsSucceeded.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
@@ -15291,6 +15382,8 @@ public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
 ```typescript
 public metricFlowExecutionTime(options?: MetricOptions): Metric
 ```
+
+Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes.
 
 ###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionTime.parameter.options"></a>
 

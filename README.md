@@ -169,7 +169,6 @@ It can be consume by CloudWatch alert using as in the example below:
 
 ```ts
 import { IFlow } from '@cdklabs/cdk-appflow';
-import { Stack } from 'aws-cdk-lib';
 
 declare const flow: IFlow;
 declare const stack: Stack;
