@@ -154,16 +154,15 @@ const flow = new OnDemandFlow(stack, 'OnDemandFlow', {
 
 ### Metrcis
 
-Each flow reports the following metrics in the `AWS/AppFlow` namespace:
+Each flow allows to access metrics through the methods:
+- `metricFlowExecutionsStarted`
+- `metricFlowExecutionsFailed` 
+- `metricFlowExecutionsSucceeded` 
+- `metricFlowExecutionTime` 
+- `metricFlowExecutionRecordsProcessed` 
 
-|Metric name|Description| 
-|---|---|
-|FlowExecutionsStarted|The number of flow runs started.|
-|FlowExecutionsFailed|The number of failed flow runs.|
-|FlowExecutionsSucceeded|The number of successful flow runs.|
-|FlowExecutionTime|The interval, in milliseconds, between the time the flow starts and the time it finishes.|
-|FlowExecutionRecordsProcessed|The number of records that Amazon AppFlow attempted to transfer for the flow run. This metric counts all records that Amazon AppFlow processed internally. The processed records include those that transferred successfully and those that failed to transfer because the flow run failed.|
 
+For detailed information about AppFlow metrics refer to [the documentation](https://docs.aws.amazon.com/appflow/latest/userguide/monitoring-cloudwatch.html).
 
 It can be consume by CloudWatch alert using as in the example below: 
 
@@ -175,11 +174,12 @@ import { Stack } from 'aws-cdk-lib';
 declare const flow: IFlow;
 declare const stack: Stack;
 
-const metric = flow.metricFlowExecutionsStarted()
+const metric = flow.metricFlowExecutionsStarted();
+
 metric.createAlarm(stack, "FlowExecutionsStartedAlarm", {
   threshold: 1000,
   evaluationPeriods: 2
-})
+});
 ```
 
 
