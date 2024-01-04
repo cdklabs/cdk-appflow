@@ -5,6 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import { Duration, IResource, Lazy, Resource } from 'aws-cdk-lib';
 import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 
+import { Metric, MetricOptions } from 'aws-cdk-lib/aws-cloudwatch';
 import { OnEventOptions, Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { IKey } from 'aws-cdk-lib/aws-kms';
 import { Construct, IConstruct } from 'constructs';
@@ -34,6 +35,37 @@ export interface IFlow extends IResource {
   onRunStarted(id: string, options?: OnEventOptions): Rule;
 
   onRunCompleted(id: string, options?: OnEventOptions): Rule;
+
+
+  /**
+   * Creates a metric to report the number of flow runs started.
+   * @param options
+   */
+  metricFlowExecutionsStarted(options?: MetricOptions): Metric;
+
+  /**
+   * Creates a metric to report the number of failed flow runs.
+   * @param options
+   */
+  metricFlowExecutionsFailed(options?: MetricOptions): Metric;
+
+  /**
+   * Creates a metric to report the number of successful flow runs.
+   * @param options
+   */
+  metricFlowExecutionsSucceeded(options?: MetricOptions): Metric;
+
+  /**
+   * Creates a metric to report the  interval, in milliseconds, between the time the flow starts and the time it finishes.
+   * @param options
+   */
+  metricFlowExecutionTime(options?: MetricOptions): Metric;
+
+  /**
+   * Creates a metric to report the number of records that Amazon AppFlow attempted to transfer for the flow run.
+   * @param options
+   */
+  metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric;
 
   /**
    * @internal
@@ -221,6 +253,37 @@ export abstract class FlowBase extends Resource implements IFlow {
     this.node.addValidation({
       validate: () => this.mappings.length === 0 ? ['A Flow must have at least one mapping'] : [],
     });
+  }
+
+  public metric(metricName: string, options?: MetricOptions): Metric {
+    return new Metric({
+      namespace: 'AWS/AppFlow',
+      metricName,
+      dimensionsMap: {
+        FlowName: this.name,
+      },
+      ...options,
+    });
+  }
+
+  public metricFlowExecutionsStarted(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionsStarted', options);
+  }
+
+  public metricFlowExecutionsFailed(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionsFailed', options);
+  }
+
+  public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionsSucceeded', options);
+  }
+
+  public metricFlowExecutionTime(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionTime', options);
+  }
+
+  public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionRecordsProcessed', options);
   }
 
   private buildTriggerProperties(scope: IConstruct, id: string, props: TriggerProperties): CfnFlow.ScheduledTriggerPropertiesProperty {

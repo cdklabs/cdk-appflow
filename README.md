@@ -149,7 +149,40 @@ const flow = new OnDemandFlow(stack, 'OnDemandFlow', {
 });
 ```
 
-## EventBridge notifications
+## Monitoring
+
+
+### Metrcis
+
+Each flow allows to access metrics through the methods:
+- `metricFlowExecutionsStarted`
+- `metricFlowExecutionsFailed` 
+- `metricFlowExecutionsSucceeded` 
+- `metricFlowExecutionTime` 
+- `metricFlowExecutionRecordsProcessed` 
+
+
+For detailed information about AppFlow metrics refer to [the documentation](https://docs.aws.amazon.com/appflow/latest/userguide/monitoring-cloudwatch.html).
+
+It can be consume by CloudWatch alert using as in the example below: 
+
+
+```ts
+import { IFlow } from '@cdklabs/cdk-appflow';
+
+declare const flow: IFlow;
+declare const stack: Stack;
+
+const metric = flow.metricFlowExecutionsStarted();
+
+metric.createAlarm(stack, "FlowExecutionsStartedAlarm", {
+  threshold: 1000,
+  evaluationPeriods: 2
+});
+```
+
+
+### EventBridge notifications
 
 Each flow publishes events to the default EventBridge bus:
 
