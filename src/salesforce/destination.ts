@@ -14,7 +14,6 @@ import { IFlow } from '../core/flows';
 import { IDestination } from '../core/vertices/destination';
 import { WriteOperation } from '../core/write-operation';
 
-
 export interface SalesforceDestinationProps {
 
   readonly profile: SalesforceConnectorProfile;

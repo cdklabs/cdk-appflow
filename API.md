@@ -226,6 +226,306 @@ Amazon AppFlow is an account-bound and a regional service. With this it is invur
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
+### AmazonRdsForPostgreSqlConnectorProfile <a name="AmazonRdsForPostgreSqlConnectorProfile" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile"></a>
+
+The connector profile for the Amazon RDS for PostgreSQL connector.
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlConnectorProfile } from '@cdklabs/cdk-appflow'
+
+new AmazonRdsForPostgreSqlConnectorProfile(scope: Construct, id: string, props: AmazonRdsForPostgreSqlConnectorProfileProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | the Construct scope for this connector profile. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | the id of this connector profile. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps">AmazonRdsForPostgreSqlConnectorProfileProps</a></code> | properties to use when instantiating this connector profile. |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+the Construct scope for this connector profile.
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+the id of this connector profile.
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps">AmazonRdsForPostgreSqlConnectorProfileProps</a>
+
+properties to use when instantiating this connector profile.
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+
+---
+
+##### `toString` <a name="toString" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `applyRemovalPolicy` <a name="applyRemovalPolicy" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.applyRemovalPolicy"></a>
+
+```typescript
+public applyRemovalPolicy(policy: RemovalPolicy): void
+```
+
+Apply the given removal policy to this resource.
+
+The Removal Policy controls what happens to this resource when it stops
+being managed by CloudFormation, either because you've removed it from the
+CDK application or because you've made a change that requires the resource
+to be replaced.
+
+The resource can be deleted (`RemovalPolicy.DESTROY`), or left in your AWS
+account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
+
+###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.applyRemovalPolicy.parameter.policy"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | Imports an existing AmazonRdsForPostgreSqlConnectorProfile. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | Imports an existing AmazonRdsForPostgreSqlConnectorProfile. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isConstruct"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlConnectorProfile } from '@cdklabs/cdk-appflow'
+
+AmazonRdsForPostgreSqlConnectorProfile.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isOwnedResource` <a name="isOwnedResource" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isOwnedResource"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlConnectorProfile } from '@cdklabs/cdk-appflow'
+
+AmazonRdsForPostgreSqlConnectorProfile.isOwnedResource(construct: IConstruct)
+```
+
+Returns true if the construct was created by CDK, and false otherwise.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isOwnedResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `isResource` <a name="isResource" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isResource"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlConnectorProfile } from '@cdklabs/cdk-appflow'
+
+AmazonRdsForPostgreSqlConnectorProfile.isResource(construct: IConstruct)
+```
+
+Check whether the given construct is a Resource.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.isResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `fromConnectionProfileArn` <a name="fromConnectionProfileArn" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlConnectorProfile } from '@cdklabs/cdk-appflow'
+
+AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
+```
+
+Imports an existing AmazonRdsForPostgreSqlConnectorProfile.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+the scope for the connector profile.
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn.parameter.id"></a>
+
+- *Type:* string
+
+the connector profile's ID.
+
+---
+
+###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
+
+- *Type:* string
+
+the ARN for the existing connector profile.
+
+---
+
+##### `fromConnectionProfileName` <a name="fromConnectionProfileName" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlConnectorProfile } from '@cdklabs/cdk-appflow'
+
+AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
+```
+
+Imports an existing AmazonRdsForPostgreSqlConnectorProfile.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+the scope for the connector profile.
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName.parameter.id"></a>
+
+- *Type:* string
+
+the connector profile's ID.
+
+---
+
+###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.fromConnectionProfileName.parameter.name"></a>
+
+- *Type:* string
+
+the name for the existing connector profile.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `env`<sup>Required</sup> <a name="env" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.env"></a>
+
+```typescript
+public readonly env: ResourceEnvironment;
+```
+
+- *Type:* aws-cdk-lib.ResourceEnvironment
+
+The environment this resource belongs to.
+
+For resources that are created and managed by the CDK
+(generally, those created by creating new class instances like Role, Bucket, etc.),
+this is always the same as the environment of the stack they belong to;
+however, for imported resources
+(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
+that might be different than the stack they were imported into.
+
+---
+
+##### `stack`<sup>Required</sup> <a name="stack" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.stack"></a>
+
+```typescript
+public readonly stack: Stack;
+```
+
+- *Type:* aws-cdk-lib.Stack
+
+The stack in which this resource is defined.
+
+---
+
+##### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.arn"></a>
+
+```typescript
+public readonly arn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `credentials`<sup>Optional</sup> <a name="credentials" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.property.credentials"></a>
+
+```typescript
+public readonly credentials: ISecret;
+```
+
+- *Type:* aws-cdk-lib.aws_secretsmanager.ISecret
+
+---
+
+
 ### ConnectorProfileBase <a name="ConnectorProfileBase" id="@cdklabs/cdk-appflow.ConnectorProfileBase"></a>
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
@@ -1094,6 +1394,306 @@ public readonly name: string;
 ---
 
 ##### `credentials`<sup>Optional</sup> <a name="credentials" id="@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile.property.credentials"></a>
+
+```typescript
+public readonly credentials: ISecret;
+```
+
+- *Type:* aws-cdk-lib.aws_secretsmanager.ISecret
+
+---
+
+
+### JdbcSmallDataScaleConnectorProfile <a name="JdbcSmallDataScaleConnectorProfile" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile"></a>
+
+The connector profile for the JDBC connector.
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer"></a>
+
+```typescript
+import { JdbcSmallDataScaleConnectorProfile } from '@cdklabs/cdk-appflow'
+
+new JdbcSmallDataScaleConnectorProfile(scope: Construct, id: string, props: JdbcSmallDataScaleConnectorProfileProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | the Construct scope for this connector profile. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | the id of this connector profile. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps">JdbcSmallDataScaleConnectorProfileProps</a></code> | properties to use when instantiating this connector profile. |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+the Construct scope for this connector profile.
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+the id of this connector profile.
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps">JdbcSmallDataScaleConnectorProfileProps</a>
+
+properties to use when instantiating this connector profile.
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+
+---
+
+##### `toString` <a name="toString" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `applyRemovalPolicy` <a name="applyRemovalPolicy" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.applyRemovalPolicy"></a>
+
+```typescript
+public applyRemovalPolicy(policy: RemovalPolicy): void
+```
+
+Apply the given removal policy to this resource.
+
+The Removal Policy controls what happens to this resource when it stops
+being managed by CloudFormation, either because you've removed it from the
+CDK application or because you've made a change that requires the resource
+to be replaced.
+
+The resource can be deleted (`RemovalPolicy.DESTROY`), or left in your AWS
+account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
+
+###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.applyRemovalPolicy.parameter.policy"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | Imports an existing JdbcSmallDataScaleConnectorProfile. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | Imports an existing JdbcSmallDataScaleConnectorProfile. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isConstruct"></a>
+
+```typescript
+import { JdbcSmallDataScaleConnectorProfile } from '@cdklabs/cdk-appflow'
+
+JdbcSmallDataScaleConnectorProfile.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isOwnedResource` <a name="isOwnedResource" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isOwnedResource"></a>
+
+```typescript
+import { JdbcSmallDataScaleConnectorProfile } from '@cdklabs/cdk-appflow'
+
+JdbcSmallDataScaleConnectorProfile.isOwnedResource(construct: IConstruct)
+```
+
+Returns true if the construct was created by CDK, and false otherwise.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isOwnedResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `isResource` <a name="isResource" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isResource"></a>
+
+```typescript
+import { JdbcSmallDataScaleConnectorProfile } from '@cdklabs/cdk-appflow'
+
+JdbcSmallDataScaleConnectorProfile.isResource(construct: IConstruct)
+```
+
+Check whether the given construct is a Resource.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.isResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `fromConnectionProfileArn` <a name="fromConnectionProfileArn" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn"></a>
+
+```typescript
+import { JdbcSmallDataScaleConnectorProfile } from '@cdklabs/cdk-appflow'
+
+JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
+```
+
+Imports an existing JdbcSmallDataScaleConnectorProfile.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+the scope for the connector profile.
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn.parameter.id"></a>
+
+- *Type:* string
+
+the connector profile's ID.
+
+---
+
+###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
+
+- *Type:* string
+
+the ARN for the existing connector profile.
+
+---
+
+##### `fromConnectionProfileName` <a name="fromConnectionProfileName" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName"></a>
+
+```typescript
+import { JdbcSmallDataScaleConnectorProfile } from '@cdklabs/cdk-appflow'
+
+JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
+```
+
+Imports an existing JdbcSmallDataScaleConnectorProfile.
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+the scope for the connector profile.
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName.parameter.id"></a>
+
+- *Type:* string
+
+the connector profile's ID.
+
+---
+
+###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.fromConnectionProfileName.parameter.name"></a>
+
+- *Type:* string
+
+the name for the existing connector profile.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `env`<sup>Required</sup> <a name="env" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.env"></a>
+
+```typescript
+public readonly env: ResourceEnvironment;
+```
+
+- *Type:* aws-cdk-lib.ResourceEnvironment
+
+The environment this resource belongs to.
+
+For resources that are created and managed by the CDK
+(generally, those created by creating new class instances like Role, Bucket, etc.),
+this is always the same as the environment of the stack they belong to;
+however, for imported resources
+(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
+that might be different than the stack they were imported into.
+
+---
+
+##### `stack`<sup>Required</sup> <a name="stack" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.stack"></a>
+
+```typescript
+public readonly stack: Stack;
+```
+
+- *Type:* aws-cdk-lib.Stack
+
+The stack in which this resource is defined.
+
+---
+
+##### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.arn"></a>
+
+```typescript
+public readonly arn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `credentials`<sup>Optional</sup> <a name="credentials" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile.property.credentials"></a>
 
 ```typescript
 public readonly credentials: ISecret;
@@ -5727,6 +6327,264 @@ public readonly credentials: ISecret;
 
 ## Structs <a name="Structs" id="Structs"></a>
 
+### AmazonRdsForPostgreSqlBasicAuthSettings <a name="AmazonRdsForPostgreSqlBasicAuthSettings" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings"></a>
+
+Basic authentication settings for the AmazonRdsForPostgreSqlConnectorProfile.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.Initializer"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlBasicAuthSettings } from '@cdklabs/cdk-appflow'
+
+const amazonRdsForPostgreSqlBasicAuthSettings: AmazonRdsForPostgreSqlBasicAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | The password of the identity used for interacting with the Amazon RDS for PostgreSQL. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.username">username</a></code> | <code>string</code> | The username of the identity used for interacting with the Amazon RDS for PostgreSQL. |
+
+---
+
+##### `password`<sup>Required</sup> <a name="password" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.password"></a>
+
+```typescript
+public readonly password: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The password of the identity used for interacting with the Amazon RDS for PostgreSQL.
+
+---
+
+##### `username`<sup>Required</sup> <a name="username" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings.property.username"></a>
+
+```typescript
+public readonly username: string;
+```
+
+- *Type:* string
+
+The username of the identity used for interacting with the Amazon RDS for PostgreSQL.
+
+---
+
+### AmazonRdsForPostgreSqlConnectorProfileProps <a name="AmazonRdsForPostgreSqlConnectorProfileProps" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps"></a>
+
+Properties of the AmazonRdsForPostgreSqlConnectorProfile.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.Initializer"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlConnectorProfileProps } from '@cdklabs/cdk-appflow'
+
+const amazonRdsForPostgreSqlConnectorProfileProps: AmazonRdsForPostgreSqlConnectorProfileProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings">AmazonRdsForPostgreSqlBasicAuthSettings</a></code> | The auth settings for the profile. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.database">database</a></code> | <code>string</code> | The name of the PostgreSQL database. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.hostname">hostname</a></code> | <code>string</code> | The PostgreSQL hostname. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.port">port</a></code> | <code>number</code> | The PostgreSQL communication port. |
+
+---
+
+##### `key`<sup>Optional</sup> <a name="key" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.key"></a>
+
+```typescript
+public readonly key: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+
+TODO: think if this should be here as not all connector profiles have that.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `basicAuth`<sup>Required</sup> <a name="basicAuth" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.basicAuth"></a>
+
+```typescript
+public readonly basicAuth: AmazonRdsForPostgreSqlBasicAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlBasicAuthSettings">AmazonRdsForPostgreSqlBasicAuthSettings</a>
+
+The auth settings for the profile.
+
+---
+
+##### `database`<sup>Required</sup> <a name="database" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.database"></a>
+
+```typescript
+public readonly database: string;
+```
+
+- *Type:* string
+
+The name of the PostgreSQL database.
+
+---
+
+##### `hostname`<sup>Required</sup> <a name="hostname" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.hostname"></a>
+
+```typescript
+public readonly hostname: string;
+```
+
+- *Type:* string
+
+The PostgreSQL hostname.
+
+---
+
+##### `port`<sup>Optional</sup> <a name="port" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfileProps.property.port"></a>
+
+```typescript
+public readonly port: number;
+```
+
+- *Type:* number
+
+The PostgreSQL communication port.
+
+---
+
+### AmazonRdsForPostgreSqlDestinationProps <a name="AmazonRdsForPostgreSqlDestinationProps" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps"></a>
+
+Properties of the AmazonRdsForPostgreSqlDestination.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.Initializer"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlDestinationProps } from '@cdklabs/cdk-appflow'
+
+const amazonRdsForPostgreSqlDestinationProps: AmazonRdsForPostgreSqlDestinationProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.object">object</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject">AmazonRdsForPostgreSqlObject</a></code> | The destination object table to write to. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a></code> | The profile to use with the destination. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | The Amazon AppFlow Api Version. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.errorHandling">errorHandling</a></code> | <code><a href="#@cdklabs/cdk-appflow.ErrorHandlingConfiguration">ErrorHandlingConfiguration</a></code> | The settings that determine how Amazon AppFlow handles an error when placing data in the destination. |
+
+---
+
+##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.object"></a>
+
+```typescript
+public readonly object: AmazonRdsForPostgreSqlObject;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject">AmazonRdsForPostgreSqlObject</a>
+
+The destination object table to write to.
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.profile"></a>
+
+```typescript
+public readonly profile: AmazonRdsForPostgreSqlConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>
+
+The profile to use with the destination.
+
+---
+
+##### `apiVersion`<sup>Optional</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: string;
+```
+
+- *Type:* string
+
+The Amazon AppFlow Api Version.
+
+---
+
+##### `errorHandling`<sup>Optional</sup> <a name="errorHandling" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps.property.errorHandling"></a>
+
+```typescript
+public readonly errorHandling: ErrorHandlingConfiguration;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ErrorHandlingConfiguration">ErrorHandlingConfiguration</a>
+
+The settings that determine how Amazon AppFlow handles an error when placing data in the destination.
+
+For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure.
+
+---
+
+### AmazonRdsForPostgreSqlObject <a name="AmazonRdsForPostgreSqlObject" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject"></a>
+
+The definition of the Amazon AppFlow object for Amazon RDS for PostgreSQL.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.Initializer"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlObject } from '@cdklabs/cdk-appflow'
+
+const amazonRdsForPostgreSqlObject: AmazonRdsForPostgreSqlObject = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.schema">schema</a></code> | <code>string</code> | PostgreSQL schema name of the table. |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.table">table</a></code> | <code>string</code> | PostgreSQL table name. |
+
+---
+
+##### `schema`<sup>Required</sup> <a name="schema" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.schema"></a>
+
+```typescript
+public readonly schema: string;
+```
+
+- *Type:* string
+
+PostgreSQL schema name of the table.
+
+---
+
+##### `table`<sup>Required</sup> <a name="table" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlObject.property.table"></a>
+
+```typescript
+public readonly table: string;
+```
+
+- *Type:* string
+
+PostgreSQL table name.
+
+---
+
 ### ConnectorProfileProps <a name="ConnectorProfileProps" id="@cdklabs/cdk-appflow.ConnectorProfileProps"></a>
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.ConnectorProfileProps.Initializer"></a>
@@ -6491,6 +7349,250 @@ public readonly profile: GoogleAnalytics4ConnectorProfile;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>
+
+---
+
+### JdbcSmallDataScaleBasicAuthSettings <a name="JdbcSmallDataScaleBasicAuthSettings" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings"></a>
+
+Basic authentication settings for the JdbcSmallDataScaleConnectorProfile.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.Initializer"></a>
+
+```typescript
+import { JdbcSmallDataScaleBasicAuthSettings } from '@cdklabs/cdk-appflow'
+
+const jdbcSmallDataScaleBasicAuthSettings: JdbcSmallDataScaleBasicAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.password">password</a></code> | <code>aws-cdk-lib.SecretValue</code> | The password of the identity used for interacting with the database. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.username">username</a></code> | <code>string</code> | The username of the identity used for interacting with the database. |
+
+---
+
+##### `password`<sup>Required</sup> <a name="password" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.password"></a>
+
+```typescript
+public readonly password: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The password of the identity used for interacting with the database.
+
+---
+
+##### `username`<sup>Required</sup> <a name="username" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings.property.username"></a>
+
+```typescript
+public readonly username: string;
+```
+
+- *Type:* string
+
+The username of the identity used for interacting with the database.
+
+---
+
+### JdbcSmallDataScaleConnectorProfileProps <a name="JdbcSmallDataScaleConnectorProfileProps" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps"></a>
+
+Properties for the JdbcSmallDataScaleConnectorProfile.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.Initializer"></a>
+
+```typescript
+import { JdbcSmallDataScaleConnectorProfileProps } from '@cdklabs/cdk-appflow'
+
+const jdbcSmallDataScaleConnectorProfileProps: JdbcSmallDataScaleConnectorProfileProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings">JdbcSmallDataScaleBasicAuthSettings</a></code> | The auth settings for the profile. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.database">database</a></code> | <code>string</code> | The name of the database. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.driver">driver</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcDriver">JdbcDriver</a></code> | The driver for the database. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.hostname">hostname</a></code> | <code>string</code> | The hostname of the database to interact with. |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.port">port</a></code> | <code>number</code> | The database communication port. |
+
+---
+
+##### `key`<sup>Optional</sup> <a name="key" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.key"></a>
+
+```typescript
+public readonly key: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+
+TODO: think if this should be here as not all connector profiles have that.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `basicAuth`<sup>Required</sup> <a name="basicAuth" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.basicAuth"></a>
+
+```typescript
+public readonly basicAuth: JdbcSmallDataScaleBasicAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings">JdbcSmallDataScaleBasicAuthSettings</a>
+
+The auth settings for the profile.
+
+---
+
+##### `database`<sup>Required</sup> <a name="database" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.database"></a>
+
+```typescript
+public readonly database: string;
+```
+
+- *Type:* string
+
+The name of the database.
+
+---
+
+##### `driver`<sup>Required</sup> <a name="driver" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.driver"></a>
+
+```typescript
+public readonly driver: JdbcDriver;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.JdbcDriver">JdbcDriver</a>
+
+The driver for the database.
+
+Effectively specifies the type of database.
+
+---
+
+##### `hostname`<sup>Required</sup> <a name="hostname" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.hostname"></a>
+
+```typescript
+public readonly hostname: string;
+```
+
+- *Type:* string
+
+The hostname of the database to interact with.
+
+---
+
+##### `port`<sup>Required</sup> <a name="port" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfileProps.property.port"></a>
+
+```typescript
+public readonly port: number;
+```
+
+- *Type:* number
+
+The database communication port.
+
+---
+
+### JdbcSmallDataScaleObject <a name="JdbcSmallDataScaleObject" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleObject"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleObject.Initializer"></a>
+
+```typescript
+import { JdbcSmallDataScaleObject } from '@cdklabs/cdk-appflow'
+
+const jdbcSmallDataScaleObject: JdbcSmallDataScaleObject = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleObject.property.schema">schema</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleObject.property.table">table</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `schema`<sup>Required</sup> <a name="schema" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleObject.property.schema"></a>
+
+```typescript
+public readonly schema: string;
+```
+
+- *Type:* string
+
+---
+
+##### `table`<sup>Required</sup> <a name="table" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleObject.property.table"></a>
+
+```typescript
+public readonly table: string;
+```
+
+- *Type:* string
+
+---
+
+### JdbcSmallDataScaleSourceProps <a name="JdbcSmallDataScaleSourceProps" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps.Initializer"></a>
+
+```typescript
+import { JdbcSmallDataScaleSourceProps } from '@cdklabs/cdk-appflow'
+
+const jdbcSmallDataScaleSourceProps: JdbcSmallDataScaleSourceProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps.property.object">object</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleObject">JdbcSmallDataScaleObject</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps.property.object"></a>
+
+```typescript
+public readonly object: JdbcSmallDataScaleObject;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleObject">JdbcSmallDataScaleObject</a>
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps.property.profile"></a>
+
+```typescript
+public readonly profile: JdbcSmallDataScaleConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>
+
+---
+
+##### `apiVersion`<sup>Optional</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: string;
+```
+
+- *Type:* string
 
 ---
 
@@ -10633,6 +11735,76 @@ public readonly apiVersion: string;
 
 ## Classes <a name="Classes" id="Classes"></a>
 
+### AmazonRdsForPostgreSqlDestination <a name="AmazonRdsForPostgreSqlDestination" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+
+Represents a destination for the Amazon RDS for PostgreSQL connector.
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.Initializer"></a>
+
+```typescript
+import { AmazonRdsForPostgreSqlDestination } from '@cdklabs/cdk-appflow'
+
+new AmazonRdsForPostgreSqlDestination(props: AmazonRdsForPostgreSqlDestinationProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps">AmazonRdsForPostgreSqlDestinationProps</a></code> | - properties of the destination. |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestinationProps">AmazonRdsForPostgreSqlDestinationProps</a>
+
+properties of the destination.
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.bind"></a>
+
+```typescript
+public bind(flow: IFlow): DestinationFlowConfigProperty
+```
+
+###### `flow`<sup>Required</sup> <a name="flow" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.bind.parameter.flow"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
 ### ConnectorType <a name="ConnectorType" id="@cdklabs/cdk-appflow.ConnectorType"></a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.ConnectorType.Initializer"></a>
@@ -11480,6 +12652,72 @@ public bind(scope: IFlow): SourceFlowConfigProperty
 ---
 
 ##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.GoogleAnalytics4Source.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
+### JdbcSmallDataScaleSource <a name="JdbcSmallDataScaleSource" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.Initializer"></a>
+
+```typescript
+import { JdbcSmallDataScaleSource } from '@cdklabs/cdk-appflow'
+
+new JdbcSmallDataScaleSource(props: JdbcSmallDataScaleSourceProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps">JdbcSmallDataScaleSourceProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSourceProps">JdbcSmallDataScaleSourceProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.bind"></a>
+
+```typescript
+public bind(flow: IFlow): SourceFlowConfigProperty
+```
+
+###### `flow`<sup>Required</sup> <a name="flow" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.bind.parameter.flow"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.property.connectorType"></a>
 
 ```typescript
 public readonly connectorType: ConnectorType;
@@ -13833,7 +15071,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 - *Extends:* aws-cdk-lib.IResource
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 
 #### Properties <a name="Properties" id="Properties"></a>
@@ -13926,7 +15164,7 @@ public readonly credentials: ISecret;
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
 
 A destination of an AppFlow flow.
 
@@ -14235,7 +15473,7 @@ public bind(flow: IFlow, source: ISource): TaskProperty[]
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
 
 A source of an AppFlow flow.
 
@@ -14334,7 +15572,7 @@ A representation of a validation operation, that is an operation testing records
 
 ### IVertex <a name="IVertex" id="@cdklabs/cdk-appflow.IVertex"></a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 An interface representing a vertex, i.e. a source or a destination of an AppFlow flow.
 
@@ -14495,6 +15733,27 @@ The AppFlow type of the connector that this source is implemented for.
 ---
 
 ##### `V1BETA` <a name="V1BETA" id="@cdklabs/cdk-appflow.GoogleAnalytics4ApiVersion.V1BETA"></a>
+
+---
+
+
+### JdbcDriver <a name="JdbcDriver" id="@cdklabs/cdk-appflow.JdbcDriver"></a>
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcDriver.POSTGRES">POSTGRES</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.JdbcDriver.MYSQL">MYSQL</a></code> | *No description.* |
+
+---
+
+##### `POSTGRES` <a name="POSTGRES" id="@cdklabs/cdk-appflow.JdbcDriver.POSTGRES"></a>
+
+---
+
+
+##### `MYSQL` <a name="MYSQL" id="@cdklabs/cdk-appflow.JdbcDriver.MYSQL"></a>
 
 ---
 

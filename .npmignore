@@ -24,6 +24,8 @@ tsconfig.tsbuildinfo
 !.jsii
 !/assets/
 test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot
+test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot
+test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot
 test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot
 test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot
 test/integ/ondemand-s3-to-snowflake.integ.snapshot

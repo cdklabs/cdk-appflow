@@ -23,6 +23,16 @@
     "integ:ondemand-googleanalytics4-to-s3:destroy": "npx projen integ:ondemand-googleanalytics4-to-s3:destroy",
     "integ:ondemand-googleanalytics4-to-s3:snapshot": "npx projen integ:ondemand-googleanalytics4-to-s3:snapshot",
     "integ:ondemand-googleanalytics4-to-s3:watch": "npx projen integ:ondemand-googleanalytics4-to-s3:watch",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:deploy": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:deploy",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:destroy": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:destroy",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:snapshot": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:snapshot",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:watch": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:watch",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:assert": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:assert",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:deploy": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:deploy",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:destroy": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:destroy",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:snapshot": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:snapshot",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:watch": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:watch",
     "integ:ondemand-microsoftdynamics365-to-s3:assert": "npx projen integ:ondemand-microsoftdynamics365-to-s3:assert",
     "integ:ondemand-microsoftdynamics365-to-s3:deploy": "npx projen integ:ondemand-microsoftdynamics365-to-s3:deploy",
     "integ:ondemand-microsoftdynamics365-to-s3:destroy": "npx projen integ:ondemand-microsoftdynamics365-to-s3:destroy",
@@ -102,8 +112,8 @@
     "organization": true
   },
   "devDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.110.1-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.110.1-alpha.0",
+    "@aws-cdk/aws-glue-alpha": "2.116.1-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.116.1-alpha.0",
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
     "@types/jest": "^27",
@@ -111,7 +121,7 @@
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk": "^2",
-    "aws-cdk-lib": "2.110.1",
+    "aws-cdk-lib": "2.116.1",
     "cdklabs-projen-project-types": "^0.1.182",
     "constructs": "10.0.5",
     "esbuild": "^0.19.9",
@@ -132,9 +142,9 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.110.1-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.110.1-alpha.0",
-    "aws-cdk-lib": "^2.110.1",
+    "@aws-cdk/aws-glue-alpha": "2.116.1-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.116.1-alpha.0",
+    "aws-cdk-lib": "^2.116.1",
     "constructs": "^10.0.5"
   },
   "dependencies": {
