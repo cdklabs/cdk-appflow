@@ -149,7 +149,41 @@ const flow = new OnDemandFlow(stack, 'OnDemandFlow', {
 });
 ```
 
-## EventBridge notifications
+## Monitoring
+
+
+### Metrcis
+
+Each flow reports the following metrics in the `AWS/AppFlow` namespace:
+
+|Metric name|Description| 
+|---|---|
+|FlowExecutionsStarted|The number of flow runs started.|
+|FlowExecutionsFailed|The number of failed flow runs.|
+|FlowExecutionsSucceeded|The number of successful flow runs.|
+|FlowExecutionTime|The interval, in milliseconds, between the time the flow starts and the time it finishes.|
+|FlowExecutionRecordsProcessed|The number of records that Amazon AppFlow attempted to transfer for the flow run. This metric counts all records that Amazon AppFlow processed internally. The processed records include those that transferred successfully and those that failed to transfer because the flow run failed.|
+
+
+It can be consume by CloudWatch alert using as in the example below: 
+
+
+```ts
+import { IFlow } from '@cdklabs/cdk-appflow';
+import { Stack } from 'aws-cdk-lib';
+
+declare const flow: IFlow;
+declare const stack: Stack;
+
+const metric = flow.metricFlowExecutionsStarted()
+metric.createAlarm(stack, "FlowExecutionsStartedAlarm", {
+  threshold: 1000,
+  evaluationPeriods: 2
+})
+```
+
+
+### EventBridge notifications
 
 Each flow publishes events to the default EventBridge bus:
 
