@@ -501,6 +501,12 @@ new FlowBase(scope: Construct, id: string, props: FlowBaseProps)
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metric">metric</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FlowBase.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -534,6 +540,84 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.FlowBase.applyRemovalPolicy.parameter.policy"></a>
 
 - *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+##### `metric` <a name="metric" id="@cdklabs/cdk-appflow.FlowBase.metric"></a>
+
+```typescript
+public metric(metricName: string, options?: MetricOptions): Metric
+```
+
+###### `metricName`<sup>Required</sup> <a name="metricName" id="@cdklabs/cdk-appflow.FlowBase.metric.parameter.metricName"></a>
+
+- *Type:* string
+
+---
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metric.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionRecordsProcessed` <a name="metricFlowExecutionRecordsProcessed" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionRecordsProcessed"></a>
+
+```typescript
+public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionRecordsProcessed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsFailed` <a name="metricFlowExecutionsFailed" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsFailed"></a>
+
+```typescript
+public metricFlowExecutionsFailed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsFailed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsStarted` <a name="metricFlowExecutionsStarted" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsStarted"></a>
+
+```typescript
+public metricFlowExecutionsStarted(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsStarted.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsSucceeded` <a name="metricFlowExecutionsSucceeded" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsSucceeded"></a>
+
+```typescript
+public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionsSucceeded.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionTime` <a name="metricFlowExecutionTime" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionTime"></a>
+
+```typescript
+public metricFlowExecutionTime(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.FlowBase.metricFlowExecutionTime.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
 
 ---
 
@@ -1900,6 +1984,12 @@ new OnDemandFlow(scope: Construct, id: string, props: OnDemandFlowProps)
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metric">metric</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnDemandFlow.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -1933,6 +2023,84 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.OnDemandFlow.applyRemovalPolicy.parameter.policy"></a>
 
 - *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+##### `metric` <a name="metric" id="@cdklabs/cdk-appflow.OnDemandFlow.metric"></a>
+
+```typescript
+public metric(metricName: string, options?: MetricOptions): Metric
+```
+
+###### `metricName`<sup>Required</sup> <a name="metricName" id="@cdklabs/cdk-appflow.OnDemandFlow.metric.parameter.metricName"></a>
+
+- *Type:* string
+
+---
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metric.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionRecordsProcessed` <a name="metricFlowExecutionRecordsProcessed" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionRecordsProcessed"></a>
+
+```typescript
+public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionRecordsProcessed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsFailed` <a name="metricFlowExecutionsFailed" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsFailed"></a>
+
+```typescript
+public metricFlowExecutionsFailed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsFailed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsStarted` <a name="metricFlowExecutionsStarted" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsStarted"></a>
+
+```typescript
+public metricFlowExecutionsStarted(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsStarted.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsSucceeded` <a name="metricFlowExecutionsSucceeded" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsSucceeded"></a>
+
+```typescript
+public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionsSucceeded.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionTime` <a name="metricFlowExecutionTime" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionTime"></a>
+
+```typescript
+public metricFlowExecutionTime(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnDemandFlow.metricFlowExecutionTime.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
 
 ---
 
@@ -2187,6 +2355,12 @@ new OnEventFlow(scope: Construct, id: string, props: OnEventFlowProps)
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metric">metric</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnEventFlow.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -2222,6 +2396,84 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.OnEventFlow.applyRemovalPolicy.parameter.policy"></a>
 
 - *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+##### `metric` <a name="metric" id="@cdklabs/cdk-appflow.OnEventFlow.metric"></a>
+
+```typescript
+public metric(metricName: string, options?: MetricOptions): Metric
+```
+
+###### `metricName`<sup>Required</sup> <a name="metricName" id="@cdklabs/cdk-appflow.OnEventFlow.metric.parameter.metricName"></a>
+
+- *Type:* string
+
+---
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metric.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionRecordsProcessed` <a name="metricFlowExecutionRecordsProcessed" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionRecordsProcessed"></a>
+
+```typescript
+public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionRecordsProcessed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsFailed` <a name="metricFlowExecutionsFailed" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsFailed"></a>
+
+```typescript
+public metricFlowExecutionsFailed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsFailed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsStarted` <a name="metricFlowExecutionsStarted" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsStarted"></a>
+
+```typescript
+public metricFlowExecutionsStarted(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsStarted.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsSucceeded` <a name="metricFlowExecutionsSucceeded" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsSucceeded"></a>
+
+```typescript
+public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionsSucceeded.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionTime` <a name="metricFlowExecutionTime" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionTime"></a>
+
+```typescript
+public metricFlowExecutionTime(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnEventFlow.metricFlowExecutionTime.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
 
 ---
 
@@ -2512,6 +2764,12 @@ new OnScheduleFlow(scope: Construct, id: string, props: OnScheduleFlowProps)
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metric">metric</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.OnScheduleFlow.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -2546,6 +2804,84 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.OnScheduleFlow.applyRemovalPolicy.parameter.policy"></a>
 
 - *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+##### `metric` <a name="metric" id="@cdklabs/cdk-appflow.OnScheduleFlow.metric"></a>
+
+```typescript
+public metric(metricName: string, options?: MetricOptions): Metric
+```
+
+###### `metricName`<sup>Required</sup> <a name="metricName" id="@cdklabs/cdk-appflow.OnScheduleFlow.metric.parameter.metricName"></a>
+
+- *Type:* string
+
+---
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metric.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionRecordsProcessed` <a name="metricFlowExecutionRecordsProcessed" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionRecordsProcessed"></a>
+
+```typescript
+public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionRecordsProcessed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsFailed` <a name="metricFlowExecutionsFailed" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsFailed"></a>
+
+```typescript
+public metricFlowExecutionsFailed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsFailed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsStarted` <a name="metricFlowExecutionsStarted" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsStarted"></a>
+
+```typescript
+public metricFlowExecutionsStarted(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsStarted.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsSucceeded` <a name="metricFlowExecutionsSucceeded" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsSucceeded"></a>
+
+```typescript
+public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionsSucceeded.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionTime` <a name="metricFlowExecutionTime" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionTime"></a>
+
+```typescript
+public metricFlowExecutionTime(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.OnScheduleFlow.metricFlowExecutionTime.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
 
 ---
 
@@ -4767,6 +5103,12 @@ new TriggeredFlowBase(scope: Construct, id: string, props: FlowBaseProps)
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metric">metric</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.onEvent">onEvent</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.TriggeredFlowBase.onRunStarted">onRunStarted</a></code> | *No description.* |
@@ -4801,6 +5143,84 @@ account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
 ###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.TriggeredFlowBase.applyRemovalPolicy.parameter.policy"></a>
 
 - *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+##### `metric` <a name="metric" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metric"></a>
+
+```typescript
+public metric(metricName: string, options?: MetricOptions): Metric
+```
+
+###### `metricName`<sup>Required</sup> <a name="metricName" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metric.parameter.metricName"></a>
+
+- *Type:* string
+
+---
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metric.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionRecordsProcessed` <a name="metricFlowExecutionRecordsProcessed" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionRecordsProcessed"></a>
+
+```typescript
+public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionRecordsProcessed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsFailed` <a name="metricFlowExecutionsFailed" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsFailed"></a>
+
+```typescript
+public metricFlowExecutionsFailed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsFailed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsStarted` <a name="metricFlowExecutionsStarted" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsStarted"></a>
+
+```typescript
+public metricFlowExecutionsStarted(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsStarted.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsSucceeded` <a name="metricFlowExecutionsSucceeded" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsSucceeded"></a>
+
+```typescript
+public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionsSucceeded.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionTime` <a name="metricFlowExecutionTime" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionTime"></a>
+
+```typescript
+public metricFlowExecutionTime(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.TriggeredFlowBase.metricFlowExecutionTime.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
 
 ---
 
@@ -13570,8 +13990,73 @@ A representation of a mapping operation, that is an operation filtering records 
 
 | **Name** | **Description** |
 | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionRecordsProcessed">metricFlowExecutionRecordsProcessed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsFailed">metricFlowExecutionsFailed</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsStarted">metricFlowExecutionsStarted</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsSucceeded">metricFlowExecutionsSucceeded</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.IFlow.metricFlowExecutionTime">metricFlowExecutionTime</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.onRunCompleted">onRunCompleted</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.IFlow.onRunStarted">onRunStarted</a></code> | *No description.* |
+
+---
+
+##### `metricFlowExecutionRecordsProcessed` <a name="metricFlowExecutionRecordsProcessed" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionRecordsProcessed"></a>
+
+```typescript
+public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionRecordsProcessed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsFailed` <a name="metricFlowExecutionsFailed" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsFailed"></a>
+
+```typescript
+public metricFlowExecutionsFailed(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsFailed.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsStarted` <a name="metricFlowExecutionsStarted" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsStarted"></a>
+
+```typescript
+public metricFlowExecutionsStarted(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsStarted.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionsSucceeded` <a name="metricFlowExecutionsSucceeded" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsSucceeded"></a>
+
+```typescript
+public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionsSucceeded.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
+
+---
+
+##### `metricFlowExecutionTime` <a name="metricFlowExecutionTime" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionTime"></a>
+
+```typescript
+public metricFlowExecutionTime(options?: MetricOptions): Metric
+```
+
+###### `options`<sup>Optional</sup> <a name="options" id="@cdklabs/cdk-appflow.IFlow.metricFlowExecutionTime.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.aws_cloudwatch.MetricOptions
 
 ---
 

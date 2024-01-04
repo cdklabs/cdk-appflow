@@ -5,6 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import { Duration, IResource, Lazy, Resource } from 'aws-cdk-lib';
 import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 
+import { Metric, MetricOptions } from 'aws-cdk-lib/aws-cloudwatch';
 import { OnEventOptions, Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { IKey } from 'aws-cdk-lib/aws-kms';
 import { Construct, IConstruct } from 'constructs';
@@ -34,6 +35,12 @@ export interface IFlow extends IResource {
   onRunStarted(id: string, options?: OnEventOptions): Rule;
 
   onRunCompleted(id: string, options?: OnEventOptions): Rule;
+
+  metricFlowExecutionsStarted(options?: MetricOptions): Metric;
+  metricFlowExecutionsFailed(options?: MetricOptions): Metric;
+  metricFlowExecutionsSucceeded(options?: MetricOptions): Metric;
+  metricFlowExecutionTime(options?: MetricOptions): Metric;
+  metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric;
 
   /**
    * @internal
@@ -221,6 +228,37 @@ export abstract class FlowBase extends Resource implements IFlow {
     this.node.addValidation({
       validate: () => this.mappings.length === 0 ? ['A Flow must have at least one mapping'] : [],
     });
+  }
+
+  public metric(metricName: string, options?: MetricOptions): Metric {
+    return new Metric({
+      namespace: 'AWS/AppFlow',
+      metricName,
+      dimensionsMap: {
+        FlowName: this.name,
+      },
+      ...options,
+    });
+  }
+
+  public metricFlowExecutionsStarted(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionsStarted', options);
+  }
+
+  public metricFlowExecutionsFailed(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionsFailed', options);
+  }
+
+  public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionsSucceeded', options);
+  }
+
+  public metricFlowExecutionTime(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionTime', options);
+  }
+
+  public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric {
+    return this.metric('FlowExecutionRecordsProcessed', options);
   }
 
   private buildTriggerProperties(scope: IConstruct, id: string, props: TriggerProperties): CfnFlow.ScheduledTriggerPropertiesProperty {
