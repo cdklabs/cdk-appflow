@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import { Fn } from 'aws-cdk-lib';
 import { Field } from './field';
 import { IOperation, OperationBase } from './operation';
-import { Task, TaskProperties } from './tasks';
+import { Task, TaskProperty } from './tasks';
 
 const TT_MAPALL = 'Map_all';
 const TT_MAP = 'Map';
@@ -43,18 +43,19 @@ export class Mapping extends OperationBase implements IMapping {
       new Task(
         TT_MAPALL, [],
         { operation: OP_NOOP },
-        { EXCLUDE_SOURCE_FIELDS_LIST: config ? `["${Fn.join('","', config.exclude)}"]` : '[]' }),
+        [{ key: 'EXCLUDE_SOURCE_FIELDS_LIST', value: config ? `["${Fn.join('","', config.exclude)}"]` : '[]' }],
+      ),
     ]);
   }
   public static map(from: Field, to: Field): IMapping {
-    const props: TaskProperties = {};
+    const props: TaskProperty[] = [];
 
     if (from.dataType) {
-      props[TP_SOURCE_DATA_TYPE] = from.dataType;
+      props.push({ key: TP_SOURCE_DATA_TYPE, value: from.dataType });
     }
 
     if (to.dataType) {
-      props[TP_DESTINATION_DATA_TYPE] = to.dataType;
+      props.push({ key: TP_DESTINATION_DATA_TYPE, value: to.dataType });
     }
 
     return new Mapping([
@@ -78,11 +79,11 @@ export class Mapping extends OperationBase implements IMapping {
     const tmpField = from.map(f => f.name).join(',');
     return new Mapping([
       new Task(TT_MERGE, from.map(f => f.name), { operation: OP_NOOP },
-        { CONCAT_FORMAT: format }, tmpField),
-      new Task(TT_MAP, [tmpField], { operation: OP_NOOP }, {
-        DESTINATION_DATA_TYPE: to.dataType,
-        SOURCE_DATA_TYPE: 'string',
-      }),
+        [{ key: 'CONCAT_FORMAT', value: format }], tmpField),
+      new Task(TT_MAP, [tmpField], { operation: OP_NOOP }, [
+        { key: 'DESTINATION_DATA_TYPE', value: to.dataType },
+        { key: 'SOURCE_DATA_TYPE', value: 'string' },
+      ]),
     ]);
   }
 
@@ -145,13 +146,13 @@ export class Mapping extends OperationBase implements IMapping {
 
     const tmpField = `${sourceField1.name},${sourceField2.name}`;
     return new Mapping([
-      new Task(TT_ARITHMETIC, [sourceField1.name, sourceField2.name], { operation: operation }, {
-        MATH_OPERATION_FIELDS_ORDER: tmpField,
-      }, tmpField),
-      new Task(TT_MAP, [tmpField], { operation: OP_NOOP }, {
-        DESTINATION_DATA_TYPE: to.dataType,
-        SOURCE_DATA_TYPE: 'string',
-      },
+      new Task(TT_ARITHMETIC, [sourceField1.name, sourceField2.name], { operation: operation }, [{
+        key: 'MATH_OPERATION_FIELDS_ORDER', value: tmpField,
+      }], tmpField),
+      new Task(TT_MAP, [tmpField], { operation: OP_NOOP }, [
+        { key: 'DESTINATION_DATA_TYPE', value: to.dataType },
+        { key: 'SOURCE_DATA_TYPE', value: 'string' },
+      ],
       to.name),
     ]);
   }

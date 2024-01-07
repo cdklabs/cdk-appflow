@@ -11407,18 +11407,44 @@ public readonly type: ConnectorType;
 
 ---
 
-### TaskProperties <a name="TaskProperties" id="@cdklabs/cdk-appflow.TaskProperties"></a>
+### TaskProperty <a name="TaskProperty" id="@cdklabs/cdk-appflow.TaskProperty"></a>
 
-A generic bucket for the task properties.
-
-#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.TaskProperties.Initializer"></a>
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.TaskProperty.Initializer"></a>
 
 ```typescript
-import { TaskProperties } from '@cdklabs/cdk-appflow'
+import { TaskProperty } from '@cdklabs/cdk-appflow'
 
-const taskProperties: TaskProperties = { ... }
+const taskProperty: TaskProperty = { ... }
 ```
 
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.TaskProperty.property.key">key</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.TaskProperty.property.value">value</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="key" id="@cdklabs/cdk-appflow.TaskProperty.property.key"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* string
+
+---
+
+##### `value`<sup>Required</sup> <a name="value" id="@cdklabs/cdk-appflow.TaskProperty.property.value"></a>
+
+```typescript
+public readonly value: string;
+```
+
+- *Type:* string
+
+---
 
 ### TriggerConfig <a name="TriggerConfig" id="@cdklabs/cdk-appflow.TriggerConfig"></a>
 
@@ -12187,14 +12213,14 @@ A representation of a filter operation condtiion on a source record field.
 ```typescript
 import { FilterCondition } from '@cdklabs/cdk-appflow'
 
-new FilterCondition(field: Field, filter: string, properties: TaskProperties)
+new FilterCondition(field: Field, filter: string, properties: TaskProperty[])
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.FilterCondition.Initializer.parameter.field">field</a></code> | <code><a href="#@cdklabs/cdk-appflow.Field">Field</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FilterCondition.Initializer.parameter.filter">filter</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FilterCondition.Initializer.parameter.properties">properties</a></code> | <code><a href="#@cdklabs/cdk-appflow.TaskProperties">TaskProperties</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FilterCondition.Initializer.parameter.properties">properties</a></code> | <code><a href="#@cdklabs/cdk-appflow.TaskProperty">TaskProperty</a>[]</code> | *No description.* |
 
 ---
 
@@ -12212,7 +12238,7 @@ new FilterCondition(field: Field, filter: string, properties: TaskProperties)
 
 ##### `properties`<sup>Required</sup> <a name="properties" id="@cdklabs/cdk-appflow.FilterCondition.Initializer.parameter.properties"></a>
 
-- *Type:* <a href="#@cdklabs/cdk-appflow.TaskProperties">TaskProperties</a>
+- *Type:* <a href="#@cdklabs/cdk-appflow.TaskProperty">TaskProperty</a>[]
 
 ---
 
@@ -12644,7 +12670,7 @@ FilterCondition.timestampNotEquals(field: Field, val: Date | Date[])
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.FilterCondition.property.field">field</a></code> | <code><a href="#@cdklabs/cdk-appflow.Field">Field</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.FilterCondition.property.filter">filter</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.FilterCondition.property.properties">properties</a></code> | <code><a href="#@cdklabs/cdk-appflow.TaskProperties">TaskProperties</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.FilterCondition.property.properties">properties</a></code> | <code><a href="#@cdklabs/cdk-appflow.TaskProperty">TaskProperty</a>[]</code> | *No description.* |
 
 ---
 
@@ -12671,10 +12697,10 @@ public readonly filter: string;
 ##### `properties`<sup>Required</sup> <a name="properties" id="@cdklabs/cdk-appflow.FilterCondition.property.properties"></a>
 
 ```typescript
-public readonly properties: TaskProperties;
+public readonly properties: TaskProperty[];
 ```
 
-- *Type:* <a href="#@cdklabs/cdk-appflow.TaskProperties">TaskProperties</a>
+- *Type:* <a href="#@cdklabs/cdk-appflow.TaskProperty">TaskProperty</a>[]
 
 ---
 
@@ -14327,7 +14353,7 @@ A representation of a unitary action on the record fields.
 ```typescript
 import { Task } from '@cdklabs/cdk-appflow'
 
-new Task(type: string, sourceFields: string[], connectorOperator: TaskConnectorOperator, properties: TaskProperties, destinationField?: string)
+new Task(type: string, sourceFields: string[], connectorOperator: TaskConnectorOperator, properties: TaskProperty[], destinationField?: string)
 ```
 
 | **Name** | **Type** | **Description** |
@@ -14335,7 +14361,7 @@ new Task(type: string, sourceFields: string[], connectorOperator: TaskConnectorO
 | <code><a href="#@cdklabs/cdk-appflow.Task.Initializer.parameter.type">type</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.Task.Initializer.parameter.sourceFields">sourceFields</a></code> | <code>string[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.Task.Initializer.parameter.connectorOperator">connectorOperator</a></code> | <code><a href="#@cdklabs/cdk-appflow.TaskConnectorOperator">TaskConnectorOperator</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.Task.Initializer.parameter.properties">properties</a></code> | <code><a href="#@cdklabs/cdk-appflow.TaskProperties">TaskProperties</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.Task.Initializer.parameter.properties">properties</a></code> | <code><a href="#@cdklabs/cdk-appflow.TaskProperty">TaskProperty</a>[]</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.Task.Initializer.parameter.destinationField">destinationField</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -14360,7 +14386,7 @@ new Task(type: string, sourceFields: string[], connectorOperator: TaskConnectorO
 
 ##### `properties`<sup>Required</sup> <a name="properties" id="@cdklabs/cdk-appflow.Task.Initializer.parameter.properties"></a>
 
-- *Type:* <a href="#@cdklabs/cdk-appflow.TaskProperties">TaskProperties</a>
+- *Type:* <a href="#@cdklabs/cdk-appflow.TaskProperty">TaskProperty</a>[]
 
 ---
 
