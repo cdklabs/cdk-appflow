@@ -4,7 +4,7 @@ SPDX-License-Identifier: Apache-2.0
 */
 import { Field } from './field';
 import { IOperation, OperationBase } from './operation';
-import { Task, TaskProperties } from './tasks';
+import { Task, TaskProperty } from './tasks';
 
 /**
  * A representation of a filter operation condtiion on a source record field
@@ -101,71 +101,71 @@ export class FilterCondition {
   }
 
   public static timestampBetween(field: Field, lower: Date, upper: Date) {
-    return new FilterCondition(field, 'BETWEEN', {
-      DATA_TYPE: field.dataType!,
-      LOWER_BOUND: this.valueToString(lower),
-      UPPER_BOUND: this.valueToString(upper),
-    });
+    return new FilterCondition(field, 'BETWEEN', [
+      { key: 'DATA_TYPE', value: field.dataType! },
+      { key: 'LOWER_BOUND', value: this.valueToString(lower) },
+      { key: 'UPPER_BOUND', value: this.valueToString(upper) },
+    ] );
   }
 
   private static stringCondition(field: Field, val: string | string[], filter: string) {
 
     if (Array.isArray(val)) {
-      return new FilterCondition(field, filter, {
-        DATA_TYPE: field.dataType!,
-        VALUES: val.map(m => this.valueToString(m)).join(','),
-      });
+      return new FilterCondition(field, filter, [
+        { key: 'DATA_TYPE', value: field.dataType! },
+        { key: 'VALUES', value: val.map(m => this.valueToString(m)).join(',') },
+      ]);
     }
 
-    return new FilterCondition(field, filter, {
-      DATA_TYPE: field.dataType!,
-      VALUE: this.valueToString(val),
-    });
+    return new FilterCondition(field, filter, [
+      { key: 'DATA_TYPE', value: field.dataType! },
+      { key: 'VALUE', value: this.valueToString(val) },
+    ]);
   }
 
   private static numberCondition(field: Field, val: number | number[], filter: string) {
 
     if (Array.isArray(val)) {
-      return new FilterCondition(field, filter, {
-        DATA_TYPE: field.dataType!,
-        VALUES: val.map(m => this.valueToString(m)).join(','),
-      });
+      return new FilterCondition(field, filter, [
+        { key: 'DATA_TYPE', value: field.dataType! },
+        { key: 'VALUES', value: val.map(m => this.valueToString(m)).join(',') },
+      ]);
     }
 
-    return new FilterCondition(field, filter, {
-      DATA_TYPE: field.dataType!,
-      VALUE: this.valueToString(val),
-    });
+    return new FilterCondition(field, filter, [
+      { key: 'DATA_TYPE', value: field.dataType! },
+      { key: 'VALUE', value: this.valueToString(val) },
+    ]);
   }
 
   private static booleanCondition(field: Field, val: boolean | boolean[], filter: string) {
 
     if (Array.isArray(val)) {
-      return new FilterCondition(field, filter, {
-        DATA_TYPE: field.dataType!,
-        VALUES: val.map(m => this.valueToString(m)).join(','),
-      });
+      return new FilterCondition(field, filter, [
+        { key: 'DATA_TYPE', value: field.dataType! },
+        { key: 'VALUES', value: val.map(m => this.valueToString(m)).join(',') },
+      ]);
     }
 
-    return new FilterCondition(field, filter, {
-      DATA_TYPE: field.dataType!,
-      VALUE: this.valueToString(val),
-    });
+    return new FilterCondition(field, filter, [
+      { key: 'DATA_TYPE', value: field.dataType! },
+      { key: 'VALUE', value: this.valueToString(val) },
+    ]);
   }
 
   private static timestampCondition(field: Field, val: Date | Date[], filter: string) {
 
     if (Array.isArray(val)) {
-      return new FilterCondition(field, filter, {
-        DATA_TYPE: field.dataType!,
-        VALUES: val.map(m => this.valueToString(m)).join(','),
-      });
+      return new FilterCondition(field, filter, [
+        { key: 'DATA_TYPE', value: field.dataType! },
+        { key: 'VALUES', value: val.map(m => this.valueToString(m)).join(',') },
+      ]);
     }
 
-    return new FilterCondition(field, filter, {
-      DATA_TYPE: field.dataType!,
-      VALUE: this.valueToString(val),
-    });
+    return new FilterCondition(field, filter, [
+      { key: 'DATA_TYPE', value: field.dataType! },
+      { key: 'VALUE', value: this.valueToString(val) },
+    ]);
   }
 
   private static valueToString(value: string | number | boolean | Date): string {
@@ -185,7 +185,7 @@ export class FilterCondition {
   constructor(
     public readonly field: Field,
     public readonly filter: string,
-    public readonly properties: TaskProperties) {
+    public readonly properties: TaskProperty[]) {
     if (!field.dataType) {
       throw new Error('field dataType required');
     }
