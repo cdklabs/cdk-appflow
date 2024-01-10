@@ -5638,7 +5638,7 @@ SnowflakeConnectorProfile.fromConnectionProfileName(scope: Construct, id: string
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.integrationRole">integrationRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The AWS IAM Role for the storage integration with Snowflake. Available only if [SnowflakeConnectorProfileProps's integration property]{@link SnowflakeConnectorProfileProps#integration} is provided. |
+| <code><a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile.property.integrationRole">integrationRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The AWS IAM Role for the storage integration with Snowflake. |
 
 ---
 
@@ -5723,7 +5723,9 @@ public readonly integrationRole: IRole;
 
 - *Type:* aws-cdk-lib.aws_iam.IRole
 
-The AWS IAM Role for the storage integration with Snowflake. Available only if [SnowflakeConnectorProfileProps's integration property]{@link SnowflakeConnectorProfileProps#integration} is provided.
+The AWS IAM Role for the storage integration with Snowflake.
+
+Available only if [SnowflakeConnectorProfileProps's integration property]{@link SnowflakeConnectorProfileProps#integration } is provided.
 
 For more details see {@link https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration}
 
@@ -6748,7 +6750,9 @@ public readonly timestampField: string;
 
 The name of the field to use as a timestamp for recurring incremental flows.
 
-The default field is set per particular @see ISource.
+The default field is set per particular
+
+> [ISource.](ISource.)
 
 ---
 
@@ -7292,7 +7296,7 @@ public readonly accessToken: SecretValue;
 ```
 
 - *Type:* aws-cdk-lib.SecretValue
-- *Default:* Retrieves a fresh accessToken with the information in the [flow property]{@link GoogleAnalytics4OAuthSettings#flow}
+- *Default:* Retrieves a fresh accessToken with the information in the [flow property]{@link GoogleAnalytics4OAuthSettings#flow }
 
 The access token to be used when interacting with Google Analytics 4.
 
@@ -8403,7 +8407,7 @@ Note: requires full name starting with 'sites/'
 
 ##### ~~`drives`~~<sup>Optional</sup> <a name="drives" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineObject.property.drives"></a>
 
-- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link entities} instead
+- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link entities } instead
 
 ```typescript
 public readonly drives: string[];
@@ -8776,7 +8780,7 @@ public readonly validations: IValidation[];
 
 ##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnEventFlowProps.property.autoActivate"></a>
 
-- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status} instead
+- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status } instead
 
 ```typescript
 public readonly autoActivate: boolean;
@@ -8923,7 +8927,7 @@ public readonly validations: IValidation[];
 
 ##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.OnScheduleFlowProps.property.autoActivate"></a>
 
-- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status} instead
+- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status } instead
 
 ```typescript
 public readonly autoActivate: boolean;
@@ -9189,7 +9193,7 @@ const redshiftDestinationProps: RedshiftDestinationProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.RedshiftDestinationProps.property.object">object</a></code> | <code><a href="#@cdklabs/cdk-appflow.RedshiftDestinationObject">RedshiftDestinationObject</a></code> | A Redshift table object (optionally with the schema). |
-| <code><a href="#@cdklabs/cdk-appflow.RedshiftDestinationProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a></code> | An instance of the @type RedshiftConnectorProfile. |
+| <code><a href="#@cdklabs/cdk-appflow.RedshiftDestinationProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a></code> | An instance of the. |
 | <code><a href="#@cdklabs/cdk-appflow.RedshiftDestinationProps.property.errorHandling">errorHandling</a></code> | <code><a href="#@cdklabs/cdk-appflow.ErrorHandlingConfiguration">ErrorHandlingConfiguration</a></code> | The settings that determine how Amazon AppFlow handles an error when placing data in the Salesforce destination. |
 
 ---
@@ -9214,7 +9218,7 @@ public readonly profile: RedshiftConnectorProfile;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>
 
-An instance of the @type RedshiftConnectorProfile.
+An instance of the.
 
 ---
 
@@ -11204,7 +11208,7 @@ public readonly integration: SnowflakeStorageIntegration;
 
 Details of the Snowflake Storage Integration.
 
-When provided, this construct will automatically create an IAM Role allowing access to the S3 Bucket which will be available as a [integrationROle property]{@link SnowflakeConnectorProfile#integrationRole}
+When provided, this construct will automatically create an IAM Role allowing access to the S3 Bucket which will be available as a [integrationROle property]{@link SnowflakeConnectorProfile#integrationRole }
 
 For details of the integration see {@link https://docs.snowflake.com/en/user-guide/data-load-s3-config-storage-integration}
 
@@ -11594,7 +11598,7 @@ public readonly validations: IValidation[];
 
 ##### ~~`autoActivate`~~<sup>Optional</sup> <a name="autoActivate" id="@cdklabs/cdk-appflow.TriggeredFlowBaseProps.property.autoActivate"></a>
 
-- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status} instead
+- *Deprecated:* . This property is deprecated and will be removed in a future release. Use {@link status } instead
 
 ```typescript
 public readonly autoActivate: boolean;

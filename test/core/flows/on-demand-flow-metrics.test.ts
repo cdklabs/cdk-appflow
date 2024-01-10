@@ -45,7 +45,6 @@ describe('OnDemandFlow metrics', () => {
     addAlarmForMetric(stack, flow.metricFlowExecutionRecordsProcessed(), 'FlowExecutionRecordsProcessedAlarm');
 
     const template = Template.fromStack(stack);
-    console.log(JSON.stringify(template.toJSON()));
 
     template.resourceCountIs('AWS::CloudWatch::Alarm', 5);
     template.hasResourceProperties('AWS::CloudWatch::Alarm', {

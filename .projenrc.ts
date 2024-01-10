@@ -12,7 +12,6 @@ const project = new CdklabsConstructLibrary({
   authorAddress: 'cdk-appflow-maintainers@amazon.com',
   cdkVersion,
   defaultReleaseBranch: 'main',
-  minNodeVersion: '16.0.0',
   projenrcTs: true,
   private: false,
   repositoryUrl: 'https://github.com/cdklabs/cdk-appflow.git',
