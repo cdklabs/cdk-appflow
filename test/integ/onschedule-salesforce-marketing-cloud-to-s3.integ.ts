@@ -37,8 +37,8 @@ const profile = new SalesforceMarketingCloudConnectorProfile(stack, 'TestConnect
   oAuth: {
     flow: {
       clientCredentials: {
-        clientId: secret.secretValueFromJson('clientId').toString(),
-        clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+        clientId: secret.secretValueFromJson('clientId'),
+        clientSecret: secret.secretValueFromJson('clientSecret'),
       },
     },
     endpoints: {

@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Key } from 'aws-cdk-lib/aws-kms';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
@@ -18,9 +18,9 @@ describe('SlackConnectorProfile', () => {
 
     new SlackConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: 'accessToken',
-        clientId: 'clientId',
-        clientSecret: 'clientSecret',
+        accessToken: SecretValue.unsafePlainText('accessToken'),
+        clientId: SecretValue.unsafePlainText('clientId'),
+        clientSecret: SecretValue.unsafePlainText('clientSecret'),
       },
       instanceUrl: SlackInstanceUrlBuilder.buildFromWorkspace('slackWorkspace'),
     });
@@ -53,9 +53,9 @@ describe('SlackConnectorProfile', () => {
 
     new SlackConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken').toString(),
-        clientId: secret.secretValueFromJson('clientId').toString(),
-        clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+        accessToken: secret.secretValueFromJson('accessToken'),
+        clientId: secret.secretValueFromJson('clientId'),
+        clientSecret: secret.secretValueFromJson('clientSecret'),
       },
       instanceUrl: secret.secretValueFromJson('instanceUrl').toString(),
     });
@@ -136,9 +136,9 @@ describe('SlackConnectorProfile', () => {
     new SlackConnectorProfile(stack, 'TestProfile', {
       key: key,
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken').toString(),
-        clientId: secret.secretValueFromJson('clientId').toString(),
-        clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+        accessToken: secret.secretValueFromJson('accessToken'),
+        clientId: secret.secretValueFromJson('clientId'),
+        clientSecret: secret.secretValueFromJson('clientSecret'),
       },
       instanceUrl: secret.secretValueFromJson('instanceUrl').toString(),
     });

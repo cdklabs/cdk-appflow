@@ -23,7 +23,7 @@ const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/slack');
 
 const profile = new SlackConnectorProfile(stack, 'TestConnectorProfile', {
   oAuth: {
-    accessToken: secret.secretValueFromJson('accessToken').toString(),
+    accessToken: secret.secretValueFromJson('accessToken'),
   },
   instanceUrl: secret.secretValueFromJson('instanceUrl').toString(),
 });

@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { SalesforceMarketingCloudConnectorType } from './type';
@@ -19,8 +20,8 @@ export interface SalesforceMarketingCloudOAuthEndpoints {
 }
 
 export interface SalesforceMarketingCloudOAuthClientSettings {
-  readonly clientId: string;
-  readonly clientSecret: string;
+  readonly clientId: SecretValue;
+  readonly clientSecret: SecretValue;
 }
 
 export interface SalesforceMarketingCloudFlowSettings {
@@ -28,7 +29,7 @@ export interface SalesforceMarketingCloudFlowSettings {
 }
 
 export interface SalesforceMarketingCloudOAuthSettings {
-  readonly accessToken?: string;
+  readonly accessToken?: SecretValue;
   readonly flow?: SalesforceMarketingCloudFlowSettings;
   readonly endpoints: SalesforceMarketingCloudOAuthEndpoints;
 }
@@ -71,9 +72,9 @@ export class SalesforceMarketingCloudConnectorProfile extends ConnectorProfileBa
     return {
       customConnector: {
         oauth2: {
-          accessToken: properties.oAuth.accessToken,
-          clientId: properties.oAuth.flow?.clientCredentials.clientId,
-          clientSecret: properties.oAuth.flow?.clientCredentials.clientSecret,
+          accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
+          clientId: properties.oAuth.flow?.clientCredentials.clientId?.unsafeUnwrap(),
+          clientSecret: properties.oAuth.flow?.clientCredentials.clientSecret?.unsafeUnwrap(),
         },
         authenticationType: ConnectorAuthenticationType.OAUTH2,
       },

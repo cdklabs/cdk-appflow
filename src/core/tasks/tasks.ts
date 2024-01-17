@@ -14,11 +14,9 @@ export interface ITask {
   bind(flow: IFlow, source: ISource): CfnFlow.TaskProperty;
 }
 
-/**
- * A generic bucket for the task properties
- */
-export interface TaskProperties {
-  [key: string]: string;
+export interface TaskProperty {
+  readonly key: string;
+  readonly value: string;
 }
 
 /**
@@ -36,7 +34,7 @@ export class Task implements ITask {
   constructor(protected type: string,
     protected sourceFields: string[],
     protected connectorOperator: TaskConnectorOperator,
-    protected properties: TaskProperties,
+    protected properties: TaskProperty[],
     protected destinationField?: string) { }
 
   public bind(_flow: IFlow, source: ISource): CfnFlow.TaskProperty {
@@ -44,7 +42,7 @@ export class Task implements ITask {
     return {
       taskType: this.type,
       sourceFields: this.sourceFields,
-      taskProperties: Object.entries(this.properties).map(([key, value]) => ({ key: key, value: value })),
+      taskProperties: this.properties.map(({ key, value }) => ({ key: key, value: value })),
       connectorOperator: this.buildOperatorFor(source),
       destinationField: this.destinationField,
     };

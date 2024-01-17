@@ -1,3 +1,7 @@
+/*
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+SPDX-License-Identifier: Apache-2.0
+*/
 import { App, RemovalPolicy, Stack } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
@@ -46,7 +50,7 @@ const snowProfile = new SnowflakeConnectorProfile(stack, 'SnowTestConnector', {
   region: secret.secretValueFromJson('region').toString(),
   basicAuth: {
     username: secret.secretValueFromJson('username').toString(),
-    password: secret.secretValueFromJson('password').toString(),
+    password: secret.secretValueFromJson('password'),
   },
   warehouse: secret.secretValueFromJson('warehouse').toString(),
   database: secret.secretValueFromJson('database').toString(),

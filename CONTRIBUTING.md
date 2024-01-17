@@ -66,7 +66,7 @@ The following tools need to be installed on your system prior to building `cdk-a
 - [.NET SDK >= 6.0.x](https://www.microsoft.com/net/download)
 - [Python >= 3.6.5, < 4.0](https://www.python.org/downloads/release/python-365/)
 - [Java Development Kit >= 17.0.0](https://www.oracle.com/java/technologies/downloads/)
-- [Golang >= 16.0.0](https://go.dev/doc/install)
+- [Golang >= 1.16.0](https://go.dev/doc/install)
 
 Install dependencies
 

@@ -39,9 +39,8 @@ export class Transform extends OperationBase implements ITransform {
         'Truncate',
         [typeof field === 'string' ? field : field.name],
         { operation: OP_NOOP },
-        { TRUNCATE_LENGTH: `${length}` }),
-    ],
-    );
+        [{ key: 'TRUNCATE_LENGTH', value: `${length}` }]),
+    ]);
   }
 
   /**
@@ -60,11 +59,11 @@ export class Transform extends OperationBase implements ITransform {
         'Mask',
         [typeof field === 'string' ? field : field.name],
         { operation: 'MASK_ALL' },
-        {
-        // TODO: test this. The AWS Console generated transform has length, but what for?
-          MASK_LENGTH: '5',
-          MASK_VALUE: mask ?? '*',
+        [{
+          // TODO: test this. The AWS Console generated transform has length, but what for?
+          key: 'MASK_LENGTH', value: '5',
         },
+        { key: 'MASK_VALUE', value: mask ?? '*' }],
       ),
     ]);
   }
@@ -87,10 +86,10 @@ export class Transform extends OperationBase implements ITransform {
         'Mask',
         [typeof field === 'string' ? field : field.name],
         { operation: 'MASK_FIRST_N' },
-        {
-          MASK_LENGTH: `${length}`,
-          MASK_VALUE: mask ?? '*',
-        },
+        [
+          { key: 'MASK_LENGTH', value: `${length}` },
+          { key: 'MASK_VALUE', value: mask ?? '*' },
+        ],
       ),
     ]);
   }
@@ -114,10 +113,10 @@ export class Transform extends OperationBase implements ITransform {
         'Mask',
         [typeof field === 'string' ? field : field.name],
         { operation: 'MASK_LAST_N' },
-        {
-          MASK_LENGTH: `${length}`,
-          MASK_VALUE: mask ?? '*',
-        },
+        [
+          { key: 'MASK_LENGTH', value: `${length}` },
+          { key: 'MASK_VALUE', value: mask ?? '*' },
+        ],
       ),
     ]);
   }

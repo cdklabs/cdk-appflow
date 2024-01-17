@@ -30,7 +30,7 @@ const profile = new SalesforceConnectorProfile(stack, 'TestConnectorProfile', {
   oAuth: {
     flow: {
       refreshTokenGrant: {
-        refreshToken: secret.secretValueFromJson('refreshToken').toString(),
+        refreshToken: secret.secretValueFromJson('refreshToken'),
         client: secret,
       },
     },

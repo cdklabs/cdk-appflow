@@ -23,6 +23,21 @@
     "integ:ondemand-googleanalytics4-to-s3:destroy": "npx projen integ:ondemand-googleanalytics4-to-s3:destroy",
     "integ:ondemand-googleanalytics4-to-s3:snapshot": "npx projen integ:ondemand-googleanalytics4-to-s3:snapshot",
     "integ:ondemand-googleanalytics4-to-s3:watch": "npx projen integ:ondemand-googleanalytics4-to-s3:watch",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:deploy": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:deploy",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:destroy": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:destroy",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:snapshot": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:snapshot",
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:watch": "npx projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:watch",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:assert": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:assert",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:deploy": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:deploy",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:destroy": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:destroy",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:snapshot": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:snapshot",
+    "integ:ondemand-jdbcsmalldatascale-to-s3:watch": "npx projen integ:ondemand-jdbcsmalldatascale-to-s3:watch",
+    "integ:ondemand-microsoftdynamics365-to-s3:assert": "npx projen integ:ondemand-microsoftdynamics365-to-s3:assert",
+    "integ:ondemand-microsoftdynamics365-to-s3:deploy": "npx projen integ:ondemand-microsoftdynamics365-to-s3:deploy",
+    "integ:ondemand-microsoftdynamics365-to-s3:destroy": "npx projen integ:ondemand-microsoftdynamics365-to-s3:destroy",
+    "integ:ondemand-microsoftdynamics365-to-s3:snapshot": "npx projen integ:ondemand-microsoftdynamics365-to-s3:snapshot",
+    "integ:ondemand-microsoftdynamics365-to-s3:watch": "npx projen integ:ondemand-microsoftdynamics365-to-s3:watch",
     "integ:ondemand-microsoftsharepointonline-to-s3:assert": "npx projen integ:ondemand-microsoftsharepointonline-to-s3:assert",
     "integ:ondemand-microsoftsharepointonline-to-s3:deploy": "npx projen integ:ondemand-microsoftsharepointonline-to-s3:deploy",
     "integ:ondemand-microsoftsharepointonline-to-s3:destroy": "npx projen integ:ondemand-microsoftsharepointonline-to-s3:destroy",
@@ -97,58 +112,54 @@
     "organization": true
   },
   "devDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.84.0-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.84.0-alpha.0",
+    "@aws-cdk/aws-glue-alpha": "2.116.1-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.116.1-alpha.0",
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
     "@types/jest": "^27",
-    "@types/node": "^16",
+    "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk": "^2",
-    "aws-cdk-lib": "2.84.0",
-    "cdklabs-projen-project-types": "^0.1.176",
+    "aws-cdk-lib": "2.116.1",
+    "cdklabs-projen-project-types": "^0.1.184",
     "constructs": "10.0.5",
-    "esbuild": "^0.19.5",
+    "esbuild": "^0.19.11",
     "eslint": "^8",
     "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-import": "^2.29.1",
     "jest": "^27",
     "jest-junit": "^15",
-    "jsii": "1.x",
-    "jsii-diff": "^1.92.0",
+    "jsii": "~5.2",
+    "jsii-diff": "^1.94.0",
     "jsii-docgen": "^8.0.56",
-    "jsii-pacmak": "^1.92.0",
-    "jsii-rosetta": "^5.2.2",
-    "projen": "^0.76.28",
+    "jsii-pacmak": "^1.94.0",
+    "jsii-rosetta": "^5.3.3",
+    "projen": "^0.77.6",
     "standard-version": "^9",
     "ts-jest": "^27",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.84.0-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.84.0-alpha.0",
-    "aws-cdk-lib": "^2.84.0",
+    "@aws-cdk/aws-glue-alpha": "2.116.1-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.116.1-alpha.0",
+    "aws-cdk-lib": "^2.116.1",
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@types/aws-lambda": "^8.10.126"
+    "@types/aws-lambda": "^8.10.131"
   },
   "bundledDependencies": [
     "@types/aws-lambda"
   ],
-  "resolutions": {
-    "@types/babel__traverse": "7.18.2",
-    "@types/prettier": "2.6.0"
-  },
   "keywords": [
     "appflow",
     "aws",
     "cdk"
   ],
   "engines": {
-    "node": ">= 16.0.0"
+    "node": ">= 18.12.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",

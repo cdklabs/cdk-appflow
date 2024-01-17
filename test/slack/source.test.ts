@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
+import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 
@@ -67,9 +67,9 @@ describe('SlackSource', () => {
 
     const profile = new SlackConnectorProfile(stack, 'TestProfile', {
       oAuth: {
-        accessToken: 'accessToken',
-        clientId: 'clientId',
-        clientSecret: 'clientSecret',
+        accessToken: SecretValue.unsafePlainText('accessToken'),
+        clientId: SecretValue.unsafePlainText('clientId'),
+        clientSecret: SecretValue.unsafePlainText('clientSecret'),
       },
       instanceUrl: SlackInstanceUrlBuilder.buildFromWorkspace('slackWorkspace'),
     });

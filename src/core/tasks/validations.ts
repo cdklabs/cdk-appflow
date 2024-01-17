@@ -86,7 +86,7 @@ export class Validation extends OperationBase implements IValidation {
    * @param action a @see ValidationAction for the validation
    * @returns a Validation instance
    */
-  public static when(condition: ValidationCondition, action: ValidationAction) : IValidation {
+  public static when(condition: ValidationCondition, action: ValidationAction): IValidation {
     return new Validation(condition, action);
   }
 
@@ -96,6 +96,6 @@ export class Validation extends OperationBase implements IValidation {
     super([new Task('Validate',
       [condition.field],
       { operation: condition.validation },
-      { VALIDATION_ACTION: action.action })]);
+      [{ key: 'VALIDATION_ACTION', value: action.action }])]);
   }
 }

@@ -2,6 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { GoogleAnalytics4ConnectorType } from './type';
@@ -35,17 +36,17 @@ export interface GoogleAnalytics4RefreshTokenGrantFlow {
   /**
    * A non-expired refresh token.
    */
-  readonly refreshToken?: string;
+  readonly refreshToken?: SecretValue;
 
   /**
    * The secret of the client app.
    */
-  readonly clientSecret?: string;
+  readonly clientSecret?: SecretValue;
 
   /**
    * The id of the client app.
    */
-  readonly clientId?: string;
+  readonly clientId?: SecretValue;
 }
 
 /**
@@ -67,7 +68,7 @@ export interface GoogleAnalytics4OAuthSettings {
    *
    * @default Retrieves a fresh accessToken with the information in the [flow property]{@link GoogleAnalytics4OAuthSettings#flow}
    */
-  readonly accessToken?: string;
+  readonly accessToken?: SecretValue;
 
   /**
    * The OAuth flow used for obtaining a new accessToken when the old is not present or expired.
@@ -124,10 +125,10 @@ export class GoogleAnalytics4ConnectorProfile extends ConnectorProfileBase {
       customConnector: {
         oauth2: {
           // INFO: when using Refresh Token Grant Flow - access token property is required
-          accessToken: properties.oAuth.accessToken ?? 'dummyAccessToken',
-          refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken,
-          clientId: properties.oAuth.flow?.refreshTokenGrant.clientId,
-          clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret,
+          accessToken: properties.oAuth.accessToken?.unsafeUnwrap() ?? 'dummyAccessToken',
+          refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
+          clientId: properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
+          clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
         },
         authenticationType: ConnectorAuthenticationType.OAUTH2,
       },
