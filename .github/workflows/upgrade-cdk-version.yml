@@ -3,6 +3,9 @@ on:
   workflow_dispatch: {}
   schedule:
     - cron: 0 2 * * *
+  push:
+    branches:
+      - "workflow-upgrade-projenrc"
 jobs:
   upgrade:
     name: Upgrade
@@ -14,8 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: main
+#        with:
+#          ref: main
       - name: Setup Node.js
         uses: actions/setup-node@v3
       - name: Install dependencies
@@ -24,6 +27,7 @@ jobs:
         run: |-
           CDK_LATEST=$( npm view aws-cdk version )
           sed -E -i "s/(\/\* *workflow-upgrade-cdk-version *\*\/ *)'([0-9.]+)'( *\/\* *workflow-upgrade-cdk-version *\*\/)/\1'$CDK_LATEST'\3/g" .projenrc.ts
+          cat .projenrc.ts
       - name: Upgrade project
         run: npx projen
       - name: Find mutations
@@ -47,8 +51,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: main
+#        with:
+#          ref: main
       - name: Download patch
         uses: actions/download-artifact@v3
         with:
@@ -64,9 +68,10 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
+#          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
+          push-to-fork: psrebniak/cdk-appflow
           commit-message: |-
-            chore(deps): upgrade cdk version
+            chore(deps): upgrade cdklabs-projen-project-types
 
             Upgrades project dependencies. See details in [workflow run].
 
@@ -74,18 +79,18 @@ jobs:
 
             ------
 
-            *Automatically created via the "upgrade-cdk-version" workflow*
+            *Automatically created by projen via the "upgrade-cdk-version" workflow*
           branch: github-actions/upgrade-cdk-version
-          title: "chore(deps): upgrade cdk version"
-          labels: auto-approve
+          title: "chore(deps): upgrade cdklabs-projen-project-types"
+#          labels: auto-approve
           body: |-
-            Upgrades cdk version. See details in [workflow run].
+            Upgrades project dependencies. See details in [workflow run].
 
             [Workflow Run]: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
             ------
 
-            *Automatically created via the "upgrade-cdk-version" workflow*
+            *Automatically created by projen via the "upgrade-cdk-version" workflow*
           author: github-actions <github-actions@github.com>
           committer: github-actions <github-actions@github.com>
           signoff: true
