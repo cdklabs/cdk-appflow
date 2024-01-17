@@ -45,9 +45,9 @@ jobs:
     name: Create Pull Request
     needs: upgrade
     runs-on: ubuntu-latest
-    permissions:
-      contents: read # remove
-      pull-requests: write # remove
+#    permissions:
+#      contents: read
+#      pull-requests: write # remove
     if: ${{ needs.upgrade.outputs.patch_created }}
     steps:
       - name: Checkout
