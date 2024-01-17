@@ -45,8 +45,9 @@ jobs:
     name: Create Pull Request
     needs: upgrade
     runs-on: ubuntu-latest
-#    permissions:
-#      contents: read
+    permissions:
+      contents: read # remove
+      pull-requests: write # remove
     if: ${{ needs.upgrade.outputs.patch_created }}
     steps:
       - name: Checkout
@@ -69,7 +70,6 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
 #          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
-          push-to-fork: psrebniak/cdk-appflow
           commit-message: |-
             chore(deps): upgrade cdklabs-projen-project-types
 
