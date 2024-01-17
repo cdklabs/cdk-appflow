@@ -30,15 +30,15 @@
   resolved "https://registry.yarnpkg.com/@aws-cdk/asset-node-proxy-agent-v6/-/asset-node-proxy-agent-v6-2.0.1.tgz#6dc9b7cdb22ff622a7176141197962360c33e9ac"
   integrity sha512-DDt4SLdLOwWCjGtltH4VCST7hpOI5DzieuhGZsBpZ+AgJdSI2GCjklCXm0GCTwJG/SolkL5dtQXyUKgg9luBDg==
 
-"@aws-cdk/aws-glue-alpha@2.116.1-alpha.0":
-  version "2.116.1-alpha.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-glue-alpha/-/aws-glue-alpha-2.116.1-alpha.0.tgz#9ea440b0e90b172d5c97a9afddef0206f4174142"
-  integrity sha512-U0BawxewRqmBgm03NTEtDkPiSO5GpuLG0xW+g78DudDnzdW6qcJmO/oOz6qoUEbR24VK8oqYqOXXoYzaHVWvyw==
+"@aws-cdk/aws-glue-alpha@2.121.1-alpha.0":
+  version "2.121.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-glue-alpha/-/aws-glue-alpha-2.121.1-alpha.0.tgz#8c5e6b34ccfd35b7512e84c2e6176e88a1482a80"
+  integrity sha512-ovZeXXCNBCkRdHEfBCbDYOZ1tTbwlV1Njc1iPwP7aMo4BIMSrRzLF5ir+InwKbnRA1FWACyDGXRakue/fuT4aA==
 
-"@aws-cdk/aws-redshift-alpha@2.116.1-alpha.0":
-  version "2.116.1-alpha.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-redshift-alpha/-/aws-redshift-alpha-2.116.1-alpha.0.tgz#1b67d00893e43c8e1cc212db67e2c0f5bfe0bf64"
-  integrity sha512-/jG35//7U5CQx3pTzeWbls3bbZ0ilPaBqPgfFSBz/WMi9ToLkYth4eHBeFfhMzeBs5sLKUSB4OBlqFJYXsoWeg==
+"@aws-cdk/aws-redshift-alpha@2.121.1-alpha.0":
+  version "2.121.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-redshift-alpha/-/aws-redshift-alpha-2.121.1-alpha.0.tgz#21eae9ef3843290919f1e637822b3ab8a74bf1d7"
+  integrity sha512-PsCtr+IuWoyJgi40iVLCB65kiWOpzI6iG/jlOl9lQkQvDO5Dh19OOtRSTVIoFga6AbcVAVDmhQ/GyEHBWoELZg==
 
 "@aws-cdk/aws-service-spec@0.0.29":
   version "0.0.29"
@@ -1354,10 +1354,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-cdk-lib@2.116.1:
-  version "2.116.1"
-  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.116.1.tgz#4810ae231b1b87332a158b0b15a7d85dd5bc9b02"
-  integrity sha512-3j9kUHZFp/Jl79utnsBB2xW2u+sNfjpliQtTPQlW0i7J12oxjD2rHU4AJV741cKMxnA9VrHnRyJF9NTryji8yw==
+aws-cdk-lib@2.121.1:
+  version "2.121.1"
+  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.121.1.tgz#c4c5029a916fdbc9ae8ed4fd39264143d6326322"
+  integrity sha512-wrOHDDQqVuH2tRTH7p2LaMPVI3V2bqr8X//Qrhy+hOFA04u2MVetQYev+NgMXPjNzU9IGX2wy1Fs9Y/ntq2sQA==
   dependencies:
     "@aws-cdk/asset-awscli-v1" "^2.2.201"
     "@aws-cdk/asset-kubectl-v20" "^2.1.2"
