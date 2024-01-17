@@ -7,6 +7,7 @@ export * from './core';
 export * from './amazonrdsforpostgresql';
 export * from './eventbridge';
 export * from './googleanalytics4';
+export * from './googlebigquery';
 export * from './jdbcsmalldatascale';
 export * from './marketo';
 export * from './microsoftdynamics365';
