@@ -21,15 +21,12 @@ jobs:
 #          ref: main
       - name: Setup Node.js
         uses: actions/setup-node@v3
-      - name: Install dependencies
-        run: yarn install --check-files --frozen-lockfile
       - name: Upgrade cdk version
         run: |-
           CDK_LATEST=$( npm view aws-cdk version )
           sed -E -i "s/(\/\* *workflow-upgrade-cdk-version *\*\/ *)'([0-9.]+)'( *\/\* *workflow-upgrade-cdk-version *\*\/)/\1'$CDK_LATEST'\3/g" .projenrc.ts
-          cat .projenrc.ts
       - name: Upgrade project
-        run: npx projen
+        run: npx projen upgrade
       - name: Find mutations
         id: create_patch
         run: |-
