@@ -1,5 +1,5 @@
 {
-  "version": "32.0.0",
+  "version": "36.0.0",
   "artifacts": {
     "TestStack.assets": {
       "type": "cdk:asset-manifest",
@@ -14,10 +14,11 @@
       "environment": "aws://unknown-account/unknown-region",
       "properties": {
         "templateFile": "TestStack.template.json",
+        "terminationProtection": false,
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/57ce1be8e51f8f48dd339fadf0f4391c0dc7b4e9e109e23327a9c2a959428eaf.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/85e6c489b6ba6b249b35b568479083f37b5159ea1c2713c1812dfda7f164f585.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -37,6 +38,42 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "TestConnectorProfileD7470107"
+          }
+        ],
+        "/TestStack/TestBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TestBucket560B80BC"
+          }
+        ],
+        "/TestStack/TestBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TestBucketPolicyBA12ED38"
+          }
+        ],
+        "/TestStack/TestBucket/AutoDeleteObjectsCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TestBucketAutoDeleteObjectsCustomResource8FEAABD5"
+          }
+        ],
+        "/TestStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+          }
+        ],
+        "/TestStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+          }
+        ],
+        "/TestStack/OnDemandFlow/OnDemandFlow": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OnDemandFlow4ECA54C5"
           }
         ],
         "/TestStack/BootstrapVersion": [
