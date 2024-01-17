@@ -68,7 +68,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
+#          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
           commit-message: |-
             chore(deps): upgrade cdklabs-projen-project-types
 
@@ -78,8 +78,8 @@ jobs:
 
             ------
 
-            *Automatically created by projen via the "upgrade-cdklabs-projen-project-types-main" workflow*
-          branch: github-actions/upgrade-cdklabs-projen-project-types-main
+            *Automatically created by projen via the "upgrade-cdk-version" workflow*
+          branch: github-actions/upgrade-cdk-version
           title: "chore(deps): upgrade cdklabs-projen-project-types"
 #          labels: auto-approve
           body: |-
@@ -89,7 +89,7 @@ jobs:
 
             ------
 
-            *Automatically created by projen via the "upgrade-cdklabs-projen-project-types-main" workflow*
+            *Automatically created by projen via the "upgrade-cdk-version" workflow*
           author: github-actions <github-actions@github.com>
           committer: github-actions <github-actions@github.com>
           signoff: true
