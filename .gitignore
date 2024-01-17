@@ -34,6 +34,7 @@ jspm_packages/
 *.rest
 .vscode
 **/.DS_Store
+!/.projenrc.js
 /test-reports/
 junit.xml
 /coverage/
@@ -164,4 +165,3 @@ test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot/**/tree.js
 !/.github/workflows/upgrade-cdklabs-projen-project-types-main.yml
 !/.github/workflows/upgrade-main.yml
 !/.github/workflows/upgrade-dev-deps-main.yml
-!/.projenrc.ts
