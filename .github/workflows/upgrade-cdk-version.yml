@@ -27,8 +27,9 @@ jobs:
         run: |-
           CDK_LATEST=$( npm view aws-cdk version )
           sed -E -i "s/(\/\* *workflow-upgrade-cdk-version *\*\/ *)'([0-9.]+)'( *\/\* *workflow-upgrade-cdk-version *\*\/)/\1'$CDK_LATEST'\3/g" .projenrc.ts
-      - name: Upgrade dependencies
-        run: npx projen upgrade-cdklabs-projen-project-types
+          cat .projenrc.ts
+      - name: Upgrade project
+        run: npx projen
       - name: Find mutations
         id: create_patch
         run: |-

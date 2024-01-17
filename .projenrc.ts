@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
 import { Stability } from 'projen/lib/cdk';
 
-const cdkVersion = /* workflow-upgrade-cdk-version */'2.121.1'/* workflow-upgrade-cdk-version */;
+const cdkVersion = /* workflow-upgrade-cdk-version */'2.121.0'/* workflow-upgrade-cdk-version */;
 
 const project = new CdklabsConstructLibrary({
   name: '@cdklabs/cdk-appflow',
