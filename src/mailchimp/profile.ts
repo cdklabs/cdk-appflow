@@ -2,12 +2,12 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { ConnectorAuthenticationType } from '../core/connectors/connector-authentication-type';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
+import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
 import { MailChimpConnectorType } from './type';
-import { SecretValue } from 'aws-cdk-lib';
+import { ConnectorAuthenticationType } from '../core/connectors/connector-authentication-type';
+import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
 
 export interface MailChimpConnectorProfileProps extends ConnectorProfileProps {
   readonly apiKey: SecretValue;
@@ -39,7 +39,7 @@ export class MailChimpConnectorProfile extends ConnectorProfileBase {
         profileProperties: {
           instanceUrl: properties.instanceUrl,
         },
-      }
+      },
     };
   }
 
@@ -54,8 +54,8 @@ export class MailChimpConnectorProfile extends ConnectorProfileBase {
             api_key: properties.apiKey.unsafeUnwrap(),
           },
           customAuthenticationType: 'api_key',
-        }
-      }
+        },
+      },
     };
   }
 }

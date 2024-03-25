@@ -2023,6 +2023,284 @@ public readonly credentials: ISecret;
 ---
 
 
+### MailChimpConnectorProfile <a name="MailChimpConnectorProfile" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile"></a>
+
+A class that represents a MailChimp Connector Profile.
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.Initializer"></a>
+
+```typescript
+import { MailChimpConnectorProfile } from '@cdklabs/cdk-appflow'
+
+new MailChimpConnectorProfile(scope: Construct, id: string, props: MailChimpConnectorProfileProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfileProps">MailChimpConnectorProfileProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfileProps">MailChimpConnectorProfileProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+
+---
+
+##### `toString` <a name="toString" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `applyRemovalPolicy` <a name="applyRemovalPolicy" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.applyRemovalPolicy"></a>
+
+```typescript
+public applyRemovalPolicy(policy: RemovalPolicy): void
+```
+
+Apply the given removal policy to this resource.
+
+The Removal Policy controls what happens to this resource when it stops
+being managed by CloudFormation, either because you've removed it from the
+CDK application or because you've made a change that requires the resource
+to be replaced.
+
+The resource can be deleted (`RemovalPolicy.DESTROY`), or left in your AWS
+account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
+
+###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.applyRemovalPolicy.parameter.policy"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | *No description.* |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.isConstruct"></a>
+
+```typescript
+import { MailChimpConnectorProfile } from '@cdklabs/cdk-appflow'
+
+MailChimpConnectorProfile.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isOwnedResource` <a name="isOwnedResource" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.isOwnedResource"></a>
+
+```typescript
+import { MailChimpConnectorProfile } from '@cdklabs/cdk-appflow'
+
+MailChimpConnectorProfile.isOwnedResource(construct: IConstruct)
+```
+
+Returns true if the construct was created by CDK, and false otherwise.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.isOwnedResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `isResource` <a name="isResource" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.isResource"></a>
+
+```typescript
+import { MailChimpConnectorProfile } from '@cdklabs/cdk-appflow'
+
+MailChimpConnectorProfile.isResource(construct: IConstruct)
+```
+
+Check whether the given construct is a Resource.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.isResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `fromConnectionProfileArn` <a name="fromConnectionProfileArn" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileArn"></a>
+
+```typescript
+import { MailChimpConnectorProfile } from '@cdklabs/cdk-appflow'
+
+MailChimpConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileArn.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
+
+- *Type:* string
+
+---
+
+##### `fromConnectionProfileName` <a name="fromConnectionProfileName" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileName"></a>
+
+```typescript
+import { MailChimpConnectorProfile } from '@cdklabs/cdk-appflow'
+
+MailChimpConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileName.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.fromConnectionProfileName.parameter.name"></a>
+
+- *Type:* string
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `env`<sup>Required</sup> <a name="env" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.env"></a>
+
+```typescript
+public readonly env: ResourceEnvironment;
+```
+
+- *Type:* aws-cdk-lib.ResourceEnvironment
+
+The environment this resource belongs to.
+
+For resources that are created and managed by the CDK
+(generally, those created by creating new class instances like Role, Bucket, etc.),
+this is always the same as the environment of the stack they belong to;
+however, for imported resources
+(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
+that might be different than the stack they were imported into.
+
+---
+
+##### `stack`<sup>Required</sup> <a name="stack" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.stack"></a>
+
+```typescript
+public readonly stack: Stack;
+```
+
+- *Type:* aws-cdk-lib.Stack
+
+The stack in which this resource is defined.
+
+---
+
+##### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.arn"></a>
+
+```typescript
+public readonly arn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `credentials`<sup>Optional</sup> <a name="credentials" id="@cdklabs/cdk-appflow.MailChimpConnectorProfile.property.credentials"></a>
+
+```typescript
+public readonly credentials: ISecret;
+```
+
+- *Type:* aws-cdk-lib.aws_secretsmanager.ISecret
+
+---
+
+
 ### MarketoConnectorProfile <a name="MarketoConnectorProfile" id="@cdklabs/cdk-appflow.MarketoConnectorProfile"></a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MarketoConnectorProfile.Initializer"></a>
@@ -8308,6 +8586,119 @@ public readonly apiVersion: string;
 
 ---
 
+### MailChimpConnectorProfileProps <a name="MailChimpConnectorProfileProps" id="@cdklabs/cdk-appflow.MailChimpConnectorProfileProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.Initializer"></a>
+
+```typescript
+import { MailChimpConnectorProfileProps } from '@cdklabs/cdk-appflow'
+
+const mailChimpConnectorProfileProps: MailChimpConnectorProfileProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.property.apiKey">apiKey</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.property.instanceUrl">instanceUrl</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `key`<sup>Optional</sup> <a name="key" id="@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.property.key"></a>
+
+```typescript
+public readonly key: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+
+TODO: think if this should be here as not all connector profiles have that.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `apiKey`<sup>Required</sup> <a name="apiKey" id="@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.property.apiKey"></a>
+
+```typescript
+public readonly apiKey: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+---
+
+##### `instanceUrl`<sup>Required</sup> <a name="instanceUrl" id="@cdklabs/cdk-appflow.MailChimpConnectorProfileProps.property.instanceUrl"></a>
+
+```typescript
+public readonly instanceUrl: string;
+```
+
+- *Type:* string
+
+---
+
+### MailChimpSourceProps <a name="MailChimpSourceProps" id="@cdklabs/cdk-appflow.MailChimpSourceProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.MailChimpSourceProps.Initializer"></a>
+
+```typescript
+import { MailChimpSourceProps } from '@cdklabs/cdk-appflow'
+
+const mailChimpSourceProps: MailChimpSourceProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpSourceProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpSourceProps.property.object">object</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile">MailChimpConnectorProfile</a></code> | *No description.* |
+
+---
+
+##### `apiVersion`<sup>Required</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.MailChimpSourceProps.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: string;
+```
+
+- *Type:* string
+
+---
+
+##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.MailChimpSourceProps.property.object"></a>
+
+```typescript
+public readonly object: string;
+```
+
+- *Type:* string
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.MailChimpSourceProps.property.profile"></a>
+
+```typescript
+public readonly profile: MailChimpConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile">MailChimpConnectorProfile</a>
+
+---
+
 ### MapAllConfig <a name="MapAllConfig" id="@cdklabs/cdk-appflow.MapAllConfig"></a>
 
 A helper interface.
@@ -13536,6 +13927,74 @@ The AppFlow type of the connector that this source is implemented for.
 ---
 
 
+### MailChimpSource <a name="MailChimpSource" id="@cdklabs/cdk-appflow.MailChimpSource"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+
+A class that represents a MailChimp v3 Source.
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MailChimpSource.Initializer"></a>
+
+```typescript
+import { MailChimpSource } from '@cdklabs/cdk-appflow'
+
+new MailChimpSource(props: MailChimpSourceProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpSource.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.MailChimpSourceProps">MailChimpSourceProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.MailChimpSource.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.MailChimpSourceProps">MailChimpSourceProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpSource.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.MailChimpSource.bind"></a>
+
+```typescript
+public bind(flow: IFlow): SourceFlowConfigProperty
+```
+
+###### `flow`<sup>Required</sup> <a name="flow" id="@cdklabs/cdk-appflow.MailChimpSource.bind.parameter.flow"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpSource.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.MailChimpSource.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
 ### Mapping <a name="Mapping" id="@cdklabs/cdk-appflow.Mapping"></a>
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.IMapping">IMapping</a>
@@ -15877,7 +16336,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 - *Extends:* aws-cdk-lib.IResource
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile">GoogleBigQueryConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile">GoogleBigQueryConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MailChimpConnectorProfile">MailChimpConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 
 #### Properties <a name="Properties" id="Properties"></a>
@@ -16289,7 +16748,7 @@ public bind(flow: IFlow, source: ISource): TaskProperty[]
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailChimpSource">MailChimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
 
 A source of an AppFlow flow.
 
@@ -16388,7 +16847,7 @@ A representation of a validation operation, that is an operation testing records
 
 ### IVertex <a name="IVertex" id="@cdklabs/cdk-appflow.IVertex"></a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailChimpSource">MailChimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 An interface representing a vertex, i.e. a source or a destination of an AppFlow flow.
 
@@ -16585,6 +17044,23 @@ The AppFlow type of the connector that this source is implemented for.
 
 
 ##### `MYSQL` <a name="MYSQL" id="@cdklabs/cdk-appflow.JdbcDriver.MYSQL"></a>
+
+---
+
+
+### MailChimpApiVersion <a name="MailChimpApiVersion" id="@cdklabs/cdk-appflow.MailChimpApiVersion"></a>
+
+An enum representing the MailChimp API versions.
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.MailChimpApiVersion.V3">V3</a></code> | *No description.* |
+
+---
+
+##### `V3` <a name="V3" id="@cdklabs/cdk-appflow.MailChimpApiVersion.V3"></a>
 
 ---
 

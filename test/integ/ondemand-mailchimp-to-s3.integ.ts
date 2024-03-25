@@ -38,7 +38,7 @@ const profile = new MailChimpConnectorProfile(stack, 'TestConnectorProfile', {
 const source = new MailChimpSource({
   profile: profile,
   apiVersion: MailChimpApiVersion.V3,
-  object: 'campaigns'
+  object: 'campaigns',
 });
 
 const bucket = new Bucket(stack, 'TestBucket', {
@@ -53,7 +53,7 @@ const destination = new S3Destination({
 new OnDemandFlow(stack, 'OnDemandFlow', {
   source: source,
   destination: destination,
-  mappings: [ Mapping.mapAll() ],
+  mappings: [Mapping.mapAll()],
 });
 
 app.synth();

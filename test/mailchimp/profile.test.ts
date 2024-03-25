@@ -27,17 +27,17 @@ describe('MailChimpConnectorProfileProps', () => {
             AuthenticationType: 'CUSTOM',
             Custom: {
               CredentialsMap: {
-                api_key: 'apiKey'
+                api_key: 'apiKey',
               },
-              CustomAuthenticationType: 'api_key'
+              CustomAuthenticationType: 'api_key',
             },
           },
         },
         ConnectorProfileProperties: {
           CustomConnector: {
             ProfileProperties: {
-              instanceUrl: 'instanceUrl'
-            }
+              instanceUrl: 'instanceUrl',
+            },
           },
         },
       },

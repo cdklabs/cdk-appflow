@@ -3,6 +3,7 @@ Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 import { Stack } from 'aws-cdk-lib';
+import { Bucket } from 'aws-cdk-lib/aws-s3';
 import {
   MailChimpConnectorProfile,
   MailChimpSource,
@@ -12,7 +13,6 @@ import {
   S3Destination,
   Mapping,
 } from '../../src';
-import { Bucket } from 'aws-cdk-lib/aws-s3';
 
 describe('MailChimpSource', () => {
 
@@ -21,7 +21,7 @@ describe('MailChimpSource', () => {
     const source = new MailChimpSource({
       profile: MailChimpConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
       apiVersion: MailChimpApiVersion.V3,
-      object: 'campaigns'
+      object: 'campaigns',
     });
 
     const destination = new S3Destination({
@@ -31,7 +31,7 @@ describe('MailChimpSource', () => {
     new OnDemandFlow(stack, 'TestFlow', {
       source: source,
       destination: destination,
-      mappings: [ Mapping.mapAll() ],
+      mappings: [Mapping.mapAll()],
     });
 
     const expectedConnectorType = MailChimpConnectorType.instance;
@@ -46,7 +46,7 @@ describe('MailChimpSource', () => {
     const source = new MailChimpSource({
       profile: MailChimpConnectorProfile.fromConnectionProfileArn(stack, 'TestProfile', 'arn:aws:appflow:region:account-id:connectorprofile/TestProfile'),
       apiVersion: MailChimpApiVersion.V3,
-      object: 'campaigns'
+      object: 'campaigns',
     });
 
     const destination = new S3Destination({
@@ -56,7 +56,7 @@ describe('MailChimpSource', () => {
     new OnDemandFlow(stack, 'TestFlow', {
       source: source,
       destination: destination,
-      mappings: [ Mapping.mapAll() ],
+      mappings: [Mapping.mapAll()],
     });
 
     const expectedConnectorType = MailChimpConnectorType.instance;
