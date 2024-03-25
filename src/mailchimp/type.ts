@@ -9,16 +9,16 @@ import { ConnectorType } from '../core/connectors/connector-type';
  */
 export class MailChimpConnectorType extends ConnectorType {
 
-    public static get instance(): ConnectorType {
-        if (!MailChimpConnectorType.actualInstance) {
-            MailChimpConnectorType.actualInstance = new MailChimpConnectorType();
-        }
-        return MailChimpConnectorType.actualInstance;
+  public static get instance(): ConnectorType {
+    if (!MailChimpConnectorType.actualInstance) {
+      MailChimpConnectorType.actualInstance = new MailChimpConnectorType();
     }
-    
-    private static actualInstance: ConnectorType;
-    
-    constructor() {
-        super('MailChimp', true);
-    }
+    return MailChimpConnectorType.actualInstance;
+  }
+
+  private static actualInstance: ConnectorType;
+
+  constructor() {
+    super('Mailchimp', true);
+  }
 }

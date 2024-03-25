@@ -78,6 +78,14 @@ test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot/manifest.json
 test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot/**/manifest.json
 test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot/tree.json
 test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot/**/tree.json
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot/asset.*
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot/**/asset.*
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot/cdk.out
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot/**/cdk.out
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot/manifest.json
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot/**/manifest.json
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot/tree.json
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot/**/tree.json
 test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot/asset.*
 test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot/**/asset.*
 test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot/cdk.out

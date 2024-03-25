@@ -1,0 +1,342 @@
+{
+ "Resources": {
+  "TestConnectorProfileD7470107": {
+   "Type": "AWS::AppFlow::ConnectorProfile",
+   "Properties": {
+    "ConnectionMode": "Public",
+    "ConnectorLabel": "Mailchimp",
+    "ConnectorProfileConfig": {
+     "ConnectorProfileCredentials": {
+      "CustomConnector": {
+       "AuthenticationType": "CUSTOM",
+       "Custom": {
+        "CredentialsMap": {
+         "api_key": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/mailchimp:SecretString:apiKey::}}"
+           ]
+          ]
+         }
+        },
+        "CustomAuthenticationType": "api_key"
+       }
+      }
+     },
+     "ConnectorProfileProperties": {
+      "CustomConnector": {
+       "ProfileProperties": {
+        "instanceUrl": {
+         "Fn::Join": [
+          "",
+          [
+           "{{resolve:secretsmanager:arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":secret:appflow/mailchimp:SecretString:instanceUrl::}}"
+          ]
+         ]
+        }
+       }
+      }
+     }
+    },
+    "ConnectorProfileName": "TestConnectorProfile",
+    "ConnectorType": "CustomConnector"
+   }
+  },
+  "TestBucket560B80BC": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "TestBucketPolicyBA12ED38": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "TestBucket560B80BC"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:PutBucketPolicy",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TestBucket560B80BC",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TestBucket560B80BC",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:PutObject",
+        "s3:AbortMultipartUpload",
+        "s3:ListMultipartUploadParts",
+        "s3:ListBucketMultipartUploads",
+        "s3:GetBucketAcl",
+        "s3:PutObjectAcl"
+       ],
+       "Condition": {
+        "StringEquals": {
+         "aws:SourceAccount": {
+          "Ref": "AWS::AccountId"
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appflow.amazonaws.com"
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "TestBucket560B80BC",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "TestBucket560B80BC",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "TestBucketAutoDeleteObjectsCustomResource8FEAABD5": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "TestBucket560B80BC"
+    }
+   },
+   "DependsOn": [
+    "TestBucketPolicyBA12ED38"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "b7f33614a69548d6bafe224d751a7ef238cde19097415e553fe8b63a4c8fd8a6.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "TestBucket560B80BC"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ]
+  },
+  "OnDemandFlow4ECA54C5": {
+   "Type": "AWS::AppFlow::Flow",
+   "Properties": {
+    "DestinationFlowConfigList": [
+     {
+      "ConnectorType": "S3",
+      "DestinationConnectorProperties": {
+       "S3": {
+        "BucketName": {
+         "Ref": "TestBucket560B80BC"
+        }
+       }
+      }
+     }
+    ],
+    "FlowName": "OnDemandFlow",
+    "SourceFlowConfig": {
+     "ApiVersion": "3.0",
+     "ConnectorProfileName": "TestConnectorProfile",
+     "ConnectorType": "CustomConnector",
+     "SourceConnectorProperties": {
+      "CustomConnector": {
+       "EntityName": "campaigns"
+      }
+     }
+    },
+    "Tasks": [
+     {
+      "ConnectorOperator": {
+       "CustomConnector": "NO_OP"
+      },
+      "SourceFields": [],
+      "TaskProperties": [
+       {
+        "Key": "EXCLUDE_SOURCE_FIELDS_LIST",
+        "Value": "[]"
+       }
+      ],
+      "TaskType": "Map_all"
+     }
+    ],
+    "TriggerConfig": {
+     "TriggerType": "OnDemand"
+    }
+   },
+   "DependsOn": [
+    "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
+    "TestBucketPolicyBA12ED38",
+    "TestBucket560B80BC",
+    "TestConnectorProfileD7470107"
+   ]
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
