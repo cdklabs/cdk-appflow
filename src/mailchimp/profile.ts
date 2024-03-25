@@ -7,10 +7,11 @@ import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/
 import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
 import { Construct } from "constructs";
 import { MailChimpConnectorType } from "./type";
+import { SecretValue } from 'aws-cdk-lib';
 
 
 export interface MailChimpConnectorProfileProps extends ConnectorProfileProps {
-    readonly apiKey: string;
+    readonly apiKey: SecretValue;
     readonly instanceUrl: string;
 }
 

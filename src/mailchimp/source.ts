@@ -16,7 +16,7 @@ export interface MailChimpSourceProps {
     readonly object: string;
 }
 /**
- * A class that represents a Google Analytics v4 Source
+ * A class that represents a MailChimp v3 Source
  */
 export class MailChimpSource implements ISource {
 

@@ -20,7 +20,7 @@ describe('MailChimpConnectorProfileProps', () => {
     // replace the region-id with your mailchimp region ID ex: us16
 
     new MailChimpConnectorProfile(stack, 'TestProfile', {
-        apiKey: clientSecret.secretValueFromJson('apiKey').toString(),
+        apiKey: clientSecret.secretValueFromJson('apiKey'),
         instanceUrl: clientSecret.secretValueFromJson('instanceUrl').toString(),
     });
 
@@ -38,7 +38,7 @@ describe('MailChimpConnectorProfileProps', () => {
         },
         ConnectorProfileProperties: {
             MailChimp: {
-                apiKey:clientSecret.secretValueFromJson('apiKey').toString(),
+                apiKey:clientSecret.secretValueFromJson('apiKey'),
                 InstanceUrl: clientSecret.secretValueFromJson('instanceUrl').toString(),
           },
         },
