@@ -30,7 +30,7 @@ export class MailChimpConnectorProfile extends ConnectorProfileBase {
         return this._fromConnectorProfileAttributes(scope, id, { name }) as MailChimpConnectorProfile;
     }
     
-    constructor(scope: Construct, id: string, props: MailChimpConnectorProfile) {
+    constructor(scope: Construct, id: string, props: MailChimpConnectorProfileProps) {
         super(scope, id, props, MailChimpConnectorType.instance);
     }
 
