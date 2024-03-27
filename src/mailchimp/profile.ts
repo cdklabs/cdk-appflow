@@ -5,35 +5,35 @@ SPDX-License-Identifier: Apache-2.0
 import { SecretValue } from 'aws-cdk-lib';
 import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
 import { Construct } from 'constructs';
-import { MailChimpConnectorType } from './type';
+import { MailchimpConnectorType } from './type';
 import { ConnectorAuthenticationType } from '../core/connectors/connector-authentication-type';
 import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
 
-export interface MailChimpConnectorProfileProps extends ConnectorProfileProps {
+export interface MailchimpConnectorProfileProps extends ConnectorProfileProps {
   readonly apiKey: SecretValue;
   readonly instanceUrl: string;
 }
 
 /**
- * A class that represents a MailChimp Connector Profile.
+ * A class that represents a Mailchimp Connector Profile.
  *
  */
-export class MailChimpConnectorProfile extends ConnectorProfileBase {
+export class MailchimpConnectorProfile extends ConnectorProfileBase {
 
   public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as MailChimpConnectorProfile;
+    return this._fromConnectorProfileAttributes(scope, id, { arn }) as MailchimpConnectorProfile;
   }
 
   public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as MailChimpConnectorProfile;
+    return this._fromConnectorProfileAttributes(scope, id, { name }) as MailchimpConnectorProfile;
   }
 
-  constructor(scope: Construct, id: string, props: MailChimpConnectorProfileProps) {
-    super(scope, id, props, MailChimpConnectorType.instance);
+  constructor(scope: Construct, id: string, props: MailchimpConnectorProfileProps) {
+    super(scope, id, props, MailchimpConnectorType.instance);
   }
 
   protected buildConnectorProfileProperties(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
-    const properties = (props as MailChimpConnectorProfileProps);
+    const properties = (props as MailchimpConnectorProfileProps);
     return {
       customConnector: {
         profileProperties: {
@@ -44,7 +44,7 @@ export class MailChimpConnectorProfile extends ConnectorProfileBase {
   }
 
   protected buildConnectorProfileCredentials(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-    const properties = (props as MailChimpConnectorProfileProps);
+    const properties = (props as MailchimpConnectorProfileProps);
 
     return {
       customConnector: {

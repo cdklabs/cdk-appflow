@@ -6,9 +6,9 @@ import { App, RemovalPolicy, Stack } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import {
-  MailChimpApiVersion,
-  MailChimpConnectorProfile,
-  MailChimpSource,
+  MailchimpApiVersion,
+  MailchimpConnectorProfile,
+  MailchimpSource,
   Mapping,
   OnDemandFlow,
   S3Destination,
@@ -30,14 +30,14 @@ const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/mailchimp')
 //   },
 // })
 
-const profile = new MailChimpConnectorProfile(stack, 'TestConnectorProfile', {
+const profile = new MailchimpConnectorProfile(stack, 'TestConnectorProfile', {
   apiKey: secret.secretValueFromJson('apiKey'),
   instanceUrl: secret.secretValueFromJson('instanceUrl').toString(),
 });
 
-const source = new MailChimpSource({
+const source = new MailchimpSource({
   profile: profile,
-  apiVersion: MailChimpApiVersion.V3,
+  apiVersion: MailchimpApiVersion.V3,
   object: 'campaigns',
 });
 

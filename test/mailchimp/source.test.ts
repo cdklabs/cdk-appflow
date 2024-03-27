@@ -5,22 +5,22 @@ SPDX-License-Identifier: Apache-2.0
 import { Stack } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import {
-  MailChimpConnectorProfile,
-  MailChimpSource,
-  MailChimpConnectorType,
-  MailChimpApiVersion,
+  MailchimpConnectorProfile,
+  MailchimpSource,
+  MailchimpConnectorType,
+  MailchimpApiVersion,
   OnDemandFlow,
   S3Destination,
   Mapping,
 } from '../../src';
 
-describe('MailChimpSource', () => {
+describe('MailchimpSource', () => {
 
   test('Source with connector name', () => {
     const stack = new Stack(undefined, 'TestStack');
-    const source = new MailChimpSource({
-      profile: MailChimpConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
-      apiVersion: MailChimpApiVersion.V3,
+    const source = new MailchimpSource({
+      profile: MailchimpConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
+      apiVersion: MailchimpApiVersion.V3,
       object: 'campaigns',
     });
 
@@ -34,7 +34,7 @@ describe('MailChimpSource', () => {
       mappings: [Mapping.mapAll()],
     });
 
-    const expectedConnectorType = MailChimpConnectorType.instance;
+    const expectedConnectorType = MailchimpConnectorType.instance;
     expect(source.connectorType.asProfileConnectorLabel).toEqual(expectedConnectorType.asProfileConnectorLabel);
     expect(source.connectorType.asProfileConnectorType).toEqual(expectedConnectorType.asProfileConnectorType);
     expect(source.connectorType.asTaskConnectorOperatorOrigin).toEqual(expectedConnectorType.asTaskConnectorOperatorOrigin);
@@ -43,9 +43,9 @@ describe('MailChimpSource', () => {
 
   test('Source with connector Arn', () => {
     const stack = new Stack(undefined, 'TestStack');
-    const source = new MailChimpSource({
-      profile: MailChimpConnectorProfile.fromConnectionProfileArn(stack, 'TestProfile', 'arn:aws:appflow:region:account-id:connectorprofile/TestProfile'),
-      apiVersion: MailChimpApiVersion.V3,
+    const source = new MailchimpSource({
+      profile: MailchimpConnectorProfile.fromConnectionProfileArn(stack, 'TestProfile', 'arn:aws:appflow:region:account-id:connectorprofile/TestProfile'),
+      apiVersion: MailchimpApiVersion.V3,
       object: 'campaigns',
     });
 
@@ -59,7 +59,7 @@ describe('MailChimpSource', () => {
       mappings: [Mapping.mapAll()],
     });
 
-    const expectedConnectorType = MailChimpConnectorType.instance;
+    const expectedConnectorType = MailchimpConnectorType.instance;
     expect(source.connectorType.asProfileConnectorLabel).toEqual(expectedConnectorType.asProfileConnectorLabel);
     expect(source.connectorType.asProfileConnectorType).toEqual(expectedConnectorType.asProfileConnectorType);
     expect(source.connectorType.asTaskConnectorOperatorOrigin).toEqual(expectedConnectorType.asTaskConnectorOperatorOrigin);

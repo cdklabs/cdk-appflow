@@ -4,29 +4,29 @@ SPDX-License-Identifier: Apache-2.0
 */
 import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 import { IConstruct } from 'constructs';
-import { MailChimpConnectorProfile } from './profile';
-import { MailChimpConnectorType } from './type';
+import { MailchimpConnectorProfile } from './profile';
+import { MailchimpConnectorType } from './type';
 import { ConnectorType } from '../core/connectors/connector-type';
 import { IFlow } from '../core/flows';
 import { ISource } from '../core/vertices';
 
-export interface MailChimpSourceProps {
-  readonly profile: MailChimpConnectorProfile;
+export interface MailchimpSourceProps {
+  readonly profile: MailchimpConnectorProfile;
   readonly apiVersion: string;
   readonly object: string;
 }
 
 /**
- * A class that represents a MailChimp v3 Source
+ * A class that represents a Mailchimp v3 Source
  */
-export class MailChimpSource implements ISource {
+export class MailchimpSource implements ISource {
 
   /**
    * The AppFlow type of the connector that this source is implemented for
    */
-  public readonly connectorType: ConnectorType = MailChimpConnectorType.instance;
+  public readonly connectorType: ConnectorType = MailchimpConnectorType.instance;
 
-  constructor(private readonly props: MailChimpSourceProps) {
+  constructor(private readonly props: MailchimpSourceProps) {
   }
 
   bind(flow: IFlow): CfnFlow.SourceFlowConfigProperty {

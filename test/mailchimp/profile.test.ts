@@ -4,14 +4,14 @@ SPDX-License-Identifier: Apache-2.0
 */
 import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
-import { MailChimpConnectorProfile } from '../../src';
+import { MailchimpConnectorProfile } from '../../src';
 
-describe('MailChimpConnectorProfileProps', () => {
+describe('MailchimpConnectorProfileProps', () => {
 
   test('API Key profile with credentials exists in the stack', () => {
     const stack = new Stack(undefined, 'TestStack', { env: { account: '12345678', region: 'dummy' } });
 
-    new MailChimpConnectorProfile(stack, 'TestProfile', {
+    new MailchimpConnectorProfile(stack, 'TestProfile', {
       apiKey: SecretValue.unsafePlainText('apiKey'),
       instanceUrl: SecretValue.unsafePlainText('instanceUrl').toString(),
     });

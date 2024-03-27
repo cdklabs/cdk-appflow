@@ -7,13 +7,13 @@ import { ConnectorType } from '../core/connectors/connector-type';
 /**
  * @internal
  */
-export class MailChimpConnectorType extends ConnectorType {
+export class MailchimpConnectorType extends ConnectorType {
 
   public static get instance(): ConnectorType {
-    if (!MailChimpConnectorType.actualInstance) {
-      MailChimpConnectorType.actualInstance = new MailChimpConnectorType();
+    if (!MailchimpConnectorType.actualInstance) {
+      MailchimpConnectorType.actualInstance = new MailchimpConnectorType();
     }
-    return MailChimpConnectorType.actualInstance;
+    return MailchimpConnectorType.actualInstance;
   }
 
   private static actualInstance: ConnectorType;
