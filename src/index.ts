@@ -21,3 +21,4 @@ export * from './slack';
 export * from './snowflake';
 export * from './redshift';
 export * from './zendesk';
+export * from './mailchimp';
