@@ -40,3 +40,4 @@ test/integ/.tmp
 test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot
 /.gitattributes
 /.projenrc.ts
+/projenrc
