@@ -13,8 +13,8 @@ import { OAuth2GrantType as OAuthGrantType } from '../core/connectors/oauth2-gra
 export interface GoogleAdsConnectorProfileProps extends ConnectorProfileProps {
     readonly oAuth: GoogleAdsOAuthSettings;
     readonly apiVersion: string;
-    readonly managerID: string;
-    readonly developerToken: string;
+    readonly managerID: SecretValue;
+    readonly developerToken: SecretValue;
 }
 /**
  * Google's OAuth token and authorization endpoints
@@ -47,7 +47,7 @@ export interface GoogleAdsRefreshTokenGrantFlow {
     readonly clientId?: SecretValue;
 }
 /**
- * Represents the OAuth flow enabled for the GA4
+ * Represents the OAuth flow enabled for the GoogleAds
  */
 export interface GoogleAdsOAuthFlow {
     /**
@@ -57,7 +57,7 @@ export interface GoogleAdsOAuthFlow {
 }
 export interface GoogleAdsOAuthSettings {
     /**
-     * The access token to be used when interacting with Google Ads 4
+     * The access token to be used when interacting with Google Ads
      *
      * Note that if only the access token is provided AppFlow is not able to retrieve a fresh access token when the current one is expired
      *

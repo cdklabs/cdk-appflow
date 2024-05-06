@@ -10,7 +10,7 @@ import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 import { GoogleAdsConnectorProfile } from './profile';
 import { GoogleAdsConnectorType } from './type';
 /**
- * Properties of a Google Ads v4 Source
+ * Properties of a Google Ads Source
  */
 export interface GoogleAdsSourceProps {
     readonly profile: GoogleAdsConnectorProfile;
