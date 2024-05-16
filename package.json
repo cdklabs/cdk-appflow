@@ -153,7 +153,7 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@types/aws-lambda": "^8.10.137"
+    "@types/aws-lambda": "^8.10.138"
   },
   "bundledDependencies": [
     "@types/aws-lambda"
