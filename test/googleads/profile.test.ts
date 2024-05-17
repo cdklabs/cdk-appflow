@@ -4,12 +4,10 @@ SPDX-License-Identifier: Apache-2.0
 */
 import { SecretValue, Stack } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
-import { Key } from 'aws-cdk-lib/aws-kms';
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 
 import {
-    GoogleAdsConnectorProfile,
-    GoogleAdsApiVersion,
+  GoogleAdsConnectorProfile,
+  GoogleAdsApiVersion,
 } from '../../src';
 
 describe('GoogleAdsConnectorProfile', () => {
@@ -32,17 +30,16 @@ describe('GoogleAdsConnectorProfile', () => {
           },
         },
       },
-      apiVersion:GoogleAdsApiVersion.V14,
-      managerID:SecretValue.unsafePlainText('managerId'),
-      developerToken:SecretValue.unsafePlainText('developerToken')
+      apiVersion: GoogleAdsApiVersion.V14,
+      managerID: SecretValue.unsafePlainText('managerId'),
+      developerToken: SecretValue.unsafePlainText('developerToken'),
     });
-
 
     Template.fromStack(stack).hasResourceProperties('AWS::AppFlow::ConnectorProfile', {
       ConnectionMode: 'Public',
+      ConnectorLabel: 'Google Ads',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
-      ConnectorLabel: 'Google Ads',
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           CustomConnector: {

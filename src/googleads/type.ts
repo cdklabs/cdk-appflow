@@ -8,19 +8,19 @@ import { ConnectorType } from '../core/connectors/connector-type';
  * @internal
  */
 export class GoogleAdsConnectorType extends ConnectorType {
-    /**
+  /**
      * Singleton
      */
-    public static get instance(): ConnectorType {
-        if (!GoogleAdsConnectorType.actualInstance) {
-            GoogleAdsConnectorType.actualInstance = new GoogleAdsConnectorType();
-        }
-        return GoogleAdsConnectorType.actualInstance;
+  public static get instance(): ConnectorType {
+    if (!GoogleAdsConnectorType.actualInstance) {
+      GoogleAdsConnectorType.actualInstance = new GoogleAdsConnectorType();
     }
-    
-    private static actualInstance: ConnectorType;
-    
-    constructor() {
-        super('GoogleAds', true);
-    }
+    return GoogleAdsConnectorType.actualInstance;
+  }
+
+  private static actualInstance: ConnectorType;
+
+  constructor() {
+    super('GoogleAds', true);
+  }
 }

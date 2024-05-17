@@ -22,7 +22,7 @@ describe('GoogleAdsSource', () => {
     const stack = new Stack(undefined, 'TestStack');
     const source = new GoogleAdsSource({
       profile: GoogleAdsConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
-      object: "campaign-1112931111",
+      object: 'campaign-1112931111',
       apiVersion: GoogleAdsApiVersion.V14,
     });
 
@@ -34,15 +34,15 @@ describe('GoogleAdsSource', () => {
   });
 
 
-//   profile: GoogleAdsConnectorProfile;
-//     readonly apiVersion: string;
-//     readonly object: string;
+  //   profile: GoogleAdsConnectorProfile;
+  //     readonly apiVersion: string;
+  //     readonly object: string;
   test('Source in a Flow is in the stack', () => {
     const stack = new Stack(undefined, 'TestStack');
     const source = new GoogleAdsSource({
       profile: GoogleAdsConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
       apiVersion: GoogleAdsApiVersion.V14,
-      object: "campaign"
+      object: 'campaign',
     });
 
     const destination = new S3Destination({
@@ -70,12 +70,12 @@ describe('GoogleAdsSource', () => {
       ],
       FlowName: 'TestFlow',
       SourceFlowConfig: {
-        ApiVersion: 'v2',
+        ApiVersion: 'v14',
         ConnectorProfileName: 'dummy-profile',
         ConnectorType: 'CustomConnector',
         SourceConnectorProperties: {
           CustomConnector: {
-            EntityName: 'table/projectName/datasetName/tableName',
+            EntityName: 'campaign',
           },
         },
       },
@@ -101,7 +101,6 @@ describe('GoogleAdsSource', () => {
   });
 
 
-
   test('Source for dummy-profile in a Flow is in the stack', () => {
     const stack = new Stack(undefined, 'TestStack');
 
@@ -116,14 +115,14 @@ describe('GoogleAdsSource', () => {
           },
         },
       },
-      apiVersion:GoogleAdsApiVersion.V14,
-      managerID:SecretValue.unsafePlainText('managerId'),
-      developerToken:SecretValue.unsafePlainText('developerToken')
+      apiVersion: GoogleAdsApiVersion.V14,
+      managerID: SecretValue.unsafePlainText('managerId'),
+      developerToken: SecretValue.unsafePlainText('developerToken'),
     });
 
     const source = new GoogleAdsSource({
       profile: profile,
-      object: "campaign-1112931111",
+      object: 'campaign-1112931111',
       apiVersion: GoogleAdsApiVersion.V14,
     });
 
@@ -183,12 +182,12 @@ describe('GoogleAdsSource', () => {
         ],
         FlowName: 'TestFlow',
         SourceFlowConfig: {
-          ApiVersion: 'v2',
+          ApiVersion: 'v14',
           ConnectorProfileName: 'TestProfile',
           ConnectorType: 'CustomConnector',
           SourceConnectorProperties: {
             CustomConnector: {
-              EntityName: 'table/projectName/datasetName/tableName',
+              EntityName: 'campaign-1112931111',
             },
           },
         },
