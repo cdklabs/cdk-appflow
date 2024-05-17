@@ -37,7 +37,7 @@ describe('GoogleAdsConnectorProfile', () => {
 
     Template.fromStack(stack).hasResourceProperties('AWS::AppFlow::ConnectorProfile', {
       ConnectionMode: 'Public',
-      ConnectorLabel: 'Google Ads',
+      ConnectorLabel: 'GoogleAds',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
       ConnectorProfileConfig: {

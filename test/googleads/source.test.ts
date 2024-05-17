@@ -142,7 +142,7 @@ describe('GoogleAdsSource', () => {
       ConnectionMode: 'Public',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
-      ConnectorLabel: 'Google Ads',
+      ConnectorLabel: 'GoogleAds',
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           CustomConnector: {
