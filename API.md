@@ -1171,6 +1171,282 @@ The type of the flow.
 ---
 
 
+### GoogleAdsConnectorProfile <a name="GoogleAdsConnectorProfile" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile"></a>
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer"></a>
+
+```typescript
+import { GoogleAdsConnectorProfile } from '@cdklabs/cdk-appflow'
+
+new GoogleAdsConnectorProfile(scope: Construct, id: string, props: GoogleAdsConnectorProfileProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps">GoogleAdsConnectorProfileProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps">GoogleAdsConnectorProfileProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+
+---
+
+##### `toString` <a name="toString" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `applyRemovalPolicy` <a name="applyRemovalPolicy" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.applyRemovalPolicy"></a>
+
+```typescript
+public applyRemovalPolicy(policy: RemovalPolicy): void
+```
+
+Apply the given removal policy to this resource.
+
+The Removal Policy controls what happens to this resource when it stops
+being managed by CloudFormation, either because you've removed it from the
+CDK application or because you've made a change that requires the resource
+to be replaced.
+
+The resource can be deleted (`RemovalPolicy.DESTROY`), or left in your AWS
+account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
+
+###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.applyRemovalPolicy.parameter.policy"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | *No description.* |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isConstruct"></a>
+
+```typescript
+import { GoogleAdsConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GoogleAdsConnectorProfile.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isOwnedResource` <a name="isOwnedResource" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isOwnedResource"></a>
+
+```typescript
+import { GoogleAdsConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GoogleAdsConnectorProfile.isOwnedResource(construct: IConstruct)
+```
+
+Returns true if the construct was created by CDK, and false otherwise.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isOwnedResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `isResource` <a name="isResource" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isResource"></a>
+
+```typescript
+import { GoogleAdsConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GoogleAdsConnectorProfile.isResource(construct: IConstruct)
+```
+
+Check whether the given construct is a Resource.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.isResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `fromConnectionProfileArn` <a name="fromConnectionProfileArn" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileArn"></a>
+
+```typescript
+import { GoogleAdsConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GoogleAdsConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileArn.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
+
+- *Type:* string
+
+---
+
+##### `fromConnectionProfileName` <a name="fromConnectionProfileName" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileName"></a>
+
+```typescript
+import { GoogleAdsConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GoogleAdsConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileName.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.fromConnectionProfileName.parameter.name"></a>
+
+- *Type:* string
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `env`<sup>Required</sup> <a name="env" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.env"></a>
+
+```typescript
+public readonly env: ResourceEnvironment;
+```
+
+- *Type:* aws-cdk-lib.ResourceEnvironment
+
+The environment this resource belongs to.
+
+For resources that are created and managed by the CDK
+(generally, those created by creating new class instances like Role, Bucket, etc.),
+this is always the same as the environment of the stack they belong to;
+however, for imported resources
+(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
+that might be different than the stack they were imported into.
+
+---
+
+##### `stack`<sup>Required</sup> <a name="stack" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.stack"></a>
+
+```typescript
+public readonly stack: Stack;
+```
+
+- *Type:* aws-cdk-lib.Stack
+
+The stack in which this resource is defined.
+
+---
+
+##### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.arn"></a>
+
+```typescript
+public readonly arn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `credentials`<sup>Optional</sup> <a name="credentials" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.property.credentials"></a>
+
+```typescript
+public readonly credentials: ISecret;
+```
+
+- *Type:* aws-cdk-lib.aws_secretsmanager.ISecret
+
+---
+
+
 ### GoogleAnalytics4ConnectorProfile <a name="GoogleAnalytics4ConnectorProfile" id="@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile"></a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile.Initializer"></a>
@@ -7694,6 +7970,338 @@ public readonly validations: IValidation[];
 
 ---
 
+### GoogleAdsConnectorProfileProps <a name="GoogleAdsConnectorProfileProps" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.Initializer"></a>
+
+```typescript
+import { GoogleAdsConnectorProfileProps } from '@cdklabs/cdk-appflow'
+
+const googleAdsConnectorProfileProps: GoogleAdsConnectorProfileProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.developerToken">developerToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.oAuth">oAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthSettings">GoogleAdsOAuthSettings</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.managerID">managerID</a></code> | <code>aws-cdk-lib.SecretValue</code> | *No description.* |
+
+---
+
+##### `key`<sup>Optional</sup> <a name="key" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.key"></a>
+
+```typescript
+public readonly key: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+
+TODO: think if this should be here as not all connector profiles have that.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `apiVersion`<sup>Required</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: string;
+```
+
+- *Type:* string
+
+---
+
+##### `developerToken`<sup>Required</sup> <a name="developerToken" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.developerToken"></a>
+
+```typescript
+public readonly developerToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+---
+
+##### `oAuth`<sup>Required</sup> <a name="oAuth" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.oAuth"></a>
+
+```typescript
+public readonly oAuth: GoogleAdsOAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthSettings">GoogleAdsOAuthSettings</a>
+
+---
+
+##### `managerID`<sup>Optional</sup> <a name="managerID" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.property.managerID"></a>
+
+```typescript
+public readonly managerID: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+---
+
+### GoogleAdsOAuthEndpoints <a name="GoogleAdsOAuthEndpoints" id="@cdklabs/cdk-appflow.GoogleAdsOAuthEndpoints"></a>
+
+Google's OAuth token and authorization endpoints.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAdsOAuthEndpoints.Initializer"></a>
+
+```typescript
+import { GoogleAdsOAuthEndpoints } from '@cdklabs/cdk-appflow'
+
+const googleAdsOAuthEndpoints: GoogleAdsOAuthEndpoints = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthEndpoints.property.authorization">authorization</a></code> | <code>string</code> | The OAuth authorization endpoint URI. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthEndpoints.property.token">token</a></code> | <code>string</code> | The OAuth token endpoint URI. |
+
+---
+
+##### `authorization`<sup>Optional</sup> <a name="authorization" id="@cdklabs/cdk-appflow.GoogleAdsOAuthEndpoints.property.authorization"></a>
+
+```typescript
+public readonly authorization: string;
+```
+
+- *Type:* string
+
+The OAuth authorization endpoint URI.
+
+---
+
+##### `token`<sup>Optional</sup> <a name="token" id="@cdklabs/cdk-appflow.GoogleAdsOAuthEndpoints.property.token"></a>
+
+```typescript
+public readonly token: string;
+```
+
+- *Type:* string
+
+The OAuth token endpoint URI.
+
+---
+
+### GoogleAdsOAuthFlow <a name="GoogleAdsOAuthFlow" id="@cdklabs/cdk-appflow.GoogleAdsOAuthFlow"></a>
+
+Represents the OAuth flow enabled for the GoogleAds.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAdsOAuthFlow.Initializer"></a>
+
+```typescript
+import { GoogleAdsOAuthFlow } from '@cdklabs/cdk-appflow'
+
+const googleAdsOAuthFlow: GoogleAdsOAuthFlow = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthFlow.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow">GoogleAdsRefreshTokenGrantFlow</a></code> | The details required for executing the refresh token grant flow. |
+
+---
+
+##### `refreshTokenGrant`<sup>Required</sup> <a name="refreshTokenGrant" id="@cdklabs/cdk-appflow.GoogleAdsOAuthFlow.property.refreshTokenGrant"></a>
+
+```typescript
+public readonly refreshTokenGrant: GoogleAdsRefreshTokenGrantFlow;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow">GoogleAdsRefreshTokenGrantFlow</a>
+
+The details required for executing the refresh token grant flow.
+
+---
+
+### GoogleAdsOAuthSettings <a name="GoogleAdsOAuthSettings" id="@cdklabs/cdk-appflow.GoogleAdsOAuthSettings"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAdsOAuthSettings.Initializer"></a>
+
+```typescript
+import { GoogleAdsOAuthSettings } from '@cdklabs/cdk-appflow'
+
+const googleAdsOAuthSettings: GoogleAdsOAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | The access token to be used when interacting with Google Ads. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthEndpoints">GoogleAdsOAuthEndpoints</a></code> | The OAuth token and authorization endpoints. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthFlow">GoogleAdsOAuthFlow</a></code> | The OAuth flow used for obtaining a new accessToken when the old is not present or expired. |
+
+---
+
+##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.GoogleAdsOAuthSettings.property.accessToken"></a>
+
+```typescript
+public readonly accessToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+- *Default:* Retrieves a fresh accessToken with the information in the [flow property]{@link GoogleAdsOAuthSettings#flow }
+
+The access token to be used when interacting with Google Ads.
+
+Note that if only the access token is provided AppFlow is not able to retrieve a fresh access token when the current one is expired
+
+---
+
+##### `endpoints`<sup>Optional</sup> <a name="endpoints" id="@cdklabs/cdk-appflow.GoogleAdsOAuthSettings.property.endpoints"></a>
+
+```typescript
+public readonly endpoints: GoogleAdsOAuthEndpoints;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthEndpoints">GoogleAdsOAuthEndpoints</a>
+
+The OAuth token and authorization endpoints.
+
+---
+
+##### `flow`<sup>Optional</sup> <a name="flow" id="@cdklabs/cdk-appflow.GoogleAdsOAuthSettings.property.flow"></a>
+
+```typescript
+public readonly flow: GoogleAdsOAuthFlow;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAdsOAuthFlow">GoogleAdsOAuthFlow</a>
+- *Default:* undefined. AppFlow will not request any new accessToken after expiry.
+
+The OAuth flow used for obtaining a new accessToken when the old is not present or expired.
+
+---
+
+### GoogleAdsRefreshTokenGrantFlow <a name="GoogleAdsRefreshTokenGrantFlow" id="@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow"></a>
+
+The OAuth elements required for the execution of the refresh token grant flow.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow.Initializer"></a>
+
+```typescript
+import { GoogleAdsRefreshTokenGrantFlow } from '@cdklabs/cdk-appflow'
+
+const googleAdsRefreshTokenGrantFlow: GoogleAdsRefreshTokenGrantFlow = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | The id of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | The secret of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | A non-expired refresh token. |
+
+---
+
+##### `clientId`<sup>Optional</sup> <a name="clientId" id="@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow.property.clientId"></a>
+
+```typescript
+public readonly clientId: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The id of the client app.
+
+---
+
+##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow.property.clientSecret"></a>
+
+```typescript
+public readonly clientSecret: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The secret of the client app.
+
+---
+
+##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.GoogleAdsRefreshTokenGrantFlow.property.refreshToken"></a>
+
+```typescript
+public readonly refreshToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+A non-expired refresh token.
+
+---
+
+### GoogleAdsSourceProps <a name="GoogleAdsSourceProps" id="@cdklabs/cdk-appflow.GoogleAdsSourceProps"></a>
+
+Properties of a Google Ads Source.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAdsSourceProps.Initializer"></a>
+
+```typescript
+import { GoogleAdsSourceProps } from '@cdklabs/cdk-appflow'
+
+const googleAdsSourceProps: GoogleAdsSourceProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsSourceProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsSourceProps.property.object">object</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile">GoogleAdsConnectorProfile</a></code> | *No description.* |
+
+---
+
+##### `apiVersion`<sup>Required</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.GoogleAdsSourceProps.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: string;
+```
+
+- *Type:* string
+
+---
+
+##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.GoogleAdsSourceProps.property.object"></a>
+
+```typescript
+public readonly object: string;
+```
+
+- *Type:* string
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.GoogleAdsSourceProps.property.profile"></a>
+
+```typescript
+public readonly profile: GoogleAdsConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile">GoogleAdsConnectorProfile</a>
+
+---
+
 ### GoogleAnalytics4ConnectorProfileProps <a name="GoogleAnalytics4ConnectorProfileProps" id="@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfileProps"></a>
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfileProps.Initializer"></a>
@@ -13725,6 +14333,74 @@ public readonly properties: TaskProperty[];
 ---
 
 
+### GoogleAdsSource <a name="GoogleAdsSource" id="@cdklabs/cdk-appflow.GoogleAdsSource"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+
+A class that represents a Google Ads v4 Source.
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GoogleAdsSource.Initializer"></a>
+
+```typescript
+import { GoogleAdsSource } from '@cdklabs/cdk-appflow'
+
+new GoogleAdsSource(props: GoogleAdsSourceProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsSource.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.GoogleAdsSourceProps">GoogleAdsSourceProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.GoogleAdsSource.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GoogleAdsSourceProps">GoogleAdsSourceProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsSource.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.GoogleAdsSource.bind"></a>
+
+```typescript
+public bind(scope: IFlow): SourceFlowConfigProperty
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.GoogleAdsSource.bind.parameter.scope"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsSource.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.GoogleAdsSource.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
 ### GoogleAnalytics4Source <a name="GoogleAnalytics4Source" id="@cdklabs/cdk-appflow.GoogleAnalytics4Source"></a>
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
@@ -16336,7 +17012,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 - *Extends:* aws-cdk-lib.IResource
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile">GoogleBigQueryConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MailchimpConnectorProfile">MailchimpConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile">GoogleAdsConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile">GoogleBigQueryConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MailchimpConnectorProfile">MailchimpConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 
 #### Properties <a name="Properties" id="Properties"></a>
@@ -16748,7 +17424,7 @@ public bind(flow: IFlow, source: ISource): TaskProperty[]
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
 
 A source of an AppFlow flow.
 
@@ -16847,7 +17523,7 @@ A representation of a validation operation, that is an operation testing records
 
 ### IVertex <a name="IVertex" id="@cdklabs/cdk-appflow.IVertex"></a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 An interface representing a vertex, i.e. a source or a destination of an AppFlow flow.
 
@@ -16993,6 +17669,29 @@ The AppFlow type of the connector that this source is implemented for.
 
 
 ##### `SCHEDULED` <a name="SCHEDULED" id="@cdklabs/cdk-appflow.FlowType.SCHEDULED"></a>
+
+---
+
+
+### GoogleAdsApiVersion <a name="GoogleAdsApiVersion" id="@cdklabs/cdk-appflow.GoogleAdsApiVersion"></a>
+
+An enum representing the GoogleAds API versions.
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsApiVersion.V13">V13</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsApiVersion.V14">V14</a></code> | *No description.* |
+
+---
+
+##### `V13` <a name="V13" id="@cdklabs/cdk-appflow.GoogleAdsApiVersion.V13"></a>
+
+---
+
+
+##### `V14` <a name="V14" id="@cdklabs/cdk-appflow.GoogleAdsApiVersion.V14"></a>
 
 ---
 

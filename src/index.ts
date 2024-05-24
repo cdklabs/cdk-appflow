@@ -22,3 +22,4 @@ export * from './snowflake';
 export * from './redshift';
 export * from './zendesk';
 export * from './mailchimp';
+export * from './googleads';
