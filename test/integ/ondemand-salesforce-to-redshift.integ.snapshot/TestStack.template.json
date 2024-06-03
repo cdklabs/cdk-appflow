@@ -218,7 +218,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "b7f33614a69548d6bafe224d751a7ef238cde19097415e553fe8b63a4c8fd8a6.zip"
+     "S3Key": "2eb6a831b107939f63cfebf68e6316e1a40f79fc99cae0fee9b333bac8d29bc4.zip"
     },
     "Timeout": 900,
     "MemorySize": 128,
@@ -825,7 +825,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "7382a0addb9f34974a1ea6c6c9b063882af874828f366f5c93b2b7b64db15c94.zip"
+     "S3Key": "3542be390685e0c8353d92ccb5796d343cd93ca946b6b0de798004206a199adc.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (TestStack/TestTable/Resource/Provider)",
     "Environment": {
@@ -1122,7 +1122,7 @@
          "Arn"
         ]
        },
-       "\"]},\"physicalResourceId\":{\"id\":\"TestRedshiftProfileRedshiftRoleAttach\"}}"
+       "\"]},\"physicalResourceId\":{\"id\":\"TestRedshiftProfileRedshiftRoleAttach\"},\"logApiResponseData\":true}"
       ]
      ]
     },
@@ -1237,7 +1237,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "ed6cd104ff5f101d06dae8cb2b87cc6e6d69b9a22055b467ea6cae10ff023023.zip"
+     "S3Key": "97f30e67419a1676a2215492723e5add1aa491caf0cbe2dd878fc4fab0468cd4.zip"
     },
     "Handler": "index.handler",
     "Role": {
