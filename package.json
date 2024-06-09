@@ -127,7 +127,7 @@
     "@typescript-eslint/parser": "^7",
     "aws-cdk": "^2",
     "aws-cdk-lib": "2.121.1",
-    "cdklabs-projen-project-types": "^0.1.197",
+    "cdklabs-projen-project-types": "^0.1.198",
     "constructs": "10.0.5",
     "esbuild": "^0.21.4",
     "eslint": "^8",
