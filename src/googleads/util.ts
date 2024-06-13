@@ -7,6 +7,5 @@ SPDX-License-Identifier: Apache-2.0
  * An enum representing the GoogleAds API versions.
  */
 export enum GoogleAdsApiVersion {
-  V14 = 'v14',
   V16 = 'v16',
 }
