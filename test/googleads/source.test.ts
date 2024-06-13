@@ -70,7 +70,7 @@ describe('GoogleAdsSource', () => {
       ],
       FlowName: 'TestFlow',
       SourceFlowConfig: {
-        ApiVersion: 'v14',
+        ApiVersion: 'v16',
         ConnectorProfileName: 'dummy-profile',
         ConnectorType: 'CustomConnector',
         SourceConnectorProperties: {
@@ -182,7 +182,7 @@ describe('GoogleAdsSource', () => {
         ],
         FlowName: 'TestFlow',
         SourceFlowConfig: {
-          ApiVersion: 'v14',
+          ApiVersion: 'v16',
           ConnectorProfileName: 'TestProfile',
           ConnectorType: 'CustomConnector',
           SourceConnectorProperties: {
