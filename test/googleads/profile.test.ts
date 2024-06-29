@@ -30,7 +30,7 @@ describe('GoogleAdsConnectorProfile', () => {
           },
         },
       },
-      apiVersion: GoogleAdsApiVersion.V14,
+      apiVersion: GoogleAdsApiVersion.V16,
       managerID: SecretValue.unsafePlainText('managerId'),
       developerToken: SecretValue.unsafePlainText('developerToken'),
     });

@@ -17681,17 +17681,11 @@ An enum representing the GoogleAds API versions.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsApiVersion.V13">V13</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsApiVersion.V14">V14</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GoogleAdsApiVersion.V16">V16</a></code> | *No description.* |
 
 ---
 
-##### `V13` <a name="V13" id="@cdklabs/cdk-appflow.GoogleAdsApiVersion.V13"></a>
-
----
-
-
-##### `V14` <a name="V14" id="@cdklabs/cdk-appflow.GoogleAdsApiVersion.V14"></a>
+##### `V16` <a name="V16" id="@cdklabs/cdk-appflow.GoogleAdsApiVersion.V16"></a>
 
 ---
 
