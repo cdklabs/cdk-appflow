@@ -23,7 +23,7 @@ describe('GoogleAdsSource', () => {
     const source = new GoogleAdsSource({
       profile: GoogleAdsConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
       object: 'campaign-1112931111',
-      apiVersion: GoogleAdsApiVersion.V14,
+      apiVersion: GoogleAdsApiVersion.V16,
     });
 
     const expectedConnectorType = GoogleAdsConnectorType.instance;
@@ -41,7 +41,7 @@ describe('GoogleAdsSource', () => {
     const stack = new Stack(undefined, 'TestStack');
     const source = new GoogleAdsSource({
       profile: GoogleAdsConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
-      apiVersion: GoogleAdsApiVersion.V14,
+      apiVersion: GoogleAdsApiVersion.V16,
       object: 'campaign',
     });
 
@@ -70,7 +70,7 @@ describe('GoogleAdsSource', () => {
       ],
       FlowName: 'TestFlow',
       SourceFlowConfig: {
-        ApiVersion: 'v14',
+        ApiVersion: 'v16',
         ConnectorProfileName: 'dummy-profile',
         ConnectorType: 'CustomConnector',
         SourceConnectorProperties: {
@@ -115,7 +115,7 @@ describe('GoogleAdsSource', () => {
           },
         },
       },
-      apiVersion: GoogleAdsApiVersion.V14,
+      apiVersion: GoogleAdsApiVersion.V16,
       managerID: SecretValue.unsafePlainText('managerId'),
       developerToken: SecretValue.unsafePlainText('developerToken'),
     });
@@ -123,7 +123,7 @@ describe('GoogleAdsSource', () => {
     const source = new GoogleAdsSource({
       profile: profile,
       object: 'campaign-1112931111',
-      apiVersion: GoogleAdsApiVersion.V14,
+      apiVersion: GoogleAdsApiVersion.V16,
     });
 
     const destination = new S3Destination({
@@ -182,7 +182,7 @@ describe('GoogleAdsSource', () => {
         ],
         FlowName: 'TestFlow',
         SourceFlowConfig: {
-          ApiVersion: 'v14',
+          ApiVersion: 'v16',
           ConnectorProfileName: 'TestProfile',
           ConnectorType: 'CustomConnector',
           SourceConnectorProperties: {
