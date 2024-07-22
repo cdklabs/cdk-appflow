@@ -146,7 +146,7 @@ describe('GoogleBigQuerySource', () => {
       ConnectionMode: 'Public',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
-      ConnectorLabel: 'Google BigQuery',
+      ConnectorLabel: 'GoogleBigQuery',
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           CustomConnector: {
