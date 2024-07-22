@@ -33,7 +33,7 @@ describe('GoogleBigQueryConnectorProfile', () => {
       ConnectionMode: 'Public',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
-      ConnectorLabel: 'Google BigQuery',
+      ConnectorLabel: 'GoogleBigQuery',
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           CustomConnector: {
@@ -83,7 +83,7 @@ describe('GoogleBigQueryConnectorProfile', () => {
       ConnectionMode: 'Public',
       ConnectorProfileName: 'TestProfile',
       ConnectorType: 'CustomConnector',
-      ConnectorLabel: 'Google BigQuery',
+      ConnectorLabel: 'GoogleBigQuery',
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           CustomConnector: {
@@ -193,7 +193,7 @@ describe('GoogleBigQueryConnectorProfile', () => {
         ConnectionMode: 'Public',
         ConnectorProfileName: 'TestProfile',
         ConnectorType: 'CustomConnector',
-        ConnectorLabel: 'Google BigQuery',
+        ConnectorLabel: 'GoogleBigQuery',
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {
             CustomConnector: {

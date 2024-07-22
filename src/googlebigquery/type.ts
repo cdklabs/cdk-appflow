@@ -19,6 +19,6 @@ export class GoogleBigQueryConnectorType extends ConnectorType {
   private static actualInstance: ConnectorType;
 
   constructor() {
-    super('Google BigQuery', true);
+    super('GoogleBigQuery', true);
   }
 }
