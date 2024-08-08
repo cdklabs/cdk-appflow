@@ -5,6 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 export * from './core';
 
 export * from './amazonrdsforpostgresql';
+export * from './asana';
 export * from './eventbridge';
 export * from './googleanalytics4';
 export * from './googlebigquery';

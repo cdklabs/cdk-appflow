@@ -23,6 +23,7 @@ tsconfig.tsbuildinfo
 /.eslintrc.json
 !.jsii
 !/assets/
+test/integ/ondemand-asana-to-s3.integ.snapshot
 test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot
 test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot
 test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot
