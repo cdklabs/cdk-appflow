@@ -4,60 +4,46 @@
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
+    "ConnectorLabel": "Asana",
     "ConnectorProfileConfig": {
      "ConnectorProfileCredentials": {
-      "Slack": {
-       "AccessToken": {
-        "Fn::Join": [
-         "",
-         [
-          "{{resolve:secretsmanager:arn:",
-          {
-           "Ref": "AWS::Partition"
-          },
-          ":secretsmanager:",
-          {
-           "Ref": "AWS::Region"
-          },
-          ":",
-          {
-           "Ref": "AWS::AccountId"
-          },
-          ":secret:appflow/slack:SecretString:accessToken::}}"
-         ]
-        ]
-       },
-       "ClientId": "dummyClientId",
-       "ClientSecret": "dummyClientSecret"
+      "CustomConnector": {
+       "AuthenticationType": "CUSTOM",
+       "Custom": {
+        "CredentialsMap": {
+         "patToken": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/asana:SecretString:patToken::}}"
+           ]
+          ]
+         }
+        },
+        "CustomAuthenticationType": "PAT"
+       }
       }
      },
      "ConnectorProfileProperties": {
-      "Slack": {
-       "InstanceUrl": {
-        "Fn::Join": [
-         "",
-         [
-          "{{resolve:secretsmanager:arn:",
-          {
-           "Ref": "AWS::Partition"
-          },
-          ":secretsmanager:",
-          {
-           "Ref": "AWS::Region"
-          },
-          ":",
-          {
-           "Ref": "AWS::AccountId"
-          },
-          ":secret:appflow/slack:SecretString:instanceUrl::}}"
-         ]
-        ]
-       }
+      "CustomConnector": {
+       "ProfileProperties": {}
       }
      }
     },
     "ConnectorProfileName": "TestConnectorProfile",
-    "ConnectorType": "Slack"
+    "ConnectorType": "CustomConnector"
    }
   },
   "TestBucket560B80BC": {
@@ -270,11 +256,12 @@
     ],
     "FlowName": "OnDemandFlow",
     "SourceFlowConfig": {
+     "ApiVersion": "1.0",
      "ConnectorProfileName": "TestConnectorProfile",
-     "ConnectorType": "Slack",
+     "ConnectorType": "CustomConnector",
      "SourceConnectorProperties": {
-      "Slack": {
-       "Object": {
+      "CustomConnector": {
+       "EntityName": {
         "Fn::Join": [
          "",
          [
@@ -290,7 +277,7 @@
           {
            "Ref": "AWS::AccountId"
           },
-          ":secret:appflow/slack:SecretString:conversation::}}"
+          ":secret:appflow/asana:SecretString:object::}}"
          ]
         ]
        }
@@ -300,7 +287,7 @@
     "Tasks": [
      {
       "ConnectorOperator": {
-       "Slack": "NO_OP"
+       "CustomConnector": "NO_OP"
       },
       "SourceFields": [],
       "TaskProperties": [

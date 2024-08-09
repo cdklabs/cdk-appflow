@@ -5,7 +5,8 @@ SPDX-License-Identifier: Apache-2.0
 import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
 import { Stability } from 'projen/lib/cdk';
 
-const cdkVersion = '2.121.1';
+const cdkVersion = '2.151.0';
+
 const project = new CdklabsConstructLibrary({
   name: '@cdklabs/cdk-appflow',
   author: 'Amazon Web Services',
@@ -17,12 +18,16 @@ const project = new CdklabsConstructLibrary({
   repositoryUrl: 'https://github.com/cdklabs/cdk-appflow.git',
   stability: Stability.EXPERIMENTAL,
   docgen: true,
-  bundledDeps: ['@types/aws-lambda'],
-  devDeps: ['esbuild'],
+  bundledDeps: [],
+  devDeps: [
+    '@types/aws-lambda',
+    'esbuild',
+  ],
   peerDeps: [
     `@aws-cdk/aws-redshift-alpha@${cdkVersion}-alpha.0`,
     `@aws-cdk/aws-glue-alpha@${cdkVersion}-alpha.0`,
   ],
+  jsiiVersion: '~5.4.30',
   keywords: [
     'aws',
     'appflow',

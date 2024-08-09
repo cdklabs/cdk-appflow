@@ -18,6 +18,11 @@
     "eject": "npx projen eject",
     "eslint": "npx projen eslint",
     "integ": "npx projen integ",
+    "integ:ondemand-asana-to-s3:assert": "npx projen integ:ondemand-asana-to-s3:assert",
+    "integ:ondemand-asana-to-s3:deploy": "npx projen integ:ondemand-asana-to-s3:deploy",
+    "integ:ondemand-asana-to-s3:destroy": "npx projen integ:ondemand-asana-to-s3:destroy",
+    "integ:ondemand-asana-to-s3:snapshot": "npx projen integ:ondemand-asana-to-s3:snapshot",
+    "integ:ondemand-asana-to-s3:watch": "npx projen integ:ondemand-asana-to-s3:watch",
     "integ:ondemand-googleanalytics4-to-s3:assert": "npx projen integ:ondemand-googleanalytics4-to-s3:assert",
     "integ:ondemand-googleanalytics4-to-s3:deploy": "npx projen integ:ondemand-googleanalytics4-to-s3:deploy",
     "integ:ondemand-googleanalytics4-to-s3:destroy": "npx projen integ:ondemand-googleanalytics4-to-s3:destroy",
@@ -117,16 +122,17 @@
     "organization": true
   },
   "devDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.121.1-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.121.1-alpha.0",
+    "@aws-cdk/aws-glue-alpha": "2.151.0-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.151.0-alpha.0",
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
+    "@types/aws-lambda": "^8.10.143",
     "@types/jest": "^27",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^7",
     "@typescript-eslint/parser": "^7",
     "aws-cdk": "^2",
-    "aws-cdk-lib": "2.121.1",
+    "aws-cdk-lib": "2.151.0",
     "cdklabs-projen-project-types": "^0.1.200",
     "constructs": "10.0.5",
     "esbuild": "^0.23.0",
@@ -135,7 +141,7 @@
     "eslint-plugin-import": "^2.29.1",
     "jest": "^27",
     "jest-junit": "^15",
-    "jsii": "~5.2",
+    "jsii": "~5.4.30",
     "jsii-diff": "^1.102.0",
     "jsii-docgen": "^8.0.56",
     "jsii-pacmak": "^1.102.0",
@@ -147,17 +153,11 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.121.1-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.121.1-alpha.0",
-    "aws-cdk-lib": "^2.121.1",
+    "@aws-cdk/aws-glue-alpha": "2.151.0-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.151.0-alpha.0",
+    "aws-cdk-lib": "^2.151.0",
     "constructs": "^10.0.5"
   },
-  "dependencies": {
-    "@types/aws-lambda": "^8.10.143"
-  },
-  "bundledDependencies": [
-    "@types/aws-lambda"
-  ],
   "keywords": [
     "appflow",
     "aws",

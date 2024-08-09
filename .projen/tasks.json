@@ -187,6 +187,69 @@
         }
       ]
     },
+    "integ:ondemand-asana-to-s3:assert": {
+      "name": "integ:ondemand-asana-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-asana-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-asana-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-asana-to-s3'. Run 'projen integ:ondemand-asana-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-asana-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-asana-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-asana-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-asana-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:deploy": {
+      "name": "integ:ondemand-asana-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-asana-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-asana-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-asana-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-asana-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-asana-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-asana-to-s3.integ/deploy.cdk.out test/integ/ondemand-asana-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-asana-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:destroy": {
+      "name": "integ:ondemand-asana-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-asana-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-asana-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:snapshot": {
+      "name": "integ:ondemand-asana-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-asana-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-asana-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-asana-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:watch": {
+      "name": "integ:ondemand-asana-to-s3:watch",
+      "description": "watch integration test 'ondemand-asana-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-asana-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-asana-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
     "integ:ondemand-googleanalytics4-to-s3:assert": {
       "name": "integ:ondemand-googleanalytics4-to-s3:assert",
       "description": "assert the snapshot of integration test 'ondemand-googleanalytics4-to-s3'",
@@ -1074,6 +1137,9 @@
       "description": "update snapshot for all integration tests",
       "steps": [
         {
+          "spawn": "integ:ondemand-asana-to-s3:snapshot"
+        },
+        {
           "spawn": "integ:ondemand-googleanalytics4-to-s3:snapshot"
         },
         {
@@ -1277,6 +1343,9 @@
           "spawn": "eslint"
         },
         {
+          "spawn": "integ:ondemand-asana-to-s3:assert"
+        },
+        {
           "spawn": "integ:ondemand-googleanalytics4-to-s3:assert"
         },
         {
@@ -1357,19 +1426,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=prod --filter=@types/aws-lambda"
-        },
-        {
-          "exec": "yarn install --check-files"
-        },
-        {
-          "exec": "yarn upgrade @types/aws-lambda"
-        },
-        {
-          "exec": "npx projen"
-        },
-        {
-          "spawn": "post-upgrade"
+          "exec": "echo No dependencies to upgrade."
         }
       ]
     },
@@ -1405,13 +1462,13 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/jest,cdklabs-projen-project-types,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,projen,ts-jest,ts-node,typescript"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev --filter=@types/aws-lambda,@types/jest,cdklabs-projen-project-types,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,projen,ts-jest,ts-node,typescript"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk cdklabs-projen-project-types esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii projen standard-version ts-jest ts-node typescript @aws-cdk/integ-runner @aws-cdk/integ-tests-alpha"
+          "exec": "yarn upgrade @types/aws-lambda @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk cdklabs-projen-project-types esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii projen standard-version ts-jest ts-node typescript @aws-cdk/integ-runner @aws-cdk/integ-tests-alpha"
         },
         {
           "exec": "npx projen"
