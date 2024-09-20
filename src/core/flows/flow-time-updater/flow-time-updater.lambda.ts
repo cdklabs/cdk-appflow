@@ -67,7 +67,7 @@ function buildForRateBasedSchedule(expressionString: string, startTime?: Date) {
     rateUnit = `${rateUnit}s`;
   }
 
-  expressionString = `rate(${rate} ${rateUnit})`;
+  expressionString = `rate(${rate}${rateUnit})`;
 
   if (startTime) {
 
