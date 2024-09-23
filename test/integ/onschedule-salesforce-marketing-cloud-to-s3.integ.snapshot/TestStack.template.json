@@ -577,7 +577,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2"
      },
-     "S3Key": "d9861ea7a45affd23e47a614acb2fddc6e45c20a891284c958187dafbf9ee36b.zip"
+     "S3Key": "4dc48ffba382f93077a1e6824599bbd4ceb6f91eb3d9442eca3b85bdb1a20b1e.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (TestStack/com.amazonaws.cdk.custom-resources.flow-time-provider/flow-time-provider)",
     "Environment": {
