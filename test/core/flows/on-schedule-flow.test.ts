@@ -99,4 +99,48 @@ describe('OnScheduleFlow', () => {
       },
     });
   });
+
+  test('it passes timezone and offset', () => {
+    const stack = new Stack(undefined, 'TestStack');
+
+    const bucket = new Bucket(stack, 'TestBucket');
+
+    const source = new S3Source({
+      bucket: bucket,
+      prefix: 'account',
+    });
+
+    const destination = new S3Destination({
+      location: { bucket, prefix: 'new-account' },
+    });
+
+
+    new OnScheduleFlow(stack, 'OnScheduleFlow', {
+      source,
+      destination,
+      mappings: [Mapping.mapAll()],
+      schedule: Schedule.rate(Duration.days(1)),
+      pullConfig: {
+        mode: DataPullMode.INCREMENTAL,
+      },
+      scheduleProperties: {
+        offset: Duration.hours(1),
+        timezone: 'America/New_York',
+      },
+    });
+
+    const template = Template.fromStack(stack);
+
+    template.hasResourceProperties('AWS::AppFlow::Flow', {
+      FlowName: 'OnScheduleFlow',
+      TriggerConfig: {
+        TriggerType: 'Scheduled',
+        TriggerProperties: {
+          DataPullMode: 'Incremental',
+          Offset: 3600,
+          TimeZone: 'America/New_York',
+        },
+      },
+    });
+  });
 });
