@@ -36,5 +36,8 @@ const project = new CdklabsConstructLibrary({
   gitignore: [
     '*.rest', '.vscode', '**/.DS_Store',
   ],
+  jestOptions: {
+    jestVersion: '^29',
+  },
 });
 project.synth();
