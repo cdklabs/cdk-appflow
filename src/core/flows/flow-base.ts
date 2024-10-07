@@ -127,7 +127,6 @@ export interface ScheduleProperties {
    * @default 30 days back from the initial frow run
    */
   readonly firstExecutionFrom?: Date;
-  readonly timezone?: string;
 }
 
 export interface TriggerProperties {

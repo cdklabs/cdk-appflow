@@ -12425,7 +12425,6 @@ const scheduleProperties: ScheduleProperties = { ... }
 | <code><a href="#@cdklabs/cdk-appflow.ScheduleProperties.property.firstExecutionFrom">firstExecutionFrom</a></code> | <code>Date</code> | Timestamp for the records to import from the connector in the first flow run. |
 | <code><a href="#@cdklabs/cdk-appflow.ScheduleProperties.property.offset">offset</a></code> | <code>aws-cdk-lib.Duration</code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.ScheduleProperties.property.startTime">startTime</a></code> | <code>Date</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.ScheduleProperties.property.timezone">timezone</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -12469,16 +12468,6 @@ public readonly startTime: Date;
 ```
 
 - *Type:* Date
-
----
-
-##### `timezone`<sup>Optional</sup> <a name="timezone" id="@cdklabs/cdk-appflow.ScheduleProperties.property.timezone"></a>
-
-```typescript
-public readonly timezone: string;
-```
-
-- *Type:* string
 
 ---
 
