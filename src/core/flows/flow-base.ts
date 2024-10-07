@@ -303,6 +303,7 @@ export abstract class FlowBase extends Resource implements IFlow {
         Math.floor(props.properties.firstExecutionFrom.getTime() / 1000),
       scheduleStartTime: props.properties?.startTime && updater.startTime,
       scheduleEndTime: props.properties?.endTime && updater.endTime,
+      scheduleOffset: props.properties?.offset && props.properties.offset.toSeconds(),
     };
   }
 

@@ -100,7 +100,7 @@ describe('OnScheduleFlow', () => {
     });
   });
 
-  test('it passes timezone and offset', () => {
+  test('it passes offset', () => {
     const stack = new Stack(undefined, 'TestStack');
 
     const bucket = new Bucket(stack, 'TestBucket');
@@ -125,7 +125,6 @@ describe('OnScheduleFlow', () => {
       },
       scheduleProperties: {
         offset: Duration.hours(1),
-        timezone: 'America/New_York',
       },
     });
 
@@ -137,8 +136,7 @@ describe('OnScheduleFlow', () => {
         TriggerType: 'Scheduled',
         TriggerProperties: {
           DataPullMode: 'Incremental',
-          Offset: 3600,
-          TimeZone: 'America/New_York',
+          ScheduleOffset: 3600,
         },
       },
     });
