@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { IResource, Lazy, Resource } from 'aws-cdk-lib';
+import { Duration, IResource, Lazy, Resource } from 'aws-cdk-lib';
 import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 
 import { Metric, MetricOptions } from 'aws-cdk-lib/aws-cloudwatch';
@@ -121,11 +121,13 @@ export interface DataPullConfig {
 export interface ScheduleProperties {
   readonly startTime?: Date;
   readonly endTime?: Date;
+  readonly offset?: Duration;
   /**
    * Timestamp for the records to import from the connector in the first flow run
    * @default 30 days back from the initial frow run
    */
   readonly firstExecutionFrom?: Date;
+  readonly timezone?: string;
 }
 
 export interface TriggerProperties {
