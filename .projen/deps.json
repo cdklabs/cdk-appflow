@@ -6,6 +6,7 @@
     },
     {
       "name": "@types/jest",
+      "version": "^29",
       "type": "build"
     },
     {
@@ -55,12 +56,13 @@
       "type": "build"
     },
     {
-      "name": "jest",
+      "name": "jest-junit",
+      "version": "^15",
       "type": "build"
     },
     {
-      "name": "jest-junit",
-      "version": "^15",
+      "name": "jest",
+      "version": "^29",
       "type": "build"
     },
     {
@@ -91,6 +93,7 @@
     },
     {
       "name": "ts-jest",
+      "version": "^29",
       "type": "build"
     },
     {
