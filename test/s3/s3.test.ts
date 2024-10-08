@@ -4,7 +4,7 @@ SPDX-License-Identifier: Apache-2.0
 */
 import { Database } from '@aws-cdk/aws-glue-alpha';
 import { Stack } from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
+import { Template, Match } from 'aws-cdk-lib/assertions';
 import { Role } from 'aws-cdk-lib/aws-iam';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import {
@@ -216,10 +216,8 @@ describe('S3 Flow tests', () => {
     const template = Template.fromStack(stack);
 
     template.resourceCountIs('AWS::S3::Bucket', 0);
-    template.resourceCountIs('AWS::AppFlow::Flow', 1);
-    template.resourceCountIs('AWS::IAM::Role', 1);
-    template.resourceCountIs('AWS::Glue::Database', 1);
 
+    template.resourceCountIs('AWS::AppFlow::Flow', 1);
     template.hasResourceProperties('AWS::AppFlow::Flow', {
       DestinationFlowConfigList: [
         {
@@ -271,6 +269,118 @@ describe('S3 Flow tests', () => {
         TriggerType: 'OnDemand',
       },
     });
+
+    template.resourceCountIs('AWS::IAM::Role', 1);
+    template.hasResourceProperties('AWS::IAM::Role', {
+      AssumeRolePolicyDocument: {
+        Statement: [
+          {
+            Action: 'sts:AssumeRole',
+            Effect: 'Allow',
+            Principal: {
+              Service: 'appflow.amazonaws.com',
+            },
+          },
+        ],
+      },
+    });
+
+    template.resourceCountIs('AWS::IAM::Policy', 1);
+    template.hasResourceProperties('AWS::IAM::Policy', {
+      PolicyDocument: {
+        Statement: [
+          {
+            Action: Match.arrayEquals([
+              'glue:BatchCreatePartition',
+              'glue:CreatePartitionIndex',
+              'glue:DeleteDatabase',
+              'glue:GetTableVersions',
+              'glue:GetPartitions',
+              'glue:BatchDeletePartition',
+              'glue:DeleteTableVersion',
+              'glue:UpdateTable',
+              'glue:DeleteTable',
+              'glue:DeletePartitionIndex',
+              'glue:GetTableVersion',
+              'glue:CreatePartition',
+              'glue:UntagResource',
+              'glue:UpdatePartition',
+              'glue:TagResource',
+              'glue:UpdateDatabase',
+              'glue:CreateTable',
+              'glue:BatchUpdatePartition',
+              'glue:GetTables',
+              'glue:BatchGetPartition',
+              'glue:GetDatabases',
+              'glue:GetPartitionIndexes',
+              'glue:GetTable',
+              'glue:GetDatabase',
+              'glue:GetPartition',
+              'glue:CreateDatabase',
+              'glue:BatchDeleteTableVersion',
+              'glue:BatchDeleteTable',
+              'glue:DeletePartition',
+            ]),
+            Effect: 'Allow',
+            Resource: Match.arrayEquals([
+              {
+                'Fn::Join': [
+                  '',
+                  [
+                    'arn:',
+                    {
+                      Ref: 'AWS::Partition',
+                    },
+                    ':glue:',
+                    { Ref: 'AWS::Region' },
+                    ':',
+                    { Ref: 'AWS::AccountId' },
+                    ':catalog',
+                  ],
+                ],
+              },
+              {
+                'Fn::Join': [
+                  '',
+                  [
+                    'arn:',
+                    {
+                      Ref: 'AWS::Partition',
+                    },
+                    ':glue:',
+                    { Ref: 'AWS::Region' },
+                    ':',
+                    { Ref: 'AWS::AccountId' },
+                    ':database/',
+                    { Ref: 'TestDb6EF03243' },
+                  ],
+                ],
+              },
+              {
+                'Fn::Join': [
+                  '',
+                  [
+                    'arn:',
+                    {
+                      Ref: 'AWS::Partition',
+                    },
+                    ':glue:',
+                    { Ref: 'AWS::Region' },
+                    ':',
+                    { Ref: 'AWS::AccountId' },
+                    ':table/',
+                    { Ref: 'TestDb6EF03243' },
+                    '/tablePrefix*',
+                  ],
+                ],
+              },
+            ]),
+          },
+        ],
+      },
+    });
+
+    template.resourceCountIs('AWS::Glue::Database', 1);
   });
 
   test('Destination with catalog with custom role and imported values', () => {

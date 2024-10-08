@@ -221,6 +221,7 @@ export class S3Destination implements IDestination {
       assumedBy: new ServicePrincipal('appflow.amazonaws.com'),
     });
 
+    // see: https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-access-gdc
     role.addToPolicy(
       new PolicyStatement({
         effect: Effect.ALLOW,
