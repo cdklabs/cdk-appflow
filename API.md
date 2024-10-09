@@ -10997,18 +10997,21 @@ const s3Catalog: S3Catalog = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.S3Catalog.property.database">database</a></code> | <code>@aws-cdk/aws-glue-alpha.Database</code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.S3Catalog.property.tablePrefix">tablePrefix</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.S3Catalog.property.database">database</a></code> | <code>@aws-cdk/aws-glue-alpha.IDatabase</code> | The AWS Glue database that will contain the tables created when the flow executes. |
+| <code><a href="#@cdklabs/cdk-appflow.S3Catalog.property.tablePrefix">tablePrefix</a></code> | <code>string</code> | The prefix for the tables created in the AWS Glue database. |
+| <code><a href="#@cdklabs/cdk-appflow.S3Catalog.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The IAM Role that will be used for data catalog operations. |
 
 ---
 
 ##### `database`<sup>Required</sup> <a name="database" id="@cdklabs/cdk-appflow.S3Catalog.property.database"></a>
 
 ```typescript
-public readonly database: Database;
+public readonly database: IDatabase;
 ```
 
-- *Type:* @aws-cdk/aws-glue-alpha.Database
+- *Type:* @aws-cdk/aws-glue-alpha.IDatabase
+
+The AWS Glue database that will contain the tables created when the flow executes.
 
 ---
 
@@ -11019,6 +11022,21 @@ public readonly tablePrefix: string;
 ```
 
 - *Type:* string
+
+The prefix for the tables created in the AWS Glue database.
+
+---
+
+##### `role`<sup>Optional</sup> <a name="role" id="@cdklabs/cdk-appflow.S3Catalog.property.role"></a>
+
+```typescript
+public readonly role: IRole;
+```
+
+- *Type:* aws-cdk-lib.aws_iam.IRole
+- *Default:* A new role will be created
+
+The IAM Role that will be used for data catalog operations.
 
 ---
 
@@ -11036,9 +11054,9 @@ const s3DestinationProps: S3DestinationProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.S3DestinationProps.property.location">location</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3Location">S3Location</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.S3DestinationProps.property.catalog">catalog</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3Catalog">S3Catalog</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.S3DestinationProps.property.formatting">formatting</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting">S3OutputFormatting</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.S3DestinationProps.property.location">location</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3Location">S3Location</a></code> | The S3 location of the files with the retrieved data. |
+| <code><a href="#@cdklabs/cdk-appflow.S3DestinationProps.property.catalog">catalog</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3Catalog">S3Catalog</a></code> | The AWS Glue cataloging options. |
+| <code><a href="#@cdklabs/cdk-appflow.S3DestinationProps.property.formatting">formatting</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting">S3OutputFormatting</a></code> | The formatting options for the output files. |
 
 ---
 
@@ -11050,6 +11068,8 @@ public readonly location: S3Location;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.S3Location">S3Location</a>
 
+The S3 location of the files with the retrieved data.
+
 ---
 
 ##### `catalog`<sup>Optional</sup> <a name="catalog" id="@cdklabs/cdk-appflow.S3DestinationProps.property.catalog"></a>
@@ -11060,6 +11080,8 @@ public readonly catalog: S3Catalog;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.S3Catalog">S3Catalog</a>
 
+The AWS Glue cataloging options.
+
 ---
 
 ##### `formatting`<sup>Optional</sup> <a name="formatting" id="@cdklabs/cdk-appflow.S3DestinationProps.property.formatting"></a>
@@ -11069,6 +11091,8 @@ public readonly formatting: S3OutputFormatting;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.S3OutputFormatting">S3OutputFormatting</a>
+
+The formatting options for the output files.
 
 ---
 
@@ -11244,10 +11268,10 @@ const s3OutputFormatting: S3OutputFormatting = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting.property.aggregation">aggregation</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3FileAggregation">S3FileAggregation</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting.property.filePrefix">filePrefix</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3OutputFilePrefix">S3OutputFilePrefix</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting.property.fileType">fileType</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3OutputFileType">S3OutputFileType</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting.property.preserveSourceDataTypes">preserveSourceDataTypes</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting.property.aggregation">aggregation</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3FileAggregation">S3FileAggregation</a></code> | Sets an aggregation approach per flow run. |
+| <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting.property.filePrefix">filePrefix</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3OutputFilePrefix">S3OutputFilePrefix</a></code> | Sets a prefix approach for files generated during a flow execution. |
+| <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting.property.fileType">fileType</a></code> | <code><a href="#@cdklabs/cdk-appflow.S3OutputFileType">S3OutputFileType</a></code> | Sets the file type for the output files. |
+| <code><a href="#@cdklabs/cdk-appflow.S3OutputFormatting.property.preserveSourceDataTypes">preserveSourceDataTypes</a></code> | <code>boolean</code> | Specifies whether AppFlow should attempt data type mapping from source when the destination output file type is Parquet. |
 
 ---
 
@@ -11259,6 +11283,8 @@ public readonly aggregation: S3FileAggregation;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.S3FileAggregation">S3FileAggregation</a>
 
+Sets an aggregation approach per flow run.
+
 ---
 
 ##### `filePrefix`<sup>Optional</sup> <a name="filePrefix" id="@cdklabs/cdk-appflow.S3OutputFormatting.property.filePrefix"></a>
@@ -11269,6 +11295,8 @@ public readonly filePrefix: S3OutputFilePrefix;
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.S3OutputFilePrefix">S3OutputFilePrefix</a>
 
+Sets a prefix approach for files generated during a flow execution.
+
 ---
 
 ##### `fileType`<sup>Optional</sup> <a name="fileType" id="@cdklabs/cdk-appflow.S3OutputFormatting.property.fileType"></a>
@@ -11278,6 +11306,9 @@ public readonly fileType: S3OutputFileType;
 ```
 
 - *Type:* <a href="#@cdklabs/cdk-appflow.S3OutputFileType">S3OutputFileType</a>
+- *Default:* JSON file type
+
+Sets the file type for the output files.
 
 ---
 
@@ -11288,6 +11319,9 @@ public readonly preserveSourceDataTypes: boolean;
 ```
 
 - *Type:* boolean
+- *Default:* do not preserve source data files
+
+Specifies whether AppFlow should attempt data type mapping from source when the destination output file type is Parquet.
 
 ---
 
@@ -18130,27 +18164,35 @@ The file type that Amazon AppFlow gets from your Amazon S3 bucket.
 
 ### S3OutputFileType <a name="S3OutputFileType" id="@cdklabs/cdk-appflow.S3OutputFileType"></a>
 
+Output file type supported by Amazon S3 Destination connector.
+
 #### Members <a name="Members" id="Members"></a>
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.S3OutputFileType.CSV">CSV</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.S3OutputFileType.JSON">JSON</a></code> | *No description.* |
-| <code><a href="#@cdklabs/cdk-appflow.S3OutputFileType.PARQUET">PARQUET</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.S3OutputFileType.CSV">CSV</a></code> | CSV file type. |
+| <code><a href="#@cdklabs/cdk-appflow.S3OutputFileType.JSON">JSON</a></code> | JSON file type. |
+| <code><a href="#@cdklabs/cdk-appflow.S3OutputFileType.PARQUET">PARQUET</a></code> | Parquet file type. |
 
 ---
 
 ##### `CSV` <a name="CSV" id="@cdklabs/cdk-appflow.S3OutputFileType.CSV"></a>
+
+CSV file type.
 
 ---
 
 
 ##### `JSON` <a name="JSON" id="@cdklabs/cdk-appflow.S3OutputFileType.JSON"></a>
 
+JSON file type.
+
 ---
 
 
 ##### `PARQUET` <a name="PARQUET" id="@cdklabs/cdk-appflow.S3OutputFileType.PARQUET"></a>
+
+Parquet file type.
 
 ---
 
