@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Duration, IResource, Lazy, Resource } from 'aws-cdk-lib';
+import { Duration, IResource, Lazy, Names, Resource } from 'aws-cdk-lib';
 import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 
 import { Metric, MetricOptions } from 'aws-cdk-lib/aws-cloudwatch';
@@ -35,7 +35,6 @@ export interface IFlow extends IResource {
   onRunStarted(id: string, options?: OnEventOptions): Rule;
 
   onRunCompleted(id: string, options?: OnEventOptions): Rule;
-
 
   /**
    * Creates a metric to report the number of flow runs started.
@@ -96,17 +95,17 @@ export interface IFlow extends IResource {
 export enum FlowType {
   EVENT = 'Event',
   ON_DEMAND = 'OnDemand',
-  SCHEDULED = 'Scheduled'
+  SCHEDULED = 'Scheduled',
 }
 
 export enum FlowStatus {
   ACTIVE = 'Active',
-  SUSPENDED = 'Suspended'
+  SUSPENDED = 'Suspended',
 }
 
 export enum DataPullMode {
   COMPLETE = 'Complete',
-  INCREMENTAL = 'Incremental'
+  INCREMENTAL = 'Incremental',
 }
 
 export interface DataPullConfig {
@@ -159,7 +158,6 @@ export interface FlowBaseProps extends FlowProps {
 }
 
 export abstract class FlowBase extends Resource implements IFlow {
-
   /**
    * The ARN of the flow.
    */
@@ -187,28 +185,46 @@ export abstract class FlowBase extends Resource implements IFlow {
   private _projectionFilter: CfnFlow.TaskProperty;
 
   constructor(scope: Construct, id: string, props: FlowBaseProps) {
-    super(scope, id);
+    super(scope, id, {
+      physicalName:
+        props.name ||
+        Lazy.string({
+          produce: () =>
+            Names.uniqueResourceName(this, {
+              maxLength: 256,
+              allowedSpecialCharacters: '-_',
+            }),
+        }),
+    });
 
     this.type = props.type;
 
-    this._projectionFilter = this.initProjectionFilter(props.source.connectorType);
+    this._projectionFilter = this.initProjectionFilter(
+      props.source.connectorType,
+    );
 
-    this.name = props.name || id;
     const resource = new CfnFlow(this, id, {
-      flowName: this.name,
+      flowName: this.physicalName,
       flowStatus: props.status,
       triggerConfig: {
         triggerType: props.type,
-        triggerProperties: props.triggerConfig
-          && props.triggerConfig.properties
-          && this.buildTriggerProperties(scope, id, props.triggerConfig.properties),
+        triggerProperties:
+          props.triggerConfig &&
+          props.triggerConfig.properties &&
+          this.buildTriggerProperties(
+            scope,
+            id,
+            props.triggerConfig.properties,
+          ),
       },
       kmsArn: props.key?.keyArn,
       metadataCatalogConfig: Lazy.any({ produce: () => this._catalogMetadata }),
       description: props.description,
       sourceFlowConfig: {
         ...props.source.bind(this),
-        incrementalPullConfig: this.buildIncrementalPullConfig(props.triggerConfig),
+        incrementalPullConfig: this.buildIncrementalPullConfig(
+          props.triggerConfig,
+        ),
       },
       // NOTE: currently only a single destination is allowed with AppFlow
       //       it might require a change of approach in the future.
@@ -233,24 +249,28 @@ export abstract class FlowBase extends Resource implements IFlow {
     });
 
     this.arn = resource.attrFlowArn;
+    this.name = this.physicalName;
     this.source = props.source;
 
-    props.mappings.forEach(m => this._addMapping(m));
+    props.mappings.forEach((m) => this._addMapping(m));
 
     if (props.validations) {
-      props.validations.forEach(v => this._addValidation(v));
+      props.validations.forEach((v) => this._addValidation(v));
     }
 
     if (props.transforms) {
-      props.transforms.forEach(t => this._addTransform(t));
+      props.transforms.forEach((t) => this._addTransform(t));
     }
 
     if (props.filters) {
-      props.filters.forEach(f => this._addFilter(f));
+      props.filters.forEach((f) => this._addFilter(f));
     }
 
     this.node.addValidation({
-      validate: () => this.mappings.length === 0 ? ['A Flow must have at least one mapping'] : [],
+      validate: () =>
+        this.mappings.length === 0
+          ? ['A Flow must have at least one mapping']
+          : [],
     });
   }
 
@@ -285,8 +305,11 @@ export abstract class FlowBase extends Resource implements IFlow {
     return this.metric('FlowExecutionRecordsProcessed', options);
   }
 
-  private buildTriggerProperties(scope: IConstruct, id: string, props: TriggerProperties): CfnFlow.ScheduledTriggerPropertiesProperty {
-
+  private buildTriggerProperties(
+    scope: IConstruct,
+    id: string,
+    props: TriggerProperties,
+  ): CfnFlow.ScheduledTriggerPropertiesProperty {
     const updater = new FlowTimeUpdater(scope, `${id}Updater`, {
       schedule: props.schedule,
       startTime: props.properties?.startTime,
@@ -299,17 +322,22 @@ export abstract class FlowBase extends Resource implements IFlow {
       dataPullMode: props.dataPullConfig.mode,
       flowErrorDeactivationThreshold: props.flowErrorDeactivationThreshold,
       scheduleExpression: updater.scheduleExpression,
-      firstExecutionFrom: props.properties?.firstExecutionFrom &&
+      firstExecutionFrom:
+        props.properties?.firstExecutionFrom &&
         Math.floor(props.properties.firstExecutionFrom.getTime() / 1000),
       scheduleStartTime: props.properties?.startTime && updater.startTime,
       scheduleEndTime: props.properties?.endTime && updater.endTime,
-      scheduleOffset: props.properties?.offset && props.properties.offset.toSeconds(),
+      scheduleOffset:
+        props.properties?.offset && props.properties.offset.toSeconds(),
     };
   }
 
-  private initProjectionFilter(sourceType: ConnectorType): CfnFlow.TaskProperty {
+  private initProjectionFilter(
+    sourceType: ConnectorType,
+  ): CfnFlow.TaskProperty {
     const filterConnectorOperator: { [key: string]: string } = {};
-    filterConnectorOperator[sourceType.asTaskConnectorOperatorOrigin] = 'PROJECTION';
+    filterConnectorOperator[sourceType.asTaskConnectorOperatorOrigin] =
+      'PROJECTION';
 
     return {
       taskType: 'Filter',
@@ -319,10 +347,10 @@ export abstract class FlowBase extends Resource implements IFlow {
   }
 
   /**
-     * Set the catalog definitionfor the flow
-     *
-     * @internal
-     */
+   * Set the catalog definitionfor the flow
+   *
+   * @internal
+   */
   public _addCatalog(metadata: CfnFlow.MetadataCatalogConfigProperty) {
     this._catalogMetadata = metadata;
   }
@@ -382,9 +410,9 @@ export abstract class FlowBase extends Resource implements IFlow {
 
   private addProjectionField(boundMappingTasks: CfnFlow.TaskProperty[]) {
     // TODO: test if this satisfies all the requirements.
-    boundMappingTasks.forEach(boundMapping => {
+    boundMappingTasks.forEach((boundMapping) => {
       if (['Map', 'Filter'].includes(boundMapping.taskType)) {
-        boundMapping.sourceFields.forEach(field => {
+        boundMapping.sourceFields.forEach((field) => {
           if (!this._projectionFilter.sourceFields.includes(field)) {
             this._projectionFilter.sourceFields.push(field);
           }
@@ -420,11 +448,16 @@ export abstract class FlowBase extends Resource implements IFlow {
     return rule;
   }
 
-  private buildIncrementalPullConfig(triggerConfig?: TriggerConfig): CfnFlow.IncrementalPullConfigProperty | undefined {
-    return triggerConfig && triggerConfig.properties && triggerConfig.properties.dataPullConfig
-      && triggerConfig.properties.dataPullConfig.timestampField
+  private buildIncrementalPullConfig(
+    triggerConfig?: TriggerConfig,
+  ): CfnFlow.IncrementalPullConfigProperty | undefined {
+    return triggerConfig &&
+      triggerConfig.properties &&
+      triggerConfig.properties.dataPullConfig &&
+      triggerConfig.properties.dataPullConfig.timestampField
       ? {
-        datetimeTypeFieldName: triggerConfig.properties.dataPullConfig.timestampField,
+        datetimeTypeFieldName:
+            triggerConfig.properties.dataPullConfig.timestampField,
       }
       : undefined;
   }

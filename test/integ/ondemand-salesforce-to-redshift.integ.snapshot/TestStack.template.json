@@ -1450,7 +1450,7 @@
       }
      }
     ],
-    "FlowName": "SfdcToRedshiftELT",
+    "FlowName": "TestStackSfdcToRedshiftELT6AA1139C",
     "SourceFlowConfig": {
      "ConnectorProfileName": "TestProfile",
      "ConnectorType": "Salesforce",

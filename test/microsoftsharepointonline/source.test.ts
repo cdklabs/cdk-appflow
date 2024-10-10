@@ -70,7 +70,7 @@ describe('MicrosoftSharepointOnlineSource', () => {
           },
         },
       ],
-      FlowName: 'TestFlow',
+      FlowName: 'TestStackTestFlow32CDAF42',
       SourceFlowConfig: {
         ApiVersion: 'v1.0',
         ConnectorProfileName: 'dummy-profile',
@@ -187,7 +187,7 @@ describe('MicrosoftSharepointOnlineSource', () => {
             },
           },
         ],
-        FlowName: 'TestFlow',
+        FlowName: 'TestStackTestFlow32CDAF42',
         SourceFlowConfig: {
           ApiVersion: 'v1.0',
           ConnectorProfileName: 'TestProfile',
