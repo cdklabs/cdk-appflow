@@ -302,7 +302,7 @@
       }
      }
     ],
-    "FlowName": "EventFlow",
+    "FlowName": "TestStackEventFlow3DEF2313",
     "SourceFlowConfig": {
      "ConnectorProfileName": "TestConnectorProfile",
      "ConnectorType": "Salesforce",

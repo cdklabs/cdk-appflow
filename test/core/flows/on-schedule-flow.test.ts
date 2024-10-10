@@ -16,7 +16,7 @@ import {
 } from '../../../src';
 
 describe('OnScheduleFlow', () => {
-  test('', () => {
+  test('default', () => {
     const stack = new Stack(undefined, 'TestStack');
 
     const bucket = new Bucket(stack, 'TestBucket');
@@ -58,7 +58,7 @@ describe('OnScheduleFlow', () => {
           },
         },
       ],
-      FlowName: 'OnScheduleFlow',
+      FlowName: 'TestStackOnScheduleFlow1BB655FE',
       SourceFlowConfig: {
         ConnectorType: 'S3',
         SourceConnectorProperties: {
@@ -131,7 +131,7 @@ describe('OnScheduleFlow', () => {
     const template = Template.fromStack(stack);
 
     template.hasResourceProperties('AWS::AppFlow::Flow', {
-      FlowName: 'OnScheduleFlow',
+      FlowName: 'TestStackOnScheduleFlow1BB655FE',
       TriggerConfig: {
         TriggerType: 'Scheduled',
         TriggerProperties: {

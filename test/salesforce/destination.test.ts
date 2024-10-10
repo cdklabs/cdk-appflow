@@ -75,7 +75,7 @@ describe('SalesforceDestination', () => {
           },
         },
       ],
-      FlowName: 'TestFlow',
+      FlowName: 'TestStackTestFlow32CDAF42',
       SourceFlowConfig: {
         ConnectorType: 'S3',
         SourceConnectorProperties: {
@@ -205,7 +205,7 @@ describe('SalesforceDestination', () => {
           },
         },
       ],
-      FlowName: 'TestFlow',
+      FlowName: 'TestStackTestFlow32CDAF42',
       SourceFlowConfig: {
         ConnectorType: 'S3',
         SourceConnectorProperties: {

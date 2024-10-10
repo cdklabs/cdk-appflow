@@ -14,7 +14,7 @@ import {
 } from '../../../src';
 
 describe('OnDemandFlow', () => {
-  test('', () => {
+  test('default', () => {
 
     const stack = new Stack(undefined, 'TestStack');
 
@@ -53,7 +53,7 @@ describe('OnDemandFlow', () => {
           },
         },
       ],
-      FlowName: 'OnDemandFlow',
+      FlowName: 'TestStackOnDemandFlow53F97EB9',
       SourceFlowConfig: {
         ConnectorType: 'S3',
         SourceConnectorProperties: {

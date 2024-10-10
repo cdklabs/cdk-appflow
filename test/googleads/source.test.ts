@@ -68,7 +68,7 @@ describe('GoogleAdsSource', () => {
           },
         },
       ],
-      FlowName: 'TestFlow',
+      FlowName: 'TestStackTestFlow32CDAF42',
       SourceFlowConfig: {
         ApiVersion: 'v16',
         ConnectorProfileName: 'dummy-profile',
@@ -180,7 +180,7 @@ describe('GoogleAdsSource', () => {
             },
           },
         ],
-        FlowName: 'TestFlow',
+        FlowName: 'TestStackTestFlow32CDAF42',
         SourceFlowConfig: {
           ApiVersion: 'v16',
           ConnectorProfileName: 'TestProfile',

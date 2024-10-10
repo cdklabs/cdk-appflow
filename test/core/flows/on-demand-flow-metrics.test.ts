@@ -15,7 +15,7 @@ import {
 } from '../../../src';
 
 describe('OnDemandFlow metrics', () => {
-  test('', () => {
+  test('default', () => {
 
     const stack = new Stack(undefined, 'TestStack');
 

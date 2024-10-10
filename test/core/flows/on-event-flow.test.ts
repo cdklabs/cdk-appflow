@@ -71,7 +71,7 @@ describe('OnEventFlow', () => {
             },
           },
         ],
-        FlowName: 'OnEventFlow',
+        FlowName: 'TestStackOnEventFlow4BA4B0C6',
         FlowStatus: 'Active',
         SourceFlowConfig: {
           ConnectorProfileName: 'appflow-tester',
@@ -203,7 +203,7 @@ describe('OnEventFlow', () => {
             },
           },
         ],
-        FlowName: 'OnEventFlow',
+        FlowName: 'TestStackOnEventFlow4BA4B0C6',
         SourceFlowConfig: {
           ConnectorProfileName: 'appflow-tester',
           ConnectorType: 'Salesforce',
