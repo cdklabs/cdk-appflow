@@ -71,7 +71,7 @@ describe('SalesforceSource', () => {
           },
         },
       ],
-      FlowName: 'TestFlow',
+      FlowName: 'TestStackTestFlow32CDAF42',
       SourceFlowConfig: {
         ApiVersion: '1',
         ConnectorProfileName: 'dummy-profile',
@@ -195,7 +195,7 @@ describe('SalesforceSource', () => {
           },
         },
       ],
-      FlowName: 'TestFlow',
+      FlowName: 'TestStackTestFlow32CDAF42',
       SourceFlowConfig: {
         ApiVersion: '1',
         ConnectorProfileName: 'TestProfile',

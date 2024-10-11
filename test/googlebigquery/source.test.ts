@@ -72,7 +72,7 @@ describe('GoogleBigQuerySource', () => {
           },
         },
       ],
-      FlowName: 'TestFlow',
+      FlowName: 'TestStackTestFlow32CDAF42',
       SourceFlowConfig: {
         ApiVersion: 'v2',
         ConnectorProfileName: 'dummy-profile',
@@ -184,7 +184,7 @@ describe('GoogleBigQuerySource', () => {
             },
           },
         ],
-        FlowName: 'TestFlow',
+        FlowName: 'TestStackTestFlow32CDAF42',
         SourceFlowConfig: {
           ApiVersion: 'v2',
           ConnectorProfileName: 'TestProfile',

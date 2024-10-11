@@ -2,7 +2,7 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Duration, IResource, Lazy, Resource } from 'aws-cdk-lib';
+import { Duration, IResource, Lazy, Names, Resource } from 'aws-cdk-lib';
 import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
 
 import { Metric, MetricOptions } from 'aws-cdk-lib/aws-cloudwatch';
@@ -187,15 +187,24 @@ export abstract class FlowBase extends Resource implements IFlow {
   private _projectionFilter: CfnFlow.TaskProperty;
 
   constructor(scope: Construct, id: string, props: FlowBaseProps) {
-    super(scope, id);
+    super(scope, id, {
+      physicalName:
+        props.name ||
+        Lazy.string({
+          produce: () =>
+            Names.uniqueResourceName(this, {
+              maxLength: 256,
+              allowedSpecialCharacters: '-_',
+            }),
+        }),
+    });
 
     this.type = props.type;
 
     this._projectionFilter = this.initProjectionFilter(props.source.connectorType);
 
-    this.name = props.name || id;
     const resource = new CfnFlow(this, id, {
-      flowName: this.name,
+      flowName: this.physicalName,
       flowStatus: props.status,
       triggerConfig: {
         triggerType: props.type,
@@ -233,6 +242,7 @@ export abstract class FlowBase extends Resource implements IFlow {
     });
 
     this.arn = resource.attrFlowArn;
+    this.name = this.physicalName;
     this.source = props.source;
 
     props.mappings.forEach(m => this._addMapping(m));
