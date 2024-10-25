@@ -76,7 +76,7 @@ export enum S3OutputFileType {
   /**
    * Parquet file type
    */
-  PARQUET = 'Parquet',
+  PARQUET = 'PARQUET',
 }
 
 export enum S3OutputFilePrefixHierarchy {
