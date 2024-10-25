@@ -12,7 +12,6 @@ const project = new CdklabsConstructLibrary({
   author: "Amazon Web Services",
   authorAddress: "cdk-appflow-maintainers@amazon.com",
   cdkVersion,
-
   defaultReleaseBranch: "main",
   projenrcTs: true,
   private: false,
