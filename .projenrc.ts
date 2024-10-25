@@ -2,42 +2,36 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CdklabsConstructLibrary } from 'cdklabs-projen-project-types';
-import { Stability } from 'projen/lib/cdk';
+import { CdklabsConstructLibrary } from "cdklabs-projen-project-types";
+import { Stability } from "projen/lib/cdk";
 
-const cdkVersion = '2.159.1';
+const cdkVersion = "2.159.1";
 
 const project = new CdklabsConstructLibrary({
-  name: '@cdklabs/cdk-appflow',
-  author: 'Amazon Web Services',
-  authorAddress: 'cdk-appflow-maintainers@amazon.com',
+  name: "@cdklabs/cdk-appflow",
+  author: "Amazon Web Services",
+  authorAddress: "cdk-appflow-maintainers@amazon.com",
   cdkVersion,
-  defaultReleaseBranch: 'main',
+
+  defaultReleaseBranch: "main",
   projenrcTs: true,
   private: false,
-  repositoryUrl: 'https://github.com/cdklabs/cdk-appflow.git',
+  repositoryUrl: "https://github.com/cdklabs/cdk-appflow.git",
   stability: Stability.EXPERIMENTAL,
   docgen: true,
+  eslint: true,
+  prettier: true,
   bundledDeps: [],
-  devDeps: [
-    '@types/aws-lambda',
-    'esbuild',
-  ],
+  devDeps: ["@types/aws-lambda", "esbuild"],
   peerDeps: [
     `@aws-cdk/aws-redshift-alpha@${cdkVersion}-alpha.0`,
     `@aws-cdk/aws-glue-alpha@${cdkVersion}-alpha.0`,
   ],
-  jsiiVersion: '~5.4.30',
-  keywords: [
-    'aws',
-    'appflow',
-    'cdk',
-  ],
-  gitignore: [
-    '*.rest', '.vscode', '**/.DS_Store',
-  ],
+  jsiiVersion: "~5.4.30",
+  keywords: ["aws", "appflow", "cdk"],
+  gitignore: ["*.rest", ".vscode", "**/.DS_Store"],
   jestOptions: {
-    jestVersion: '^29',
+    jestVersion: "^29",
   },
 });
 project.synth();

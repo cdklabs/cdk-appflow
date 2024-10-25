@@ -2,14 +2,14 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Arn, ArnFormat, IResource, Resource, Stack } from 'aws-cdk-lib';
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { IKey } from 'aws-cdk-lib/aws-kms';
-import { ISecret, Secret } from 'aws-cdk-lib/aws-secretsmanager';
-import { Construct, IConstruct } from 'constructs';
-import { ConnectionMode } from './connection-mode';
-import { ConnectorType } from './connector-type';
-import { AppFlowPermissionsManager } from '../appflow-permissions-manager';
+import { Arn, ArnFormat, IResource, Resource, Stack } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import { IKey } from "aws-cdk-lib/aws-kms";
+import { ISecret, Secret } from "aws-cdk-lib/aws-secretsmanager";
+import { Construct, IConstruct } from "constructs";
+import { ConnectionMode } from "./connection-mode";
+import { ConnectorType } from "./connector-type";
+import { AppFlowPermissionsManager } from "../appflow-permissions-manager";
 
 export interface IConnectorProfile extends IResource {
   readonly name: string;
@@ -26,17 +26,22 @@ export interface ConnectorProfileProps {
   readonly key?: IKey;
 }
 
-export abstract class ConnectorProfileBase extends Resource implements IConnectorProfile {
-
+export abstract class ConnectorProfileBase
+  extends Resource
+  implements IConnectorProfile
+{
   /**
    * @internal
    * @experimental
    */
-  protected static _fromConnectorProfileAttributes(scope: Construct, id: string, attrs: {
-    name?: string;
-    arn?: string;
-  }): IConnectorProfile {
-
+  protected static _fromConnectorProfileAttributes(
+    scope: Construct,
+    id: string,
+    attrs: {
+      name?: string;
+      arn?: string;
+    },
+  ): IConnectorProfile {
     if (attrs.name === undefined && attrs.arn === undefined) {
       throw new Error("Either 'name' or 'arn' needs to be defined");
     }
@@ -49,13 +54,17 @@ export abstract class ConnectorProfileBase extends Resource implements IConnecto
       public readonly name: string;
       constructor() {
         super(scope, id);
-        this.arn = arn ? arn : Stack.of(this).formatArn({
-          service: 'appflow',
-          resource: 'connectorprofile',
-          resourceName: name,
-          arnFormat: ArnFormat.SLASH_RESOURCE_NAME,
-        });
-        this.name = name ? name : Arn.split(arn!, ArnFormat.SLASH_RESOURCE_NAME).resourceName!;
+        this.arn = arn
+          ? arn
+          : Stack.of(this).formatArn({
+              service: "appflow",
+              resource: "connectorprofile",
+              resourceName: name,
+              arnFormat: ArnFormat.SLASH_RESOURCE_NAME,
+            });
+        this.name = name
+          ? name
+          : Arn.split(arn!, ArnFormat.SLASH_RESOURCE_NAME).resourceName!;
       }
     }
 
@@ -66,7 +75,12 @@ export abstract class ConnectorProfileBase extends Resource implements IConnecto
   public readonly credentials?: ISecret;
   public readonly name: string;
 
-  constructor(scope: Construct, id: string, props: ConnectorProfileProps, connectorType: ConnectorType) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: ConnectorProfileProps,
+    connectorType: ConnectorType,
+  ) {
     super(scope, id);
 
     this.name = props.name ?? id;
@@ -80,22 +94,33 @@ export abstract class ConnectorProfileBase extends Resource implements IConnecto
       connectionMode: ConnectionMode.PUBLIC,
       kmsArn: props.key && props.key.keyArn,
       connectorProfileConfig: {
-        connectorProfileCredentials: this.buildConnectorProfileCredentials(props),
+        connectorProfileCredentials:
+          this.buildConnectorProfileCredentials(props),
         connectorProfileProperties: this.buildConnectorProfileProperties(props),
       },
     });
 
     this.arn = resource.attrConnectorProfileArn;
-    this.credentials = Secret.fromSecretCompleteArn(scope, `${id}Credentials`, resource.attrCredentialsArn);
+    this.credentials = Secret.fromSecretCompleteArn(
+      scope,
+      `${id}Credentials`,
+      resource.attrCredentialsArn,
+    );
   }
 
-  protected abstract buildConnectorProfileCredentials(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty;
-  protected abstract buildConnectorProfileProperties(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty;
+  protected abstract buildConnectorProfileCredentials(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfileCredentialsProperty;
+  protected abstract buildConnectorProfileProperties(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfilePropertiesProperty;
 
-  protected tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string) {
-    if (resource && typeof resource !== 'string') {
+  protected tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ) {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }
-
 }

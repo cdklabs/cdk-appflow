@@ -2,13 +2,13 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { AsanaConnectorProfile } from './profile';
-import { AsanaConnectorType } from './type';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { IFlow } from '../core/flows';
-import { ISource } from '../core/vertices';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { AsanaConnectorProfile } from "./profile";
+import { AsanaConnectorType } from "./type";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { IFlow } from "../core/flows";
+import { ISource } from "../core/vertices";
 
 export interface AsanaSourceProps {
   readonly profile: AsanaConnectorProfile;
@@ -20,7 +20,7 @@ export interface AsanaSourceProps {
  * A class that represents a Asana v3 Source
  */
 export class AsanaSource implements ISource {
-  private static readonly apiVersion: string = '1.0';
+  private static readonly apiVersion: string = "1.0";
 
   /**
    * The AppFlow type of the connector that this source is implemented for
@@ -52,7 +52,7 @@ export class AsanaSource implements ISource {
     scope: IConstruct,
     resource?: IConstruct | string,
   ) {
-    if (resource && typeof resource !== 'string') {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }

@@ -2,11 +2,14 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { SecretValue } from 'aws-cdk-lib';
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { Construct } from 'constructs';
-import { SAPOdataConnectorType } from './type';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
+import { SecretValue } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import { Construct } from "constructs";
+import { SAPOdataConnectorType } from "./type";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
 
 export interface SAPOdataConnectorProfileProps extends ConnectorProfileProps {
   readonly basicAuth?: SAPOdataBasicAuthSettings;
@@ -47,22 +50,38 @@ export interface SAPOdataOAuthSettings {
 }
 
 export class SAPOdataConnectorProfile extends ConnectorProfileBase {
-
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as SAPOdataConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as SAPOdataConnectorProfile;
   }
 
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as SAPOdataConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as SAPOdataConnectorProfile;
   }
 
-  constructor(scope: Construct, id: string, props: SAPOdataConnectorProfileProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: SAPOdataConnectorProfileProps,
+  ) {
     super(scope, id, props, SAPOdataConnectorType.instance);
   }
 
-  protected buildConnectorProfileCredentials(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-
-    const properties = (props as SAPOdataConnectorProfileProps);
+  protected buildConnectorProfileCredentials(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
+    const properties = props as SAPOdataConnectorProfileProps;
 
     let sapOdata: { [key: string]: any } = {};
 
@@ -74,9 +93,12 @@ export class SAPOdataConnectorProfile extends ConnectorProfileBase {
     } else if (properties.oAuth) {
       sapOdata.oAuthCredentials = {
         accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
-        refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
-        clientId: properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
-        clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
+        refreshToken:
+          properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
+        clientId:
+          properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
+        clientSecret:
+          properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
       };
     }
 
@@ -85,8 +107,10 @@ export class SAPOdataConnectorProfile extends ConnectorProfileBase {
     };
   }
 
-  protected buildConnectorProfileProperties(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
-    const properties = (props as SAPOdataConnectorProfileProps);
+  protected buildConnectorProfileProperties(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
+    const properties = props as SAPOdataConnectorProfileProps;
     return {
       sapoData: {
         applicationHostUrl: properties.applicationHostUrl,

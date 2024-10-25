@@ -3,14 +3,14 @@ Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 // import * as path from 'path';
-import { CustomResource, Stack, Token } from 'aws-cdk-lib';
-import { Schedule } from 'aws-cdk-lib/aws-events';
+import { CustomResource, Stack, Token } from "aws-cdk-lib";
+import { Schedule } from "aws-cdk-lib/aws-events";
 // import { Runtime } from 'aws-cdk-lib/aws-lambda';
 // import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Provider } from 'aws-cdk-lib/custom-resources';
-import { Construct } from 'constructs';
-import * as api from './api';
-import { FlowTimeUpdaterFunction } from './flow-time-updater-function';
+import { Provider } from "aws-cdk-lib/custom-resources";
+import { Construct } from "constructs";
+import * as api from "./api";
+import { FlowTimeUpdaterFunction } from "./flow-time-updater-function";
 
 interface FlowTimeUpdaterProps {
   readonly schedule: Schedule;
@@ -26,9 +26,9 @@ export class FlowTimeUpdater extends Construct {
   constructor(scope: Construct, id: string, props: FlowTimeUpdaterProps) {
     super(scope, id);
 
-    const resource = new CustomResource(this, 'Resource', {
+    const resource = new CustomResource(this, "Resource", {
       serviceToken: FlowTimeUpdaterProvider.getOrCreate(this),
-      resourceType: 'Custom::FlowTimeUpdater',
+      resourceType: "Custom::FlowTimeUpdater",
       properties: {
         [api.PROP_SCHEDULE]: props.schedule.expressionString,
         [api.PROP_STARTTIME]: props.startTime && props.startTime.toISOString(),
@@ -43,14 +43,15 @@ export class FlowTimeUpdater extends Construct {
 }
 
 class FlowTimeUpdaterProvider extends Construct {
-
   /**
    * Returns the singleton provider.
    */
   public static getOrCreate(scope: Construct) {
     const stack = Stack.of(scope);
-    const id = 'com.amazonaws.cdk.custom-resources.flow-time-provider';
-    const x = stack.node.tryFindChild(id) as FlowTimeUpdaterProvider || new FlowTimeUpdaterProvider(stack, id);
+    const id = "com.amazonaws.cdk.custom-resources.flow-time-provider";
+    const x =
+      (stack.node.tryFindChild(id) as FlowTimeUpdaterProvider) ||
+      new FlowTimeUpdaterProvider(stack, id);
     return x.provider.serviceToken;
   }
 
@@ -59,8 +60,8 @@ class FlowTimeUpdaterProvider extends Construct {
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
-    this.provider = new Provider(this, 'flow-time-provider', {
-      onEventHandler: new FlowTimeUpdaterFunction(this, 'flow-time-on-event'),
+    this.provider = new Provider(this, "flow-time-provider", {
+      onEventHandler: new FlowTimeUpdaterFunction(this, "flow-time-on-event"),
     });
   }
 }

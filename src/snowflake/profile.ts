@@ -2,14 +2,24 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { SecretValue } from 'aws-cdk-lib';
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { ArnPrincipal, Effect, IRole, PolicyDocument, PolicyStatement, Role } from 'aws-cdk-lib/aws-iam';
-import { Construct } from 'constructs';
-import { SnowflakeConnectorType } from './type';
-import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
-import { S3Location } from '../core/s3-location';
+import { SecretValue } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import {
+  ArnPrincipal,
+  Effect,
+  IRole,
+  PolicyDocument,
+  PolicyStatement,
+  Role,
+} from "aws-cdk-lib/aws-iam";
+import { Construct } from "constructs";
+import { SnowflakeConnectorType } from "./type";
+import { AppFlowPermissionsManager } from "../core/appflow-permissions-manager";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
+import { S3Location } from "../core/s3-location";
 
 /**
  * Properties for a Snowflake connectorprofile
@@ -65,19 +75,30 @@ export interface SnowflakeStorageIntegration {
 }
 
 export class SnowflakeConnectorProfile extends ConnectorProfileBase {
-
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as SnowflakeConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as SnowflakeConnectorProfile;
   }
 
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as SnowflakeConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as SnowflakeConnectorProfile;
   }
 
   /**
    * Default Snowflake schema if no schema provided
    */
-  private static readonly defaultSchema: string = 'PUBLIC';
+  private static readonly defaultSchema: string = "PUBLIC";
 
   /**
    * This field is used by the SnowflakeDestination to remove repetition
@@ -107,21 +128,26 @@ export class SnowflakeConnectorProfile extends ConnectorProfileBase {
    */
   public readonly integrationRole?: IRole;
 
-
-  constructor(scope: Construct, id: string, props: SnowflakeConnectorProfileProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: SnowflakeConnectorProfileProps,
+  ) {
     super(scope, id, props, SnowflakeConnectorType.instance);
     this._location = props.location;
     this._database = props.database;
     this._schema = props.schema ?? SnowflakeConnectorProfile.defaultSchema;
 
-
     this.integrationRole = this.tryCreateRole(scope, id, props);
   }
 
   // INFO: maybe move it to an external class so that it can be either used here or used in any subsequent deployment?
-  private tryCreateRole(scope: Construct, id: string, props: ConnectorProfileProps): IRole | undefined {
-
-    const properties = (props as SnowflakeConnectorProfileProps);
+  private tryCreateRole(
+    scope: Construct,
+    id: string,
+    props: ConnectorProfileProps,
+  ): IRole | undefined {
+    const properties = props as SnowflakeConnectorProfileProps;
     const integration = properties.integration;
 
     if (!integration) {
@@ -138,24 +164,20 @@ export class SnowflakeConnectorProfile extends ConnectorProfileBase {
           statements: [
             new PolicyStatement({
               effect: Effect.ALLOW,
-              actions: [
-                's3:GetObject',
-                's3:GetObjectVersion',
+              actions: ["s3:GetObject", "s3:GetObjectVersion"],
+              resources: [
+                properties.location.bucket.arnForObjects(
+                  properties.location.prefix ?? "*",
+                ),
               ],
-              resources: [properties.location.bucket.arnForObjects(
-                properties.location.prefix ?? '*',
-              )],
             }),
             new PolicyStatement({
               effect: Effect.ALLOW,
-              actions: [
-                's3:ListBucket',
-                's3:GetBucketLocation',
-              ],
+              actions: ["s3:ListBucket", "s3:GetBucketLocation"],
               resources: [properties.location.bucket.bucketArn],
               conditions: {
                 StringLike: {
-                  's3:prefix': [properties.location.prefix ?? '*'],
+                  "s3:prefix": [properties.location.prefix ?? "*"],
                 },
               },
             }),
@@ -165,9 +187,10 @@ export class SnowflakeConnectorProfile extends ConnectorProfileBase {
     });
   }
 
-  protected buildConnectorProfileCredentials(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-
-    const properties = (props as SnowflakeConnectorProfileProps);
+  protected buildConnectorProfileCredentials(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
+    const properties = props as SnowflakeConnectorProfileProps;
 
     return {
       snowflake: {
@@ -177,11 +200,15 @@ export class SnowflakeConnectorProfile extends ConnectorProfileBase {
     };
   }
 
-  protected buildConnectorProfileProperties(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
-    const properties = (props as SnowflakeConnectorProfileProps);
+  protected buildConnectorProfileProperties(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
+    const properties = props as SnowflakeConnectorProfileProps;
 
     this.tryAddNodeDependency(this, properties.location.bucket);
-    AppFlowPermissionsManager.instance().grantBucketReadWrite(properties.location.bucket);
+    AppFlowPermissionsManager.instance().grantBucketReadWrite(
+      properties.location.bucket,
+    );
 
     return {
       snowflake: {

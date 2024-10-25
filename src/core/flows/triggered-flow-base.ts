@@ -2,9 +2,15 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { OnEventOptions, Rule } from 'aws-cdk-lib/aws-events';
-import { Construct } from 'constructs';
-import { FlowBase, FlowBaseProps, FlowProps, FlowStatus, IFlow } from './flow-base';
+import { OnEventOptions, Rule } from "aws-cdk-lib/aws-events";
+import { Construct } from "constructs";
+import {
+  FlowBase,
+  FlowBaseProps,
+  FlowProps,
+  FlowStatus,
+  IFlow,
+} from "./flow-base";
 
 export interface TriggeredFlowBaseProps extends FlowProps {
   /**
@@ -21,21 +27,27 @@ export interface TriggeredFlowBaseProps extends FlowProps {
  * A base class for triggered flows.
  */
 export abstract class TriggeredFlowBase extends FlowBase implements IFlow {
-
   /**
    *
    * @param autoActivate - a boolean value indicating whether to automatically activate the flow.
    * @param status - a {@link FlowStatus} value indicating the status to set on the flow.
    * @returns
    */
-  protected static setStatus(autoActivate?: boolean, status?: FlowStatus): FlowStatus | undefined {
+  protected static setStatus(
+    autoActivate?: boolean,
+    status?: FlowStatus,
+  ): FlowStatus | undefined {
     if (autoActivate !== undefined && status !== undefined) {
-      throw new Error('Cannot specify both autoActivate and status');
+      throw new Error("Cannot specify both autoActivate and status");
     }
 
-    return autoActivate !== undefined ?
-      (autoActivate ? FlowStatus.ACTIVE : FlowStatus.SUSPENDED) :
-      (status !== undefined ? status : undefined);
+    return autoActivate !== undefined
+      ? autoActivate
+        ? FlowStatus.ACTIVE
+        : FlowStatus.SUSPENDED
+      : status !== undefined
+        ? status
+        : undefined;
   }
   /**
    *
@@ -48,5 +60,4 @@ export abstract class TriggeredFlowBase extends FlowBase implements IFlow {
   }
 
   public abstract onDeactivated(id: string, options?: OnEventOptions): Rule;
-
 }

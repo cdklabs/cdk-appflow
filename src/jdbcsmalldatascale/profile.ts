@@ -2,18 +2,22 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { SecretValue } from 'aws-cdk-lib';
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { Construct } from 'constructs';
-import { JdbcDriver } from './driver';
-import { JdbcSmallDataScaleConnectorType } from './type';
-import { ConnectorAuthenticationType } from '../core';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
+import { SecretValue } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import { Construct } from "constructs";
+import { JdbcDriver } from "./driver";
+import { JdbcSmallDataScaleConnectorType } from "./type";
+import { ConnectorAuthenticationType } from "../core";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
 
 /**
  * Properties for the JdbcSmallDataScaleConnectorProfile
  */
-export interface JdbcSmallDataScaleConnectorProfileProps extends ConnectorProfileProps {
+export interface JdbcSmallDataScaleConnectorProfileProps
+  extends ConnectorProfileProps {
   /**
    * The auth settings for the profile
    */
@@ -59,7 +63,6 @@ export interface JdbcSmallDataScaleBasicAuthSettings {
  * The connector profile for the JDBC connector
  */
 export class JdbcSmallDataScaleConnectorProfile extends ConnectorProfileBase {
-
   /**
    * Imports an existing JdbcSmallDataScaleConnectorProfile
    * @param scope the scope for the connector profile
@@ -67,8 +70,14 @@ export class JdbcSmallDataScaleConnectorProfile extends ConnectorProfileBase {
    * @param arn the ARN for the existing connector profile
    * @returns An instance of the JdbcSmallDataScaleConnectorProfile
    */
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as JdbcSmallDataScaleConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as JdbcSmallDataScaleConnectorProfile;
   }
 
   /**
@@ -78,8 +87,14 @@ export class JdbcSmallDataScaleConnectorProfile extends ConnectorProfileBase {
    * @param name the name for the existing connector profile
    * @returns An instance of the JdbcSmallDataScaleConnectorProfile
    */
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as JdbcSmallDataScaleConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as JdbcSmallDataScaleConnectorProfile;
   }
 
   /**
@@ -88,11 +103,17 @@ export class JdbcSmallDataScaleConnectorProfile extends ConnectorProfileBase {
    * @param id the id of this connector profile
    * @param props properties to use when instantiating this connector profile
    */
-  constructor(scope: Construct, id: string, props: JdbcSmallDataScaleConnectorProfileProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: JdbcSmallDataScaleConnectorProfileProps,
+  ) {
     super(scope, id, props, JdbcSmallDataScaleConnectorType.instance);
   }
 
-  protected buildConnectorProfileProperties(_props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
+  protected buildConnectorProfileProperties(
+    _props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
     return {
       customConnector: {
         profileProperties: {},
@@ -100,8 +121,10 @@ export class JdbcSmallDataScaleConnectorProfile extends ConnectorProfileBase {
     };
   }
 
-  protected buildConnectorProfileCredentials(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-    const properties = (props as JdbcSmallDataScaleConnectorProfileProps);
+  protected buildConnectorProfileCredentials(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
+    const properties = props as JdbcSmallDataScaleConnectorProfileProps;
     return {
       customConnector: {
         authenticationType: ConnectorAuthenticationType.CUSTOM,
@@ -114,7 +137,7 @@ export class JdbcSmallDataScaleConnectorProfile extends ConnectorProfileBase {
             port: `${properties.port}`,
             database: properties.database,
           },
-          customAuthenticationType: 'CUSTOM',
+          customAuthenticationType: "CUSTOM",
         },
       },
     };

@@ -1,4 +1,4 @@
 export enum JdbcDriver {
-  POSTGRES = 'postgresql',
-  MYSQL = 'mysql'
+  POSTGRES = "postgresql",
+  MYSQL = "mysql",
 }

@@ -2,18 +2,17 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { ZendeskConnectorType } from './type';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { ErrorHandlingConfiguration } from '../core/error-handling';
-import { IFlow } from '../core/flows';
-import { IDestination } from '../core/vertices/destination';
-import { WriteOperation } from '../core/write-operation';
-import { ZendeskConnectorProfile } from '../zendesk/profile';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { ZendeskConnectorType } from "./type";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { ErrorHandlingConfiguration } from "../core/error-handling";
+import { IFlow } from "../core/flows";
+import { IDestination } from "../core/vertices/destination";
+import { WriteOperation } from "../core/write-operation";
+import { ZendeskConnectorProfile } from "../zendesk/profile";
 
 export interface ZendeskDestinationProps {
-
   readonly profile: ZendeskConnectorProfile;
 
   /**
@@ -30,20 +29,22 @@ export interface ZendeskDestinationProps {
 }
 
 export class ZendeskDestination implements IDestination {
-
   public readonly connectorType: ConnectorType = ZendeskConnectorType.instance;
 
-  constructor(private readonly props: ZendeskDestinationProps) { }
+  constructor(private readonly props: ZendeskDestinationProps) {}
 
   bind(flow: IFlow): CfnFlow.DestinationFlowConfigProperty {
-
-    this.tryAddNodeDependency(flow, this.props.errorHandling?.errorLocation?.bucket);
+    this.tryAddNodeDependency(
+      flow,
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
     this.tryAddNodeDependency(flow, this.props.profile);
 
     return {
       connectorType: this.connectorType.asProfileConnectorType,
       connectorProfileName: this.props.profile.name,
-      destinationConnectorProperties: this.buildDestinationConnectorProperties(),
+      destinationConnectorProperties:
+        this.buildDestinationConnectorProperties(),
     };
   }
 
@@ -51,7 +52,8 @@ export class ZendeskDestination implements IDestination {
     return {
       zendesk: {
         errorHandlingConfig: this.props.errorHandling && {
-          bucketName: this.props.errorHandling?.errorLocation?.bucket.bucketName,
+          bucketName:
+            this.props.errorHandling?.errorLocation?.bucket.bucketName,
           bucketPrefix: this.props.errorHandling?.errorLocation?.prefix,
           failOnFirstError: this.props.errorHandling.failOnFirstError,
         },
@@ -67,5 +69,4 @@ export class ZendeskDestination implements IDestination {
       scope.node.addDependency(resource);
     }
   }
-
 }

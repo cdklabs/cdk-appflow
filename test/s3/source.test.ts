@@ -2,27 +2,29 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Stack } from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
-import { Bucket } from 'aws-cdk-lib/aws-s3';
+import { Stack } from "aws-cdk-lib";
+import { Template } from "aws-cdk-lib/assertions";
+import { Bucket } from "aws-cdk-lib/aws-s3";
 import {
   OnDemandFlow,
   S3Destination,
-  Mapping, S3Source, S3InputFileType, S3ConnectorType,
-} from '../../src';
+  Mapping,
+  S3Source,
+  S3InputFileType,
+  S3ConnectorType,
+} from "../../src";
 
-describe('S3Source', () => {
+describe("S3Source", () => {
+  test("Source", () => {
+    const stack = new Stack(undefined, "TestStack");
 
-  test('Source', () => {
-    const stack = new Stack(undefined, 'TestStack');
-
-    const bucket = new Bucket(stack, 'TestBucket', {
-      bucketName: 'test-bucket',
+    const bucket = new Bucket(stack, "TestBucket", {
+      bucketName: "test-bucket",
     });
 
     const source = new S3Source({
       bucket: bucket,
-      prefix: 'prefix',
+      prefix: "prefix",
       format: {
         type: S3InputFileType.CSV,
       },
@@ -34,30 +36,37 @@ describe('S3Source', () => {
       },
     });
 
-    new OnDemandFlow(stack, 'TestFlow', {
+    new OnDemandFlow(stack, "TestFlow", {
       source: source,
       destination: destination,
       mappings: [Mapping.mapAll()],
     });
 
-
     const expectedConnectorType = S3ConnectorType.instance;
-    expect(source.connectorType.asProfileConnectorLabel).toEqual(expectedConnectorType.asProfileConnectorLabel);
-    expect(source.connectorType.asProfileConnectorType).toEqual(expectedConnectorType.asProfileConnectorType);
-    expect(source.connectorType.asTaskConnectorOperatorOrigin).toEqual(expectedConnectorType.asTaskConnectorOperatorOrigin);
-    expect(source.connectorType.isCustom).toEqual(expectedConnectorType.isCustom);
+    expect(source.connectorType.asProfileConnectorLabel).toEqual(
+      expectedConnectorType.asProfileConnectorLabel,
+    );
+    expect(source.connectorType.asProfileConnectorType).toEqual(
+      expectedConnectorType.asProfileConnectorType,
+    );
+    expect(source.connectorType.asTaskConnectorOperatorOrigin).toEqual(
+      expectedConnectorType.asTaskConnectorOperatorOrigin,
+    );
+    expect(source.connectorType.isCustom).toEqual(
+      expectedConnectorType.isCustom,
+    );
   });
 
-  test('Flow source template is valid', () => {
-    const stack = new Stack(undefined, 'TestStack');
+  test("Flow source template is valid", () => {
+    const stack = new Stack(undefined, "TestStack");
 
-    const bucket = new Bucket(stack, 'TestBucket', {
-      bucketName: 'test-bucket',
+    const bucket = new Bucket(stack, "TestBucket", {
+      bucketName: "test-bucket",
     });
 
     const source = new S3Source({
       bucket: bucket,
-      prefix: 'prefix',
+      prefix: "prefix",
       format: {
         type: S3InputFileType.CSV,
       },
@@ -69,24 +78,24 @@ describe('S3Source', () => {
       },
     });
 
-    new OnDemandFlow(stack, 'TestFlow', {
+    new OnDemandFlow(stack, "TestFlow", {
       source: source,
       destination: destination,
       mappings: [Mapping.mapAll()],
     });
 
     const template = Template.fromStack(stack);
-    template.hasResourceProperties('AWS::AppFlow::Flow', {
+    template.hasResourceProperties("AWS::AppFlow::Flow", {
       SourceFlowConfig: {
-        ConnectorType: 'S3',
+        ConnectorType: "S3",
         SourceConnectorProperties: {
           S3: {
             BucketName: {
-              Ref: 'TestBucket560B80BC',
+              Ref: "TestBucket560B80BC",
             },
-            BucketPrefix: 'prefix',
+            BucketPrefix: "prefix",
             S3InputFormatConfig: {
-              S3InputFileType: 'CSV',
+              S3InputFileType: "CSV",
             },
           },
         },
@@ -94,11 +103,8 @@ describe('S3Source', () => {
     });
   });
 
-  test('Only known S3InputFileType specified', () => {
-    const expectedTypes = [
-      'CSV',
-      'JSON',
-    ];
+  test("Only known S3InputFileType specified", () => {
+    const expectedTypes = ["CSV", "JSON"];
     const actualTypes = Object.values(S3InputFileType);
 
     expect(actualTypes).toEqual(expectedTypes);

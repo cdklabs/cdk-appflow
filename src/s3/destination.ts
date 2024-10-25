@@ -2,23 +2,23 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { IDatabase } from '@aws-cdk/aws-glue-alpha';
-import { Stack } from 'aws-cdk-lib';
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
+import { IDatabase } from "@aws-cdk/aws-glue-alpha";
+import { Stack } from "aws-cdk-lib";
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
 import {
   Effect,
   IRole,
   PolicyStatement,
   Role,
   ServicePrincipal,
-} from 'aws-cdk-lib/aws-iam';
-import { IConstruct } from 'constructs';
-import { S3ConnectorType } from './type';
-import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { FlowType, IFlow } from '../core/flows';
-import { S3Location } from '../core/s3-location';
-import { IDestination } from '../core/vertices/destination';
+} from "aws-cdk-lib/aws-iam";
+import { IConstruct } from "constructs";
+import { S3ConnectorType } from "./type";
+import { AppFlowPermissionsManager } from "../core/appflow-permissions-manager";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { FlowType, IFlow } from "../core/flows";
+import { S3Location } from "../core/s3-location";
+import { IDestination } from "../core/vertices/destination";
 
 export interface S3FileAggregation {
   readonly type?: S3OutputAggregationType;
@@ -57,8 +57,8 @@ export interface S3OutputFormatting {
 }
 
 export enum S3OutputAggregationType {
-  NONE = 'None',
-  SINGLE_FILE = 'SingleFile',
+  NONE = "None",
+  SINGLE_FILE = "SingleFile",
 }
 
 /**
@@ -68,34 +68,34 @@ export enum S3OutputFileType {
   /**
    * CSV file type
    */
-  CSV = 'CSV',
+  CSV = "CSV",
   /**
    * JSON file type
    */
-  JSON = 'JSON',
+  JSON = "JSON",
   /**
    * Parquet file type
    */
-  PARQUET = 'PARQUET',
+  PARQUET = "PARQUET",
 }
 
 export enum S3OutputFilePrefixHierarchy {
-  EXECUTION_ID = 'EXECUTION_ID',
-  SCHEMA_VERSION = 'SCHEMA_VERSION',
+  EXECUTION_ID = "EXECUTION_ID",
+  SCHEMA_VERSION = "SCHEMA_VERSION",
 }
 
 export enum S3OutputFilePrefixFormat {
-  DAY = 'DAY',
-  HOUR = 'HOUR',
-  MINUTE = 'MINUTE',
-  MONTH = 'MONTH',
-  YEAR = 'YEAR',
+  DAY = "DAY",
+  HOUR = "HOUR",
+  MINUTE = "MINUTE",
+  MONTH = "MONTH",
+  YEAR = "YEAR",
 }
 
 export enum S3OutputFilePrefixType {
-  FILENAME = 'FILENAME',
-  PATH = 'PATH',
-  PATH_AND_FILE = 'PATH_AND_FILE',
+  FILENAME = "FILENAME",
+  PATH = "PATH",
+  PATH_AND_FILE = "PATH_AND_FILE",
 }
 
 export interface S3Catalog {
@@ -218,7 +218,7 @@ export class S3Destination implements IDestination {
     tablePrefix: string,
   ) {
     const role = new Role(flow.stack, `${flow.node.id}GlueAccessRole`, {
-      assumedBy: new ServicePrincipal('appflow.amazonaws.com'),
+      assumedBy: new ServicePrincipal("appflow.amazonaws.com"),
     });
 
     // see: https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-access-gdc
@@ -226,42 +226,42 @@ export class S3Destination implements IDestination {
       new PolicyStatement({
         effect: Effect.ALLOW,
         actions: [
-          'glue:BatchCreatePartition',
-          'glue:CreatePartitionIndex',
-          'glue:DeleteDatabase',
-          'glue:GetTableVersions',
-          'glue:GetPartitions',
-          'glue:BatchDeletePartition',
-          'glue:DeleteTableVersion',
-          'glue:UpdateTable',
-          'glue:DeleteTable',
-          'glue:DeletePartitionIndex',
-          'glue:GetTableVersion',
-          'glue:CreatePartition',
-          'glue:UntagResource',
-          'glue:UpdatePartition',
-          'glue:TagResource',
-          'glue:UpdateDatabase',
-          'glue:CreateTable',
-          'glue:BatchUpdatePartition',
-          'glue:GetTables',
-          'glue:BatchGetPartition',
-          'glue:GetDatabases',
-          'glue:GetPartitionIndexes',
-          'glue:GetTable',
-          'glue:GetDatabase',
-          'glue:GetPartition',
-          'glue:CreateDatabase',
-          'glue:BatchDeleteTableVersion',
-          'glue:BatchDeleteTable',
-          'glue:DeletePartition',
+          "glue:BatchCreatePartition",
+          "glue:CreatePartitionIndex",
+          "glue:DeleteDatabase",
+          "glue:GetTableVersions",
+          "glue:GetPartitions",
+          "glue:BatchDeletePartition",
+          "glue:DeleteTableVersion",
+          "glue:UpdateTable",
+          "glue:DeleteTable",
+          "glue:DeletePartitionIndex",
+          "glue:GetTableVersion",
+          "glue:CreatePartition",
+          "glue:UntagResource",
+          "glue:UpdatePartition",
+          "glue:TagResource",
+          "glue:UpdateDatabase",
+          "glue:CreateTable",
+          "glue:BatchUpdatePartition",
+          "glue:GetTables",
+          "glue:BatchGetPartition",
+          "glue:GetDatabases",
+          "glue:GetPartitionIndexes",
+          "glue:GetTable",
+          "glue:GetDatabase",
+          "glue:GetPartition",
+          "glue:CreateDatabase",
+          "glue:BatchDeleteTableVersion",
+          "glue:BatchDeleteTable",
+          "glue:DeletePartition",
         ],
         resources: [
           database.catalogArn,
           database.databaseArn,
           Stack.of(flow).formatArn({
-            service: 'glue',
-            resource: 'table',
+            service: "glue",
+            resource: "table",
             resourceName: `${database.databaseName}/${tablePrefix}*`,
           }),
         ],
@@ -274,7 +274,7 @@ export class S3Destination implements IDestination {
     const bucketName = this.props.location.bucket.bucketName;
 
     if (!bucketName) {
-      throw new Error('bucketName is required');
+      throw new Error("bucketName is required");
     }
 
     return {
@@ -300,7 +300,7 @@ export class S3Destination implements IDestination {
     scope: IConstruct,
     resource?: IConstruct | string,
   ) {
-    if (resource && typeof resource !== 'string') {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }
