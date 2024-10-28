@@ -2,11 +2,11 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { SecretValue, Stack } from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
-import { Bucket } from 'aws-cdk-lib/aws-s3';
+import { SecretValue, Stack } from "aws-cdk-lib";
+import { Template } from "aws-cdk-lib/assertions";
+import { Bucket } from "aws-cdk-lib/aws-s3";
 
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
+import { Secret } from "aws-cdk-lib/aws-secretsmanager";
 import {
   Mapping,
   OnDemandFlow,
@@ -15,217 +15,236 @@ import {
   SalesforceDataTransferApi,
   SalesforceSource,
   SalesforceConnectorType,
-} from '../../src';
+} from "../../src";
 
-describe('SalesforceSource', () => {
-
-  test('Source with only connector name', () => {
-    const stack = new Stack(undefined, 'TestStack');
+describe("SalesforceSource", () => {
+  test("Source with only connector name", () => {
+    const stack = new Stack(undefined, "TestStack");
     const source = new SalesforceSource({
-      profile: SalesforceConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
+      profile: SalesforceConnectorProfile.fromConnectionProfileName(
+        stack,
+        "TestProfile",
+        "dummy-profile",
+      ),
       dataTransferApi: SalesforceDataTransferApi.REST_SYNC,
       enableDynamicFieldUpdate: true,
-      apiVersion: '1',
+      apiVersion: "1",
       includeDeletedRecords: true,
-      object: 'Account',
+      object: "Account",
     });
 
     const expectedConnectorType = SalesforceConnectorType.instance;
-    expect(source.connectorType.asProfileConnectorLabel).toEqual(expectedConnectorType.asProfileConnectorLabel);
-    expect(source.connectorType.asProfileConnectorType).toEqual(expectedConnectorType.asProfileConnectorType);
-    expect(source.connectorType.asTaskConnectorOperatorOrigin).toEqual(expectedConnectorType.asTaskConnectorOperatorOrigin);
-    expect(source.connectorType.isCustom).toEqual(expectedConnectorType.isCustom);
+    expect(source.connectorType.asProfileConnectorLabel).toEqual(
+      expectedConnectorType.asProfileConnectorLabel,
+    );
+    expect(source.connectorType.asProfileConnectorType).toEqual(
+      expectedConnectorType.asProfileConnectorType,
+    );
+    expect(source.connectorType.asTaskConnectorOperatorOrigin).toEqual(
+      expectedConnectorType.asTaskConnectorOperatorOrigin,
+    );
+    expect(source.connectorType.isCustom).toEqual(
+      expectedConnectorType.isCustom,
+    );
   });
 
-  test('Source in a Flow is in the stack', () => {
-    const stack = new Stack(undefined, 'TestStack');
+  test("Source in a Flow is in the stack", () => {
+    const stack = new Stack(undefined, "TestStack");
     const source = new SalesforceSource({
-      profile: SalesforceConnectorProfile.fromConnectionProfileName(stack, 'TestProfile', 'dummy-profile'),
+      profile: SalesforceConnectorProfile.fromConnectionProfileName(
+        stack,
+        "TestProfile",
+        "dummy-profile",
+      ),
       dataTransferApi: SalesforceDataTransferApi.REST_SYNC,
       enableDynamicFieldUpdate: true,
-      apiVersion: '1',
+      apiVersion: "1",
       includeDeletedRecords: true,
-      object: 'Account',
+      object: "Account",
     });
 
     const destination = new S3Destination({
-      location: { bucket: new Bucket(stack, 'TestBucket') },
+      location: { bucket: new Bucket(stack, "TestBucket") },
     });
 
-    new OnDemandFlow(stack, 'TestFlow', {
+    new OnDemandFlow(stack, "TestFlow", {
       source: source,
       destination: destination,
       mappings: [Mapping.mapAll()],
     });
 
-    Template.fromStack(stack).hasResourceProperties('AWS::AppFlow::Flow', {
+    Template.fromStack(stack).hasResourceProperties("AWS::AppFlow::Flow", {
       DestinationFlowConfigList: [
         {
-          ConnectorType: 'S3',
+          ConnectorType: "S3",
           DestinationConnectorProperties: {
             S3: {
               BucketName: {
-                Ref: 'TestBucket560B80BC',
+                Ref: "TestBucket560B80BC",
               },
             },
           },
         },
       ],
-      FlowName: 'TestStackTestFlow32CDAF42',
+      FlowName: "TestStackTestFlow32CDAF42",
       SourceFlowConfig: {
-        ApiVersion: '1',
-        ConnectorProfileName: 'dummy-profile',
-        ConnectorType: 'Salesforce',
+        ApiVersion: "1",
+        ConnectorProfileName: "dummy-profile",
+        ConnectorType: "Salesforce",
         SourceConnectorProperties: {
           Salesforce: {
-            DataTransferApi: 'REST_SYNC',
+            DataTransferApi: "REST_SYNC",
             EnableDynamicFieldUpdate: true,
             IncludeDeletedRecords: true,
-            Object: 'Account',
+            Object: "Account",
           },
         },
       },
       Tasks: [
         {
           ConnectorOperator: {
-            Salesforce: 'NO_OP',
+            Salesforce: "NO_OP",
           },
           SourceFields: [],
           TaskProperties: [
             {
-              Key: 'EXCLUDE_SOURCE_FIELDS_LIST',
-              Value: '[]',
+              Key: "EXCLUDE_SOURCE_FIELDS_LIST",
+              Value: "[]",
             },
           ],
-          TaskType: 'Map_all',
+          TaskType: "Map_all",
         },
       ],
       TriggerConfig: {
-        TriggerType: 'OnDemand',
+        TriggerType: "OnDemand",
       },
     });
   });
 
-  test('Source for dummy-profile in a Flow is in the stack', () => {
-    const stack = new Stack(undefined, 'TestStack');
+  test("Source for dummy-profile in a Flow is in the stack", () => {
+    const stack = new Stack(undefined, "TestStack");
 
-    const secret = Secret.fromSecretNameV2(stack, 'TestSecret', 'appflow/salesforce/client');
-    const profile = new SalesforceConnectorProfile(stack, 'TestProfile', {
+    const secret = Secret.fromSecretNameV2(
+      stack,
+      "TestSecret",
+      "appflow/salesforce/client",
+    );
+    const profile = new SalesforceConnectorProfile(stack, "TestProfile", {
       oAuth: {
-        accessToken: SecretValue.unsafePlainText('accessToken'),
+        accessToken: SecretValue.unsafePlainText("accessToken"),
         flow: {
           refreshTokenGrant: {
-            refreshToken: SecretValue.unsafePlainText('refreshToken'),
+            refreshToken: SecretValue.unsafePlainText("refreshToken"),
             client: secret,
           },
         },
       },
-      instanceUrl: 'https://instance-id.develop.my.salesforce.com',
+      instanceUrl: "https://instance-id.develop.my.salesforce.com",
     });
 
     const source = new SalesforceSource({
       profile: profile,
       dataTransferApi: SalesforceDataTransferApi.REST_SYNC,
       enableDynamicFieldUpdate: true,
-      apiVersion: '1',
+      apiVersion: "1",
       includeDeletedRecords: true,
-      object: 'Account',
+      object: "Account",
     });
 
     const destination = new S3Destination({
-      location: { bucket: new Bucket(stack, 'TestBucket') },
+      location: { bucket: new Bucket(stack, "TestBucket") },
     });
 
-    new OnDemandFlow(stack, 'TestFlow', {
+    new OnDemandFlow(stack, "TestFlow", {
       source: source,
       destination: destination,
       mappings: [Mapping.mapAll()],
     });
 
     const template = Template.fromStack(stack);
-    template.hasResourceProperties('AWS::AppFlow::ConnectorProfile', {
-      ConnectionMode: 'Public',
+    template.hasResourceProperties("AWS::AppFlow::ConnectorProfile", {
+      ConnectionMode: "Public",
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
           Salesforce: {
-            AccessToken: 'accessToken',
+            AccessToken: "accessToken",
             ClientCredentialsArn: {
-              'Fn::Join': [
-                '',
+              "Fn::Join": [
+                "",
                 [
-                  'arn:',
+                  "arn:",
                   {
-                    Ref: 'AWS::Partition',
+                    Ref: "AWS::Partition",
                   },
-                  ':secretsmanager:',
+                  ":secretsmanager:",
                   {
-                    Ref: 'AWS::Region',
+                    Ref: "AWS::Region",
                   },
-                  ':',
+                  ":",
                   {
-                    Ref: 'AWS::AccountId',
+                    Ref: "AWS::AccountId",
                   },
-                  ':secret:appflow/salesforce/client',
+                  ":secret:appflow/salesforce/client",
                 ],
               ],
             },
-            RefreshToken: 'refreshToken',
+            RefreshToken: "refreshToken",
           },
         },
         ConnectorProfileProperties: {
           Salesforce: {
-            InstanceUrl: 'https://instance-id.develop.my.salesforce.com',
+            InstanceUrl: "https://instance-id.develop.my.salesforce.com",
           },
         },
       },
-      ConnectorProfileName: 'TestProfile',
-      ConnectorType: 'Salesforce',
+      ConnectorProfileName: "TestProfile",
+      ConnectorType: "Salesforce",
     });
 
-    template.hasResourceProperties('AWS::AppFlow::Flow', {
+    template.hasResourceProperties("AWS::AppFlow::Flow", {
       DestinationFlowConfigList: [
         {
-          ConnectorType: 'S3',
+          ConnectorType: "S3",
           DestinationConnectorProperties: {
             S3: {
               BucketName: {
-                Ref: 'TestBucket560B80BC',
+                Ref: "TestBucket560B80BC",
               },
             },
           },
         },
       ],
-      FlowName: 'TestStackTestFlow32CDAF42',
+      FlowName: "TestStackTestFlow32CDAF42",
       SourceFlowConfig: {
-        ApiVersion: '1',
-        ConnectorProfileName: 'TestProfile',
-        ConnectorType: 'Salesforce',
+        ApiVersion: "1",
+        ConnectorProfileName: "TestProfile",
+        ConnectorType: "Salesforce",
         SourceConnectorProperties: {
           Salesforce: {
-            DataTransferApi: 'REST_SYNC',
+            DataTransferApi: "REST_SYNC",
             EnableDynamicFieldUpdate: true,
             IncludeDeletedRecords: true,
-            Object: 'Account',
+            Object: "Account",
           },
         },
       },
       Tasks: [
         {
           ConnectorOperator: {
-            Salesforce: 'NO_OP',
+            Salesforce: "NO_OP",
           },
           SourceFields: [],
           TaskProperties: [
             {
-              Key: 'EXCLUDE_SOURCE_FIELDS_LIST',
-              Value: '[]',
+              Key: "EXCLUDE_SOURCE_FIELDS_LIST",
+              Value: "[]",
             },
           ],
-          TaskType: 'Map_all',
+          TaskType: "Map_all",
         },
       ],
       TriggerConfig: {
-        TriggerType: 'OnDemand',
+        TriggerType: "OnDemand",
       },
     });
   });

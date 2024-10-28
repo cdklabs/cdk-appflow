@@ -2,13 +2,12 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { ConnectorType } from '../core/connectors/connector-type';
+import { ConnectorType } from "../core/connectors/connector-type";
 
 /**
  * @internal
  */
 export class AsanaConnectorType extends ConnectorType {
-
   public static get instance(): ConnectorType {
     if (!AsanaConnectorType.actualInstance) {
       AsanaConnectorType.actualInstance = new AsanaConnectorType();
@@ -19,6 +18,6 @@ export class AsanaConnectorType extends ConnectorType {
   private static actualInstance: ConnectorType;
 
   constructor() {
-    super('Asana', true);
+    super("Asana", true);
   }
 }

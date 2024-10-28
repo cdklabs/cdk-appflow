@@ -2,20 +2,19 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { SalesforceConnectorProfile } from './profile';
-import { SalesforceDataTransferApi } from './salesforce-data-transfer-api';
-import { SalesforceConnectorType } from './type';
-import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { ErrorHandlingConfiguration } from '../core/error-handling';
-import { IFlow } from '../core/flows';
-import { IDestination } from '../core/vertices/destination';
-import { WriteOperation } from '../core/write-operation';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { SalesforceConnectorProfile } from "./profile";
+import { SalesforceDataTransferApi } from "./salesforce-data-transfer-api";
+import { SalesforceConnectorType } from "./type";
+import { AppFlowPermissionsManager } from "../core/appflow-permissions-manager";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { ErrorHandlingConfiguration } from "../core/error-handling";
+import { IFlow } from "../core/flows";
+import { IDestination } from "../core/vertices/destination";
+import { WriteOperation } from "../core/write-operation";
 
 export interface SalesforceDestinationProps {
-
   readonly profile: SalesforceConnectorProfile;
 
   /**
@@ -37,21 +36,26 @@ export interface SalesforceDestinationProps {
 }
 
 export class SalesforceDestination implements IDestination {
+  public readonly connectorType: ConnectorType =
+    SalesforceConnectorType.instance;
 
-  public readonly connectorType: ConnectorType = SalesforceConnectorType.instance;
-
-  constructor(private readonly props: SalesforceDestinationProps) { }
+  constructor(private readonly props: SalesforceDestinationProps) {}
 
   bind(flow: IFlow): CfnFlow.DestinationFlowConfigProperty {
-
-    this.tryAddNodeDependency(flow, this.props.errorHandling?.errorLocation?.bucket);
-    AppFlowPermissionsManager.instance().grantBucketWrite(this.props.errorHandling?.errorLocation?.bucket);
+    this.tryAddNodeDependency(
+      flow,
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
+    AppFlowPermissionsManager.instance().grantBucketWrite(
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
     this.tryAddNodeDependency(flow, this.props.profile);
 
     return {
       connectorType: this.connectorType.asProfileConnectorType,
       connectorProfileName: this.props.profile.name,
-      destinationConnectorProperties: this.buildDestinationConnectorProperties(),
+      destinationConnectorProperties:
+        this.buildDestinationConnectorProperties(),
     };
   }
 
@@ -60,7 +64,8 @@ export class SalesforceDestination implements IDestination {
       salesforce: {
         dataTransferApi: this.props.dataTransferApi,
         errorHandlingConfig: this.props.errorHandling && {
-          bucketName: this.props.errorHandling?.errorLocation?.bucket.bucketName,
+          bucketName:
+            this.props.errorHandling?.errorLocation?.bucket.bucketName,
           bucketPrefix: this.props.errorHandling?.errorLocation?.prefix,
           failOnFirstError: this.props.errorHandling.failOnFirstError,
         },
@@ -71,10 +76,12 @@ export class SalesforceDestination implements IDestination {
     };
   }
 
-  private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string) {
-    if (resource && typeof resource !== 'string') {
+  private tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ) {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }
-
 }

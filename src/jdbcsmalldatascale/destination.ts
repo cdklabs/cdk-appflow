@@ -2,16 +2,16 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { JdbcSmallDataScaleConnectorProfile } from './profile';
-import { JdbcSmallDataScaleConnectorType } from './type';
-import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { ErrorHandlingConfiguration } from '../core/error-handling';
-import { IFlow } from '../core/flows';
-import { IDestination } from '../core/vertices/destination';
-import { WriteOperationType } from '../core/write-operation';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { JdbcSmallDataScaleConnectorProfile } from "./profile";
+import { JdbcSmallDataScaleConnectorType } from "./type";
+import { AppFlowPermissionsManager } from "../core/appflow-permissions-manager";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { ErrorHandlingConfiguration } from "../core/error-handling";
+import { IFlow } from "../core/flows";
+import { IDestination } from "../core/vertices/destination";
+import { WriteOperationType } from "../core/write-operation";
 
 /**
  * The definition of the Amazon AppFlow object for JdbcSmallDestination
@@ -32,7 +32,6 @@ export interface JdbcSmallDataScaleObject {
  * Properties of the JdbcSmallDataScaleDestination
  */
 export interface JdbcSmallDataScaleDestinationProps {
-
   /**
    * The profile to use with the destination
    */
@@ -58,28 +57,35 @@ export interface JdbcSmallDataScaleDestinationProps {
  * Represents a destination for the JDBC connector
  */
 export class JdbcSmallDataScaleDestination implements IDestination {
+  private static readonly defaultApiVersion = "V1";
 
-  private static readonly defaultApiVersion = 'V1';
-
-  public readonly connectorType: ConnectorType = JdbcSmallDataScaleConnectorType.instance;
+  public readonly connectorType: ConnectorType =
+    JdbcSmallDataScaleConnectorType.instance;
 
   /**
    * Creates a new instance of the JdbcSmallDataScaleDestination
    * @param props - properties of the destination
    */
-  constructor(private readonly props: JdbcSmallDataScaleDestinationProps) { }
+  constructor(private readonly props: JdbcSmallDataScaleDestinationProps) {}
 
   bind(flow: IFlow): CfnFlow.DestinationFlowConfigProperty {
-
-    this.tryAddNodeDependency(flow, this.props.errorHandling?.errorLocation?.bucket);
-    AppFlowPermissionsManager.instance().grantBucketWrite(this.props.errorHandling?.errorLocation?.bucket);
+    this.tryAddNodeDependency(
+      flow,
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
+    AppFlowPermissionsManager.instance().grantBucketWrite(
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
     this.tryAddNodeDependency(flow, this.props.profile);
 
     return {
       connectorType: this.connectorType.asProfileConnectorType,
-      apiVersion: this.props.apiVersion ?? JdbcSmallDataScaleDestination.defaultApiVersion,
+      apiVersion:
+        this.props.apiVersion ??
+        JdbcSmallDataScaleDestination.defaultApiVersion,
       connectorProfileName: this.props.profile.name,
-      destinationConnectorProperties: this.buildDestinationConnectorProperties(),
+      destinationConnectorProperties:
+        this.buildDestinationConnectorProperties(),
     };
   }
 
@@ -88,7 +94,8 @@ export class JdbcSmallDataScaleDestination implements IDestination {
       customConnector: {
         entityName: `${this.props.object.schema}.${this.props.object.table}`,
         errorHandlingConfig: this.props.errorHandling && {
-          bucketName: this.props.errorHandling?.errorLocation?.bucket.bucketName,
+          bucketName:
+            this.props.errorHandling?.errorLocation?.bucket.bucketName,
           bucketPrefix: this.props.errorHandling?.errorLocation?.prefix,
           failOnFirstError: this.props.errorHandling.failOnFirstError,
         },
@@ -97,8 +104,11 @@ export class JdbcSmallDataScaleDestination implements IDestination {
     };
   }
 
-  private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string): void {
-    if (resource && typeof resource !== 'string') {
+  private tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ): void {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }

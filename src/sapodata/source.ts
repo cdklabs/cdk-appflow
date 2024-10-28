@@ -2,13 +2,13 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { SAPOdataConnectorProfile } from './profile';
-import { SAPOdataConnectorType } from './type';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { IFlow } from '../core/flows';
-import { ISource } from '../core/vertices/source';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { SAPOdataConnectorProfile } from "./profile";
+import { SAPOdataConnectorType } from "./type";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { IFlow } from "../core/flows";
+import { ISource } from "../core/vertices/source";
 
 export interface SAPOdataSourceProps {
   readonly profile: SAPOdataConnectorProfile;
@@ -16,13 +16,11 @@ export interface SAPOdataSourceProps {
 }
 
 export class SAPOdataSource implements ISource {
-
   public readonly connectorType: ConnectorType = SAPOdataConnectorType.instance;
 
-  constructor(private readonly props: SAPOdataSourceProps) { }
+  constructor(private readonly props: SAPOdataSourceProps) {}
 
   bind(flow: IFlow): CfnFlow.SourceFlowConfigProperty {
-
     this.tryAddNodeDependency(flow, this.props.profile);
 
     return {
@@ -40,8 +38,11 @@ export class SAPOdataSource implements ISource {
     };
   }
 
-  private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string): void {
-    if (resource && typeof resource !== 'string') {
+  private tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ): void {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }

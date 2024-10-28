@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
  */
 export class MicrosoftDynamics365TokenUrlBuilder {
   public static buildTokenUrl(tenantId?: string) {
-    return `https://login.microsoftonline.com/${tenantId ?? 'common'}/oauth2/v2.0/token`;
+    return `https://login.microsoftonline.com/${tenantId ?? "common"}/oauth2/v2.0/token`;
   }
 }
 
@@ -25,5 +25,5 @@ export enum MicrosoftDynamics365ApiVersion {
   /**
    * Version 9.2
    */
-  V9_2 = 'v9.2'
+  V9_2 = "v9.2",
 }

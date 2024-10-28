@@ -2,15 +2,15 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { ITable } from '@aws-cdk/aws-redshift-alpha';
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { RedshiftConnectorProfile } from './profile';
-import { RedshiftConnectorType } from './type';
-import { ErrorHandlingConfiguration, IFlow } from '../core';
-import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { IDestination } from '../core/vertices';
+import { ITable } from "@aws-cdk/aws-redshift-alpha";
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { RedshiftConnectorProfile } from "./profile";
+import { RedshiftConnectorType } from "./type";
+import { ErrorHandlingConfiguration, IFlow } from "../core";
+import { AppFlowPermissionsManager } from "../core/appflow-permissions-manager";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { IDestination } from "../core/vertices";
 
 export interface RedshiftDestinationObject {
   readonly table: string | ITable;
@@ -39,16 +39,19 @@ export interface RedshiftDestinationProps {
 }
 
 export class RedshiftDestination implements IDestination {
-
-  private readonly defaultSchema: string = 'public';
+  private readonly defaultSchema: string = "public";
   public readonly connectorType: ConnectorType = RedshiftConnectorType.instance;
 
-  constructor(private readonly props: RedshiftDestinationProps) { }
+  constructor(private readonly props: RedshiftDestinationProps) {}
 
   bind(scope: IFlow): CfnFlow.DestinationFlowConfigProperty {
-
-    this.tryAddNodeDependency(scope, this.props.errorHandling?.errorLocation?.bucket);
-    AppFlowPermissionsManager.instance().grantBucketWrite(this.props.errorHandling?.errorLocation?.bucket);
+    this.tryAddNodeDependency(
+      scope,
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
+    AppFlowPermissionsManager.instance().grantBucketWrite(
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
     this.tryAddNodeDependency(scope, this.props.profile);
     this.tryAddNodeDependency(scope, this.props.object.table);
     // NOTE: interesting case that the profile requires to have the table created
@@ -58,7 +61,8 @@ export class RedshiftDestination implements IDestination {
     return {
       connectorType: this.connectorType.asProfileConnectorType,
       connectorProfileName: this.props.profile.name,
-      destinationConnectorProperties: this.buildDestinationConnectorProperties(),
+      destinationConnectorProperties:
+        this.buildDestinationConnectorProperties(),
     };
   }
 
@@ -66,7 +70,8 @@ export class RedshiftDestination implements IDestination {
     return {
       redshift: {
         errorHandlingConfig: this.props.errorHandling && {
-          bucketName: this.props.errorHandling?.errorLocation?.bucket.bucketName,
+          bucketName:
+            this.props.errorHandling?.errorLocation?.bucket.bucketName,
           bucketPrefix: this.props.errorHandling?.errorLocation?.prefix,
           failOnFirstError: this.props.errorHandling.failOnFirstError,
         },
@@ -74,7 +79,10 @@ export class RedshiftDestination implements IDestination {
         //       for now that is the assumption and we're pulling this data from the profile
         intermediateBucketName: this.props.profile._location.bucket.bucketName,
         bucketPrefix: this.props.profile._location.prefix,
-        object: this.buildObject(this.props.object.table, this.props.object.schema),
+        object: this.buildObject(
+          this.props.object.table,
+          this.props.object.schema,
+        ),
       },
     };
   }
@@ -82,15 +90,18 @@ export class RedshiftDestination implements IDestination {
   private buildObject(table: ITable | string, schema?: string) {
     const _schema = schema ?? this.defaultSchema;
 
-    if (typeof table === 'string') {
+    if (typeof table === "string") {
       return `${_schema}.${table}`;
     }
 
     return `${_schema}.${table.tableName}`;
   }
 
-  private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string): void {
-    if (resource && typeof resource !== 'string') {
+  private tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ): void {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }

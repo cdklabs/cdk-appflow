@@ -2,10 +2,10 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { ConnectorType } from '../connectors/connector-type';
-import { IFlow } from '../flows';
-import { ISource } from '../vertices/source';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { ConnectorType } from "../connectors/connector-type";
+import { IFlow } from "../flows";
+import { ISource } from "../vertices/source";
 
 /**
  * A representation of a unitary action on the record fields
@@ -31,18 +31,22 @@ export interface TaskConnectorOperator {
  * A representation of a unitary action on the record fields
  */
 export class Task implements ITask {
-  constructor(protected type: string,
+  constructor(
+    protected type: string,
     protected sourceFields: string[],
     protected connectorOperator: TaskConnectorOperator,
     protected properties: TaskProperty[],
-    protected destinationField?: string) { }
+    protected destinationField?: string,
+  ) {}
 
   public bind(_flow: IFlow, source: ISource): CfnFlow.TaskProperty {
-
     return {
       taskType: this.type,
       sourceFields: this.sourceFields,
-      taskProperties: this.properties.map(({ key, value }) => ({ key: key, value: value })),
+      taskProperties: this.properties.map(({ key, value }) => ({
+        key: key,
+        value: value,
+      })),
       connectorOperator: this.buildOperatorFor(source),
       destinationField: this.destinationField,
     };
@@ -50,7 +54,9 @@ export class Task implements ITask {
 
   private buildOperatorFor(source: ISource): CfnFlow.ConnectorOperatorProperty {
     const operator: { [key: string]: string } = {};
-    const origin = this.connectorOperator.type?.asTaskConnectorOperatorOrigin ?? source.connectorType.asTaskConnectorOperatorOrigin;
+    const origin =
+      this.connectorOperator.type?.asTaskConnectorOperatorOrigin ??
+      source.connectorType.asTaskConnectorOperatorOrigin;
     operator[origin] = this.connectorOperator.operation;
     return operator;
   }

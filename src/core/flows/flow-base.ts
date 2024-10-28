@@ -2,19 +2,19 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Duration, IResource, Lazy, Names, Resource } from 'aws-cdk-lib';
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
+import { Duration, IResource, Lazy, Names, Resource } from "aws-cdk-lib";
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
 
-import { Metric, MetricOptions } from 'aws-cdk-lib/aws-cloudwatch';
-import { OnEventOptions, Rule, Schedule } from 'aws-cdk-lib/aws-events';
-import { IKey } from 'aws-cdk-lib/aws-kms';
-import { Construct, IConstruct } from 'constructs';
-import { FlowTimeUpdater } from './flow-time-updater';
-import { ConnectorType } from '../connectors/connector-type';
+import { Metric, MetricOptions } from "aws-cdk-lib/aws-cloudwatch";
+import { OnEventOptions, Rule, Schedule } from "aws-cdk-lib/aws-events";
+import { IKey } from "aws-cdk-lib/aws-kms";
+import { Construct, IConstruct } from "constructs";
+import { FlowTimeUpdater } from "./flow-time-updater";
+import { ConnectorType } from "../connectors/connector-type";
 
-import { IMapping, ITransform, IFilter, IValidation } from '../tasks';
-import { IDestination } from '../vertices/destination';
-import { ISource } from '../vertices/source';
+import { IMapping, ITransform, IFilter, IValidation } from "../tasks";
+import { IDestination } from "../vertices/destination";
+import { ISource } from "../vertices/source";
 
 export interface IFlow extends IResource {
   /**
@@ -35,7 +35,6 @@ export interface IFlow extends IResource {
   onRunStarted(id: string, options?: OnEventOptions): Rule;
 
   onRunCompleted(id: string, options?: OnEventOptions): Rule;
-
 
   /**
    * Creates a metric to report the number of flow runs started.
@@ -94,19 +93,19 @@ export interface IFlow extends IResource {
 }
 
 export enum FlowType {
-  EVENT = 'Event',
-  ON_DEMAND = 'OnDemand',
-  SCHEDULED = 'Scheduled'
+  EVENT = "Event",
+  ON_DEMAND = "OnDemand",
+  SCHEDULED = "Scheduled",
 }
 
 export enum FlowStatus {
-  ACTIVE = 'Active',
-  SUSPENDED = 'Suspended'
+  ACTIVE = "Active",
+  SUSPENDED = "Suspended",
 }
 
 export enum DataPullMode {
-  COMPLETE = 'Complete',
-  INCREMENTAL = 'Incremental'
+  COMPLETE = "Complete",
+  INCREMENTAL = "Incremental",
 }
 
 export interface DataPullConfig {
@@ -159,7 +158,6 @@ export interface FlowBaseProps extends FlowProps {
 }
 
 export abstract class FlowBase extends Resource implements IFlow {
-
   /**
    * The ARN of the flow.
    */
@@ -194,30 +192,39 @@ export abstract class FlowBase extends Resource implements IFlow {
           produce: () =>
             Names.uniqueResourceName(this, {
               maxLength: 256,
-              allowedSpecialCharacters: '-_',
+              allowedSpecialCharacters: "-_",
             }),
         }),
     });
 
     this.type = props.type;
 
-    this._projectionFilter = this.initProjectionFilter(props.source.connectorType);
+    this._projectionFilter = this.initProjectionFilter(
+      props.source.connectorType,
+    );
 
     const resource = new CfnFlow(this, id, {
       flowName: this.physicalName,
       flowStatus: props.status,
       triggerConfig: {
         triggerType: props.type,
-        triggerProperties: props.triggerConfig
-          && props.triggerConfig.properties
-          && this.buildTriggerProperties(scope, id, props.triggerConfig.properties),
+        triggerProperties:
+          props.triggerConfig &&
+          props.triggerConfig.properties &&
+          this.buildTriggerProperties(
+            scope,
+            id,
+            props.triggerConfig.properties,
+          ),
       },
       kmsArn: props.key?.keyArn,
       metadataCatalogConfig: Lazy.any({ produce: () => this._catalogMetadata }),
       description: props.description,
       sourceFlowConfig: {
         ...props.source.bind(this),
-        incrementalPullConfig: this.buildIncrementalPullConfig(props.triggerConfig),
+        incrementalPullConfig: this.buildIncrementalPullConfig(
+          props.triggerConfig,
+        ),
       },
       // NOTE: currently only a single destination is allowed with AppFlow
       //       it might require a change of approach in the future.
@@ -245,28 +252,31 @@ export abstract class FlowBase extends Resource implements IFlow {
     this.name = this.physicalName;
     this.source = props.source;
 
-    props.mappings.forEach(m => this._addMapping(m));
+    props.mappings.forEach((m) => this._addMapping(m));
 
     if (props.validations) {
-      props.validations.forEach(v => this._addValidation(v));
+      props.validations.forEach((v) => this._addValidation(v));
     }
 
     if (props.transforms) {
-      props.transforms.forEach(t => this._addTransform(t));
+      props.transforms.forEach((t) => this._addTransform(t));
     }
 
     if (props.filters) {
-      props.filters.forEach(f => this._addFilter(f));
+      props.filters.forEach((f) => this._addFilter(f));
     }
 
     this.node.addValidation({
-      validate: () => this.mappings.length === 0 ? ['A Flow must have at least one mapping'] : [],
+      validate: () =>
+        this.mappings.length === 0
+          ? ["A Flow must have at least one mapping"]
+          : [],
     });
   }
 
   public metric(metricName: string, options?: MetricOptions): Metric {
     return new Metric({
-      namespace: 'AWS/AppFlow',
+      namespace: "AWS/AppFlow",
       metricName,
       dimensionsMap: {
         FlowName: this.name,
@@ -276,27 +286,30 @@ export abstract class FlowBase extends Resource implements IFlow {
   }
 
   public metricFlowExecutionsStarted(options?: MetricOptions): Metric {
-    return this.metric('FlowExecutionsStarted', options);
+    return this.metric("FlowExecutionsStarted", options);
   }
 
   public metricFlowExecutionsFailed(options?: MetricOptions): Metric {
-    return this.metric('FlowExecutionsFailed', options);
+    return this.metric("FlowExecutionsFailed", options);
   }
 
   public metricFlowExecutionsSucceeded(options?: MetricOptions): Metric {
-    return this.metric('FlowExecutionsSucceeded', options);
+    return this.metric("FlowExecutionsSucceeded", options);
   }
 
   public metricFlowExecutionTime(options?: MetricOptions): Metric {
-    return this.metric('FlowExecutionTime', options);
+    return this.metric("FlowExecutionTime", options);
   }
 
   public metricFlowExecutionRecordsProcessed(options?: MetricOptions): Metric {
-    return this.metric('FlowExecutionRecordsProcessed', options);
+    return this.metric("FlowExecutionRecordsProcessed", options);
   }
 
-  private buildTriggerProperties(scope: IConstruct, id: string, props: TriggerProperties): CfnFlow.ScheduledTriggerPropertiesProperty {
-
+  private buildTriggerProperties(
+    scope: IConstruct,
+    id: string,
+    props: TriggerProperties,
+  ): CfnFlow.ScheduledTriggerPropertiesProperty {
     const updater = new FlowTimeUpdater(scope, `${id}Updater`, {
       schedule: props.schedule,
       startTime: props.properties?.startTime,
@@ -309,30 +322,35 @@ export abstract class FlowBase extends Resource implements IFlow {
       dataPullMode: props.dataPullConfig.mode,
       flowErrorDeactivationThreshold: props.flowErrorDeactivationThreshold,
       scheduleExpression: updater.scheduleExpression,
-      firstExecutionFrom: props.properties?.firstExecutionFrom &&
+      firstExecutionFrom:
+        props.properties?.firstExecutionFrom &&
         Math.floor(props.properties.firstExecutionFrom.getTime() / 1000),
       scheduleStartTime: props.properties?.startTime && updater.startTime,
       scheduleEndTime: props.properties?.endTime && updater.endTime,
-      scheduleOffset: props.properties?.offset && props.properties.offset.toSeconds(),
+      scheduleOffset:
+        props.properties?.offset && props.properties.offset.toSeconds(),
     };
   }
 
-  private initProjectionFilter(sourceType: ConnectorType): CfnFlow.TaskProperty {
+  private initProjectionFilter(
+    sourceType: ConnectorType,
+  ): CfnFlow.TaskProperty {
     const filterConnectorOperator: { [key: string]: string } = {};
-    filterConnectorOperator[sourceType.asTaskConnectorOperatorOrigin] = 'PROJECTION';
+    filterConnectorOperator[sourceType.asTaskConnectorOperatorOrigin] =
+      "PROJECTION";
 
     return {
-      taskType: 'Filter',
+      taskType: "Filter",
       connectorOperator: filterConnectorOperator,
       sourceFields: [],
     };
   }
 
   /**
-     * Set the catalog definitionfor the flow
-     *
-     * @internal
-     */
+   * Set the catalog definitionfor the flow
+   *
+   * @internal
+   */
   public _addCatalog(metadata: CfnFlow.MetadataCatalogConfigProperty) {
     this._catalogMetadata = metadata;
   }
@@ -392,9 +410,9 @@ export abstract class FlowBase extends Resource implements IFlow {
 
   private addProjectionField(boundMappingTasks: CfnFlow.TaskProperty[]) {
     // TODO: test if this satisfies all the requirements.
-    boundMappingTasks.forEach(boundMapping => {
-      if (['Map', 'Filter'].includes(boundMapping.taskType)) {
-        boundMapping.sourceFields.forEach(field => {
+    boundMappingTasks.forEach((boundMapping) => {
+      if (["Map", "Filter"].includes(boundMapping.taskType)) {
+        boundMapping.sourceFields.forEach((field) => {
           if (!this._projectionFilter.sourceFields.includes(field)) {
             this._projectionFilter.sourceFields.push(field);
           }
@@ -407,7 +425,7 @@ export abstract class FlowBase extends Resource implements IFlow {
   public onEvent(id: string, options: OnEventOptions = {}) {
     const rule = new Rule(this, id, options);
     rule.addEventPattern({
-      source: ['aws.appflow'],
+      source: ["aws.appflow"],
       resources: [this.arn],
     });
     rule.addTarget(options.target);
@@ -417,7 +435,7 @@ export abstract class FlowBase extends Resource implements IFlow {
   public onRunStarted(id: string, options: OnEventOptions = {}) {
     const rule = this.onEvent(id, options);
     rule.addEventPattern({
-      detailType: ['AppFlow Start Flow Run Report'],
+      detailType: ["AppFlow Start Flow Run Report"],
     });
     return rule;
   }
@@ -425,17 +443,22 @@ export abstract class FlowBase extends Resource implements IFlow {
   public onRunCompleted(id: string, options: OnEventOptions = {}) {
     const rule = this.onEvent(id, options);
     rule.addEventPattern({
-      detailType: ['AppFlow End Flow Run Report'],
+      detailType: ["AppFlow End Flow Run Report"],
     });
     return rule;
   }
 
-  private buildIncrementalPullConfig(triggerConfig?: TriggerConfig): CfnFlow.IncrementalPullConfigProperty | undefined {
-    return triggerConfig && triggerConfig.properties && triggerConfig.properties.dataPullConfig
-      && triggerConfig.properties.dataPullConfig.timestampField
+  private buildIncrementalPullConfig(
+    triggerConfig?: TriggerConfig,
+  ): CfnFlow.IncrementalPullConfigProperty | undefined {
+    return triggerConfig &&
+      triggerConfig.properties &&
+      triggerConfig.properties.dataPullConfig &&
+      triggerConfig.properties.dataPullConfig.timestampField
       ? {
-        datetimeTypeFieldName: triggerConfig.properties.dataPullConfig.timestampField,
-      }
+          datetimeTypeFieldName:
+            triggerConfig.properties.dataPullConfig.timestampField,
+        }
       : undefined;
   }
 }

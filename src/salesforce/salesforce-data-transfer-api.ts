@@ -6,8 +6,7 @@
  * By choosing this option, you optimize flow performance for both small and large data transfers, but the tradeoff is inconsistent formatting in the output.
  */
 export enum SalesforceDataTransferApi {
-
-  AUTOMATIC = 'AUTOMATIC',
-  BULKV2 = 'BULKV2',
-  REST_SYNC = 'REST_SYNC'
+  AUTOMATIC = "AUTOMATIC",
+  BULKV2 = "BULKV2",
+  REST_SYNC = "REST_SYNC",
 }
