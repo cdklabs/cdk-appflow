@@ -2,18 +2,17 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { MarketoConnectorType } from './type';
-import { AppFlowPermissionsManager } from '../core';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { ErrorHandlingConfiguration } from '../core/error-handling';
-import { IFlow } from '../core/flows';
-import { IDestination } from '../core/vertices/destination';
-import { MarketoConnectorProfile } from '../marketo/profile';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { MarketoConnectorType } from "./type";
+import { AppFlowPermissionsManager } from "../core";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { ErrorHandlingConfiguration } from "../core/error-handling";
+import { IFlow } from "../core/flows";
+import { IDestination } from "../core/vertices/destination";
+import { MarketoConnectorProfile } from "../marketo/profile";
 
 export interface MarketoDestinationProps {
-
   readonly profile: MarketoConnectorProfile;
 
   /**
@@ -28,21 +27,25 @@ export interface MarketoDestinationProps {
 }
 
 export class MarketoDestination implements IDestination {
-
   public readonly connectorType: ConnectorType = MarketoConnectorType.instance;
 
-  constructor(private readonly props: MarketoDestinationProps) { }
+  constructor(private readonly props: MarketoDestinationProps) {}
 
   bind(flow: IFlow): CfnFlow.DestinationFlowConfigProperty {
-
-    this.tryAddNodeDependency(flow, this.props.errorHandling?.errorLocation?.bucket);
+    this.tryAddNodeDependency(
+      flow,
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
     this.tryAddNodeDependency(flow, this.props.profile);
-    AppFlowPermissionsManager.instance().grantBucketWrite(this.props.errorHandling?.errorLocation?.bucket);
+    AppFlowPermissionsManager.instance().grantBucketWrite(
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
 
     return {
       connectorType: this.connectorType.asProfileConnectorType,
       connectorProfileName: this.props.profile.name,
-      destinationConnectorProperties: this.buildDestinationConnectorProperties(),
+      destinationConnectorProperties:
+        this.buildDestinationConnectorProperties(),
     };
   }
 
@@ -50,7 +53,8 @@ export class MarketoDestination implements IDestination {
     return {
       marketo: {
         errorHandlingConfig: this.props.errorHandling && {
-          bucketName: this.props.errorHandling?.errorLocation?.bucket?.bucketName,
+          bucketName:
+            this.props.errorHandling?.errorLocation?.bucket?.bucketName,
           bucketPrefix: this.props.errorHandling?.errorLocation?.prefix,
           failOnFirstError: this.props.errorHandling.failOnFirstError,
         },

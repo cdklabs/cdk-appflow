@@ -7,5 +7,5 @@ SPDX-License-Identifier: Apache-2.0
  * An enum representing the Mailchimp API versions.
  */
 export enum MailchimpApiVersion {
-  V3 = '3.0'
+  V3 = "3.0",
 }

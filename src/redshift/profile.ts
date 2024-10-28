@@ -2,16 +2,30 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { ICluster } from '@aws-cdk/aws-redshift-alpha';
-import { Aws, SecretValue } from 'aws-cdk-lib';
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { Effect, IRole, Policy, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
-import { AwsCustomResource, AwsCustomResourcePolicy, PhysicalResourceId } from 'aws-cdk-lib/custom-resources';
-import { Construct } from 'constructs';
-import { RedshiftConnectorType } from './type';
-import { S3Location } from '../core';
-import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
+import { ICluster } from "@aws-cdk/aws-redshift-alpha";
+import { Aws, SecretValue } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import {
+  Effect,
+  IRole,
+  Policy,
+  PolicyStatement,
+  Role,
+  ServicePrincipal,
+} from "aws-cdk-lib/aws-iam";
+import {
+  AwsCustomResource,
+  AwsCustomResourcePolicy,
+  PhysicalResourceId,
+} from "aws-cdk-lib/custom-resources";
+import { Construct } from "constructs";
+import { RedshiftConnectorType } from "./type";
+import { S3Location } from "../core";
+import { AppFlowPermissionsManager } from "../core/appflow-permissions-manager";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
 
 export interface RedshiftConnectorBasicCredentials {
   readonly username?: string;
@@ -45,13 +59,24 @@ export interface RedshiftConnectorProfileProps extends ConnectorProfileProps {
 }
 
 export class RedshiftConnectorProfile extends ConnectorProfileBase {
-
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as RedshiftConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as RedshiftConnectorProfile;
   }
 
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as RedshiftConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as RedshiftConnectorProfile;
   }
 
   /**
@@ -59,7 +84,11 @@ export class RedshiftConnectorProfile extends ConnectorProfileBase {
    */
   public readonly _location: S3Location;
 
-  constructor(scope: Construct, id: string, props: RedshiftConnectorProfileProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: RedshiftConnectorProfileProps,
+  ) {
     super(scope, id, props, RedshiftConnectorType.instance);
     this.tryAddNodeDependency(this, props.cluster);
     this._location = props.intermediateLocation;
@@ -68,23 +97,31 @@ export class RedshiftConnectorProfile extends ConnectorProfileBase {
   protected buildConnectorProfileProperties(
     props: ConnectorProfileProps,
   ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
-    const properties = (props as RedshiftConnectorProfileProps);
+    const properties = props as RedshiftConnectorProfileProps;
 
-    const redshiftAccessRole = properties.bucketAccessRole ?? this.buildRedshiftAccessRole(
-      this.node.id,
-      properties.cluster,
-      properties.intermediateLocation);
+    const redshiftAccessRole =
+      properties.bucketAccessRole ??
+      this.buildRedshiftAccessRole(
+        this.node.id,
+        properties.cluster,
+        properties.intermediateLocation,
+      );
 
-    const appflowDataApiRole = properties.dataApiRole ?? this.buildAppFlowDataApiRole(
-      this.node.id,
-      properties.cluster,
-      properties.databaseName,
-      properties.basicAuth.username);
+    const appflowDataApiRole =
+      properties.dataApiRole ??
+      this.buildAppFlowDataApiRole(
+        this.node.id,
+        properties.cluster,
+        properties.databaseName,
+        properties.basicAuth.username,
+      );
 
     this.tryAddNodeDependency(this, redshiftAccessRole);
     this.tryAddNodeDependency(this, appflowDataApiRole);
     this.tryAddNodeDependency(this, properties.intermediateLocation.bucket);
-    AppFlowPermissionsManager.instance().grantBucketReadWrite(properties.intermediateLocation.bucket);
+    AppFlowPermissionsManager.instance().grantBucketReadWrite(
+      properties.intermediateLocation.bucket,
+    );
 
     return {
       redshift: {
@@ -101,7 +138,7 @@ export class RedshiftConnectorProfile extends ConnectorProfileBase {
   protected buildConnectorProfileCredentials(
     props: ConnectorProfileProps,
   ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-    const properties = (props as RedshiftConnectorProfileProps);
+    const properties = props as RedshiftConnectorProfileProps;
     return {
       redshift: properties && {
         username: properties.basicAuth.username,
@@ -110,21 +147,27 @@ export class RedshiftConnectorProfile extends ConnectorProfileBase {
     };
   }
 
-  private buildRedshiftAccessRole(id: string, cluster: ICluster, location: S3Location): IRole {
-
+  private buildRedshiftAccessRole(
+    id: string,
+    cluster: ICluster,
+    location: S3Location,
+  ): IRole {
     // see: https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_service-role-policies.html#redshift-access-s3
     const role = new Role(this.stack, `${id}RedshiftRole`, {
-      assumedBy: new ServicePrincipal('redshift.amazonaws.com'),
+      assumedBy: new ServicePrincipal("redshift.amazonaws.com"),
     });
 
-    location.bucket.grantRead(role, location.prefix ? `${location.prefix}/*` : '*');
+    location.bucket.grantRead(
+      role,
+      location.prefix ? `${location.prefix}/*` : "*",
+    );
 
     const modifierId = `${id}RedshiftRoleAttach`;
 
     const modifier = new AwsCustomResource(this.stack, modifierId, {
       onCreate: {
-        service: 'Redshift',
-        action: 'modifyClusterIamRoles',
+        service: "Redshift",
+        action: "modifyClusterIamRoles",
         parameters: {
           ClusterIdentifier: cluster.clusterName,
           AddIamRoles: [role.roleArn],
@@ -133,12 +176,12 @@ export class RedshiftConnectorProfile extends ConnectorProfileBase {
       },
       policy: AwsCustomResourcePolicy.fromStatements([
         new PolicyStatement({
-          actions: ['iam:PassRole'],
+          actions: ["iam:PassRole"],
           resources: [role.roleArn],
           effect: Effect.ALLOW,
         }),
         new PolicyStatement({
-          actions: ['redshift:ModifyClusterIamRoles'],
+          actions: ["redshift:ModifyClusterIamRoles"],
           resources: [
             `arn:${Aws.PARTITION}:redshift:${Aws.REGION}:${Aws.ACCOUNT_ID}:cluster:${cluster.clusterName}`,
           ],
@@ -153,52 +196,57 @@ export class RedshiftConnectorProfile extends ConnectorProfileBase {
     return role;
   }
 
-  private buildAppFlowDataApiRole(id: string, cluster: ICluster, databaseName: string, username?: string): IRole {
+  private buildAppFlowDataApiRole(
+    id: string,
+    cluster: ICluster,
+    databaseName: string,
+    username?: string,
+  ): IRole {
     // see: https://docs.aws.amazon.com/appflow/latest/userguide/security_iam_service-role-policies.html#access-redshift
     const role = new Role(this.stack, `${id}AppFlowDataApiRole`, {
-      assumedBy: new ServicePrincipal('appflow.amazonaws.com'),
+      assumedBy: new ServicePrincipal("appflow.amazonaws.com"),
     });
 
     const policy = new Policy(this.stack, `${id}AppFlowDataApiRolePolicy`, {
       roles: [role],
       statements: [
         new PolicyStatement({
-          sid: 'DataAPIPermissions',
+          sid: "DataAPIPermissions",
           effect: Effect.ALLOW,
           actions: [
-            'redshift-data:ExecuteStatement',
-            'redshift-data:GetStatementResult',
-            'redshift-data:DescribeStatement',
+            "redshift-data:ExecuteStatement",
+            "redshift-data:GetStatementResult",
+            "redshift-data:DescribeStatement",
           ],
-          resources: ['*'],
+          resources: ["*"],
         }),
         new PolicyStatement({
-          sid: 'GetCredentialsForAPIUser',
+          sid: "GetCredentialsForAPIUser",
           effect: Effect.ALLOW,
-          actions: ['redshift:GetClusterCredentials'],
+          actions: ["redshift:GetClusterCredentials"],
           resources: [
             `arn:aws:redshift:${Aws.REGION}:${Aws.ACCOUNT_ID}:dbname:${cluster.clusterName}/${databaseName}`,
-            `arn:aws:redshift:${Aws.REGION}:${Aws.ACCOUNT_ID}:dbuser:${cluster.clusterName}/${username ?? '*'}`,
+            `arn:aws:redshift:${Aws.REGION}:${Aws.ACCOUNT_ID}:dbuser:${cluster.clusterName}/${username ?? "*"}`,
           ],
         }),
         new PolicyStatement({
-          sid: 'DenyCreateAPIUser',
+          sid: "DenyCreateAPIUser",
           effect: Effect.DENY,
-          actions: ['redshift:CreateClusterUser'],
+          actions: ["redshift:CreateClusterUser"],
           resources: [
             `arn:aws:redshift:${Aws.REGION}:${Aws.ACCOUNT_ID}:dbuser:${cluster.clusterName}/*`,
           ],
         }),
         new PolicyStatement({
-          sid: 'ServiceLinkedRole',
+          sid: "ServiceLinkedRole",
           effect: Effect.ALLOW,
-          actions: ['iam:CreateServiceLinkedRole'],
+          actions: ["iam:CreateServiceLinkedRole"],
           resources: [
             `arn:aws:iam::${Aws.ACCOUNT_ID}:role/aws-service-role/redshift-data.amazonaws.com/AWSServiceRoleForRedshift`,
           ],
           conditions: {
             StringLike: {
-              'iam:AWSServiceName': 'redshift-data.amazonaws.com',
+              "iam:AWSServiceName": "redshift-data.amazonaws.com",
             },
           },
         }),

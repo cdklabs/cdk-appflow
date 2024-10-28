@@ -2,12 +2,15 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { SecretValue } from 'aws-cdk-lib';
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
-import { Construct } from 'constructs';
-import { SalesforceConnectorType } from './type';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
+import { SecretValue } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import { ISecret } from "aws-cdk-lib/aws-secretsmanager";
+import { Construct } from "constructs";
+import { SalesforceConnectorType } from "./type";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
 
 export interface SalesforceConnectorProfileProps extends ConnectorProfileProps {
   readonly oAuth: SalesforceOAuthSettings;
@@ -31,7 +34,6 @@ export interface SalesforceOAuthRefreshTokenGrantFlow {
 }
 
 export interface SalesforceOAuthFlow {
-
   /**
    * The parameters required for the refresh token grant OAuth flow
    */
@@ -44,21 +46,41 @@ export interface SalesforceOAuthSettings {
 }
 
 export class SalesforceConnectorProfile extends ConnectorProfileBase {
-
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as SalesforceConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as SalesforceConnectorProfile;
   }
 
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as SalesforceConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as SalesforceConnectorProfile;
   }
 
-  constructor(scope: Construct, id: string, props: SalesforceConnectorProfileProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: SalesforceConnectorProfileProps,
+  ) {
     super(scope, id, props, SalesforceConnectorType.instance);
-    this.tryAddNodeDependency(this, props.oAuth.flow?.refreshTokenGrant?.client);
+    this.tryAddNodeDependency(
+      this,
+      props.oAuth.flow?.refreshTokenGrant?.client,
+    );
   }
 
-  protected buildConnectorProfileProperties(properties: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
+  protected buildConnectorProfileProperties(
+    properties: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
     const props = properties as SalesforceConnectorProfileProps;
     return {
       salesforce: {
@@ -68,23 +90,25 @@ export class SalesforceConnectorProfile extends ConnectorProfileBase {
     };
   }
 
-  protected buildConnectorProfileCredentials(properties: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
+  protected buildConnectorProfileCredentials(
+    properties: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
     const props = properties as SalesforceConnectorProfileProps;
 
     let salesforce: { [key: string]: any } = {};
 
-
     salesforce.accessToken = props.oAuth.accessToken?.unsafeUnwrap();
 
     const refreshTokenGrant = props.oAuth.flow?.refreshTokenGrant;
-    salesforce.refreshToken = refreshTokenGrant?.refreshToken?.unsafeUnwrap() ?? 'dummyRefreshToken';
+    salesforce.refreshToken =
+      refreshTokenGrant?.refreshToken?.unsafeUnwrap() ?? "dummyRefreshToken";
 
     if (refreshTokenGrant?.client) {
       salesforce.clientCredentialsArn = refreshTokenGrant.client.secretArn;
       // TODO: make sure why this doesn't work.
       //       this doc says it should: https://docs.aws.amazon.com/appflow/latest/userguide/salesforce.html
       //       in order to obtain the access token I needed to follow: https://medium.com/@bpmmendis94/obtain-access-refresh-tokens-from-salesforce-rest-api-a324fe4ccd9b
-      salesforce.accessToken = salesforce.accessToken ?? 'dummyAccessToken';
+      salesforce.accessToken = salesforce.accessToken ?? "dummyAccessToken";
     }
 
     return {

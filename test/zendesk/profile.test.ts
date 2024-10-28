@@ -2,188 +2,110 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { SecretValue, Stack } from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
-import { Key } from 'aws-cdk-lib/aws-kms';
-import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
+import { SecretValue, Stack } from "aws-cdk-lib";
+import { Template } from "aws-cdk-lib/assertions";
+import { Key } from "aws-cdk-lib/aws-kms";
+import { Secret } from "aws-cdk-lib/aws-secretsmanager";
 
-import {
-  ZendeskConnectorProfile, ZendeskInstanceUrlBuilder,
-} from '../../src';
+import { ZendeskConnectorProfile, ZendeskInstanceUrlBuilder } from "../../src";
 
-describe('ZendeskConnectorProfile', () => {
+describe("ZendeskConnectorProfile", () => {
+  test("OAuth2 profile with direct client credentials exists in the stack", () => {
+    const stack = new Stack(undefined, "TestStack", {
+      env: { account: "12345678", region: "dummy" },
+    });
 
-  test('OAuth2 profile with direct client credentials exists in the stack', () => {
-    const stack = new Stack(undefined, 'TestStack', { env: { account: '12345678', region: 'dummy' } });
-
-    new ZendeskConnectorProfile(stack, 'TestProfile', {
+    new ZendeskConnectorProfile(stack, "TestProfile", {
       oAuth: {
-        accessToken: SecretValue.unsafePlainText('accessToken'),
-        clientId: SecretValue.unsafePlainText('clientId'),
-        clientSecret: SecretValue.unsafePlainText('clientSecret'),
+        accessToken: SecretValue.unsafePlainText("accessToken"),
+        clientId: SecretValue.unsafePlainText("clientId"),
+        clientSecret: SecretValue.unsafePlainText("clientSecret"),
       },
-      instanceUrl: ZendeskInstanceUrlBuilder.buildFromAccount('zendeskAccount'),
+      instanceUrl: ZendeskInstanceUrlBuilder.buildFromAccount("zendeskAccount"),
     });
 
-    Template.fromStack(stack).hasResourceProperties('AWS::AppFlow::ConnectorProfile', {
-      ConnectionMode: 'Public',
-      ConnectorProfileName: 'TestProfile',
-      ConnectorType: 'Zendesk',
-      ConnectorProfileConfig: {
-        ConnectorProfileCredentials: {
-          Zendesk: {
-            AccessToken: 'accessToken',
-            ClientId: 'clientId',
-            ClientSecret: 'clientSecret',
+    Template.fromStack(stack).hasResourceProperties(
+      "AWS::AppFlow::ConnectorProfile",
+      {
+        ConnectionMode: "Public",
+        ConnectorProfileName: "TestProfile",
+        ConnectorType: "Zendesk",
+        ConnectorProfileConfig: {
+          ConnectorProfileCredentials: {
+            Zendesk: {
+              AccessToken: "accessToken",
+              ClientId: "clientId",
+              ClientSecret: "clientSecret",
+            },
           },
-        },
-        ConnectorProfileProperties: {
-          Zendesk: {
-            InstanceUrl: 'https://zendeskAccount.zendesk.com',
+          ConnectorProfileProperties: {
+            Zendesk: {
+              InstanceUrl: "https://zendeskAccount.zendesk.com",
+            },
           },
         },
       },
-    });
+    );
   });
 
-  test('OAuth2 profile with client credentials as secret elements exists in the stack', () => {
-    const stack = new Stack(undefined, 'TestStack', { env: { account: '12345678', region: 'dummy' } });
+  test("OAuth2 profile with client credentials as secret elements exists in the stack", () => {
+    const stack = new Stack(undefined, "TestStack", {
+      env: { account: "12345678", region: "dummy" },
+    });
 
-    const secret = new Secret(stack, 'TestSecret');
+    const secret = new Secret(stack, "TestSecret");
 
-    new ZendeskConnectorProfile(stack, 'TestProfile', {
+    new ZendeskConnectorProfile(stack, "TestProfile", {
       oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken'),
-        clientId: secret.secretValueFromJson('clientId'),
-        clientSecret: secret.secretValueFromJson('clientSecret'),
+        accessToken: secret.secretValueFromJson("accessToken"),
+        clientId: secret.secretValueFromJson("clientId"),
+        clientSecret: secret.secretValueFromJson("clientSecret"),
       },
-      instanceUrl: secret.secretValueFromJson('instanceUrl').toString(),
+      instanceUrl: secret.secretValueFromJson("instanceUrl").toString(),
     });
 
-    Template.fromStack(stack).hasResourceProperties('AWS::AppFlow::ConnectorProfile', {
-      ConnectionMode: 'Public',
-      ConnectorProfileName: 'TestProfile',
-      ConnectorType: 'Zendesk',
-      ConnectorProfileConfig: {
-        ConnectorProfileCredentials: {
-          Zendesk: {
-            AccessToken: {
-              'Fn::Join': [
-                '',
-                [
-                  '{{resolve:secretsmanager:',
-                  {
-                    Ref: 'TestSecret16AF87B1',
-                  },
-                  ':SecretString:accessToken::}}',
-                ],
-              ],
-            },
-            ClientId: {
-              'Fn::Join': [
-                '',
-                [
-                  '{{resolve:secretsmanager:',
-                  {
-                    Ref: 'TestSecret16AF87B1',
-                  },
-                  ':SecretString:clientId::}}',
-                ],
-              ],
-            },
-            ClientSecret: {
-              'Fn::Join': [
-                '',
-                [
-                  '{{resolve:secretsmanager:',
-                  {
-                    Ref: 'TestSecret16AF87B1',
-                  },
-                  ':SecretString:clientSecret::}}',
-                ],
-              ],
-            },
-          },
-        },
-        ConnectorProfileProperties: {
-          Zendesk: {
-            InstanceUrl: {
-              'Fn::Join': [
-                '',
-                [
-                  '{{resolve:secretsmanager:',
-                  {
-                    Ref: 'TestSecret16AF87B1',
-                  },
-                  ':SecretString:instanceUrl::}}',
-                ],
-              ],
-            },
-          },
-        },
-      },
-    });
-  });
-
-
-  test('OAuth2 profile with a dedicated KMS key and client credentials as secret elements exists in the stack', () => {
-    const stack = new Stack(undefined, 'TestStack', { env: { account: '12345678', region: 'dummy' } });
-
-    const key = new Key(stack, 'TestKey');
-
-    const secret = new Secret(stack, 'TestSecret');
-
-    new ZendeskConnectorProfile(stack, 'TestProfile', {
-      key: key,
-      oAuth: {
-        accessToken: secret.secretValueFromJson('accessToken'),
-        clientId: secret.secretValueFromJson('clientId'),
-        clientSecret: secret.secretValueFromJson('clientSecret'),
-      },
-      instanceUrl: secret.secretValueFromJson('instanceUrl').toString(),
-    });
-
-    Template.fromStack(stack).hasResource('AWS::AppFlow::ConnectorProfile', {
-      Properties: {
-        ConnectionMode: 'Public',
-        ConnectorProfileName: 'TestProfile',
-        ConnectorType: 'Zendesk',
+    Template.fromStack(stack).hasResourceProperties(
+      "AWS::AppFlow::ConnectorProfile",
+      {
+        ConnectionMode: "Public",
+        ConnectorProfileName: "TestProfile",
+        ConnectorType: "Zendesk",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {
             Zendesk: {
               AccessToken: {
-                'Fn::Join': [
-                  '',
+                "Fn::Join": [
+                  "",
                   [
-                    '{{resolve:secretsmanager:',
+                    "{{resolve:secretsmanager:",
                     {
-                      Ref: 'TestSecret16AF87B1',
+                      Ref: "TestSecret16AF87B1",
                     },
-                    ':SecretString:accessToken::}}',
+                    ":SecretString:accessToken::}}",
                   ],
                 ],
               },
               ClientId: {
-                'Fn::Join': [
-                  '',
+                "Fn::Join": [
+                  "",
                   [
-                    '{{resolve:secretsmanager:',
+                    "{{resolve:secretsmanager:",
                     {
-                      Ref: 'TestSecret16AF87B1',
+                      Ref: "TestSecret16AF87B1",
                     },
-                    ':SecretString:clientId::}}',
+                    ":SecretString:clientId::}}",
                   ],
                 ],
               },
               ClientSecret: {
-                'Fn::Join': [
-                  '',
+                "Fn::Join": [
+                  "",
                   [
-                    '{{resolve:secretsmanager:',
+                    "{{resolve:secretsmanager:",
                     {
-                      Ref: 'TestSecret16AF87B1',
+                      Ref: "TestSecret16AF87B1",
                     },
-                    ':SecretString:clientSecret::}}',
+                    ":SecretString:clientSecret::}}",
                   ],
                 ],
               },
@@ -192,14 +114,100 @@ describe('ZendeskConnectorProfile', () => {
           ConnectorProfileProperties: {
             Zendesk: {
               InstanceUrl: {
-                'Fn::Join': [
-                  '',
+                "Fn::Join": [
+                  "",
                   [
-                    '{{resolve:secretsmanager:',
+                    "{{resolve:secretsmanager:",
                     {
-                      Ref: 'TestSecret16AF87B1',
+                      Ref: "TestSecret16AF87B1",
                     },
-                    ':SecretString:instanceUrl::}}',
+                    ":SecretString:instanceUrl::}}",
+                  ],
+                ],
+              },
+            },
+          },
+        },
+      },
+    );
+  });
+
+  test("OAuth2 profile with a dedicated KMS key and client credentials as secret elements exists in the stack", () => {
+    const stack = new Stack(undefined, "TestStack", {
+      env: { account: "12345678", region: "dummy" },
+    });
+
+    const key = new Key(stack, "TestKey");
+
+    const secret = new Secret(stack, "TestSecret");
+
+    new ZendeskConnectorProfile(stack, "TestProfile", {
+      key: key,
+      oAuth: {
+        accessToken: secret.secretValueFromJson("accessToken"),
+        clientId: secret.secretValueFromJson("clientId"),
+        clientSecret: secret.secretValueFromJson("clientSecret"),
+      },
+      instanceUrl: secret.secretValueFromJson("instanceUrl").toString(),
+    });
+
+    Template.fromStack(stack).hasResource("AWS::AppFlow::ConnectorProfile", {
+      Properties: {
+        ConnectionMode: "Public",
+        ConnectorProfileName: "TestProfile",
+        ConnectorType: "Zendesk",
+        ConnectorProfileConfig: {
+          ConnectorProfileCredentials: {
+            Zendesk: {
+              AccessToken: {
+                "Fn::Join": [
+                  "",
+                  [
+                    "{{resolve:secretsmanager:",
+                    {
+                      Ref: "TestSecret16AF87B1",
+                    },
+                    ":SecretString:accessToken::}}",
+                  ],
+                ],
+              },
+              ClientId: {
+                "Fn::Join": [
+                  "",
+                  [
+                    "{{resolve:secretsmanager:",
+                    {
+                      Ref: "TestSecret16AF87B1",
+                    },
+                    ":SecretString:clientId::}}",
+                  ],
+                ],
+              },
+              ClientSecret: {
+                "Fn::Join": [
+                  "",
+                  [
+                    "{{resolve:secretsmanager:",
+                    {
+                      Ref: "TestSecret16AF87B1",
+                    },
+                    ":SecretString:clientSecret::}}",
+                  ],
+                ],
+              },
+            },
+          },
+          ConnectorProfileProperties: {
+            Zendesk: {
+              InstanceUrl: {
+                "Fn::Join": [
+                  "",
+                  [
+                    "{{resolve:secretsmanager:",
+                    {
+                      Ref: "TestSecret16AF87B1",
+                    },
+                    ":SecretString:instanceUrl::}}",
                   ],
                 ],
               },
@@ -207,16 +215,10 @@ describe('ZendeskConnectorProfile', () => {
           },
         },
         KMSArn: {
-          'Fn::GetAtt': [
-            'TestKey4CACAF33',
-            'Arn',
-          ],
+          "Fn::GetAtt": ["TestKey4CACAF33", "Arn"],
         },
       },
-      DependsOn: [
-        'TestKey4CACAF33',
-      ],
+      DependsOn: ["TestKey4CACAF33"],
     });
   });
-
 });

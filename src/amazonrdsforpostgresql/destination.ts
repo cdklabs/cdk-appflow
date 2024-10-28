@@ -2,16 +2,16 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { AmazonRdsForPostgreSqlConnectorProfile } from './profile';
-import { AmazonRdsForPostgreSqlConnectorType } from './type';
-import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { ErrorHandlingConfiguration } from '../core/error-handling';
-import { IFlow } from '../core/flows';
-import { IDestination } from '../core/vertices/destination';
-import { WriteOperationType } from '../core/write-operation';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { AmazonRdsForPostgreSqlConnectorProfile } from "./profile";
+import { AmazonRdsForPostgreSqlConnectorType } from "./type";
+import { AppFlowPermissionsManager } from "../core/appflow-permissions-manager";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { ErrorHandlingConfiguration } from "../core/error-handling";
+import { IFlow } from "../core/flows";
+import { IDestination } from "../core/vertices/destination";
+import { WriteOperationType } from "../core/write-operation";
 
 /**
  * The definition of the Amazon AppFlow object for Amazon RDS for PostgreSQL
@@ -32,7 +32,6 @@ export interface AmazonRdsForPostgreSqlObject {
  * Properties of the AmazonRdsForPostgreSqlDestination
  */
 export interface AmazonRdsForPostgreSqlDestinationProps {
-
   /**
    * The profile to use with the destination
    */
@@ -58,28 +57,35 @@ export interface AmazonRdsForPostgreSqlDestinationProps {
  * Represents a destination for the Amazon RDS for PostgreSQL connector
  */
 export class AmazonRdsForPostgreSqlDestination implements IDestination {
+  private static readonly defaultApiVersion = "1.0";
 
-  private static readonly defaultApiVersion = '1.0';
-
-  public readonly connectorType: ConnectorType = AmazonRdsForPostgreSqlConnectorType.instance;
+  public readonly connectorType: ConnectorType =
+    AmazonRdsForPostgreSqlConnectorType.instance;
 
   /**
    * Creates a new instance of the AmazonRdsForPostgreSqlDestination
    * @param props - properties of the destination
    */
-  constructor(private readonly props: AmazonRdsForPostgreSqlDestinationProps) { }
+  constructor(private readonly props: AmazonRdsForPostgreSqlDestinationProps) {}
 
   bind(flow: IFlow): CfnFlow.DestinationFlowConfigProperty {
-
-    this.tryAddNodeDependency(flow, this.props.errorHandling?.errorLocation?.bucket);
-    AppFlowPermissionsManager.instance().grantBucketWrite(this.props.errorHandling?.errorLocation?.bucket);
+    this.tryAddNodeDependency(
+      flow,
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
+    AppFlowPermissionsManager.instance().grantBucketWrite(
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
     this.tryAddNodeDependency(flow, this.props.profile);
 
     return {
       connectorType: this.connectorType.asProfileConnectorType,
-      apiVersion: this.props.apiVersion ?? AmazonRdsForPostgreSqlDestination.defaultApiVersion,
+      apiVersion:
+        this.props.apiVersion ??
+        AmazonRdsForPostgreSqlDestination.defaultApiVersion,
       connectorProfileName: this.props.profile.name,
-      destinationConnectorProperties: this.buildDestinationConnectorProperties(),
+      destinationConnectorProperties:
+        this.buildDestinationConnectorProperties(),
     };
   }
 
@@ -88,7 +94,8 @@ export class AmazonRdsForPostgreSqlDestination implements IDestination {
       customConnector: {
         entityName: `${this.props.object.schema}.${this.props.object.table}`,
         errorHandlingConfig: this.props.errorHandling && {
-          bucketName: this.props.errorHandling?.errorLocation?.bucket.bucketName,
+          bucketName:
+            this.props.errorHandling?.errorLocation?.bucket.bucketName,
           bucketPrefix: this.props.errorHandling?.errorLocation?.prefix,
           failOnFirstError: this.props.errorHandling.failOnFirstError,
         },
@@ -97,8 +104,11 @@ export class AmazonRdsForPostgreSqlDestination implements IDestination {
     };
   }
 
-  private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string): void {
-    if (resource && typeof resource !== 'string') {
+  private tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ): void {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }

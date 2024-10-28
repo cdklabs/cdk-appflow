@@ -2,6 +2,6 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-export * from './type';
-export * from './destination';
-export * from './events';
+export * from "./type";
+export * from "./destination";
+export * from "./events";

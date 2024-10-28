@@ -2,29 +2,29 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Fn } from 'aws-cdk-lib';
-import { Field } from './field';
-import { IOperation, OperationBase } from './operation';
-import { Task, TaskProperty } from './tasks';
+import { Fn } from "aws-cdk-lib";
+import { Field } from "./field";
+import { IOperation, OperationBase } from "./operation";
+import { Task, TaskProperty } from "./tasks";
 
-const TT_MAPALL = 'Map_all';
-const TT_MAP = 'Map';
-const TT_MERGE = 'Merge';
-const TT_ARITHMETIC = 'Arithmetic';
+const TT_MAPALL = "Map_all";
+const TT_MAP = "Map";
+const TT_MERGE = "Merge";
+const TT_ARITHMETIC = "Arithmetic";
 
-const OP_NOOP = 'NO_OP';
-const OP_ADDITION = 'ADDITION';
-const OP_SUBTRACTION = 'SUBTRACTION';
-const OP_MULTIPLICATION = 'MULTIPLICATION';
-const OP_DIVISION = 'DIVISION';
+const OP_NOOP = "NO_OP";
+const OP_ADDITION = "ADDITION";
+const OP_SUBTRACTION = "SUBTRACTION";
+const OP_MULTIPLICATION = "MULTIPLICATION";
+const OP_DIVISION = "DIVISION";
 
-const TP_SOURCE_DATA_TYPE = 'SOURCE_DATA_TYPE';
-const TP_DESTINATION_DATA_TYPE = 'DESTINATION_DATA_TYPE';
+const TP_SOURCE_DATA_TYPE = "SOURCE_DATA_TYPE";
+const TP_DESTINATION_DATA_TYPE = "DESTINATION_DATA_TYPE";
 
 /**
  * A representation of a mapping operation, that is an operation translating source to destination fields
  */
-export interface IMapping extends IOperation { }
+export interface IMapping extends IOperation {}
 
 /**
  * A helper interface
@@ -40,11 +40,12 @@ export interface MapAllConfig {
 export class Mapping extends OperationBase implements IMapping {
   public static mapAll(config?: MapAllConfig): IMapping {
     return new Mapping([
-      new Task(
-        TT_MAPALL, [],
-        { operation: OP_NOOP },
-        [{ key: 'EXCLUDE_SOURCE_FIELDS_LIST', value: config ? `["${Fn.join('","', config.exclude)}"]` : '[]' }],
-      ),
+      new Task(TT_MAPALL, [], { operation: OP_NOOP }, [
+        {
+          key: "EXCLUDE_SOURCE_FIELDS_LIST",
+          value: config ? `["${Fn.join('","', config.exclude)}"]` : "[]",
+        },
+      ]),
     ]);
   }
   public static map(from: Field, to: Field): IMapping {
@@ -71,18 +72,22 @@ export class Mapping extends OperationBase implements IMapping {
    * @returns a mapping instance with concatenation definition
    */
   public static concat(from: Field[], to: Field, format: string) {
-
     if (!to.dataType) {
-      throw new Error('dataType for \'to\' required');
+      throw new Error("dataType for 'to' required");
     }
 
-    const tmpField = from.map(f => f.name).join(',');
+    const tmpField = from.map((f) => f.name).join(",");
     return new Mapping([
-      new Task(TT_MERGE, from.map(f => f.name), { operation: OP_NOOP },
-        [{ key: 'CONCAT_FORMAT', value: format }], tmpField),
+      new Task(
+        TT_MERGE,
+        from.map((f) => f.name),
+        { operation: OP_NOOP },
+        [{ key: "CONCAT_FORMAT", value: format }],
+        tmpField,
+      ),
       new Task(TT_MAP, [tmpField], { operation: OP_NOOP }, [
-        { key: 'DESTINATION_DATA_TYPE', value: to.dataType },
-        { key: 'SOURCE_DATA_TYPE', value: 'string' },
+        { key: "DESTINATION_DATA_TYPE", value: to.dataType },
+        { key: "SOURCE_DATA_TYPE", value: "string" },
       ]),
     ]);
   }
@@ -106,7 +111,12 @@ export class Mapping extends OperationBase implements IMapping {
    * @returns an IMapping instance
    */
   public static multiply(sourceField1: Field, sourceField2: Field, to: Field) {
-    return Mapping.arithmetic(sourceField1, sourceField2, to, OP_MULTIPLICATION);
+    return Mapping.arithmetic(
+      sourceField1,
+      sourceField2,
+      to,
+      OP_MULTIPLICATION,
+    );
   }
 
   /**
@@ -138,23 +148,40 @@ export class Mapping extends OperationBase implements IMapping {
    * @param to a numeric value
    * @returns an IMapping instance
    */
-  private static arithmetic(sourceField1: Field, sourceField2: Field, to: Field, operation: string) {
-
+  private static arithmetic(
+    sourceField1: Field,
+    sourceField2: Field,
+    to: Field,
+    operation: string,
+  ) {
     if (!to.dataType) {
-      throw new Error('dataType for \'to\' required');
+      throw new Error("dataType for 'to' required");
     }
 
     const tmpField = `${sourceField1.name},${sourceField2.name}`;
     return new Mapping([
-      new Task(TT_ARITHMETIC, [sourceField1.name, sourceField2.name], { operation: operation }, [{
-        key: 'MATH_OPERATION_FIELDS_ORDER', value: tmpField,
-      }], tmpField),
-      new Task(TT_MAP, [tmpField], { operation: OP_NOOP }, [
-        { key: 'DESTINATION_DATA_TYPE', value: to.dataType },
-        { key: 'SOURCE_DATA_TYPE', value: 'string' },
-      ],
-      to.name),
+      new Task(
+        TT_ARITHMETIC,
+        [sourceField1.name, sourceField2.name],
+        { operation: operation },
+        [
+          {
+            key: "MATH_OPERATION_FIELDS_ORDER",
+            value: tmpField,
+          },
+        ],
+        tmpField,
+      ),
+      new Task(
+        TT_MAP,
+        [tmpField],
+        { operation: OP_NOOP },
+        [
+          { key: "DESTINATION_DATA_TYPE", value: to.dataType },
+          { key: "SOURCE_DATA_TYPE", value: "string" },
+        ],
+        to.name,
+      ),
     ]);
   }
-
 }

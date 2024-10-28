@@ -2,17 +2,21 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { SecretValue } from 'aws-cdk-lib';
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { Construct } from 'constructs';
-import { AmazonRdsForPostgreSqlConnectorType } from './type';
-import { ConnectorAuthenticationType } from '../core';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
+import { SecretValue } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import { Construct } from "constructs";
+import { AmazonRdsForPostgreSqlConnectorType } from "./type";
+import { ConnectorAuthenticationType } from "../core";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
 
 /**
  * Properties of the AmazonRdsForPostgreSqlConnectorProfile
  */
-export interface AmazonRdsForPostgreSqlConnectorProfileProps extends ConnectorProfileProps {
+export interface AmazonRdsForPostgreSqlConnectorProfileProps
+  extends ConnectorProfileProps {
   /**
    * The auth settings for the profile
    */
@@ -51,7 +55,6 @@ export interface AmazonRdsForPostgreSqlBasicAuthSettings {
  * The connector profile for the Amazon RDS for PostgreSQL connector
  */
 export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase {
-
   /**
    * Imports an existing AmazonRdsForPostgreSqlConnectorProfile
    * @param scope the scope for the connector profile
@@ -59,8 +62,14 @@ export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase
    * @param arn the ARN for the existing connector profile
    * @returns An instance of the AmazonRdsForPostreSqlConnectorProfile
    */
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as AmazonRdsForPostgreSqlConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as AmazonRdsForPostgreSqlConnectorProfile;
   }
 
   /**
@@ -70,8 +79,14 @@ export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase
    * @param name the name for the existing connector profile
    * @returns An instance of the AmazonRdsForPostreSqlConnectorProfile
    */
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as AmazonRdsForPostgreSqlConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as AmazonRdsForPostgreSqlConnectorProfile;
   }
 
   private static readonly defaultPort: number = 5432;
@@ -82,11 +97,17 @@ export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase
    * @param id the id of this connector profile
    * @param props properties to use when instantiating this connector profile
    */
-  constructor(scope: Construct, id: string, props: AmazonRdsForPostgreSqlConnectorProfileProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: AmazonRdsForPostgreSqlConnectorProfileProps,
+  ) {
     super(scope, id, props, AmazonRdsForPostgreSqlConnectorType.instance);
   }
 
-  protected buildConnectorProfileProperties(_props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
+  protected buildConnectorProfileProperties(
+    _props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
     return {
       customConnector: {
         profileProperties: {},
@@ -94,8 +115,10 @@ export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase
     };
   }
 
-  protected buildConnectorProfileCredentials(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-    const properties = (props as AmazonRdsForPostgreSqlConnectorProfileProps);
+  protected buildConnectorProfileCredentials(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
+    const properties = props as AmazonRdsForPostgreSqlConnectorProfileProps;
     return {
       customConnector: {
         authenticationType: ConnectorAuthenticationType.CUSTOM,
@@ -103,12 +126,14 @@ export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase
           credentialsMap: {
             username: properties.basicAuth.username,
             password: properties.basicAuth.password.unsafeUnwrap(),
-            driver: 'postgresql',
+            driver: "postgresql",
             hostname: properties.hostname,
-            port: properties.port ? `${properties.port}` : AmazonRdsForPostgreSqlConnectorProfile.defaultPort.toString(),
+            port: properties.port
+              ? `${properties.port}`
+              : AmazonRdsForPostgreSqlConnectorProfile.defaultPort.toString(),
             database: properties.database,
           },
-          customAuthenticationType: 'CUSTOM',
+          customAuthenticationType: "CUSTOM",
         },
       },
     };

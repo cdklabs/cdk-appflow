@@ -2,13 +2,13 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { GoogleAdsConnectorProfile } from './profile';
-import { GoogleAdsConnectorType } from './type';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { IFlow } from '../core/flows';
-import { ISource } from '../core/vertices';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { GoogleAdsConnectorProfile } from "./profile";
+import { GoogleAdsConnectorType } from "./type";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { IFlow } from "../core/flows";
+import { ISource } from "../core/vertices";
 /**
  * Properties of a Google Ads Source
  */
@@ -22,14 +22,14 @@ export interface GoogleAdsSourceProps {
  */
 export class GoogleAdsSource implements ISource {
   /**
-     * The AppFlow type of the connector that this source is implemented for
-     */
-  public readonly connectorType: ConnectorType = GoogleAdsConnectorType.instance;
+   * The AppFlow type of the connector that this source is implemented for
+   */
+  public readonly connectorType: ConnectorType =
+    GoogleAdsConnectorType.instance;
 
-  constructor(private readonly props: GoogleAdsSourceProps) { }
+  constructor(private readonly props: GoogleAdsSourceProps) {}
 
   bind(scope: IFlow): CfnFlow.SourceFlowConfigProperty {
-
     this.tryAddNodeDependency(scope, this.props.profile);
 
     return {
@@ -47,8 +47,11 @@ export class GoogleAdsSource implements ISource {
       },
     };
   }
-  private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string): void {
-    if (resource && typeof resource !== 'string') {
+  private tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ): void {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }

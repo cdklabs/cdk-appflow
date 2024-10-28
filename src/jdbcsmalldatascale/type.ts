@@ -2,16 +2,16 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { ConnectorType } from '../core/connectors/connector-type';
+import { ConnectorType } from "../core/connectors/connector-type";
 
 /**
  * @internal
  */
 export class JdbcSmallDataScaleConnectorType extends ConnectorType {
-
   public static get instance(): ConnectorType {
     if (!JdbcSmallDataScaleConnectorType.actualInstance) {
-      JdbcSmallDataScaleConnectorType.actualInstance = new JdbcSmallDataScaleConnectorType();
+      JdbcSmallDataScaleConnectorType.actualInstance =
+        new JdbcSmallDataScaleConnectorType();
     }
     return JdbcSmallDataScaleConnectorType.actualInstance;
   }
@@ -19,6 +19,6 @@ export class JdbcSmallDataScaleConnectorType extends ConnectorType {
   private static actualInstance: ConnectorType;
 
   constructor() {
-    super('JDBCsmall', true);
+    super("JDBCsmall", true);
   }
 }

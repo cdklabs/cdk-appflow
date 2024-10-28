@@ -2,13 +2,13 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { SlackConnectorProfile } from './profile';
-import { SlackConnectorType } from './type';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { IFlow } from '../core/flows';
-import { ISource } from '../core/vertices/source';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { SlackConnectorProfile } from "./profile";
+import { SlackConnectorType } from "./type";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { IFlow } from "../core/flows";
+import { ISource } from "../core/vertices/source";
 
 export interface SlackSourceProps {
   readonly profile: SlackConnectorProfile;
@@ -17,13 +17,11 @@ export interface SlackSourceProps {
 }
 
 export class SlackSource implements ISource {
-
   public readonly connectorType: ConnectorType = SlackConnectorType.instance;
 
-  constructor(private readonly props: SlackSourceProps) { }
+  constructor(private readonly props: SlackSourceProps) {}
 
   bind(flow: IFlow): CfnFlow.SourceFlowConfigProperty {
-
     this.tryAddNodeDependency(flow, this.props.profile);
 
     return {
@@ -42,8 +40,11 @@ export class SlackSource implements ISource {
     };
   }
 
-  private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string): void {
-    if (resource && typeof resource !== 'string') {
+  private tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ): void {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }

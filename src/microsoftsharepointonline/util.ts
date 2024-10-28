@@ -8,7 +8,7 @@ SPDX-License-Identifier: Apache-2.0
  */
 export class MicrosoftSharepointOnlineTokenUrlBuilder {
   public static buildTokenUrl(tenantId?: string) {
-    return `https://login.microsoftonline.com/${tenantId ?? 'common'}/oauth2/v2.0/token`;
+    return `https://login.microsoftonline.com/${tenantId ?? "common"}/oauth2/v2.0/token`;
   }
 }
 
@@ -19,5 +19,5 @@ export enum MicrosoftSharepointOnlineApiVersion {
   /**
    * Version 1.0
    */
-  V1 = 'v1.0'
+  V1 = "v1.0",
 }
