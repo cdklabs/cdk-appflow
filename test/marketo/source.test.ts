@@ -112,7 +112,7 @@ describe("MarketoSource", () => {
 
     template.hasResourceProperties("AWS::AppFlow::ConnectorProfile", {
       ConnectionMode: "Public",
-      ConnectorProfileName: "TestProfile",
+      ConnectorProfileName: "TestStackTestProfile18724107",
       ConnectorType: "Marketo",
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
@@ -133,7 +133,7 @@ describe("MarketoSource", () => {
     template.hasResource("AWS::AppFlow::Flow", {
       Properties: {
         SourceFlowConfig: {
-          ConnectorProfileName: "TestProfile",
+          ConnectorProfileName: "TestStackTestProfile18724107",
           ConnectorType: "Marketo",
           SourceConnectorProperties: {
             Marketo: {
@@ -145,7 +145,7 @@ describe("MarketoSource", () => {
       DependsOn: [
         "TestBucketPolicyBA12ED38",
         "TestBucket560B80BC",
-        "TestProfile45C36389",
+        "TestProfileBC0F4812",
       ],
     });
   });

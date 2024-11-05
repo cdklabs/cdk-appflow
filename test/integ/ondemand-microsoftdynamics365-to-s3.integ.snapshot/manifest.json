@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1/f4e64e738430d59f23243a6e72f8f2b5e544cd0cd195f0ff209af03236bfada4.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1/a7e9e94497cbe41b814c241bcafefaabe68ece70b82575fac7a7e91ce1d79f8f.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -34,10 +34,10 @@
         "TestStack.assets"
       ],
       "metadata": {
-        "/TestStack/TestConnector/TestConnector": [
+        "/TestStack/TestConnector/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "TestConnectorEE9F0A13"
+            "data": "TestConnectorF96C459B"
           }
         ],
         "/TestStack/TestBucket/Resource": [
@@ -76,10 +76,10 @@
             "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
           }
         ],
-        "/TestStack/OnDemandFlow/OnDemandFlow": [
+        "/TestStack/OnDemandFlow/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "OnDemandFlow4ECA54C5"
+            "data": "OnDemandFlow00CE33FE"
           }
         ],
         "/TestStack/BootstrapVersion": [

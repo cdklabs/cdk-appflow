@@ -393,7 +393,7 @@
     "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
    ]
   },
-  "SnowTestConnectorF6AA1E5C": {
+  "SnowTestConnector2D8FD8BF": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -571,16 +571,16 @@
       }
      }
     },
-    "ConnectorProfileName": "SnowTestConnector",
+    "ConnectorProfileName": "TestStackSnowTestConnectorE378906D",
     "ConnectorType": "Snowflake"
    }
   },
-  "OnDemandFlow4ECA54C5": {
+  "OnDemandFlow00CE33FE": {
    "Type": "AWS::AppFlow::Flow",
    "Properties": {
     "DestinationFlowConfigList": [
      {
-      "ConnectorProfileName": "SnowTestConnector",
+      "ConnectorProfileName": "TestStackSnowTestConnectorE378906D",
       "ConnectorType": "Snowflake",
       "DestinationConnectorProperties": {
        "Snowflake": {
@@ -710,7 +710,7 @@
     }
    },
    "DependsOn": [
-    "SnowTestConnectorF6AA1E5C",
+    "SnowTestConnector2D8FD8BF",
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",

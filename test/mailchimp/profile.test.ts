@@ -22,7 +22,7 @@ describe("MailchimpConnectorProfileProps", () => {
       {
         ConnectionMode: "Public",
         ConnectorLabel: "Mailchimp",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "CustomConnector",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {

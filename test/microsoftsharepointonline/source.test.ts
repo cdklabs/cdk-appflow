@@ -177,7 +177,7 @@ describe("MicrosoftSharepointOnlineSource", () => {
 
     template.hasResourceProperties("AWS::AppFlow::ConnectorProfile", {
       ConnectionMode: "Public",
-      ConnectorProfileName: "TestProfile",
+      ConnectorProfileName: "TestStackTestProfile18724107",
       ConnectorType: "CustomConnector",
       ConnectorLabel: "MicrosoftSharePointOnline",
       ConnectorProfileConfig: {
@@ -221,7 +221,7 @@ describe("MicrosoftSharepointOnlineSource", () => {
         FlowName: "TestStackTestFlow32CDAF42",
         SourceFlowConfig: {
           ApiVersion: "v1.0",
-          ConnectorProfileName: "TestProfile",
+          ConnectorProfileName: "TestStackTestProfile18724107",
           ConnectorType: "CustomConnector",
           SourceConnectorProperties: {
             CustomConnector: {
@@ -256,7 +256,7 @@ describe("MicrosoftSharepointOnlineSource", () => {
       DependsOn: [
         "TestBucketPolicyBA12ED38",
         "TestBucket560B80BC",
-        "TestProfile45C36389",
+        "TestProfileBC0F4812",
       ],
     });
   });

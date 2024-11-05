@@ -35,7 +35,7 @@ describe("MicrosoftSharepointOnlineConnectorProfile", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "CustomConnector",
         ConnectorLabel: "MicrosoftSharePointOnline",
         ConnectorProfileConfig: {
@@ -91,7 +91,7 @@ describe("MicrosoftSharepointOnlineConnectorProfile", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "CustomConnector",
         ConnectorLabel: "MicrosoftSharePointOnline",
         ConnectorProfileConfig: {
@@ -203,7 +203,7 @@ describe("MicrosoftSharepointOnlineConnectorProfile", () => {
     Template.fromStack(stack).hasResource("AWS::AppFlow::ConnectorProfile", {
       Properties: {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "CustomConnector",
         ConnectorLabel: "MicrosoftSharePointOnline",
         ConnectorProfileConfig: {

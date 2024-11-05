@@ -108,7 +108,7 @@ describe("SlackSource", () => {
 
     template.hasResourceProperties("AWS::AppFlow::ConnectorProfile", {
       ConnectionMode: "Public",
-      ConnectorProfileName: "TestProfile",
+      ConnectorProfileName: "TestStackTestProfile18724107",
       ConnectorType: "Slack",
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
@@ -129,7 +129,7 @@ describe("SlackSource", () => {
     template.hasResource("AWS::AppFlow::Flow", {
       Properties: {
         SourceFlowConfig: {
-          ConnectorProfileName: "TestProfile",
+          ConnectorProfileName: "TestStackTestProfile18724107",
           ConnectorType: "Slack",
           SourceConnectorProperties: {
             Slack: {
@@ -141,7 +141,7 @@ describe("SlackSource", () => {
       DependsOn: [
         "TestBucketPolicyBA12ED38",
         "TestBucket560B80BC",
-        "TestProfile45C36389",
+        "TestProfileBC0F4812",
       ],
     });
   });

@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/feb047041840df9a2e4ae9e6f32343cdf78d2973fd7cd5cac8eb3e96b2f35126.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9dd52abf0489ce71ca2300e218bd47d2fc5454dfecdf034daf6229b6823feec4.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -34,22 +34,22 @@
         "TestStack.assets"
       ],
       "metadata": {
-        "/TestStack/JdbcSmallTestConnectorProfile/JdbcSmallTestConnectorProfile": [
+        "/TestStack/JdbcSmallTestConnectorProfile/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "JdbcSmallTestConnectorProfileD137BC4A"
+            "data": "JdbcSmallTestConnectorProfile4B32988D"
           }
         ],
-        "/TestStack/AmazonRdsTestConnectorProfile/AmazonRdsTestConnectorProfile": [
+        "/TestStack/AmazonRdsTestConnectorProfile/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AmazonRdsTestConnectorProfileDA7BF797"
+            "data": "AmazonRdsTestConnectorProfile5A37DC65"
           }
         ],
-        "/TestStack/OnDemandFlow/OnDemandFlow": [
+        "/TestStack/OnDemandFlow/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "OnDemandFlow4ECA54C5"
+            "data": "OnDemandFlow00CE33FE"
           }
         ],
         "/TestStack/BootstrapVersion": [

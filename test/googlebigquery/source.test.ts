@@ -159,7 +159,7 @@ describe("GoogleBigQuerySource", () => {
 
     template.hasResourceProperties("AWS::AppFlow::ConnectorProfile", {
       ConnectionMode: "Public",
-      ConnectorProfileName: "TestProfile",
+      ConnectorProfileName: "TestStackTestProfile18724107",
       ConnectorType: "CustomConnector",
       ConnectorLabel: "GoogleBigQuery",
       ConnectorProfileConfig: {
@@ -202,7 +202,7 @@ describe("GoogleBigQuerySource", () => {
         FlowName: "TestStackTestFlow32CDAF42",
         SourceFlowConfig: {
           ApiVersion: "v2",
-          ConnectorProfileName: "TestProfile",
+          ConnectorProfileName: "TestStackTestProfile18724107",
           ConnectorType: "CustomConnector",
           SourceConnectorProperties: {
             CustomConnector: {
@@ -232,7 +232,7 @@ describe("GoogleBigQuerySource", () => {
       DependsOn: [
         "TestBucketPolicyBA12ED38",
         "TestBucket560B80BC",
-        "TestProfile45C36389",
+        "TestProfileBC0F4812",
       ],
     });
   });

@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "TestProfile45C36389": {
+  "TestProfileBC0F4812": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -56,7 +56,7 @@
       }
      }
     },
-    "ConnectorProfileName": "TestProfile",
+    "ConnectorProfileName": "TestStackTestProfile18724107",
     "ConnectorType": "Salesforce"
    }
   },
@@ -1000,7 +1000,7 @@
     "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRole0A90D717"
    ]
   },
-  "TestRedshiftProfileC7C6727A": {
+  "TestRedshiftProfile0FD958FE": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -1035,7 +1035,7 @@
       }
      }
     },
-    "ConnectorProfileName": "TestRedshiftProfile",
+    "ConnectorProfileName": "TestStackTestRedshiftProfileF3740561",
     "ConnectorType": "Redshift"
    },
    "DependsOn": [
@@ -1422,12 +1422,12 @@
     ]
    }
   },
-  "SfdcToRedshiftELTFC79C6AA": {
+  "SfdcToRedshiftELT3CD9B9F4": {
    "Type": "AWS::AppFlow::Flow",
    "Properties": {
     "DestinationFlowConfigList": [
      {
-      "ConnectorProfileName": "TestRedshiftProfile",
+      "ConnectorProfileName": "TestStackTestRedshiftProfileF3740561",
       "ConnectorType": "Redshift",
       "DestinationConnectorProperties": {
        "Redshift": {
@@ -1452,7 +1452,7 @@
     ],
     "FlowName": "TestStackSfdcToRedshiftELT6AA1139C",
     "SourceFlowConfig": {
-     "ConnectorProfileName": "TestProfile",
+     "ConnectorProfileName": "TestStackTestProfile18724107",
      "ConnectorType": "Salesforce",
      "SourceConnectorProperties": {
       "Salesforce": {
@@ -1496,8 +1496,8 @@
     }
    },
    "DependsOn": [
-    "TestProfile45C36389",
-    "TestRedshiftProfileC7C6727A",
+    "TestProfileBC0F4812",
+    "TestRedshiftProfile0FD958FE",
     "TestTableProviderframeworkonEventFD35FC3D",
     "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
     "TestTableProviderframeworkonEventServiceRole585FCC2A",

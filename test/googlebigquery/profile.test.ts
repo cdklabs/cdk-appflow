@@ -32,7 +32,7 @@ describe("GoogleBigQueryConnectorProfile", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "CustomConnector",
         ConnectorLabel: "GoogleBigQuery",
         ConnectorProfileConfig: {
@@ -87,7 +87,7 @@ describe("GoogleBigQueryConnectorProfile", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "CustomConnector",
         ConnectorLabel: "GoogleBigQuery",
         ConnectorProfileConfig: {
@@ -199,7 +199,7 @@ describe("GoogleBigQueryConnectorProfile", () => {
     Template.fromStack(stack).hasResource("AWS::AppFlow::ConnectorProfile", {
       Properties: {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "CustomConnector",
         ConnectorLabel: "GoogleBigQuery",
         ConnectorProfileConfig: {

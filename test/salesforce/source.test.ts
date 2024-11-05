@@ -197,7 +197,7 @@ describe("SalesforceSource", () => {
           },
         },
       },
-      ConnectorProfileName: "TestProfile",
+      ConnectorProfileName: "TestStackTestProfile18724107",
       ConnectorType: "Salesforce",
     });
 
@@ -217,7 +217,7 @@ describe("SalesforceSource", () => {
       FlowName: "TestStackTestFlow32CDAF42",
       SourceFlowConfig: {
         ApiVersion: "1",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Salesforce",
         SourceConnectorProperties: {
           Salesforce: {

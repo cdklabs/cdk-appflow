@@ -205,14 +205,14 @@ describe("SalesforceDestination", () => {
           },
         },
       },
-      ConnectorProfileName: "TestProfile",
+      ConnectorProfileName: "TestStackTestProfile18724107",
       ConnectorType: "Salesforce",
     });
 
     template.hasResourceProperties("AWS::AppFlow::Flow", {
       DestinationFlowConfigList: [
         {
-          ConnectorProfileName: "TestProfile",
+          ConnectorProfileName: "TestStackTestProfile18724107",
           ConnectorType: "Salesforce",
           DestinationConnectorProperties: {
             Salesforce: {

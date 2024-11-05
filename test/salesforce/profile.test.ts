@@ -33,7 +33,7 @@ describe("SalesforceConnectorProfileProps", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Salesforce",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {
@@ -127,7 +127,7 @@ describe("SalesforceConnectorProfileProps", () => {
             },
           },
         },
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Salesforce",
       },
     );
@@ -209,7 +209,7 @@ describe("SalesforceConnectorProfileProps", () => {
             },
           },
         },
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Salesforce",
         KMSArn: {
           "Fn::GetAtt": ["TestKey4CACAF33", "Arn"],
