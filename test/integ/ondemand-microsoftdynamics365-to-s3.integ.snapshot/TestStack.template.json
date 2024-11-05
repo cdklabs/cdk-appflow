@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "TestConnectorEE9F0A13": {
+  "TestConnectorF96C459B": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -104,7 +104,7 @@
       }
      }
     },
-    "ConnectorProfileName": "TestConnector",
+    "ConnectorProfileName": "TestStackTestConnector553270CD",
     "ConnectorType": "CustomConnector"
    }
   },
@@ -293,7 +293,7 @@
     "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
    ]
   },
-  "OnDemandFlow4ECA54C5": {
+  "OnDemandFlow00CE33FE": {
    "Type": "AWS::AppFlow::Flow",
    "Properties": {
     "DestinationFlowConfigList": [
@@ -317,7 +317,7 @@
     "FlowName": "TestStackOnDemandFlow53F97EB9",
     "SourceFlowConfig": {
      "ApiVersion": "v9.2",
-     "ConnectorProfileName": "TestConnector",
+     "ConnectorProfileName": "TestStackTestConnector553270CD",
      "ConnectorType": "CustomConnector",
      "SourceConnectorProperties": {
       "CustomConnector": {
@@ -364,7 +364,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorEE9F0A13"
+    "TestConnectorF96C459B"
    ]
   }
  },

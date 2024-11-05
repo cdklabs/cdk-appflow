@@ -393,7 +393,7 @@
     "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
    ]
   },
-  "TestConnectorProfileD7470107": {
+  "TestConnectorProfile61825F3E": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -469,16 +469,16 @@
       }
      }
     },
-    "ConnectorProfileName": "TestConnectorProfile",
+    "ConnectorProfileName": "TestStackTestConnectorProfileD7C70DA6",
     "ConnectorType": "Salesforce"
    }
   },
-  "OnScheduleFlow9A474F3B": {
+  "OnScheduleFlow3BE8D5D0": {
    "Type": "AWS::AppFlow::Flow",
    "Properties": {
     "DestinationFlowConfigList": [
      {
-      "ConnectorProfileName": "TestConnectorProfile",
+      "ConnectorProfileName": "TestStackTestConnectorProfileD7C70DA6",
       "ConnectorType": "Salesforce",
       "DestinationConnectorProperties": {
        "Salesforce": {
@@ -593,7 +593,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107",
+    "TestConnectorProfile61825F3E",
     "TestDeploymentAwsCliLayerACB69B63",
     "TestDeploymentCustomResource6C695E22"
    ]
@@ -608,7 +608,7 @@
      "resources": [
       {
        "Fn::GetAtt": [
-        "OnScheduleFlow9A474F3B",
+        "OnScheduleFlow3BE8D5D0",
         "FlowArn"
        ]
       }
@@ -624,7 +624,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107",
+    "TestConnectorProfile61825F3E",
     "TestDeploymentAwsCliLayerACB69B63",
     "TestDeploymentCustomResource6C695E22"
    ]
@@ -639,7 +639,7 @@
      "resources": [
       {
        "Fn::GetAtt": [
-        "OnScheduleFlow9A474F3B",
+        "OnScheduleFlow3BE8D5D0",
         "FlowArn"
        ]
       }
@@ -655,7 +655,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107",
+    "TestConnectorProfile61825F3E",
     "TestDeploymentAwsCliLayerACB69B63",
     "TestDeploymentCustomResource6C695E22"
    ]

@@ -28,7 +28,7 @@ describe("SlackConnectorProfile", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Slack",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {
@@ -68,7 +68,7 @@ describe("SlackConnectorProfile", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Slack",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {
@@ -154,7 +154,7 @@ describe("SlackConnectorProfile", () => {
     Template.fromStack(stack).hasResource("AWS::AppFlow::ConnectorProfile", {
       Properties: {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Slack",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {

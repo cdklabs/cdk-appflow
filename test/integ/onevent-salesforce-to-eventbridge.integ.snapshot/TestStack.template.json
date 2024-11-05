@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "TestConnectorProfileD7470107": {
+  "TestConnectorProfile61825F3E": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -76,7 +76,7 @@
       }
      }
     },
-    "ConnectorProfileName": "TestConnectorProfile",
+    "ConnectorProfileName": "TestStackTestConnectorProfileD7C70DA6",
     "ConnectorType": "Salesforce"
    }
   },
@@ -273,7 +273,7 @@
     "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
    ]
   },
-  "EventFlowF93BCAAA": {
+  "EventFlow0B765D17": {
    "Type": "AWS::AppFlow::Flow",
    "Properties": {
     "DestinationFlowConfigList": [
@@ -304,7 +304,7 @@
     ],
     "FlowName": "TestStackEventFlow3DEF2313",
     "SourceFlowConfig": {
-     "ConnectorProfileName": "TestConnectorProfile",
+     "ConnectorProfileName": "TestStackTestConnectorProfileD7C70DA6",
      "ConnectorType": "Salesforce",
      "SourceConnectorProperties": {
       "Salesforce": {
@@ -335,7 +335,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107"
+    "TestConnectorProfile61825F3E"
    ]
   },
   "EventFlowcaptureOnRunStartedBC55C943": {
@@ -348,7 +348,7 @@
      "resources": [
       {
        "Fn::GetAtt": [
-        "EventFlowF93BCAAA",
+        "EventFlow0B765D17",
         "FlowArn"
        ]
       }
@@ -363,7 +363,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107"
+    "TestConnectorProfile61825F3E"
    ]
   }
  },

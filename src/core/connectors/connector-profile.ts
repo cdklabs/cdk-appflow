@@ -2,7 +2,15 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { Arn, ArnFormat, IResource, Resource, Stack } from "aws-cdk-lib";
+import {
+  Arn,
+  ArnFormat,
+  IResource,
+  Lazy,
+  Names,
+  Resource,
+  Stack,
+} from "aws-cdk-lib";
 import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
 import { IKey } from "aws-cdk-lib/aws-kms";
 import { ISecret, Secret } from "aws-cdk-lib/aws-secretsmanager";
@@ -81,14 +89,22 @@ export abstract class ConnectorProfileBase
     props: ConnectorProfileProps,
     connectorType: ConnectorType,
   ) {
-    super(scope, id);
+    super(scope, id, {
+      physicalName:
+        props.name ||
+        Lazy.string({
+          produce: () =>
+            Names.uniqueResourceName(this, {
+              maxLength: 256,
+            }),
+        }),
+    });
 
-    this.name = props.name ?? id;
     this.tryAddNodeDependency(this, props.key);
     AppFlowPermissionsManager.instance().grantKeyEncryptDecrypt(props.key);
 
-    const resource = new CfnConnectorProfile(this, id, {
-      connectorProfileName: this.name,
+    const resource = new CfnConnectorProfile(this, "Resource", {
+      connectorProfileName: this.physicalName,
       connectorLabel: connectorType.asProfileConnectorLabel,
       connectorType: connectorType.asProfileConnectorType,
       connectionMode: ConnectionMode.PUBLIC,
@@ -101,9 +117,10 @@ export abstract class ConnectorProfileBase
     });
 
     this.arn = resource.attrConnectorProfileArn;
+    this.name = this.physicalName;
     this.credentials = Secret.fromSecretCompleteArn(
-      scope,
-      `${id}Credentials`,
+      this,
+      `Credentials`,
       resource.attrCredentialsArn,
     );
   }

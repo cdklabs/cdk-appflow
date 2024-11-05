@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "JdbcSmallTestConnectorProfileD137BC4A": {
+  "JdbcSmallTestConnectorProfile4B32988D": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -142,11 +142,11 @@
       }
      }
     },
-    "ConnectorProfileName": "JdbcSmallTestConnectorProfile",
+    "ConnectorProfileName": "TestStackJdbcSmallTestConnectorProfileCEFC6AC7",
     "ConnectorType": "CustomConnector"
    }
   },
-  "AmazonRdsTestConnectorProfileDA7BF797": {
+  "AmazonRdsTestConnectorProfile5A37DC65": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -269,17 +269,17 @@
       }
      }
     },
-    "ConnectorProfileName": "AmazonRdsTestConnectorProfile",
+    "ConnectorProfileName": "TestStackAmazonRdsTestConnectorProfileAD9F9A54",
     "ConnectorType": "CustomConnector"
    }
   },
-  "OnDemandFlow4ECA54C5": {
+  "OnDemandFlow00CE33FE": {
    "Type": "AWS::AppFlow::Flow",
    "Properties": {
     "DestinationFlowConfigList": [
      {
       "ApiVersion": "1.0",
-      "ConnectorProfileName": "AmazonRdsTestConnectorProfile",
+      "ConnectorProfileName": "TestStackAmazonRdsTestConnectorProfileAD9F9A54",
       "ConnectorType": "CustomConnector",
       "DestinationConnectorProperties": {
        "CustomConnector": {
@@ -323,7 +323,7 @@
     "FlowName": "TestStackOnDemandFlow53F97EB9",
     "SourceFlowConfig": {
      "ApiVersion": "V1",
-     "ConnectorProfileName": "JdbcSmallTestConnectorProfile",
+     "ConnectorProfileName": "TestStackJdbcSmallTestConnectorProfileCEFC6AC7",
      "ConnectorType": "CustomConnector",
      "SourceConnectorProperties": {
       "CustomConnector": {
@@ -425,8 +425,8 @@
     }
    },
    "DependsOn": [
-    "AmazonRdsTestConnectorProfileDA7BF797",
-    "JdbcSmallTestConnectorProfileD137BC4A"
+    "AmazonRdsTestConnectorProfile5A37DC65",
+    "JdbcSmallTestConnectorProfile4B32988D"
    ]
   }
  },

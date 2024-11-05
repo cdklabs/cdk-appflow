@@ -203,7 +203,7 @@ export abstract class FlowBase extends Resource implements IFlow {
       props.source.connectorType,
     );
 
-    const resource = new CfnFlow(this, id, {
+    const resource = new CfnFlow(this, "Resource", {
       flowName: this.physicalName,
       flowStatus: props.status,
       triggerConfig: {

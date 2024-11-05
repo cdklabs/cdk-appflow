@@ -21,7 +21,7 @@ describe("AsanaConnectorProfileProps", () => {
       {
         ConnectionMode: "Public",
         ConnectorLabel: "Asana",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "CustomConnector",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {

@@ -153,7 +153,7 @@ describe("GoogleAdsSource", () => {
 
     template.hasResourceProperties("AWS::AppFlow::ConnectorProfile", {
       ConnectionMode: "Public",
-      ConnectorProfileName: "TestProfile",
+      ConnectorProfileName: "TestStackTestProfile18724107",
       ConnectorType: "CustomConnector",
       ConnectorLabel: "GoogleAds",
       ConnectorProfileConfig: {
@@ -196,7 +196,7 @@ describe("GoogleAdsSource", () => {
         FlowName: "TestStackTestFlow32CDAF42",
         SourceFlowConfig: {
           ApiVersion: "v16",
-          ConnectorProfileName: "TestProfile",
+          ConnectorProfileName: "TestStackTestProfile18724107",
           ConnectorType: "CustomConnector",
           SourceConnectorProperties: {
             CustomConnector: {
@@ -226,7 +226,7 @@ describe("GoogleAdsSource", () => {
       DependsOn: [
         "TestBucketPolicyBA12ED38",
         "TestBucket560B80BC",
-        "TestProfile45C36389",
+        "TestProfileBC0F4812",
       ],
     });
   });

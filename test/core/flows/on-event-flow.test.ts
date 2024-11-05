@@ -138,7 +138,7 @@ describe("OnEventFlow", () => {
           source: ["aws.appflow"],
           resources: [
             {
-              "Fn::GetAtt": ["OnEventFlowBAB74E7A", "FlowArn"],
+              "Fn::GetAtt": ["OnEventFlowF92CD86B", "FlowArn"],
             },
           ],
           "detail-type": ["AppFlow Event Flow Report"],
@@ -151,7 +151,7 @@ describe("OnEventFlow", () => {
           source: ["aws.appflow"],
           resources: [
             {
-              "Fn::GetAtt": ["OnEventFlowBAB74E7A", "FlowArn"],
+              "Fn::GetAtt": ["OnEventFlowF92CD86B", "FlowArn"],
             },
           ],
           "detail-type": ["AppFlow Event Flow Deactivated"],

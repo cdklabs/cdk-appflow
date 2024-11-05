@@ -28,7 +28,7 @@ describe("ZendeskConnectorProfile", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Zendesk",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {
@@ -68,7 +68,7 @@ describe("ZendeskConnectorProfile", () => {
       "AWS::AppFlow::ConnectorProfile",
       {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Zendesk",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {
@@ -154,7 +154,7 @@ describe("ZendeskConnectorProfile", () => {
     Template.fromStack(stack).hasResource("AWS::AppFlow::ConnectorProfile", {
       Properties: {
         ConnectionMode: "Public",
-        ConnectorProfileName: "TestProfile",
+        ConnectorProfileName: "TestStackTestProfile18724107",
         ConnectorType: "Zendesk",
         ConnectorProfileConfig: {
           ConnectorProfileCredentials: {

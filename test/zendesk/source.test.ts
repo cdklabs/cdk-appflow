@@ -108,7 +108,7 @@ describe("ZendeskSource", () => {
 
     template.hasResourceProperties("AWS::AppFlow::ConnectorProfile", {
       ConnectionMode: "Public",
-      ConnectorProfileName: "TestProfile",
+      ConnectorProfileName: "TestStackTestProfile18724107",
       ConnectorType: "Zendesk",
       ConnectorProfileConfig: {
         ConnectorProfileCredentials: {
@@ -129,7 +129,7 @@ describe("ZendeskSource", () => {
     template.hasResource("AWS::AppFlow::Flow", {
       Properties: {
         SourceFlowConfig: {
-          ConnectorProfileName: "TestProfile",
+          ConnectorProfileName: "TestStackTestProfile18724107",
           ConnectorType: "Zendesk",
           SourceConnectorProperties: {
             Zendesk: {
@@ -141,7 +141,7 @@ describe("ZendeskSource", () => {
       DependsOn: [
         "TestBucketPolicyBA12ED38",
         "TestBucket560B80BC",
-        "TestProfile45C36389",
+        "TestProfileBC0F4812",
       ],
     });
   });

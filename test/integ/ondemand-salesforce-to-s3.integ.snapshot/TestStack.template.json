@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "TestConnectorProfileD7470107": {
+  "TestConnectorProfile61825F3E": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
@@ -76,7 +76,7 @@
       }
      }
     },
-    "ConnectorProfileName": "TestConnectorProfile",
+    "ConnectorProfileName": "TestStackTestConnectorProfileD7C70DA6",
     "ConnectorType": "Salesforce"
    }
   },
@@ -284,7 +284,7 @@
     }
    }
   },
-  "OnDemandFlow4ECA54C5": {
+  "OnDemandFlow00CE33FE": {
    "Type": "AWS::AppFlow::Flow",
    "Properties": {
     "DestinationFlowConfigList": [
@@ -324,7 +324,7 @@
      }
     },
     "SourceFlowConfig": {
-     "ConnectorProfileName": "TestConnectorProfile",
+     "ConnectorProfileName": "TestStackTestConnectorProfileD7C70DA6",
      "ConnectorType": "Salesforce",
      "SourceConnectorProperties": {
       "Salesforce": {
@@ -385,7 +385,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107",
+    "TestConnectorProfile61825F3E",
     "TestDatabase7A4A91C2"
    ]
   },
