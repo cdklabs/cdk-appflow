@@ -255,3 +255,7 @@ This library relies on an internal `AppFlowPermissionsManager` class to automati
 ### Confused Deputy Problem
 
 Amazon AppFlow is an account-bound and a regional service. With this it is invurlnerable to the confused deputy problem (see, e.g. [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html)). However, `AppFlowPermissionsManager` still introduces the `aws:SourceAccount` condtition to the resource policies as a *best practice*.
+
+## Upgrading and breaking changes
+
+Please consult the [UPGRADING docs](/UPGRADING.md) for information.
