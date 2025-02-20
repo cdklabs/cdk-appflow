@@ -1416,9 +1416,9 @@ aws-cdk@2.179.0:
     fsevents "2.3.2"
 
 aws-cdk@^2:
-  version "2.1000.1"
-  resolved "https://registry.yarnpkg.com/aws-cdk/-/aws-cdk-2.1000.1.tgz#2ff008c2f87c3573267f5f4388b07e0df9d05d3d"
-  integrity sha512-1hccUeH5fQeFSAhJITACw3Gs7JWO3EknxSvRARXBZLSy74RV1a2gk8T1yGyO+jtCd38OqhXmbwTinLs2MX4/eg==
+  version "2.1000.2"
+  resolved "https://registry.yarnpkg.com/aws-cdk/-/aws-cdk-2.1000.2.tgz#5c89404f24b09880bc9f7e9b4f7bd721be02b4bd"
+  integrity sha512-QsXqJhGWjHNqP7etgE3sHOTiDBXItmSKdFKgsm1qPMBabCMyFfmWZnEeUxfZ4sMaIoxvLpr3sqoWSNeLuUk4sg==
   optionalDependencies:
     fsevents "2.3.2"
 
@@ -5620,9 +5620,9 @@ typescript@^5.7.3, typescript@~5.7:
   integrity sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==
 
 typescript@next:
-  version "5.8.0-dev.20250218"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.0-dev.20250218.tgz#4fd98cc5524a9ce0d09a557d97905657a909f6fa"
-  integrity sha512-ug24uoLMp4xZWUZOYi900L8VM9Tjpvm7+clJYYDY9OYOlveZf7en8ndF/kfZZ7QoODkFC/z6mvDdaD0ePD2fmQ==
+  version "5.9.0-dev.20250219"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.0-dev.20250219.tgz#5d1625c8c32d7bb5e61d7befe2f06282daf98bad"
+  integrity sha512-BzBFdaj0tnTp9fp9pu1rgi7vt3u7z6EDL3IbjTgkf5GvpXTjWmQkE633De5S3ySeNL6dyZvBeVvLCKXKcOvbQA==
 
 typescript@~5.4:
   version "5.4.5"
