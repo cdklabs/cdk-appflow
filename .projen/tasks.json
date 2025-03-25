@@ -317,6 +317,69 @@
         }
       ]
     },
+    "integ:ondemand-hubspot-to-s3:assert": {
+      "name": "integ:ondemand-hubspot-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-hubspot-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-hubspot-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-hubspot-to-s3'. Run 'projen integ:ondemand-hubspot-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-hubspot-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-hubspot-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-hubspot-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-hubspot-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:deploy": {
+      "name": "integ:ondemand-hubspot-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-hubspot-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-hubspot-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-hubspot-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-hubspot-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-hubspot-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-hubspot-to-s3.integ/deploy.cdk.out test/integ/ondemand-hubspot-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-hubspot-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:destroy": {
+      "name": "integ:ondemand-hubspot-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-hubspot-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-hubspot-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:snapshot": {
+      "name": "integ:ondemand-hubspot-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-hubspot-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-hubspot-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-hubspot-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:watch": {
+      "name": "integ:ondemand-hubspot-to-s3:watch",
+      "description": "watch integration test 'ondemand-hubspot-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-hubspot-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-hubspot-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
     "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert": {
       "name": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert",
       "description": "assert the snapshot of integration test 'ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql'",
@@ -629,6 +692,69 @@
       "steps": [
         {
           "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:assert": {
+      "name": "integ:ondemand-s3-to-hubspot:assert",
+      "description": "assert the snapshot of integration test 'ondemand-s3-to-hubspot'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-s3-to-hubspot.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-s3-to-hubspot'. Run 'projen integ:ondemand-s3-to-hubspot:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-hubspot.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-s3-to-hubspot.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-s3-to-hubspot.integ.snapshot/ test/integ/.tmp/ondemand-s3-to-hubspot.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:deploy": {
+      "name": "integ:ondemand-s3-to-hubspot:deploy",
+      "description": "deploy integration test 'ondemand-s3-to-hubspot' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-s3-to-hubspot.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-hubspot.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-s3-to-hubspot.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-s3-to-hubspot.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-s3-to-hubspot.integ/deploy.cdk.out test/integ/ondemand-s3-to-hubspot.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-hubspot:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:destroy": {
+      "name": "integ:ondemand-s3-to-hubspot:destroy",
+      "description": "destroy integration test 'ondemand-s3-to-hubspot'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-s3-to-hubspot.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:snapshot": {
+      "name": "integ:ondemand-s3-to-hubspot:snapshot",
+      "description": "update snapshot for integration test \"ondemand-s3-to-hubspot\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-hubspot.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-s3-to-hubspot.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:watch": {
+      "name": "integ:ondemand-s3-to-hubspot:watch",
+      "description": "watch integration test 'ondemand-s3-to-hubspot' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-hubspot.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-s3-to-hubspot.integ/deploy.cdk.out"
         }
       ]
     },
@@ -1210,6 +1336,9 @@
           "spawn": "integ:ondemand-googleanalytics4-to-s3:snapshot"
         },
         {
+          "spawn": "integ:ondemand-hubspot-to-s3:snapshot"
+        },
+        {
           "spawn": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:snapshot"
         },
         {
@@ -1223,6 +1352,9 @@
         },
         {
           "spawn": "integ:ondemand-microsoftsharepointonline-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-hubspot:snapshot"
         },
         {
           "spawn": "integ:ondemand-s3-to-s3:snapshot"
@@ -1419,6 +1551,9 @@
           "spawn": "integ:ondemand-googleanalytics4-to-s3:assert"
         },
         {
+          "spawn": "integ:ondemand-hubspot-to-s3:assert"
+        },
+        {
           "spawn": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert"
         },
         {
@@ -1432,6 +1567,9 @@
         },
         {
           "spawn": "integ:ondemand-microsoftsharepointonline-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-hubspot:assert"
         },
         {
           "spawn": "integ:ondemand-s3-to-s3:assert"

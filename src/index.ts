@@ -9,6 +9,7 @@ export * from "./asana";
 export * from "./eventbridge";
 export * from "./googleanalytics4";
 export * from "./googlebigquery";
+export * from "./hubspot";
 export * from "./jdbcsmalldatascale";
 export * from "./marketo";
 export * from "./microsoftdynamics365";

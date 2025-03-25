@@ -2020,6 +2020,282 @@ public readonly credentials: ISecret;
 ---
 
 
+### HubSpotConnectorProfile <a name="HubSpotConnectorProfile" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile"></a>
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.Initializer"></a>
+
+```typescript
+import { HubSpotConnectorProfile } from '@cdklabs/cdk-appflow'
+
+new HubSpotConnectorProfile(scope: Construct, id: string, props: HubSpotConnectorProfileProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfileProps">HubSpotConnectorProfileProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfileProps">HubSpotConnectorProfileProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+
+---
+
+##### `toString` <a name="toString" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `applyRemovalPolicy` <a name="applyRemovalPolicy" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.applyRemovalPolicy"></a>
+
+```typescript
+public applyRemovalPolicy(policy: RemovalPolicy): void
+```
+
+Apply the given removal policy to this resource.
+
+The Removal Policy controls what happens to this resource when it stops
+being managed by CloudFormation, either because you've removed it from the
+CDK application or because you've made a change that requires the resource
+to be replaced.
+
+The resource can be deleted (`RemovalPolicy.DESTROY`), or left in your AWS
+account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
+
+###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.applyRemovalPolicy.parameter.policy"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | *No description.* |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.isConstruct"></a>
+
+```typescript
+import { HubSpotConnectorProfile } from '@cdklabs/cdk-appflow'
+
+HubSpotConnectorProfile.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isOwnedResource` <a name="isOwnedResource" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.isOwnedResource"></a>
+
+```typescript
+import { HubSpotConnectorProfile } from '@cdklabs/cdk-appflow'
+
+HubSpotConnectorProfile.isOwnedResource(construct: IConstruct)
+```
+
+Returns true if the construct was created by CDK, and false otherwise.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.isOwnedResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `isResource` <a name="isResource" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.isResource"></a>
+
+```typescript
+import { HubSpotConnectorProfile } from '@cdklabs/cdk-appflow'
+
+HubSpotConnectorProfile.isResource(construct: IConstruct)
+```
+
+Check whether the given construct is a Resource.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.isResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `fromConnectionProfileArn` <a name="fromConnectionProfileArn" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileArn"></a>
+
+```typescript
+import { HubSpotConnectorProfile } from '@cdklabs/cdk-appflow'
+
+HubSpotConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileArn.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
+
+- *Type:* string
+
+---
+
+##### `fromConnectionProfileName` <a name="fromConnectionProfileName" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileName"></a>
+
+```typescript
+import { HubSpotConnectorProfile } from '@cdklabs/cdk-appflow'
+
+HubSpotConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileName.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.fromConnectionProfileName.parameter.name"></a>
+
+- *Type:* string
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `env`<sup>Required</sup> <a name="env" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.env"></a>
+
+```typescript
+public readonly env: ResourceEnvironment;
+```
+
+- *Type:* aws-cdk-lib.ResourceEnvironment
+
+The environment this resource belongs to.
+
+For resources that are created and managed by the CDK
+(generally, those created by creating new class instances like Role, Bucket, etc.),
+this is always the same as the environment of the stack they belong to;
+however, for imported resources
+(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
+that might be different than the stack they were imported into.
+
+---
+
+##### `stack`<sup>Required</sup> <a name="stack" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.stack"></a>
+
+```typescript
+public readonly stack: Stack;
+```
+
+- *Type:* aws-cdk-lib.Stack
+
+The stack in which this resource is defined.
+
+---
+
+##### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.arn"></a>
+
+```typescript
+public readonly arn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `credentials`<sup>Optional</sup> <a name="credentials" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.property.credentials"></a>
+
+```typescript
+public readonly credentials: ISecret;
+```
+
+- *Type:* aws-cdk-lib.aws_secretsmanager.ISecret
+
+---
+
+
 ### JdbcSmallDataScaleConnectorProfile <a name="JdbcSmallDataScaleConnectorProfile" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile"></a>
 
 The connector profile for the JDBC connector.
@@ -9073,6 +9349,368 @@ public readonly profile: GoogleBigQueryConnectorProfile;
 
 ---
 
+### HubSpotConnectorProfileProps <a name="HubSpotConnectorProfileProps" id="@cdklabs/cdk-appflow.HubSpotConnectorProfileProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.HubSpotConnectorProfileProps.Initializer"></a>
+
+```typescript
+import { HubSpotConnectorProfileProps } from '@cdklabs/cdk-appflow'
+
+const hubSpotConnectorProfileProps: HubSpotConnectorProfileProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfileProps.property.oAuth">oAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotOAuthSettings">HubSpotOAuthSettings</a></code> | *No description.* |
+
+---
+
+##### `key`<sup>Optional</sup> <a name="key" id="@cdklabs/cdk-appflow.HubSpotConnectorProfileProps.property.key"></a>
+
+```typescript
+public readonly key: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+
+TODO: think if this should be here as not all connector profiles have that.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="@cdklabs/cdk-appflow.HubSpotConnectorProfileProps.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `oAuth`<sup>Required</sup> <a name="oAuth" id="@cdklabs/cdk-appflow.HubSpotConnectorProfileProps.property.oAuth"></a>
+
+```typescript
+public readonly oAuth: HubSpotOAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotOAuthSettings">HubSpotOAuthSettings</a>
+
+---
+
+### HubSpotDestinationProps <a name="HubSpotDestinationProps" id="@cdklabs/cdk-appflow.HubSpotDestinationProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.HubSpotDestinationProps.Initializer"></a>
+
+```typescript
+import { HubSpotDestinationProps } from '@cdklabs/cdk-appflow'
+
+const hubSpotDestinationProps: HubSpotDestinationProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotDestinationProps.property.apiVersion">apiVersion</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotApiVersion">HubSpotApiVersion</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotDestinationProps.property.entity">entity</a></code> | <code>string[]</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotDestinationProps.property.operation">operation</a></code> | <code><a href="#@cdklabs/cdk-appflow.WriteOperation">WriteOperation</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotDestinationProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile">HubSpotConnectorProfile</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotDestinationProps.property.errorHandling">errorHandling</a></code> | <code><a href="#@cdklabs/cdk-appflow.ErrorHandlingConfiguration">ErrorHandlingConfiguration</a></code> | The settings that determine how Amazon AppFlow handles an error when placing data in the HubSpot destination. |
+
+---
+
+##### `apiVersion`<sup>Required</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.HubSpotDestinationProps.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: HubSpotApiVersion;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotApiVersion">HubSpotApiVersion</a>
+
+---
+
+##### `entity`<sup>Required</sup> <a name="entity" id="@cdklabs/cdk-appflow.HubSpotDestinationProps.property.entity"></a>
+
+```typescript
+public readonly entity: string[];
+```
+
+- *Type:* string[]
+
+---
+
+##### `operation`<sup>Required</sup> <a name="operation" id="@cdklabs/cdk-appflow.HubSpotDestinationProps.property.operation"></a>
+
+```typescript
+public readonly operation: WriteOperation;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.WriteOperation">WriteOperation</a>
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.HubSpotDestinationProps.property.profile"></a>
+
+```typescript
+public readonly profile: HubSpotConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile">HubSpotConnectorProfile</a>
+
+---
+
+##### `errorHandling`<sup>Optional</sup> <a name="errorHandling" id="@cdklabs/cdk-appflow.HubSpotDestinationProps.property.errorHandling"></a>
+
+```typescript
+public readonly errorHandling: ErrorHandlingConfiguration;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ErrorHandlingConfiguration">ErrorHandlingConfiguration</a>
+
+The settings that determine how Amazon AppFlow handles an error when placing data in the HubSpot destination.
+
+For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure.
+
+---
+
+### HubSpotOAuthEndpoints <a name="HubSpotOAuthEndpoints" id="@cdklabs/cdk-appflow.HubSpotOAuthEndpoints"></a>
+
+Hubspot OAuth token and authorization endpoints.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.HubSpotOAuthEndpoints.Initializer"></a>
+
+```typescript
+import { HubSpotOAuthEndpoints } from '@cdklabs/cdk-appflow'
+
+const hubSpotOAuthEndpoints: HubSpotOAuthEndpoints = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotOAuthEndpoints.property.token">token</a></code> | <code>string</code> | The OAuth token endpoint URI. |
+
+---
+
+##### `token`<sup>Optional</sup> <a name="token" id="@cdklabs/cdk-appflow.HubSpotOAuthEndpoints.property.token"></a>
+
+```typescript
+public readonly token: string;
+```
+
+- *Type:* string
+
+The OAuth token endpoint URI.
+
+---
+
+### HubSpotOAuthFlow <a name="HubSpotOAuthFlow" id="@cdklabs/cdk-appflow.HubSpotOAuthFlow"></a>
+
+Represents the OAuth flow enabled for the GA4.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.HubSpotOAuthFlow.Initializer"></a>
+
+```typescript
+import { HubSpotOAuthFlow } from '@cdklabs/cdk-appflow'
+
+const hubSpotOAuthFlow: HubSpotOAuthFlow = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotOAuthFlow.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow">HubSpotRefreshTokenGrantFlow</a></code> | The details required for executing the refresh token grant flow. |
+
+---
+
+##### `refreshTokenGrant`<sup>Required</sup> <a name="refreshTokenGrant" id="@cdklabs/cdk-appflow.HubSpotOAuthFlow.property.refreshTokenGrant"></a>
+
+```typescript
+public readonly refreshTokenGrant: HubSpotRefreshTokenGrantFlow;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow">HubSpotRefreshTokenGrantFlow</a>
+
+The details required for executing the refresh token grant flow.
+
+---
+
+### HubSpotOAuthSettings <a name="HubSpotOAuthSettings" id="@cdklabs/cdk-appflow.HubSpotOAuthSettings"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.HubSpotOAuthSettings.Initializer"></a>
+
+```typescript
+import { HubSpotOAuthSettings } from '@cdklabs/cdk-appflow'
+
+const hubSpotOAuthSettings: HubSpotOAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | The access token to be used when interacting with Hubspot. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotOAuthEndpoints">HubSpotOAuthEndpoints</a></code> | The OAuth token and authorization endpoints. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotOAuthFlow">HubSpotOAuthFlow</a></code> | The OAuth flow used for obtaining a new accessToken when the old is not present or expired. |
+
+---
+
+##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.HubSpotOAuthSettings.property.accessToken"></a>
+
+```typescript
+public readonly accessToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+- *Default:* Retrieves a fresh accessToken with the information in the [flow property]{@link HubSpotOAuthSettings#flow }
+
+The access token to be used when interacting with Hubspot.
+
+Note that if only the access token is provided AppFlow is not able to retrieve a fresh access token when the current one is expired
+
+---
+
+##### `endpoints`<sup>Optional</sup> <a name="endpoints" id="@cdklabs/cdk-appflow.HubSpotOAuthSettings.property.endpoints"></a>
+
+```typescript
+public readonly endpoints: HubSpotOAuthEndpoints;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotOAuthEndpoints">HubSpotOAuthEndpoints</a>
+
+The OAuth token and authorization endpoints.
+
+---
+
+##### `flow`<sup>Optional</sup> <a name="flow" id="@cdklabs/cdk-appflow.HubSpotOAuthSettings.property.flow"></a>
+
+```typescript
+public readonly flow: HubSpotOAuthFlow;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotOAuthFlow">HubSpotOAuthFlow</a>
+- *Default:* undefined. AppFlow will not request any new accessToken after expiry.
+
+The OAuth flow used for obtaining a new accessToken when the old is not present or expired.
+
+---
+
+### HubSpotRefreshTokenGrantFlow <a name="HubSpotRefreshTokenGrantFlow" id="@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow"></a>
+
+The OAuth elements required for the execution of the refresh token grant flow.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow.Initializer"></a>
+
+```typescript
+import { HubSpotRefreshTokenGrantFlow } from '@cdklabs/cdk-appflow'
+
+const hubSpotRefreshTokenGrantFlow: HubSpotRefreshTokenGrantFlow = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | The id of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | The secret of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | A non-expired refresh token. |
+
+---
+
+##### `clientId`<sup>Optional</sup> <a name="clientId" id="@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow.property.clientId"></a>
+
+```typescript
+public readonly clientId: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The id of the client app.
+
+---
+
+##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow.property.clientSecret"></a>
+
+```typescript
+public readonly clientSecret: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The secret of the client app.
+
+---
+
+##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.HubSpotRefreshTokenGrantFlow.property.refreshToken"></a>
+
+```typescript
+public readonly refreshToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+A non-expired refresh token.
+
+---
+
+### HubSpotSourceProps <a name="HubSpotSourceProps" id="@cdklabs/cdk-appflow.HubSpotSourceProps"></a>
+
+Properties of a Hubspot Source.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.HubSpotSourceProps.Initializer"></a>
+
+```typescript
+import { HubSpotSourceProps } from '@cdklabs/cdk-appflow'
+
+const hubSpotSourceProps: HubSpotSourceProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotSourceProps.property.apiVersion">apiVersion</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotApiVersion">HubSpotApiVersion</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotSourceProps.property.entity">entity</a></code> | <code>string[]</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile">HubSpotConnectorProfile</a></code> | *No description.* |
+
+---
+
+##### `apiVersion`<sup>Required</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.HubSpotSourceProps.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: HubSpotApiVersion;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotApiVersion">HubSpotApiVersion</a>
+
+---
+
+##### `entity`<sup>Required</sup> <a name="entity" id="@cdklabs/cdk-appflow.HubSpotSourceProps.property.entity"></a>
+
+```typescript
+public readonly entity: string[];
+```
+
+- *Type:* string[]
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.HubSpotSourceProps.property.profile"></a>
+
+```typescript
+public readonly profile: HubSpotConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile">HubSpotConnectorProfile</a>
+
+---
+
 ### JdbcSmallDataScaleBasicAuthSettings <a name="JdbcSmallDataScaleBasicAuthSettings" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleBasicAuthSettings"></a>
 
 Basic authentication settings for the JdbcSmallDataScaleConnectorProfile.
@@ -14751,6 +15389,140 @@ The AppFlow type of the connector that this source is implemented for.
 ---
 
 
+### HubSpotDestination <a name="HubSpotDestination" id="@cdklabs/cdk-appflow.HubSpotDestination"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.HubSpotDestination.Initializer"></a>
+
+```typescript
+import { HubSpotDestination } from '@cdklabs/cdk-appflow'
+
+new HubSpotDestination(props: HubSpotDestinationProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotDestination.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotDestinationProps">HubSpotDestinationProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.HubSpotDestination.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotDestinationProps">HubSpotDestinationProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotDestination.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.HubSpotDestination.bind"></a>
+
+```typescript
+public bind(flow: IFlow): DestinationFlowConfigProperty
+```
+
+###### `flow`<sup>Required</sup> <a name="flow" id="@cdklabs/cdk-appflow.HubSpotDestination.bind.parameter.flow"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotDestination.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.HubSpotDestination.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
+### HubSpotSource <a name="HubSpotSource" id="@cdklabs/cdk-appflow.HubSpotSource"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+
+A class that represents a Hubspot Source.
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.HubSpotSource.Initializer"></a>
+
+```typescript
+import { HubSpotSource } from '@cdklabs/cdk-appflow'
+
+new HubSpotSource(props: HubSpotSourceProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotSource.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.HubSpotSourceProps">HubSpotSourceProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.HubSpotSource.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.HubSpotSourceProps">HubSpotSourceProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotSource.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.HubSpotSource.bind"></a>
+
+```typescript
+public bind(scope: IFlow): SourceFlowConfigProperty
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.HubSpotSource.bind.parameter.scope"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotSource.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.HubSpotSource.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
 ### JdbcSmallDataScaleSource <a name="JdbcSmallDataScaleSource" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource"></a>
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
@@ -17226,7 +17998,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 - *Extends:* aws-cdk-lib.IResource
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.AsanaConnectorProfile">AsanaConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile">GoogleAdsConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile">GoogleBigQueryConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MailchimpConnectorProfile">MailchimpConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.AsanaConnectorProfile">AsanaConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile">GoogleAdsConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile">GoogleBigQueryConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile">HubSpotConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MailchimpConnectorProfile">MailchimpConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 
 #### Properties <a name="Properties" id="Properties"></a>
@@ -17319,7 +18091,7 @@ public readonly credentials: ISecret;
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.HubSpotDestination">HubSpotDestination</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
 
 A destination of an AppFlow flow.
 
@@ -17638,7 +18410,7 @@ public bind(flow: IFlow, source: ISource): TaskProperty[]
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AsanaSource">AsanaSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AsanaSource">AsanaSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.HubSpotSource">HubSpotSource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
 
 A source of an AppFlow flow.
 
@@ -17737,7 +18509,7 @@ A representation of a validation operation, that is an operation testing records
 
 ### IVertex <a name="IVertex" id="@cdklabs/cdk-appflow.IVertex"></a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.AsanaSource">AsanaSource</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.AsanaSource">AsanaSource</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.HubSpotDestination">HubSpotDestination</a>, <a href="#@cdklabs/cdk-appflow.HubSpotSource">HubSpotSource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 An interface representing a vertex, i.e. a source or a destination of an AppFlow flow.
 
@@ -17930,6 +18702,39 @@ An enum representing the GoogleAds API versions.
 ---
 
 ##### `V2` <a name="V2" id="@cdklabs/cdk-appflow.GoogleBigQueryApiVersion.V2"></a>
+
+---
+
+
+### HubSpotApiVersion <a name="HubSpotApiVersion" id="@cdklabs/cdk-appflow.HubSpotApiVersion"></a>
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotApiVersion.V1">V1</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotApiVersion.V2">V2</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotApiVersion.V3">V3</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.HubSpotApiVersion.V4">V4</a></code> | *No description.* |
+
+---
+
+##### `V1` <a name="V1" id="@cdklabs/cdk-appflow.HubSpotApiVersion.V1"></a>
+
+---
+
+
+##### `V2` <a name="V2" id="@cdklabs/cdk-appflow.HubSpotApiVersion.V2"></a>
+
+---
+
+
+##### `V3` <a name="V3" id="@cdklabs/cdk-appflow.HubSpotApiVersion.V3"></a>
+
+---
+
+
+##### `V4` <a name="V4" id="@cdklabs/cdk-appflow.HubSpotApiVersion.V4"></a>
 
 ---
 
