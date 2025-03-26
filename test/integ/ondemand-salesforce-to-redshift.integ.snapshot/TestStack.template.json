@@ -753,79 +753,6 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"
   },
-  "TestTableProviderframeworkonEventServiceRole585FCC2A": {
-   "Type": "AWS::IAM::Role",
-   "Properties": {
-    "AssumeRolePolicyDocument": {
-     "Statement": [
-      {
-       "Action": "sts:AssumeRole",
-       "Effect": "Allow",
-       "Principal": {
-        "Service": "lambda.amazonaws.com"
-       }
-      }
-     ],
-     "Version": "2012-10-17"
-    },
-    "ManagedPolicyArns": [
-     {
-      "Fn::Join": [
-       "",
-       [
-        "arn:",
-        {
-         "Ref": "AWS::Partition"
-        },
-        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-       ]
-      ]
-     }
-    ]
-   }
-  },
-  "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94": {
-   "Type": "AWS::IAM::Policy",
-   "Properties": {
-    "PolicyDocument": {
-     "Statement": [
-      {
-       "Action": "lambda:InvokeFunction",
-       "Effect": "Allow",
-       "Resource": [
-        {
-         "Fn::GetAtt": [
-          "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997",
-          "Arn"
-         ]
-        },
-        {
-         "Fn::Join": [
-          "",
-          [
-           {
-            "Fn::GetAtt": [
-             "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997",
-             "Arn"
-            ]
-           },
-           ":*"
-          ]
-         ]
-        }
-       ]
-      }
-     ],
-     "Version": "2012-10-17"
-    },
-    "PolicyName": "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
-    "Roles": [
-     {
-      "Ref": "TestTableProviderframeworkonEventServiceRole585FCC2A"
-     }
-    ]
-   }
-  },
   "TestTableProviderframeworkonEventFD35FC3D": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
@@ -833,7 +760,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "4dc48ffba382f93077a1e6824599bbd4ceb6f91eb3d9442eca3b85bdb1a20b1e.zip"
+     "S3Key": "bdc104ed9cab1b5b6421713c8155f0b753380595356f710400609664d3635eca.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (TestStack/TestTable/Resource/Provider)",
     "Environment": {
@@ -849,7 +776,7 @@
     "Handler": "framework.onEvent",
     "Role": {
      "Fn::GetAtt": [
-      "TestTableProviderframeworkonEventServiceRole585FCC2A",
+      "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fInvokerRole900F47C9",
       "Arn"
      ]
     },
@@ -865,8 +792,8 @@
     "Timeout": 900
    },
    "DependsOn": [
-    "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
-    "TestTableProviderframeworkonEventServiceRole585FCC2A"
+    "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fInvokerRoleDefaultPolicy2BD7CC05",
+    "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fInvokerRole900F47C9"
    ]
   },
   "TestTable82078E3B": {
@@ -975,7 +902,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "1a0c01e41d5042f6c0042762d90860132d074b394decff7fbc5e789dfd90acaa.zip"
+     "S3Key": "60d6644ca7559903aa3a4516f84720a5f2cc1310aa4f456b1aad45a0c1e28046.zip"
     },
     "Handler": "index.handler",
     "Role": {
@@ -999,6 +926,89 @@
     "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRoleDefaultPolicyDDD1388D",
     "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fServiceRole0A90D717"
    ]
+  },
+  "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fInvokerRole900F47C9": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fInvokerRoleDefaultPolicy2BD7CC05": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "QueryRedshiftDatabase3de5bea727da479686625efb56431b5f3DF81997",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fInvokerRoleDefaultPolicy2BD7CC05",
+    "Roles": [
+     {
+      "Ref": "QueryRedshiftDatabase3de5bea727da479686625efb56431b5fInvokerRole900F47C9"
+     }
+    ]
+   }
   },
   "TestRedshiftProfile0FD958FE": {
    "Type": "AWS::AppFlow::ConnectorProfile",
@@ -1054,8 +1064,6 @@
     "TestRedshiftProfileRedshiftRoleAttachCustomResourcePolicyEEEA831D",
     "TestRedshiftProfileRedshiftRoleAttach7AD6717C",
     "TestTableProviderframeworkonEventFD35FC3D",
-    "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
-    "TestTableProviderframeworkonEventServiceRole585FCC2A",
     "TestTable82078E3B"
    ]
   },
@@ -1261,7 +1269,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "ce2f3595a340d6c519a65888ef97e3b9b64f053f83608e32cc28162e22d7d99a.zip"
+     "S3Key": "4cd2f2411231aa073e609dc99a49b5c5e974252bf9abf0f9350d237d17cce8be.zip"
     },
     "Handler": "index.handler",
     "Role": {
@@ -1435,17 +1443,7 @@
         "IntermediateBucketName": {
          "Ref": "TestBucket560B80BC"
         },
-        "Object": {
-         "Fn::Join": [
-          "",
-          [
-           "public.",
-           {
-            "Ref": "TestTable82078E3B"
-           }
-          ]
-         ]
-        }
+        "Object": "public.contact"
        }
       }
      }
@@ -1499,8 +1497,6 @@
     "TestProfileBC0F4812",
     "TestRedshiftProfile0FD958FE",
     "TestTableProviderframeworkonEventFD35FC3D",
-    "TestTableProviderframeworkonEventServiceRoleDefaultPolicy96D55F94",
-    "TestTableProviderframeworkonEventServiceRole585FCC2A",
     "TestTable82078E3B"
    ]
   }
@@ -1553,10 +1549,10 @@
     "value": "nodejs20.x"
    },
    "cn-north-1": {
-    "value": "nodejs18.x"
+    "value": "nodejs20.x"
    },
    "cn-northwest-1": {
-    "value": "nodejs18.x"
+    "value": "nodejs20.x"
    },
    "eu-central-1": {
     "value": "nodejs20.x"
@@ -1607,10 +1603,10 @@
     "value": "nodejs20.x"
    },
    "us-gov-east-1": {
-    "value": "nodejs18.x"
+    "value": "nodejs20.x"
    },
    "us-gov-west-1": {
-    "value": "nodejs18.x"
+    "value": "nodejs20.x"
    },
    "us-iso-east-1": {
     "value": "nodejs18.x"

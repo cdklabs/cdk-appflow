@@ -5,7 +5,7 @@ SPDX-License-Identifier: Apache-2.0
 import { CdklabsConstructLibrary } from "cdklabs-projen-project-types";
 import { Stability } from "projen/lib/cdk";
 
-const cdkVersion = "2.159.1";
+const cdkVersion = "2.185.0";
 
 const project = new CdklabsConstructLibrary({
   name: "@cdklabs/cdk-appflow",
@@ -26,7 +26,6 @@ const project = new CdklabsConstructLibrary({
     `@aws-cdk/aws-redshift-alpha@${cdkVersion}-alpha.0`,
     `@aws-cdk/aws-glue-alpha@${cdkVersion}-alpha.0`,
   ],
-  jsiiVersion: "~5.4.30",
   keywords: ["aws", "appflow", "cdk"],
   gitignore: ["*.rest", ".vscode", "**/.DS_Store"],
   jestOptions: {
