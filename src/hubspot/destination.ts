@@ -61,6 +61,7 @@ export class HubSpotDestination implements IDestination {
           failOnFirstError: this.props.errorHandling.failOnFirstError,
         },
         writeOperationType: this.props.operation.type,
+        idFieldNames: this.props.operation.ids,
       },
     };
   }
