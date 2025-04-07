@@ -18,7 +18,14 @@ import {
 } from "../../src";
 
 describe("HubSpotDestination", () => {
-  test("Destination with only connector name", () => {
+  test.each([
+    {
+      ids: undefined,
+    },
+    {
+      ids: ["myfield"],
+    },
+  ])("Destination with only connector name", ({ ids }) => {
     const stack = new Stack(undefined, "TestStack");
     const destination = new HubSpotDestination({
       profile: HubSpotConnectorProfile.fromConnectionProfileName(
@@ -28,7 +35,7 @@ describe("HubSpotDestination", () => {
       ),
       entity: ["company"],
       apiVersion: HubSpotApiVersion.V3,
-      operation: WriteOperation.insert(),
+      operation: WriteOperation.insert(ids),
     });
 
     const expectedConnectorType = HubSpotConnectorType.instance;
@@ -46,7 +53,14 @@ describe("HubSpotDestination", () => {
     );
   });
 
-  test("Destination in a Flow is in the stack", () => {
+  test.each([
+    {
+      ids: undefined,
+    },
+    {
+      ids: ["myfield"],
+    },
+  ])("Destination in a Flow is in the stack", ({ ids }) => {
     const stack = new Stack(undefined, "TestStack");
 
     const s3Bucket = new Bucket(stack, "TestBucket", {});
@@ -66,7 +80,7 @@ describe("HubSpotDestination", () => {
       ),
       entity: ["association_label", "ticket", "contact"],
       apiVersion: HubSpotApiVersion.V4,
-      operation: WriteOperation.insert(),
+      operation: WriteOperation.insert(ids),
     });
 
     new OnDemandFlow(stack, "TestFlow", {
@@ -75,18 +89,24 @@ describe("HubSpotDestination", () => {
       mappings: [Mapping.mapAll()],
     });
 
+    const destinationProps: { [key: string]: any } = {
+      CustomConnector: {
+        EntityName: "association_label/ticket/contact",
+        WriteOperationType: "INSERT",
+      },
+    };
+
+    if (ids) {
+      destinationProps.CustomConnector.IdFieldNames = ids;
+    }
+
     Template.fromStack(stack).hasResourceProperties("AWS::AppFlow::Flow", {
       DestinationFlowConfigList: [
         {
           ConnectorProfileName: "dummy-profile",
           ApiVersion: "v4",
           ConnectorType: "CustomConnector",
-          DestinationConnectorProperties: {
-            CustomConnector: {
-              EntityName: "association_label/ticket/contact",
-              WriteOperationType: "INSERT",
-            },
-          },
+          DestinationConnectorProperties: destinationProps,
         },
       ],
       FlowName: "TestStackTestFlow32CDAF42",
