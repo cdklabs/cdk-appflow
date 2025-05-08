@@ -23,8 +23,8 @@ const project = new CdklabsConstructLibrary({
   bundledDeps: [],
   devDeps: ["@types/aws-lambda", "esbuild"],
   peerDeps: [
-    `@aws-cdk/aws-redshift-alpha@${cdkVersion}-alpha.0`,
-    `@aws-cdk/aws-glue-alpha@${cdkVersion}-alpha.0`,
+    `@aws-cdk/aws-redshift-alpha@^${cdkVersion}-alpha.0`,
+    `@aws-cdk/aws-glue-alpha@^${cdkVersion}-alpha.0`,
   ],
   keywords: ["aws", "appflow", "cdk"],
   gitignore: ["*.rest", ".vscode", "**/.DS_Store"],

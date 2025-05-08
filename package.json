@@ -171,8 +171,8 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.185.0-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.185.0-alpha.0",
+    "@aws-cdk/aws-glue-alpha": "^2.185.0-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "^2.185.0-alpha.0",
     "aws-cdk-lib": "^2.185.0",
     "constructs": "^10.0.5"
   },

@@ -128,12 +128,12 @@
     },
     {
       "name": "@aws-cdk/aws-glue-alpha",
-      "version": "2.185.0-alpha.0",
+      "version": "^2.185.0-alpha.0",
       "type": "peer"
     },
     {
       "name": "@aws-cdk/aws-redshift-alpha",
-      "version": "2.185.0-alpha.0",
+      "version": "^2.185.0-alpha.0",
       "type": "peer"
     },
     {
