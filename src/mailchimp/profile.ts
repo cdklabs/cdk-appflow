@@ -73,6 +73,7 @@ export class MailchimpConnectorProfile extends ConnectorProfileBase {
         authenticationType: ConnectorAuthenticationType.CUSTOM,
         custom: {
           credentialsMap: {
+            // Safe usage
             api_key: properties.apiKey.unsafeUnwrap(),
           },
           customAuthenticationType: "api_key",

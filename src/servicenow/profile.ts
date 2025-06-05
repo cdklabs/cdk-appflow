@@ -57,6 +57,7 @@ export class ServiceNowConnectorProfile extends ConnectorProfileBase {
     return {
       serviceNow: {
         username: properties.basicAuth?.username,
+        // Safe usage
         password: properties.basicAuth?.password.unsafeUnwrap(),
       },
     };

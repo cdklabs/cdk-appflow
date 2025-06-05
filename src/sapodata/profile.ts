@@ -92,11 +92,15 @@ export class SAPOdataConnectorProfile extends ConnectorProfileBase {
       };
     } else if (properties.oAuth) {
       sapOdata.oAuthCredentials = {
+        // Safe usage
         accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
+        // Safe usage
         refreshToken:
           properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
+        // Safe usage
         clientId:
           properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
+        // Safe usage
         clientSecret:
           properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
       };

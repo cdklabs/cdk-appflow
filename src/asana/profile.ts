@@ -65,6 +65,7 @@ export class AsanaConnectorProfile extends ConnectorProfileBase {
         authenticationType: ConnectorAuthenticationType.CUSTOM,
         custom: {
           credentialsMap: {
+            // Safe usage
             patToken: properties.patToken.unsafeUnwrap(),
           },
           customAuthenticationType: "PAT",

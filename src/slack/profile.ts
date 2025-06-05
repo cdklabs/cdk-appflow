@@ -64,8 +64,11 @@ export class SlackConnectorProfile extends ConnectorProfileBase {
     const properties = props as SlackConnectorProfileProps;
     return {
       slack: {
+        // Safe usage
         accessToken: properties.oAuth.accessToken.unsafeUnwrap(),
+        // Safe usage
         clientId: properties.oAuth.clientId?.unsafeUnwrap() ?? "dummyClientId",
+        // Safe usage◊
         clientSecret:
           properties.oAuth.clientSecret?.unsafeUnwrap() ?? "dummyClientSecret",
       },

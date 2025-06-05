@@ -91,9 +91,12 @@ export class SalesforceMarketingCloudConnectorProfile extends ConnectorProfileBa
     return {
       customConnector: {
         oauth2: {
+          // Safe usage
           accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
+          // Safe usage
           clientId:
             properties.oAuth.flow?.clientCredentials.clientId?.unsafeUnwrap(),
+          // Safe usage
           clientSecret:
             properties.oAuth.flow?.clientCredentials.clientSecret?.unsafeUnwrap(),
         },
