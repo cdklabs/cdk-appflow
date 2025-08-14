@@ -137,8 +137,8 @@
     "organization": true
   },
   "devDependencies": {
-    "@aws-cdk/aws-glue-alpha": "2.185.0-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "2.185.0-alpha.0",
+    "@aws-cdk/aws-glue-alpha": "2.211.0-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "2.211.0-alpha.0",
     "@aws-cdk/integ-runner": "latest",
     "@aws-cdk/integ-tests-alpha": "latest",
     "@types/aws-lambda": "^8.10.152",
@@ -147,11 +147,11 @@
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk": "^2",
-    "aws-cdk-lib": "2.185.0",
-    "cdklabs-projen-project-types": "^0.3.1",
+    "aws-cdk-lib": "2.211.0",
+    "cdklabs-projen-project-types": "^0.3.2",
     "commit-and-tag-version": "^12",
     "constructs": "10.0.5",
-    "esbuild": "^0.25.8",
+    "esbuild": "^0.25.9",
     "eslint": "^9",
     "eslint-config-prettier": "^9.1.2",
     "eslint-import-resolver-typescript": "^3.10.1",
@@ -165,15 +165,15 @@
     "jsii-pacmak": "^1.113.0",
     "jsii-rosetta": "^5.9.2",
     "prettier": "^3.6.2",
-    "projen": "^0.92.9",
+    "projen": "^0.95.2",
     "ts-jest": "^29",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   },
   "peerDependencies": {
-    "@aws-cdk/aws-glue-alpha": "^2.185.0-alpha.0",
-    "@aws-cdk/aws-redshift-alpha": "^2.185.0-alpha.0",
-    "aws-cdk-lib": "^2.185.0",
+    "@aws-cdk/aws-glue-alpha": "^2.211.0-alpha.0",
+    "@aws-cdk/aws-redshift-alpha": "^2.211.0-alpha.0",
+    "aws-cdk-lib": "^2.211.0",
     "constructs": "^10.0.5"
   },
   "keywords": [

@@ -57,7 +57,7 @@
       "description": "Create a JavaScript bundle from src/core/flows/flow-time-updater/flow-time-updater.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/core/flows/flow-time-updater/flow-time-updater.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/core/flows/flow-time-updater/flow-time-updater.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
+          "exec": "esbuild --bundle src/core/flows/flow-time-updater/flow-time-updater.lambda.ts --target=\"node20\" --platform=\"node\" --outfile=\"assets/core/flows/flow-time-updater/flow-time-updater.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
         }
       ]
     },
@@ -66,7 +66,7 @@
       "description": "Continuously update the JavaScript bundle from src/core/flows/flow-time-updater/flow-time-updater.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/core/flows/flow-time-updater/flow-time-updater.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/core/flows/flow-time-updater/flow-time-updater.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
+          "exec": "esbuild --bundle src/core/flows/flow-time-updater/flow-time-updater.lambda.ts --target=\"node20\" --platform=\"node\" --outfile=\"assets/core/flows/flow-time-updater/flow-time-updater.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
         }
       ]
     },

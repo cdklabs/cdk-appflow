@@ -3,9 +3,10 @@ Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 import { CdklabsConstructLibrary } from "cdklabs-projen-project-types";
+import { LambdaRuntime } from "projen/lib/awscdk";
 import { Stability } from "projen/lib/cdk";
 
-const cdkVersion = "2.185.0";
+const cdkVersion = "2.211.0";
 
 const project = new CdklabsConstructLibrary({
   name: "@cdklabs/cdk-appflow",
@@ -30,6 +31,9 @@ const project = new CdklabsConstructLibrary({
   gitignore: ["*.rest", ".vscode", "**/.DS_Store"],
   jestOptions: {
     jestVersion: "^29",
+  },
+  lambdaOptions: {
+    runtime: LambdaRuntime.NODEJS_20_X,
   },
 });
 project.synth();
