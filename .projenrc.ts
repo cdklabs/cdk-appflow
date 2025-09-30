@@ -32,8 +32,9 @@ const project = new CdklabsConstructLibrary({
   jestOptions: {
     jestVersion: "^29",
   },
+  jsiiVersion: "~5.9.0",
   lambdaOptions: {
-    runtime: LambdaRuntime.NODEJS_20_X,
+    runtime: LambdaRuntime.NODEJS_22_X,
   },
 });
 project.synth();
