@@ -258,7 +258,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs20.x",
+    "Runtime": "nodejs22.x",
     "Description": {
      "Fn::Join": [
       "",
@@ -491,7 +491,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs18.x"
+    "Runtime": "nodejs22.x"
    },
    "DependsOn": [
     "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE"
@@ -601,13 +601,17 @@
      }
     },
     "Handler": "framework.onEvent",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
     "Role": {
      "Fn::GetAtt": [
       "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640",
       "Arn"
      ]
     },
-    "Runtime": "nodejs20.x",
+    "Runtime": "nodejs22.x",
     "Timeout": 900
    },
    "DependsOn": [
