@@ -92,7 +92,7 @@
     },
     {
       "name": "jsii",
-      "version": "~5.7",
+      "version": "~5.9.0",
       "type": "build"
     },
     {
@@ -128,17 +128,17 @@
     },
     {
       "name": "@aws-cdk/aws-glue-alpha",
-      "version": "^2.185.0-alpha.0",
+      "version": "^2.211.0-alpha.0",
       "type": "peer"
     },
     {
       "name": "@aws-cdk/aws-redshift-alpha",
-      "version": "^2.185.0-alpha.0",
+      "version": "^2.211.0-alpha.0",
       "type": "peer"
     },
     {
       "name": "aws-cdk-lib",
-      "version": "^2.185.0",
+      "version": "^2.211.0",
       "type": "peer"
     },
     {
