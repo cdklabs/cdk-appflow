@@ -68,8 +68,11 @@ export class ZendeskConnectorProfile extends ConnectorProfileBase {
     const properties = props as ZendeskConnectorProfileProps;
     return {
       zendesk: {
+        // Safe usage
         accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
+        // Safe usage
         clientId: properties.oAuth.clientId.unsafeUnwrap(),
+        // Safe usage
         clientSecret: properties.oAuth.clientSecret.unsafeUnwrap(),
       },
     };

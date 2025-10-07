@@ -76,10 +76,13 @@ export class MarketoConnectorProfile extends ConnectorProfileBase {
     const properties = props as MarketoConnectorProfileProps;
     return {
       marketo: {
+        // Safe usage
         accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
         clientId:
+          // Safe usage
           properties.oAuth.flow.clientCredentials.clientId.unsafeUnwrap(),
         clientSecret:
+          // Safe usage
           properties.oAuth.flow.clientCredentials.clientSecret.unsafeUnwrap(),
       },
     };

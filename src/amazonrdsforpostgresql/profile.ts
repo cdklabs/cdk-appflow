@@ -125,6 +125,7 @@ export class AmazonRdsForPostgreSqlConnectorProfile extends ConnectorProfileBase
         custom: {
           credentialsMap: {
             username: properties.basicAuth.username,
+            // Safe usage
             password: properties.basicAuth.password.unsafeUnwrap(),
             driver: "postgresql",
             hostname: properties.hostname,

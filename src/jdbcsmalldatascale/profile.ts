@@ -131,6 +131,7 @@ export class JdbcSmallDataScaleConnectorProfile extends ConnectorProfileBase {
         custom: {
           credentialsMap: {
             username: properties.basicAuth.username,
+            // Safe usage
             password: properties.basicAuth.password.unsafeUnwrap(),
             driver: properties.driver,
             hostname: properties.hostname,

@@ -142,6 +142,7 @@ export class RedshiftConnectorProfile extends ConnectorProfileBase {
     return {
       redshift: properties && {
         username: properties.basicAuth.username,
+        // Safe usage
         password: properties.basicAuth.password?.unsafeUnwrap(),
       },
     };

@@ -147,12 +147,16 @@ export class GoogleBigQueryConnectorProfile extends ConnectorProfileBase {
         oauth2: {
           // INFO: when using Refresh Token Grant Flow - access token property is required
           accessToken:
+            // Safe usage
             properties.oAuth.accessToken?.unsafeUnwrap() ?? "dummyAccessToken",
           refreshToken:
+            // Safe usage
             properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
           clientId:
+            // Safe usage
             properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
           clientSecret:
+            // Safe usage
             properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
         },
         authenticationType: ConnectorAuthenticationType.OAUTH2,
