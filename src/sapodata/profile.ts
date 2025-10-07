@@ -88,16 +88,21 @@ export class SAPOdataConnectorProfile extends ConnectorProfileBase {
     if (properties.basicAuth) {
       sapOdata.basicAuthCredentials = {
         username: properties.basicAuth.username,
+        // Safe usage
         password: properties.basicAuth.password.unsafeUnwrap(),
       };
     } else if (properties.oAuth) {
       sapOdata.oAuthCredentials = {
+        // Safe usage
         accessToken: properties.oAuth.accessToken?.unsafeUnwrap(),
         refreshToken:
+          // Safe usage
           properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
         clientId:
+          // Safe usage
           properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
         clientSecret:
+          // Safe usage
           properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
       };
     }

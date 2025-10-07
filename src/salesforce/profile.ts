@@ -97,10 +97,12 @@ export class SalesforceConnectorProfile extends ConnectorProfileBase {
 
     let salesforce: { [key: string]: any } = {};
 
+    // Safe usage
     salesforce.accessToken = props.oAuth.accessToken?.unsafeUnwrap();
 
     const refreshTokenGrant = props.oAuth.flow?.refreshTokenGrant;
     salesforce.refreshToken =
+      // Safe usage
       refreshTokenGrant?.refreshToken?.unsafeUnwrap() ?? "dummyRefreshToken";
 
     if (refreshTokenGrant?.client) {

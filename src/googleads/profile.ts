@@ -117,9 +117,11 @@ export class GoogleAdsConnectorProfile extends ConnectorProfileBase {
     return {
       customConnector: {
         profileProperties: {
+          // Safe usage
           developerToken: properties.developerToken.unsafeUnwrap(),
           apiVersion: properties.apiVersion,
           managerID:
+            // Safe usage
             properties.managerID?.unsafeUnwrap() as any /* can be undefined */,
         },
         oAuth2Properties: {
@@ -144,12 +146,16 @@ export class GoogleAdsConnectorProfile extends ConnectorProfileBase {
         oauth2: {
           // INFO: when using Refresh Token Grant Flow - access token property is required
           accessToken:
+            // Safe usage
             properties.oAuth.accessToken?.unsafeUnwrap() ?? "dummyAccessToken",
           refreshToken:
+            // Safe usage
             properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
           clientId:
+            // Safe usage
             properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
           clientSecret:
+            // Safe usage
             properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
         },
         authenticationType: ConnectorAuthenticationType.OAUTH2,

@@ -195,6 +195,7 @@ export class SnowflakeConnectorProfile extends ConnectorProfileBase {
     return {
       snowflake: {
         username: properties.basicAuth.username,
+        // Safe usage
         password: properties.basicAuth.password?.unsafeUnwrap(),
       },
     };
