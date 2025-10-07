@@ -3,7 +3,6 @@ Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 import { CdklabsConstructLibrary } from "cdklabs-projen-project-types";
-import { LambdaRuntime } from "projen/lib/awscdk";
 import { Stability } from "projen/lib/cdk";
 
 const cdkVersion = "2.211.0";
@@ -33,8 +32,5 @@ const project = new CdklabsConstructLibrary({
     jestVersion: "^29",
   },
   jsiiVersion: "~5.9.0",
-  lambdaOptions: {
-    runtime: LambdaRuntime.NODEJS_22_X,
-  },
 });
 project.synth();
