@@ -2,24 +2,23 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnFlow } from 'aws-cdk-lib/aws-appflow';
-import { IConstruct } from 'constructs';
-import { SAPOdataConnectorProfile } from './profile';
-import { SAPOdataConnectorType } from './type';
-import { S3Location } from '../core';
-import { AppFlowPermissionsManager } from '../core/appflow-permissions-manager';
-import { ConnectorType } from '../core/connectors/connector-type';
-import { ErrorHandlingConfiguration } from '../core/error-handling';
-import { IFlow } from '../core/flows';
-import { IDestination } from '../core/vertices/destination';
-import { WriteOperation } from '../core/write-operation';
+import { CfnFlow } from "aws-cdk-lib/aws-appflow";
+import { IConstruct } from "constructs";
+import { SAPOdataConnectorProfile } from "./profile";
+import { SAPOdataConnectorType } from "./type";
+import { S3Location } from "../core";
+import { AppFlowPermissionsManager } from "../core/appflow-permissions-manager";
+import { ConnectorType } from "../core/connectors/connector-type";
+import { ErrorHandlingConfiguration } from "../core/error-handling";
+import { IFlow } from "../core/flows";
+import { IDestination } from "../core/vertices/destination";
+import { WriteOperation } from "../core/write-operation";
 
 export interface SAPOdataSuccessResponseHandlingConfiguration {
   readonly location: S3Location;
 }
 
 export interface SAPOdataDestinationProps {
-
   readonly profile: SAPOdataConnectorProfile;
 
   /**
@@ -37,23 +36,32 @@ export interface SAPOdataDestinationProps {
 }
 
 export class SAPOdataDestination implements IDestination {
-
   public readonly connectorType: ConnectorType = SAPOdataConnectorType.instance;
 
-  constructor(private readonly props: SAPOdataDestinationProps) { }
+  constructor(private readonly props: SAPOdataDestinationProps) {}
 
   bind(flow: IFlow): CfnFlow.DestinationFlowConfigProperty {
-
-    this.tryAddNodeDependency(flow, this.props.errorHandling?.errorLocation?.bucket);
-    AppFlowPermissionsManager.instance().grantBucketWrite(this.props.errorHandling?.errorLocation?.bucket);
+    this.tryAddNodeDependency(
+      flow,
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
+    AppFlowPermissionsManager.instance().grantBucketWrite(
+      this.props.errorHandling?.errorLocation?.bucket,
+    );
     this.tryAddNodeDependency(flow, this.props.profile);
-    this.tryAddNodeDependency(flow, this.props.successResponseHandling?.location.bucket);
-    AppFlowPermissionsManager.instance().grantBucketWrite(this.props.successResponseHandling?.location.bucket);
+    this.tryAddNodeDependency(
+      flow,
+      this.props.successResponseHandling?.location.bucket,
+    );
+    AppFlowPermissionsManager.instance().grantBucketWrite(
+      this.props.successResponseHandling?.location.bucket,
+    );
 
     return {
       connectorType: this.connectorType.asProfileConnectorType,
       connectorProfileName: this.props.profile.name,
-      destinationConnectorProperties: this.buildDestinationConnectorProperties(),
+      destinationConnectorProperties:
+        this.buildDestinationConnectorProperties(),
     };
   }
 
@@ -61,12 +69,15 @@ export class SAPOdataDestination implements IDestination {
     return {
       sapoData: {
         errorHandlingConfig: this.props.errorHandling && {
-          bucketName: this.props.errorHandling?.errorLocation?.bucket.bucketName,
+          bucketName:
+            this.props.errorHandling?.errorLocation?.bucket.bucketName,
           bucketPrefix: this.props.errorHandling?.errorLocation?.prefix,
           failOnFirstError: this.props.errorHandling.failOnFirstError,
         },
-        successResponseHandlingConfig: this.props.successResponseHandling?.location && {
-          bucketName: this.props.successResponseHandling.location.bucket.bucketName,
+        successResponseHandlingConfig: this.props.successResponseHandling
+          ?.location && {
+          bucketName:
+            this.props.successResponseHandling.location.bucket.bucketName,
         },
         idFieldNames: this.props.operation.ids,
         objectPath: this.props.object,
@@ -75,10 +86,12 @@ export class SAPOdataDestination implements IDestination {
     };
   }
 
-  private tryAddNodeDependency(scope: IConstruct, resource?: IConstruct | string) {
-    if (resource && typeof resource !== 'string') {
+  private tryAddNodeDependency(
+    scope: IConstruct,
+    resource?: IConstruct | string,
+  ) {
+    if (resource && typeof resource !== "string") {
       scope.node.addDependency(resource);
     }
   }
-
 }

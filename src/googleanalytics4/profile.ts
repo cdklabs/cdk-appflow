@@ -2,14 +2,19 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { Construct } from 'constructs';
-import { GoogleAnalytics4ConnectorType } from './type';
-import { ConnectorAuthenticationType } from '../core/connectors/connector-authentication-type';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
-import { OAuth2GrantType as OAuthGrantType } from '../core/connectors/oauth2-granttype';
+import { SecretValue } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import { Construct } from "constructs";
+import { GoogleAnalytics4ConnectorType } from "./type";
+import { ConnectorAuthenticationType } from "../core/connectors/connector-authentication-type";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
+import { OAuth2GrantType as OAuthGrantType } from "../core/connectors/oauth2-granttype";
 
-export interface GoogleAnalytics4ConnectorProfileProps extends ConnectorProfileProps {
+export interface GoogleAnalytics4ConnectorProfileProps
+  extends ConnectorProfileProps {
   readonly oAuth: GoogleAnalytics4OAuthSettings;
 }
 
@@ -35,17 +40,17 @@ export interface GoogleAnalytics4RefreshTokenGrantFlow {
   /**
    * A non-expired refresh token.
    */
-  readonly refreshToken?: string;
+  readonly refreshToken?: SecretValue;
 
   /**
    * The secret of the client app.
    */
-  readonly clientSecret?: string;
+  readonly clientSecret?: SecretValue;
 
   /**
    * The id of the client app.
    */
-  readonly clientId?: string;
+  readonly clientId?: SecretValue;
 }
 
 /**
@@ -59,7 +64,6 @@ export interface GoogleAnalytics4OAuthFlow {
 }
 
 export interface GoogleAnalytics4OAuthSettings {
-
   /**
    * The access token to be used when interacting with Google Analytics 4
    *
@@ -67,7 +71,7 @@ export interface GoogleAnalytics4OAuthSettings {
    *
    * @default Retrieves a fresh accessToken with the information in the [flow property]{@link GoogleAnalytics4OAuthSettings#flow}
    */
-  readonly accessToken?: string;
+  readonly accessToken?: SecretValue;
 
   /**
    * The OAuth flow used for obtaining a new accessToken when the old is not present or expired.
@@ -83,25 +87,41 @@ export interface GoogleAnalytics4OAuthSettings {
 }
 
 export class GoogleAnalytics4ConnectorProfile extends ConnectorProfileBase {
-
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as GoogleAnalytics4ConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as GoogleAnalytics4ConnectorProfile;
   }
 
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as GoogleAnalytics4ConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as GoogleAnalytics4ConnectorProfile;
   }
 
-  private static readonly defaultTokenEndpoint: string = 'https://oauth2.googleapis.com/token';
+  private static readonly defaultTokenEndpoint: string =
+    "https://oauth2.googleapis.com/token";
 
-  constructor(scope: Construct, id: string, props: GoogleAnalytics4ConnectorProfileProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: GoogleAnalytics4ConnectorProfileProps,
+  ) {
     super(scope, id, props, GoogleAnalytics4ConnectorType.instance);
   }
 
   protected buildConnectorProfileProperties(
     props: ConnectorProfileProps,
   ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
-    const properties = (props as GoogleAnalytics4ConnectorProfileProps);
+    const properties = props as GoogleAnalytics4ConnectorProfileProps;
     return {
       customConnector: {
         oAuth2Properties: {
@@ -109,7 +129,9 @@ export class GoogleAnalytics4ConnectorProfile extends ConnectorProfileBase {
           oAuth2GrantType: OAuthGrantType.AUTHORIZATION_CODE,
           // INFO: even if we provide only the access token this property is required
           // TODO: think about if this is correct. token can be IResolvable
-          tokenUrl: properties.oAuth.endpoints?.token ?? GoogleAnalytics4ConnectorProfile.defaultTokenEndpoint,
+          tokenUrl:
+            properties.oAuth.endpoints?.token ??
+            GoogleAnalytics4ConnectorProfile.defaultTokenEndpoint,
         },
       },
     };
@@ -118,16 +140,24 @@ export class GoogleAnalytics4ConnectorProfile extends ConnectorProfileBase {
   protected buildConnectorProfileCredentials(
     props: ConnectorProfileProps,
   ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-    const properties = (props as GoogleAnalytics4ConnectorProfileProps);
+    const properties = props as GoogleAnalytics4ConnectorProfileProps;
 
     return {
       customConnector: {
         oauth2: {
           // INFO: when using Refresh Token Grant Flow - access token property is required
-          accessToken: properties.oAuth.accessToken ?? 'dummyAccessToken',
-          refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken,
-          clientId: properties.oAuth.flow?.refreshTokenGrant.clientId,
-          clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret,
+          accessToken:
+            // Safe usage
+            properties.oAuth.accessToken?.unsafeUnwrap() ?? "dummyAccessToken",
+          refreshToken:
+            // Safe usage
+            properties.oAuth.flow?.refreshTokenGrant.refreshToken?.unsafeUnwrap(),
+          clientId:
+            // Safe usage
+            properties.oAuth.flow?.refreshTokenGrant.clientId?.unsafeUnwrap(),
+          clientSecret:
+            // Safe usage
+            properties.oAuth.flow?.refreshTokenGrant.clientSecret?.unsafeUnwrap(),
         },
         authenticationType: ConnectorAuthenticationType.OAUTH2,
       },

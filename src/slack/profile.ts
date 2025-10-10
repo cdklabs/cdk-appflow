@@ -2,10 +2,14 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { Construct } from 'constructs';
-import { SlackConnectorType } from './type';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
+import { SecretValue } from "aws-cdk-lib";
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import { Construct } from "constructs";
+import { SlackConnectorType } from "./type";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
 
 export interface SlackConnectorProfileProps extends ConnectorProfileProps {
   readonly oAuth: SlackOAuthSettings;
@@ -13,27 +17,40 @@ export interface SlackConnectorProfileProps extends ConnectorProfileProps {
 }
 
 export interface SlackOAuthSettings {
-  readonly accessToken: string;
-  readonly clientId?: string;
-  readonly clientSecret?: string;
+  readonly accessToken: SecretValue;
+  readonly clientId?: SecretValue;
+  readonly clientSecret?: SecretValue;
 }
 
 export class SlackConnectorProfile extends ConnectorProfileBase {
-
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as SlackConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as SlackConnectorProfile;
   }
 
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as SlackConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as SlackConnectorProfile;
   }
 
   constructor(scope: Construct, id: string, props: SlackConnectorProfileProps) {
     super(scope, id, props, SlackConnectorType.instance);
   }
 
-  protected buildConnectorProfileProperties(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
-    const properties = (props as SlackConnectorProfileProps);
+  protected buildConnectorProfileProperties(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
+    const properties = props as SlackConnectorProfileProps;
     return {
       slack: {
         instanceUrl: properties.instanceUrl,
@@ -41,13 +58,19 @@ export class SlackConnectorProfile extends ConnectorProfileBase {
     };
   }
 
-  protected buildConnectorProfileCredentials(props: ConnectorProfileProps): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-    const properties = (props as SlackConnectorProfileProps);
+  protected buildConnectorProfileCredentials(
+    props: ConnectorProfileProps,
+  ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
+    const properties = props as SlackConnectorProfileProps;
     return {
       slack: {
-        accessToken: properties.oAuth.accessToken,
-        clientId: properties.oAuth.clientId ?? 'dummyClientId',
-        clientSecret: properties.oAuth.clientSecret ?? 'dummyClientSecret',
+        // Safe usage
+        accessToken: properties.oAuth.accessToken.unsafeUnwrap(),
+        // Safe usage
+        clientId: properties.oAuth.clientId?.unsafeUnwrap() ?? "dummyClientId",
+        clientSecret:
+          // Safe usage
+          properties.oAuth.clientSecret?.unsafeUnwrap() ?? "dummyClientSecret",
       },
     };
   }

@@ -1,0 +1,467 @@
+{
+ "Resources": {
+  "JdbcSmallTestConnectorProfile4B32988D": {
+   "Type": "AWS::AppFlow::ConnectorProfile",
+   "Properties": {
+    "ConnectionMode": "Public",
+    "ConnectorLabel": "JDBCsmall",
+    "ConnectorProfileConfig": {
+     "ConnectorProfileCredentials": {
+      "CustomConnector": {
+       "AuthenticationType": "CUSTOM",
+       "Custom": {
+        "CredentialsMap": {
+         "username": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:username::}}"
+           ]
+          ]
+         },
+         "password": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:password::}}"
+           ]
+          ]
+         },
+         "driver": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:driver::}}"
+           ]
+          ]
+         },
+         "hostname": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:hostname::}}"
+           ]
+          ]
+         },
+         "port": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:port::}}"
+           ]
+          ]
+         },
+         "database": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:database::}}"
+           ]
+          ]
+         }
+        },
+        "CustomAuthenticationType": "CUSTOM"
+       }
+      }
+     },
+     "ConnectorProfileProperties": {
+      "CustomConnector": {
+       "ProfileProperties": {}
+      }
+     }
+    },
+    "ConnectorProfileName": "TestStackJdbcSmallTestConnectorProfileCEFC6AC7",
+    "ConnectorType": "CustomConnector"
+   }
+  },
+  "AmazonRdsTestConnectorProfile5A37DC65": {
+   "Type": "AWS::AppFlow::ConnectorProfile",
+   "Properties": {
+    "ConnectionMode": "Public",
+    "ConnectorLabel": "AmazonRDSPostgreSQL",
+    "ConnectorProfileConfig": {
+     "ConnectorProfileCredentials": {
+      "CustomConnector": {
+       "AuthenticationType": "CUSTOM",
+       "Custom": {
+        "CredentialsMap": {
+         "username": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:username::}}"
+           ]
+          ]
+         },
+         "password": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:password::}}"
+           ]
+          ]
+         },
+         "driver": "postgresql",
+         "hostname": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:hostname::}}"
+           ]
+          ]
+         },
+         "port": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:port::}}"
+           ]
+          ]
+         },
+         "database": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/rdspostgres:SecretString:database::}}"
+           ]
+          ]
+         }
+        },
+        "CustomAuthenticationType": "CUSTOM"
+       }
+      }
+     },
+     "ConnectorProfileProperties": {
+      "CustomConnector": {
+       "ProfileProperties": {}
+      }
+     }
+    },
+    "ConnectorProfileName": "TestStackAmazonRdsTestConnectorProfileAD9F9A54",
+    "ConnectorType": "CustomConnector"
+   }
+  },
+  "OnDemandFlow00CE33FE": {
+   "Type": "AWS::AppFlow::Flow",
+   "Properties": {
+    "DestinationFlowConfigList": [
+     {
+      "ApiVersion": "1.0",
+      "ConnectorProfileName": "TestStackAmazonRdsTestConnectorProfileAD9F9A54",
+      "ConnectorType": "CustomConnector",
+      "DestinationConnectorProperties": {
+       "CustomConnector": {
+        "EntityName": {
+         "Fn::Join": [
+          "",
+          [
+           "{{resolve:secretsmanager:arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":secret:appflow/rdspostgres:SecretString:schema::}}.{{resolve:secretsmanager:arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":secretsmanager:",
+           {
+            "Ref": "AWS::Region"
+           },
+           ":",
+           {
+            "Ref": "AWS::AccountId"
+           },
+           ":secret:appflow/rdspostgres:SecretString:table::}}"
+          ]
+         ]
+        },
+        "WriteOperationType": "INSERT"
+       }
+      }
+     }
+    ],
+    "FlowName": "TestStackOnDemandFlow53F97EB9",
+    "SourceFlowConfig": {
+     "ApiVersion": "V1",
+     "ConnectorProfileName": "TestStackJdbcSmallTestConnectorProfileCEFC6AC7",
+     "ConnectorType": "CustomConnector",
+     "SourceConnectorProperties": {
+      "CustomConnector": {
+       "EntityName": {
+        "Fn::Join": [
+         "",
+         [
+          "{{resolve:secretsmanager:arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":secret:appflow/rdspostgres:SecretString:schema::}}.{{resolve:secretsmanager:arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":secretsmanager:",
+          {
+           "Ref": "AWS::Region"
+          },
+          ":",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":secret:appflow/rdspostgres:SecretString:table::}}"
+         ]
+        ]
+       }
+      }
+     }
+    },
+    "Tasks": [
+     {
+      "ConnectorOperator": {
+       "CustomConnector": "PROJECTION"
+      },
+      "SourceFields": [
+       "username",
+       "password",
+       "created_on",
+       "email"
+      ],
+      "TaskType": "Filter"
+     },
+     {
+      "ConnectorOperator": {
+       "CustomConnector": "NO_OP"
+      },
+      "DestinationField": "username",
+      "SourceFields": [
+       "username"
+      ],
+      "TaskProperties": [],
+      "TaskType": "Map"
+     },
+     {
+      "ConnectorOperator": {
+       "CustomConnector": "NO_OP"
+      },
+      "DestinationField": "password",
+      "SourceFields": [
+       "password"
+      ],
+      "TaskProperties": [],
+      "TaskType": "Map"
+     },
+     {
+      "ConnectorOperator": {
+       "CustomConnector": "NO_OP"
+      },
+      "DestinationField": "created_on",
+      "SourceFields": [
+       "created_on"
+      ],
+      "TaskProperties": [],
+      "TaskType": "Map"
+     },
+     {
+      "ConnectorOperator": {
+       "CustomConnector": "NO_OP"
+      },
+      "DestinationField": "email",
+      "SourceFields": [
+       "email"
+      ],
+      "TaskProperties": [],
+      "TaskType": "Map"
+     }
+    ],
+    "TriggerConfig": {
+     "TriggerType": "OnDemand"
+    }
+   },
+   "DependsOn": [
+    "AmazonRdsTestConnectorProfile5A37DC65",
+    "JdbcSmallTestConnectorProfile4B32988D"
+   ]
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

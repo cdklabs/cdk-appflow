@@ -27,6 +27,7 @@
      "Statement": [
       {
        "Action": [
+        "s3:PutBucketPolicy",
         "s3:GetBucket*",
         "s3:List*",
         "s3:DeleteObject*"
@@ -155,18 +156,18 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "350185a1069fa20a23a583e20c77f6844218bd73097902362dc94f1a108f5d89.zip"
+     "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
     },
     "Timeout": 900,
     "MemorySize": 128,
-    "Handler": "__entrypoint__.handler",
+    "Handler": "index.handler",
     "Role": {
      "Fn::GetAtt": [
       "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
       "Arn"
      ]
     },
-    "Runtime": "nodejs16.x",
+    "Runtime": "nodejs22.x",
     "Description": {
      "Fn::Join": [
       "",
@@ -191,7 +192,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "292870ae2617f1c4d62ff18422e009afd534a342c17877fd1b931fb8d8a62abc.zip"
+     "S3Key": "c49d356cac773d491c5f7ac148995a1181498a8e289429f8612a7f7e3814f535.zip"
     },
     "Description": "/opt/awscli/aws"
    }
@@ -216,11 +217,15 @@
     "SourceMarkers": [
      {}
     ],
+    "SourceMarkersConfig": [
+     {}
+    ],
     "DestinationBucketName": {
      "Ref": "TestBucket560B80BC"
     },
     "DestinationBucketKeyPrefix": "account",
-    "Prune": true
+    "Prune": true,
+    "OutputObjectKeys": true
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"
@@ -357,13 +362,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "9eb41a5505d37607ac419321497a4f8c21cf0ee1f9b4a6b29aa04301aea5c7fd.zip"
-    },
-    "Role": {
-     "Fn::GetAtt": [
-      "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
-      "Arn"
-     ]
+     "S3Key": "9a1fcb4a7ecba81ad70e9d3fb241f6794497da945dae5f25924e4dd002b65f2d.zip"
     },
     "Environment": {
      "Variables": {
@@ -376,7 +375,13 @@
       "Ref": "TestDeploymentAwsCliLayerACB69B63"
      }
     ],
-    "Runtime": "python3.9",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.11",
     "Timeout": 900
    },
    "DependsOn": [
@@ -384,12 +389,10 @@
     "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
    ]
   },
-  "TestConnectorProfileD7470107": {
+  "TestConnectorProfile61825F3E": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
     "ConnectionMode": "Public",
-    "ConnectorProfileName": "TestConnectorProfile",
-    "ConnectorType": "Salesforce",
     "ConnectorProfileConfig": {
      "ConnectorProfileCredentials": {
       "Salesforce": {
@@ -461,15 +464,17 @@
        "isSandboxEnvironment": false
       }
      }
-    }
+    },
+    "ConnectorProfileName": "TestStackTestConnectorProfileD7C70DA6",
+    "ConnectorType": "Salesforce"
    }
   },
-  "OnScheduleFlow9A474F3B": {
+  "OnScheduleFlow3BE8D5D0": {
    "Type": "AWS::AppFlow::Flow",
    "Properties": {
     "DestinationFlowConfigList": [
      {
-      "ConnectorProfileName": "TestConnectorProfile",
+      "ConnectorProfileName": "TestStackTestConnectorProfileD7C70DA6",
       "ConnectorType": "Salesforce",
       "DestinationConnectorProperties": {
        "Salesforce": {
@@ -479,7 +484,8 @@
       }
      }
     ],
-    "FlowName": "OnScheduleFlow",
+    "FlowName": "TestStackOnScheduleFlow1BB655FE",
+    "FlowStatus": "Active",
     "SourceFlowConfig": {
      "ConnectorType": "S3",
      "SourceConnectorProperties": {
@@ -576,15 +582,14 @@
       }
      },
      "TriggerType": "Scheduled"
-    },
-    "FlowStatus": "Active"
+    }
    },
    "DependsOn": [
     "OnScheduleFlowUpdater39178314",
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107",
+    "TestConnectorProfile61825F3E",
     "TestDeploymentAwsCliLayerACB69B63",
     "TestDeploymentCustomResource6C695E22"
    ]
@@ -599,7 +604,7 @@
      "resources": [
       {
        "Fn::GetAtt": [
-        "OnScheduleFlow9A474F3B",
+        "OnScheduleFlow3BE8D5D0",
         "FlowArn"
        ]
       }
@@ -615,7 +620,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107",
+    "TestConnectorProfile61825F3E",
     "TestDeploymentAwsCliLayerACB69B63",
     "TestDeploymentCustomResource6C695E22"
    ]
@@ -630,7 +635,7 @@
      "resources": [
       {
        "Fn::GetAtt": [
-        "OnScheduleFlow9A474F3B",
+        "OnScheduleFlow3BE8D5D0",
         "FlowArn"
        ]
       }
@@ -646,7 +651,7 @@
     "TestBucketAutoDeleteObjectsCustomResource8FEAABD5",
     "TestBucketPolicyBA12ED38",
     "TestBucket560B80BC",
-    "TestConnectorProfileD7470107",
+    "TestConnectorProfile61825F3E",
     "TestDeploymentAwsCliLayerACB69B63",
     "TestDeploymentCustomResource6C695E22"
    ]
@@ -704,13 +709,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "bda456ca3af7776e8e5ce88f2bbd621cc239ae9a3ce52dce5e34d1770b7380d2.zip"
-    },
-    "Role": {
-     "Fn::GetAtt": [
-      "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE",
-      "Arn"
-     ]
+     "S3Key": "3d8e27d488be48c03663849f78d10bccd12d62c87af6b9bbf55731095cc2a07f.zip"
     },
     "Description": "src/core/flows/flow-time-updater/flow-time-updater.lambda.ts",
     "Environment": {
@@ -719,7 +718,13 @@
      }
     },
     "Handler": "index.handler",
-    "Runtime": "nodejs16.x"
+    "Role": {
+     "Fn::GetAtt": [
+      "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs22.x"
    },
    "DependsOn": [
     "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventServiceRole00475FEE"
@@ -786,6 +791,16 @@
          ]
         }
        ]
+      },
+      {
+       "Action": "lambda:GetFunction",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "comamazonawscdkcustomresourcesflowtimeproviderflowtimeoneventED9FCF4A",
+         "Arn"
+        ]
+       }
       }
      ],
      "Version": "2012-10-17"
@@ -805,13 +820,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "8e3d635893ea17fa3158623489cd42c680fad925b38de1ef51cb10d84f6e245e.zip"
-    },
-    "Role": {
-     "Fn::GetAtt": [
-      "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640",
-      "Arn"
-     ]
+     "S3Key": "bdc104ed9cab1b5b6421713c8155f0b753380595356f710400609664d3635eca.zip"
     },
     "Description": "AWS CDK resource provider framework - onEvent (TestStack/com.amazonaws.cdk.custom-resources.flow-time-provider/flow-time-provider)",
     "Environment": {
@@ -825,116 +834,23 @@
      }
     },
     "Handler": "framework.onEvent",
-    "Runtime": "nodejs14.x",
+    "LoggingConfig": {
+     "ApplicationLogLevel": "FATAL",
+     "LogFormat": "JSON"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs22.x",
     "Timeout": 900
    },
    "DependsOn": [
     "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRoleDefaultPolicyDE524CE6",
     "comamazonawscdkcustomresourcesflowtimeproviderframeworkonEventServiceRole2DC53640"
    ]
-  }
- },
- "Mappings": {
-  "DefaultCrNodeVersionMap": {
-   "af-south-1": {
-    "value": "nodejs16.x"
-   },
-   "ap-east-1": {
-    "value": "nodejs16.x"
-   },
-   "ap-northeast-1": {
-    "value": "nodejs16.x"
-   },
-   "ap-northeast-2": {
-    "value": "nodejs16.x"
-   },
-   "ap-northeast-3": {
-    "value": "nodejs16.x"
-   },
-   "ap-south-1": {
-    "value": "nodejs16.x"
-   },
-   "ap-south-2": {
-    "value": "nodejs16.x"
-   },
-   "ap-southeast-1": {
-    "value": "nodejs16.x"
-   },
-   "ap-southeast-2": {
-    "value": "nodejs16.x"
-   },
-   "ap-southeast-3": {
-    "value": "nodejs16.x"
-   },
-   "ca-central-1": {
-    "value": "nodejs16.x"
-   },
-   "cn-north-1": {
-    "value": "nodejs16.x"
-   },
-   "cn-northwest-1": {
-    "value": "nodejs16.x"
-   },
-   "eu-central-1": {
-    "value": "nodejs16.x"
-   },
-   "eu-central-2": {
-    "value": "nodejs16.x"
-   },
-   "eu-north-1": {
-    "value": "nodejs16.x"
-   },
-   "eu-south-1": {
-    "value": "nodejs16.x"
-   },
-   "eu-south-2": {
-    "value": "nodejs16.x"
-   },
-   "eu-west-1": {
-    "value": "nodejs16.x"
-   },
-   "eu-west-2": {
-    "value": "nodejs16.x"
-   },
-   "eu-west-3": {
-    "value": "nodejs16.x"
-   },
-   "me-central-1": {
-    "value": "nodejs16.x"
-   },
-   "me-south-1": {
-    "value": "nodejs16.x"
-   },
-   "sa-east-1": {
-    "value": "nodejs16.x"
-   },
-   "us-east-1": {
-    "value": "nodejs16.x"
-   },
-   "us-east-2": {
-    "value": "nodejs16.x"
-   },
-   "us-gov-east-1": {
-    "value": "nodejs16.x"
-   },
-   "us-gov-west-1": {
-    "value": "nodejs16.x"
-   },
-   "us-iso-east-1": {
-    "value": "nodejs14.x"
-   },
-   "us-iso-west-1": {
-    "value": "nodejs14.x"
-   },
-   "us-isob-east-1": {
-    "value": "nodejs14.x"
-   },
-   "us-west-1": {
-    "value": "nodejs16.x"
-   },
-   "us-west-2": {
-    "value": "nodejs16.x"
-   }
   }
  },
  "Parameters": {

@@ -32,14 +32,16 @@
         "CHANGELOG": "dist/changelog.md",
         "BUMPFILE": "dist/version.txt",
         "RELEASETAG": "dist/releasetag.txt",
-        "RELEASE_TAG_PREFIX": ""
+        "RELEASE_TAG_PREFIX": "",
+        "BUMP_PACKAGE": "commit-and-tag-version@^12",
+        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep \"^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+\""
       },
       "steps": [
         {
           "builtin": "release/bump-version"
         }
       ],
-      "condition": "! git log --oneline -1 | grep -q \"chore(release):\""
+      "condition": "git log --oneline -1 | grep -qv \"chore(release):\""
     },
     "bundle": {
       "name": "bundle",
@@ -55,7 +57,7 @@
       "description": "Create a JavaScript bundle from src/core/flows/flow-time-updater/flow-time-updater.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/core/flows/flow-time-updater/flow-time-updater.lambda.ts --target=\"node16\" --platform=\"node\" --outfile=\"assets/core/flows/flow-time-updater/flow-time-updater.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk"
+          "exec": "esbuild --bundle src/core/flows/flow-time-updater/flow-time-updater.lambda.ts --target=\"node22\" --platform=\"node\" --outfile=\"assets/core/flows/flow-time-updater/flow-time-updater.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
         }
       ]
     },
@@ -64,7 +66,7 @@
       "description": "Continuously update the JavaScript bundle from src/core/flows/flow-time-updater/flow-time-updater.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/core/flows/flow-time-updater/flow-time-updater.lambda.ts --target=\"node16\" --platform=\"node\" --outfile=\"assets/core/flows/flow-time-updater/flow-time-updater.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --watch"
+          "exec": "esbuild --bundle src/core/flows/flow-time-updater/flow-time-updater.lambda.ts --target=\"node22\" --platform=\"node\" --outfile=\"assets/core/flows/flow-time-updater/flow-time-updater.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
         }
       ]
     },
@@ -151,9 +153,13 @@
     "eslint": {
       "name": "eslint",
       "description": "Runs eslint against the codebase",
+      "env": {
+        "ESLINT_USE_FLAT_CONFIG": "false"
+      },
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern $@ src test build-tools projenrc .projenrc.ts",
+          "receiveArgs": true
         }
       ]
     },
@@ -182,6 +188,69 @@
         {
           "exec": "yarn integ-runner --language typescript",
           "receiveArgs": true
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:assert": {
+      "name": "integ:ondemand-asana-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-asana-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-asana-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-asana-to-s3'. Run 'projen integ:ondemand-asana-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-asana-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-asana-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-asana-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-asana-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:deploy": {
+      "name": "integ:ondemand-asana-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-asana-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-asana-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-asana-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-asana-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-asana-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-asana-to-s3.integ/deploy.cdk.out test/integ/ondemand-asana-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-asana-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:destroy": {
+      "name": "integ:ondemand-asana-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-asana-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-asana-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:snapshot": {
+      "name": "integ:ondemand-asana-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-asana-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-asana-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-asana-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-asana-to-s3:watch": {
+      "name": "integ:ondemand-asana-to-s3:watch",
+      "description": "watch integration test 'ondemand-asana-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-asana-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-asana-to-s3.integ/deploy.cdk.out"
         }
       ]
     },
@@ -308,6 +377,510 @@
       "steps": [
         {
           "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-googleanalytics4-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-googleanalytics4-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:assert": {
+      "name": "integ:ondemand-hubspot-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-hubspot-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-hubspot-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-hubspot-to-s3'. Run 'projen integ:ondemand-hubspot-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-hubspot-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-hubspot-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-hubspot-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-hubspot-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:deploy": {
+      "name": "integ:ondemand-hubspot-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-hubspot-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-hubspot-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-hubspot-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-hubspot-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-hubspot-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-hubspot-to-s3.integ/deploy.cdk.out test/integ/ondemand-hubspot-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-hubspot-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:destroy": {
+      "name": "integ:ondemand-hubspot-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-hubspot-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-hubspot-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:snapshot": {
+      "name": "integ:ondemand-hubspot-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-hubspot-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-hubspot-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-hubspot-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-hubspot-to-s3:watch": {
+      "name": "integ:ondemand-hubspot-to-s3:watch",
+      "description": "watch integration test 'ondemand-hubspot-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-hubspot-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-hubspot-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert",
+      "description": "assert the snapshot of integration test 'ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql'. Run 'projen integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot/ test/integ/.tmp/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:deploy": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:deploy",
+      "description": "deploy integration test 'ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ/deploy.cdk.out test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:destroy": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:destroy",
+      "description": "destroy integration test 'ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:snapshot": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:snapshot",
+      "description": "update snapshot for integration test \"ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:watch": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:watch",
+      "description": "watch integration test 'ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-s3:assert": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-jdbcsmalldatascale-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-jdbcsmalldatascale-to-s3'. Run 'projen integ:ondemand-jdbcsmalldatascale-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-jdbcsmalldatascale-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-jdbcsmalldatascale-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-s3:deploy": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-jdbcsmalldatascale-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-jdbcsmalldatascale-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-jdbcsmalldatascale-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-jdbcsmalldatascale-to-s3.integ/deploy.cdk.out test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-jdbcsmalldatascale-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-s3:destroy": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-jdbcsmalldatascale-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-s3:snapshot": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-jdbcsmalldatascale-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-jdbcsmalldatascale-to-s3:watch": {
+      "name": "integ:ondemand-jdbcsmalldatascale-to-s3:watch",
+      "description": "watch integration test 'ondemand-jdbcsmalldatascale-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-jdbcsmalldatascale-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-mailchimp-to-s3:assert": {
+      "name": "integ:ondemand-mailchimp-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-mailchimp-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-mailchimp-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-mailchimp-to-s3'. Run 'projen integ:ondemand-mailchimp-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-mailchimp-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-mailchimp-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-mailchimp-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-mailchimp-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-mailchimp-to-s3:deploy": {
+      "name": "integ:ondemand-mailchimp-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-mailchimp-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-mailchimp-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-mailchimp-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-mailchimp-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-mailchimp-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-mailchimp-to-s3.integ/deploy.cdk.out test/integ/ondemand-mailchimp-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-mailchimp-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-mailchimp-to-s3:destroy": {
+      "name": "integ:ondemand-mailchimp-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-mailchimp-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-mailchimp-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-mailchimp-to-s3:snapshot": {
+      "name": "integ:ondemand-mailchimp-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-mailchimp-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-mailchimp-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-mailchimp-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-mailchimp-to-s3:watch": {
+      "name": "integ:ondemand-mailchimp-to-s3:watch",
+      "description": "watch integration test 'ondemand-mailchimp-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-mailchimp-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-mailchimp-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftdynamics365-to-s3:assert": {
+      "name": "integ:ondemand-microsoftdynamics365-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-microsoftdynamics365-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-microsoftdynamics365-to-s3'. Run 'projen integ:ondemand-microsoftdynamics365-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftdynamics365-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-microsoftdynamics365-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-microsoftdynamics365-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftdynamics365-to-s3:deploy": {
+      "name": "integ:ondemand-microsoftdynamics365-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-microsoftdynamics365-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-microsoftdynamics365-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftdynamics365-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-microsoftdynamics365-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-microsoftdynamics365-to-s3.integ/deploy.cdk.out test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-microsoftdynamics365-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftdynamics365-to-s3:destroy": {
+      "name": "integ:ondemand-microsoftdynamics365-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-microsoftdynamics365-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftdynamics365-to-s3:snapshot": {
+      "name": "integ:ondemand-microsoftdynamics365-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-microsoftdynamics365-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftdynamics365-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftdynamics365-to-s3:watch": {
+      "name": "integ:ondemand-microsoftdynamics365-to-s3:watch",
+      "description": "watch integration test 'ondemand-microsoftdynamics365-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftdynamics365-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-microsoftdynamics365-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:assert": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-microsoftsharepointonline-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-microsoftsharepointonline-to-s3'. Run 'projen integ:ondemand-microsoftsharepointonline-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:deploy": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-microsoftsharepointonline-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-microsoftsharepointonline-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:destroy": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-microsoftsharepointonline-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:snapshot": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-microsoftsharepointonline-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-microsoftsharepointonline-to-s3:watch": {
+      "name": "integ:ondemand-microsoftsharepointonline-to-s3:watch",
+      "description": "watch integration test 'ondemand-microsoftsharepointonline-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-microsoftsharepointonline-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-microsoftsharepointonline-to-s3.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:assert": {
+      "name": "integ:ondemand-s3-to-hubspot:assert",
+      "description": "assert the snapshot of integration test 'ondemand-s3-to-hubspot'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-s3-to-hubspot.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-s3-to-hubspot'. Run 'projen integ:ondemand-s3-to-hubspot:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-hubspot.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-s3-to-hubspot.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-s3-to-hubspot.integ.snapshot/ test/integ/.tmp/ondemand-s3-to-hubspot.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:deploy": {
+      "name": "integ:ondemand-s3-to-hubspot:deploy",
+      "description": "deploy integration test 'ondemand-s3-to-hubspot' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-s3-to-hubspot.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-hubspot.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-s3-to-hubspot.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-s3-to-hubspot.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-s3-to-hubspot.integ/deploy.cdk.out test/integ/ondemand-s3-to-hubspot.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-hubspot:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:destroy": {
+      "name": "integ:ondemand-s3-to-hubspot:destroy",
+      "description": "destroy integration test 'ondemand-s3-to-hubspot'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-s3-to-hubspot.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:snapshot": {
+      "name": "integ:ondemand-s3-to-hubspot:snapshot",
+      "description": "update snapshot for integration test \"ondemand-s3-to-hubspot\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-hubspot.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-s3-to-hubspot.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-hubspot:watch": {
+      "name": "integ:ondemand-s3-to-hubspot:watch",
+      "description": "watch integration test 'ondemand-s3-to-hubspot' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-hubspot.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-s3-to-hubspot.integ/deploy.cdk.out"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-s3:assert": {
+      "name": "integ:ondemand-s3-to-s3:assert",
+      "description": "assert the snapshot of integration test 'ondemand-s3-to-s3'",
+      "steps": [
+        {
+          "exec": "[ -d \"test/integ/ondemand-s3-to-s3.integ.snapshot\" ] || (echo \"No snapshot available for integration test 'ondemand-s3-to-s3'. Run 'projen integ:ondemand-s3-to-s3:deploy' to capture.\" && exit 1)"
+        },
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/.tmp/ondemand-s3-to-s3.integ/assert.cdk.out > /dev/null"
+        },
+        {
+          "exec": "diff -r -x asset.* -x cdk.out -x manifest.json -x tree.json test/integ/ondemand-s3-to-s3.integ.snapshot/ test/integ/.tmp/ondemand-s3-to-s3.integ/assert.cdk.out/"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-s3:deploy": {
+      "name": "integ:ondemand-s3-to-s3:deploy",
+      "description": "deploy integration test 'ondemand-s3-to-s3' and capture snapshot",
+      "steps": [
+        {
+          "exec": "rm -fr test/integ/.tmp/ondemand-s3-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "cdk deploy --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' --require-approval=never -o test/integ/.tmp/ondemand-s3-to-s3.integ/deploy.cdk.out"
+        },
+        {
+          "exec": "rm -fr test/integ/ondemand-s3-to-s3.integ.snapshot"
+        },
+        {
+          "exec": "mv test/integ/.tmp/ondemand-s3-to-s3.integ/deploy.cdk.out test/integ/ondemand-s3-to-s3.integ.snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-s3:destroy"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-s3:destroy": {
+      "name": "integ:ondemand-s3-to-s3:destroy",
+      "description": "destroy integration test 'ondemand-s3-to-s3'",
+      "steps": [
+        {
+          "exec": "cdk destroy --app test/integ/ondemand-s3-to-s3.integ.snapshot '**' --no-version-reporting"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-s3:snapshot": {
+      "name": "integ:ondemand-s3-to-s3:snapshot",
+      "description": "update snapshot for integration test \"ondemand-s3-to-s3\"",
+      "steps": [
+        {
+          "exec": "cdk synth --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata -o test/integ/ondemand-s3-to-s3.integ.snapshot > /dev/null"
+        }
+      ]
+    },
+    "integ:ondemand-s3-to-s3:watch": {
+      "name": "integ:ondemand-s3-to-s3:watch",
+      "description": "watch integration test 'ondemand-s3-to-s3' (without updating snapshots)",
+      "steps": [
+        {
+          "exec": "cdk watch --app \"ts-node -P tsconfig.dev.json test/integ/ondemand-s3-to-s3.integ.ts\" --no-notices --no-version-reporting --no-asset-metadata --no-path-metadata '**' -o test/integ/.tmp/ondemand-s3-to-s3.integ/deploy.cdk.out"
         }
       ]
     },
@@ -820,10 +1393,37 @@
       "description": "update snapshot for all integration tests",
       "steps": [
         {
+          "spawn": "integ:ondemand-asana-to-s3:snapshot"
+        },
+        {
           "spawn": "integ:ondemand-github-to-s3:snapshot"
         },
         {
           "spawn": "integ:ondemand-googleanalytics4-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-hubspot-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-jdbcsmalldatascale-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-mailchimp-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-microsoftdynamics365-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-microsoftsharepointonline-to-s3:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-hubspot:snapshot"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-s3:snapshot"
         },
         {
           "spawn": "integ:ondemand-s3-to-snowflake:snapshot"
@@ -866,7 +1466,12 @@
       "description": "Creates the distribution package",
       "steps": [
         {
-          "exec": "if [ ! -z ${CI} ]; then rsync -a . .repo --exclude .git --exclude node_modules && rm -rf dist && mv .repo dist; else npx projen package-all; fi"
+          "spawn": "package:js",
+          "condition": "node -e \"if (!process.env.CI) process.exit(1)\""
+        },
+        {
+          "spawn": "package-all",
+          "condition": "node -e \"if (process.env.CI) process.exit(1)\""
         }
       ]
     },
@@ -999,17 +1604,44 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --coverageProvider=v8 --updateSnapshot",
+          "exec": "jest --passWithNoTests --updateSnapshot",
           "receiveArgs": true
         },
         {
           "spawn": "eslint"
         },
         {
+          "spawn": "integ:ondemand-asana-to-s3:assert"
+        },
+        {
           "spawn": "integ:ondemand-github-to-s3:assert"
         },
         {
           "spawn": "integ:ondemand-googleanalytics4-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-hubspot-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql:assert"
+        },
+        {
+          "spawn": "integ:ondemand-jdbcsmalldatascale-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-mailchimp-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-microsoftdynamics365-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-microsoftsharepointonline-to-s3:assert"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-hubspot:assert"
+        },
+        {
+          "spawn": "integ:ondemand-s3-to-s3:assert"
         },
         {
           "spawn": "integ:ondemand-s3-to-snowflake:assert"
@@ -1057,7 +1689,9 @@
         "CHANGELOG": "dist/changelog.md",
         "BUMPFILE": "dist/version.txt",
         "RELEASETAG": "dist/releasetag.txt",
-        "RELEASE_TAG_PREFIX": ""
+        "RELEASE_TAG_PREFIX": "",
+        "BUMP_PACKAGE": "commit-and-tag-version@^12",
+        "RELEASABLE_COMMITS": "git log --no-merges --oneline $LATEST_TAG..HEAD -E --grep \"^(feat|fix){1}(\\([^()[:space:]]+\\))?(!)?:[[:blank:]]+.+\""
       },
       "steps": [
         {
@@ -1073,34 +1707,7 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@aws-cdk/aws-glue-alpha,@aws-cdk/aws-redshift-alpha,aws-cdk-lib,constructs,jsii,@aws-cdk/integ-runner,@aws-cdk/integ-tests-alpha'"
-        },
-        {
-          "exec": "yarn install --check-files"
-        },
-        {
-          "exec": "yarn upgrade"
-        },
-        {
-          "exec": "npx projen"
-        },
-        {
-          "spawn": "post-upgrade"
+          "exec": "echo No dependencies to upgrade."
         }
       ]
     },
@@ -1112,10 +1719,7 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --filter=cdklabs-projen-project-types,projen --upgrade"
+          "exec": "npx npm-check-updates@16 --upgrade --target=latest --peer --no-deprecated --dep=dev,peer,prod,optional --filter=cdklabs-projen-project-types,projen"
         },
         {
           "exec": "yarn install --check-files"
@@ -1125,6 +1729,33 @@
         },
         {
           "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
+        }
+      ]
+    },
+    "upgrade-dev-deps": {
+      "name": "upgrade-dev-deps",
+      "description": "upgrade dev dependencies",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=dev --filter=@types/aws-lambda,esbuild,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jsii-diff,jsii-pacmak,jsii-rosetta,prettier,ts-node,typescript"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade @types/aws-lambda @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk commit-and-tag-version esbuild eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii prettier ts-jest ts-node typescript @aws-cdk/integ-runner @aws-cdk/integ-tests-alpha"
+        },
+        {
+          "exec": "npx projen"
+        },
+        {
+          "spawn": "post-upgrade"
         }
       ]
     },

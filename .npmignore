@@ -7,6 +7,8 @@ permissions-backup.acl
 /dist/changelog.md
 /dist/version.txt
 /.mergify.yml
+/.prettierignore
+/.prettierrc.json
 /test/
 /tsconfig.dev.json
 /src/
@@ -23,8 +25,17 @@ tsconfig.tsbuildinfo
 /.eslintrc.json
 !.jsii
 !/assets/
+test/integ/ondemand-asana-to-s3.integ.snapshot
 test/integ/ondemand-github-to-s3.integ.snapshot
 test/integ/ondemand-googleanalytics4-to-s3.integ.snapshot
+test/integ/ondemand-hubspot-to-s3.integ.snapshot
+test/integ/ondemand-jdbcsmalldatascale-to-amazonrdsforpostgresql.integ.snapshot
+test/integ/ondemand-jdbcsmalldatascale-to-s3.integ.snapshot
+test/integ/ondemand-mailchimp-to-s3.integ.snapshot
+test/integ/ondemand-microsoftdynamics365-to-s3.integ.snapshot
+test/integ/ondemand-microsoftsharepointonline-to-s3.integ.snapshot
+test/integ/ondemand-s3-to-hubspot.integ.snapshot
+test/integ/ondemand-s3-to-s3.integ.snapshot
 test/integ/ondemand-s3-to-snowflake.integ.snapshot
 test/integ/ondemand-salesforce-to-redshift.integ.snapshot
 test/integ/ondemand-salesforce-to-s3.integ.snapshot
@@ -34,3 +45,6 @@ test/integ/onevent-salesforce-to-eventbridge.integ.snapshot
 test/integ/onschedule-s3-to-salesforce.integ.snapshot
 test/integ/.tmp
 test/integ/onschedule-salesforce-marketing-cloud-to-s3.integ.snapshot
+/.gitattributes
+/.projenrc.ts
+/projenrc

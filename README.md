@@ -11,6 +11,7 @@ For more information, see the [Amazon AppFlow User Guide](https://docs.aws.amazo
 ## Example
 
 ```ts
+import { SecretValue } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { ISecret } from 'aws-cdk-lib/aws-secretsmanager';
 import {
@@ -30,8 +31,8 @@ import {
 } from '@cdklabs/cdk-appflow';
 
 declare const clientSecret: ISecret;
-declare const accessToken: string;
-declare const refreshToken: string;
+declare const accessToken: SecretValue;
+declare const refreshToken: SecretValue;
 declare const instanceUrl: string;
 
 const profile = new SalesforceConnectorProfile(this, 'MyConnectorProfile', {
@@ -148,7 +149,40 @@ const flow = new OnDemandFlow(stack, 'OnDemandFlow', {
 });
 ```
 
-## EventBridge notifications
+## Monitoring
+
+
+### Metrcis
+
+Each flow allows to access metrics through the methods:
+- `metricFlowExecutionsStarted`
+- `metricFlowExecutionsFailed` 
+- `metricFlowExecutionsSucceeded` 
+- `metricFlowExecutionTime` 
+- `metricFlowExecutionRecordsProcessed` 
+
+
+For detailed information about AppFlow metrics refer to [the documentation](https://docs.aws.amazon.com/appflow/latest/userguide/monitoring-cloudwatch.html).
+
+It can be consume by CloudWatch alert using as in the example below: 
+
+
+```ts
+import { IFlow } from '@cdklabs/cdk-appflow';
+
+declare const flow: IFlow;
+declare const stack: Stack;
+
+const metric = flow.metricFlowExecutionsStarted();
+
+metric.createAlarm(stack, "FlowExecutionsStartedAlarm", {
+  threshold: 1000,
+  evaluationPeriods: 2
+});
+```
+
+
+### EventBridge notifications
 
 Each flow publishes events to the default EventBridge bus:
 
@@ -188,7 +222,7 @@ It is *recommended* to follow [data protection mechanisms for Amazon AppFlow](ht
 
 ## Confidential information
 
-Amazon AppFlow application integration is done using `ConnectionProfiles`. A `ConnectionProfile` requires providing sensitive information in the form of e.g. access and refresh tokens. It is *recommended* that such information is stored securely and passed to AWS CDK securely. All sensitive fields are effectively `IResolvable` and this means they can be resolved at deploy time. With that one should follow the [best practices for credentials with CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/security-best-practices.html#creds).
+Amazon AppFlow application integration is done using `ConnectionProfiles`. A `ConnectionProfile` requires providing sensitive information in the form of e.g. access and refresh tokens. It is *recommended* that such information is stored securely and passed to AWS CDK securely. All sensitive fields are effectively `IResolvable` and this means they can be resolved at deploy time. With that one should follow the [best practices for credentials with CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/security-best-practices.html#creds). In this library, the sensitive fields are typed as `SecretValue` to emphasize these should not be plain strings.
 
 An example of using a predefined AWS Secrets Manager secret for storing sensitive information can be found below:
 
@@ -204,9 +238,9 @@ const profile = new GoogleAnalytics4ConnectorProfile(stack, 'GA4Connector', {
   oAuth: {
     flow: {
       refreshTokenGrant: {
-        refreshToken: secret.secretValueFromJson('refreshToken').toString(),
-        clientId: secret.secretValueFromJson('clientId').toString(),
-        clientSecret: secret.secretValueFromJson('clientSecret').toString(),
+        refreshToken: secret.secretValueFromJson('refreshToken'),
+        clientId: secret.secretValueFromJson('clientId'),
+        clientSecret: secret.secretValueFromJson('clientSecret'),
       },
     },
   },
@@ -221,3 +255,7 @@ This library relies on an internal `AppFlowPermissionsManager` class to automati
 ### Confused Deputy Problem
 
 Amazon AppFlow is an account-bound and a regional service. With this it is invurlnerable to the confused deputy problem (see, e.g. [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html)). However, `AppFlowPermissionsManager` still introduces the `aws:SourceAccount` condtition to the resource policies as a *best practice*.
+
+## Upgrading and breaking changes
+
+Please consult the [UPGRADING docs](/UPGRADING.md) for information.
