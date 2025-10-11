@@ -76,8 +76,8 @@ export interface GitHubOAuthFlow {
 export interface GitHubOAuthSettings {
   /**
    * The access token to be used when interacting with GitHub
-   * 
-   * Note: Currently only non-expiring access tokens are supported as 
+   *
+   * Note: Currently only non-expiring access tokens are supported as
    * "User access tokens that expire are currently an optional feature and are subject to change."
    */
   readonly accessToken: SecretValue;
