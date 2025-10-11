@@ -8645,6 +8645,51 @@ public readonly validations: IValidation[];
 
 ---
 
+### GitHubBasicAuthSettings <a name="GitHubBasicAuthSettings" id="@cdklabs/cdk-appflow.GitHubBasicAuthSettings"></a>
+
+GitHub Basic Authentication settings using Personal Access Token.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubBasicAuthSettings.Initializer"></a>
+
+```typescript
+import { GitHubBasicAuthSettings } from '@cdklabs/cdk-appflow'
+
+const gitHubBasicAuthSettings: GitHubBasicAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubBasicAuthSettings.property.personalAccessToken">personalAccessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | Personal Access Token for GitHub authentication. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubBasicAuthSettings.property.username">username</a></code> | <code>string</code> | GitHub username. |
+
+---
+
+##### `personalAccessToken`<sup>Required</sup> <a name="personalAccessToken" id="@cdklabs/cdk-appflow.GitHubBasicAuthSettings.property.personalAccessToken"></a>
+
+```typescript
+public readonly personalAccessToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+Personal Access Token for GitHub authentication.
+
+---
+
+##### `username`<sup>Required</sup> <a name="username" id="@cdklabs/cdk-appflow.GitHubBasicAuthSettings.property.username"></a>
+
+```typescript
+public readonly username: string;
+```
+
+- *Type:* string
+
+GitHub username.
+
+---
+
 ### GitHubConnectorProfileProps <a name="GitHubConnectorProfileProps" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps"></a>
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.Initializer"></a>
@@ -8661,6 +8706,7 @@ const gitHubConnectorProfileProps: GitHubConnectorProfileProps = { ... }
 | --- | --- | --- |
 | <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
 | <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubBasicAuthSettings">GitHubBasicAuthSettings</a></code> | *No description.* |
 | <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.oAuth">oAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings">GitHubOAuthSettings</a></code> | *No description.* |
 
 ---
@@ -8687,7 +8733,17 @@ public readonly name: string;
 
 ---
 
-##### `oAuth`<sup>Required</sup> <a name="oAuth" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.oAuth"></a>
+##### `basicAuth`<sup>Optional</sup> <a name="basicAuth" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.basicAuth"></a>
+
+```typescript
+public readonly basicAuth: GitHubBasicAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubBasicAuthSettings">GitHubBasicAuthSettings</a>
+
+---
+
+##### `oAuth`<sup>Optional</sup> <a name="oAuth" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.oAuth"></a>
 
 ```typescript
 public readonly oAuth: GitHubOAuthSettings;
@@ -8731,7 +8787,7 @@ The OAuth token endpoint URI.
 
 ### GitHubOAuthFlow <a name="GitHubOAuthFlow" id="@cdklabs/cdk-appflow.GitHubOAuthFlow"></a>
 
-Represents the OAuth flow enabled for the GA4.
+Represents the OAuth flow enabled for GitHub.
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubOAuthFlow.Initializer"></a>
 
@@ -8775,24 +8831,20 @@ const gitHubOAuthSettings: GitHubOAuthSettings = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings.property.accessToken">accessToken</a></code> | <code>string</code> | The access token to be used when interacting with GitHub. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | The access token to be used when interacting with GitHub. |
 | <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthEndpoints">GitHubOAuthEndpoints</a></code> | The OAuth token and authorization endpoints. |
-| <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings.property.flow">flow</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthFlow">GitHubOAuthFlow</a></code> | The OAuth flow used for obtaining a new accessToken when the old is not present or expired. |
 
 ---
 
-##### `accessToken`<sup>Optional</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.GitHubOAuthSettings.property.accessToken"></a>
+##### `accessToken`<sup>Required</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.GitHubOAuthSettings.property.accessToken"></a>
 
 ```typescript
-public readonly accessToken: string;
+public readonly accessToken: SecretValue;
 ```
 
-- *Type:* string
-- *Default:* Retrieves a fresh accessToken with the information in the [flow property]{@link GitHubOAuthSettings#flow }
+- *Type:* aws-cdk-lib.SecretValue
 
 The access token to be used when interacting with GitHub.
-
-Note that if only the access token is provided AppFlow is not able to retrieve a fresh access token when the current one is expired
 
 ---
 
@@ -8805,19 +8857,6 @@ public readonly endpoints: GitHubOAuthEndpoints;
 - *Type:* <a href="#@cdklabs/cdk-appflow.GitHubOAuthEndpoints">GitHubOAuthEndpoints</a>
 
 The OAuth token and authorization endpoints.
-
----
-
-##### `flow`<sup>Optional</sup> <a name="flow" id="@cdklabs/cdk-appflow.GitHubOAuthSettings.property.flow"></a>
-
-```typescript
-public readonly flow: GitHubOAuthFlow;
-```
-
-- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubOAuthFlow">GitHubOAuthFlow</a>
-- *Default:* undefined. AppFlow will not request any new accessToken after expiry.
-
-The OAuth flow used for obtaining a new accessToken when the old is not present or expired.
 
 ---
 
@@ -8837,19 +8876,19 @@ const gitHubRefreshTokenGrantFlow: GitHubRefreshTokenGrantFlow = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>string</code> | The id of the client app. |
-| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>string</code> | The secret of the client app. |
-| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>string</code> | A non-expired refresh token. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | The id of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | The secret of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | A non-expired refresh token. |
 
 ---
 
 ##### `clientId`<sup>Optional</sup> <a name="clientId" id="@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientId"></a>
 
 ```typescript
-public readonly clientId: string;
+public readonly clientId: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 The id of the client app.
 
@@ -8858,10 +8897,10 @@ The id of the client app.
 ##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientSecret"></a>
 
 ```typescript
-public readonly clientSecret: string;
+public readonly clientSecret: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 The secret of the client app.
 
@@ -8870,10 +8909,10 @@ The secret of the client app.
 ##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.refreshToken"></a>
 
 ```typescript
-public readonly refreshToken: string;
+public readonly refreshToken: SecretValue;
 ```
 
-- *Type:* string
+- *Type:* aws-cdk-lib.SecretValue
 
 A non-expired refresh token.
 
@@ -19285,6 +19324,23 @@ The AppFlow type of the connector that this source is implemented for.
 
 
 ##### `SCHEDULED` <a name="SCHEDULED" id="@cdklabs/cdk-appflow.FlowType.SCHEDULED"></a>
+
+---
+
+
+### GitHubApiVersion <a name="GitHubApiVersion" id="@cdklabs/cdk-appflow.GitHubApiVersion"></a>
+
+An enum representing the GitHub API versions.
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubApiVersion.V3">V3</a></code> | *No description.* |
+
+---
+
+##### `V3` <a name="V3" id="@cdklabs/cdk-appflow.GitHubApiVersion.V3"></a>
 
 ---
 

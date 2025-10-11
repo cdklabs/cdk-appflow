@@ -2,7 +2,10 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-export * from "./type";
-export * from "./profile";
-export * from "./source";
-export * from "./util";
+
+/**
+ * An enum representing the GitHub API versions.
+ */
+export enum GitHubApiVersion {
+  V3 = "v3",
+}

@@ -21,9 +21,15 @@ const stack = new Stack(app, "TestStack");
 
 const secret = Secret.fromSecretNameV2(stack, "TestSecret", "appflow/github");
 
+new GitHubConnectorProfile(stack, "BasicTestConnector", {
+  basicAuth: {
+    username: secret.secretValueFromJson("username").toString(),
+    personalAccessToken: secret.secretValueFromJson("pat")
+  },
+})
 const profile = new GitHubConnectorProfile(stack, "TestConnector", {
   oAuth: {
-    accessToken: secret.secretValueFromJson("accessToken").toString(),
+    accessToken: secret.secretValueFromJson("accessToken"),
   },
 });
 

@@ -1,5 +1,69 @@
 {
  "Resources": {
+  "BasicTestConnector013A9D8D": {
+   "Type": "AWS::AppFlow::ConnectorProfile",
+   "Properties": {
+    "ConnectionMode": "Public",
+    "ConnectorLabel": "GitHub",
+    "ConnectorProfileConfig": {
+     "ConnectorProfileCredentials": {
+      "CustomConnector": {
+       "AuthenticationType": "CUSTOM",
+       "Custom": {
+        "CredentialsMap": {
+         "username": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/github:SecretString:username::}}"
+           ]
+          ]
+         },
+         "personalAccessToken": {
+          "Fn::Join": [
+           "",
+           [
+            "{{resolve:secretsmanager:arn:",
+            {
+             "Ref": "AWS::Partition"
+            },
+            ":secretsmanager:",
+            {
+             "Ref": "AWS::Region"
+            },
+            ":",
+            {
+             "Ref": "AWS::AccountId"
+            },
+            ":secret:appflow/github:SecretString:pat::}}"
+           ]
+          ]
+         }
+        },
+        "CustomAuthenticationType": "BasicAuthPersonalAccessToken"
+       }
+      }
+     },
+     "ConnectorProfileProperties": {
+      "CustomConnector": {}
+     }
+    },
+    "ConnectorProfileName": "TestStackBasicTestConnectorE8A7378C",
+    "ConnectorType": "CustomConnector"
+   }
+  },
   "TestConnectorF96C459B": {
    "Type": "AWS::AppFlow::ConnectorProfile",
    "Properties": {
