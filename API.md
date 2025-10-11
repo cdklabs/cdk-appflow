@@ -1192,6 +1192,282 @@ The type of the flow.
 ---
 
 
+### GitHubConnectorProfile <a name="GitHubConnectorProfile" id="@cdklabs/cdk-appflow.GitHubConnectorProfile"></a>
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.Initializer"></a>
+
+```typescript
+import { GitHubConnectorProfile } from '@cdklabs/cdk-appflow'
+
+new GitHubConnectorProfile(scope: Construct, id: string, props: GitHubConnectorProfileProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps">GitHubConnectorProfileProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps">GitHubConnectorProfileProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.applyRemovalPolicy">applyRemovalPolicy</a></code> | Apply the given removal policy to this resource. |
+
+---
+
+##### `toString` <a name="toString" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `applyRemovalPolicy` <a name="applyRemovalPolicy" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.applyRemovalPolicy"></a>
+
+```typescript
+public applyRemovalPolicy(policy: RemovalPolicy): void
+```
+
+Apply the given removal policy to this resource.
+
+The Removal Policy controls what happens to this resource when it stops
+being managed by CloudFormation, either because you've removed it from the
+CDK application or because you've made a change that requires the resource
+to be replaced.
+
+The resource can be deleted (`RemovalPolicy.DESTROY`), or left in your AWS
+account for data recovery and cleanup later (`RemovalPolicy.RETAIN`).
+
+###### `policy`<sup>Required</sup> <a name="policy" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.applyRemovalPolicy.parameter.policy"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.isOwnedResource">isOwnedResource</a></code> | Returns true if the construct was created by CDK, and false otherwise. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.isResource">isResource</a></code> | Check whether the given construct is a Resource. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileArn">fromConnectionProfileArn</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileName">fromConnectionProfileName</a></code> | *No description.* |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.isConstruct"></a>
+
+```typescript
+import { GitHubConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GitHubConnectorProfile.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isOwnedResource` <a name="isOwnedResource" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.isOwnedResource"></a>
+
+```typescript
+import { GitHubConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GitHubConnectorProfile.isOwnedResource(construct: IConstruct)
+```
+
+Returns true if the construct was created by CDK, and false otherwise.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.isOwnedResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `isResource` <a name="isResource" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.isResource"></a>
+
+```typescript
+import { GitHubConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GitHubConnectorProfile.isResource(construct: IConstruct)
+```
+
+Check whether the given construct is a Resource.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.isResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+##### `fromConnectionProfileArn` <a name="fromConnectionProfileArn" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileArn"></a>
+
+```typescript
+import { GitHubConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GitHubConnectorProfile.fromConnectionProfileArn(scope: Construct, id: string, arn: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileArn.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileArn.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileArn.parameter.arn"></a>
+
+- *Type:* string
+
+---
+
+##### `fromConnectionProfileName` <a name="fromConnectionProfileName" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileName"></a>
+
+```typescript
+import { GitHubConnectorProfile } from '@cdklabs/cdk-appflow'
+
+GitHubConnectorProfile.fromConnectionProfileName(scope: Construct, id: string, name: string)
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileName.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+###### `id`<sup>Required</sup> <a name="id" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileName.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+###### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.fromConnectionProfileName.parameter.name"></a>
+
+- *Type:* string
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.property.env">env</a></code> | <code>aws-cdk-lib.ResourceEnvironment</code> | The environment this resource belongs to. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this resource is defined. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.property.arn">arn</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile.property.credentials">credentials</a></code> | <code>aws-cdk-lib.aws_secretsmanager.ISecret</code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `env`<sup>Required</sup> <a name="env" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.property.env"></a>
+
+```typescript
+public readonly env: ResourceEnvironment;
+```
+
+- *Type:* aws-cdk-lib.ResourceEnvironment
+
+The environment this resource belongs to.
+
+For resources that are created and managed by the CDK
+(generally, those created by creating new class instances like Role, Bucket, etc.),
+this is always the same as the environment of the stack they belong to;
+however, for imported resources
+(those obtained from static methods like fromRoleArn, fromBucketName, etc.),
+that might be different than the stack they were imported into.
+
+---
+
+##### `stack`<sup>Required</sup> <a name="stack" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.property.stack"></a>
+
+```typescript
+public readonly stack: Stack;
+```
+
+- *Type:* aws-cdk-lib.Stack
+
+The stack in which this resource is defined.
+
+---
+
+##### `arn`<sup>Required</sup> <a name="arn" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.property.arn"></a>
+
+```typescript
+public readonly arn: string;
+```
+
+- *Type:* string
+
+---
+
+##### `name`<sup>Required</sup> <a name="name" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `credentials`<sup>Optional</sup> <a name="credentials" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.property.credentials"></a>
+
+```typescript
+public readonly credentials: ISecret;
+```
+
+- *Type:* aws-cdk-lib.aws_secretsmanager.ISecret
+
+---
+
+
 ### GoogleAdsConnectorProfile <a name="GoogleAdsConnectorProfile" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile"></a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer"></a>
@@ -8369,6 +8645,334 @@ public readonly validations: IValidation[];
 
 ---
 
+### GitHubBasicAuthSettings <a name="GitHubBasicAuthSettings" id="@cdklabs/cdk-appflow.GitHubBasicAuthSettings"></a>
+
+GitHub Basic Authentication settings using Personal Access Token.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubBasicAuthSettings.Initializer"></a>
+
+```typescript
+import { GitHubBasicAuthSettings } from '@cdklabs/cdk-appflow'
+
+const gitHubBasicAuthSettings: GitHubBasicAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubBasicAuthSettings.property.personalAccessToken">personalAccessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | Personal Access Token for GitHub authentication. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubBasicAuthSettings.property.username">username</a></code> | <code>string</code> | GitHub username. |
+
+---
+
+##### `personalAccessToken`<sup>Required</sup> <a name="personalAccessToken" id="@cdklabs/cdk-appflow.GitHubBasicAuthSettings.property.personalAccessToken"></a>
+
+```typescript
+public readonly personalAccessToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+Personal Access Token for GitHub authentication.
+
+---
+
+##### `username`<sup>Required</sup> <a name="username" id="@cdklabs/cdk-appflow.GitHubBasicAuthSettings.property.username"></a>
+
+```typescript
+public readonly username: string;
+```
+
+- *Type:* string
+
+GitHub username.
+
+---
+
+### GitHubConnectorProfileProps <a name="GitHubConnectorProfileProps" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.Initializer"></a>
+
+```typescript
+import { GitHubConnectorProfileProps } from '@cdklabs/cdk-appflow'
+
+const gitHubConnectorProfileProps: GitHubConnectorProfileProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.key">key</a></code> | <code>aws-cdk-lib.aws_kms.IKey</code> | TODO: think if this should be here as not all connector profiles have that. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.name">name</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.basicAuth">basicAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubBasicAuthSettings">GitHubBasicAuthSettings</a></code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.oAuth">oAuth</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings">GitHubOAuthSettings</a></code> | *No description.* |
+
+---
+
+##### `key`<sup>Optional</sup> <a name="key" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.key"></a>
+
+```typescript
+public readonly key: IKey;
+```
+
+- *Type:* aws-cdk-lib.aws_kms.IKey
+
+TODO: think if this should be here as not all connector profiles have that.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="name" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.name"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* string
+
+---
+
+##### `basicAuth`<sup>Optional</sup> <a name="basicAuth" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.basicAuth"></a>
+
+```typescript
+public readonly basicAuth: GitHubBasicAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubBasicAuthSettings">GitHubBasicAuthSettings</a>
+
+---
+
+##### `oAuth`<sup>Optional</sup> <a name="oAuth" id="@cdklabs/cdk-appflow.GitHubConnectorProfileProps.property.oAuth"></a>
+
+```typescript
+public readonly oAuth: GitHubOAuthSettings;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings">GitHubOAuthSettings</a>
+
+---
+
+### GitHubOAuthEndpoints <a name="GitHubOAuthEndpoints" id="@cdklabs/cdk-appflow.GitHubOAuthEndpoints"></a>
+
+GitHub's OAuth token and authorization endpoints.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubOAuthEndpoints.Initializer"></a>
+
+```typescript
+import { GitHubOAuthEndpoints } from '@cdklabs/cdk-appflow'
+
+const gitHubOAuthEndpoints: GitHubOAuthEndpoints = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthEndpoints.property.token">token</a></code> | <code>string</code> | The OAuth token endpoint URI. |
+
+---
+
+##### `token`<sup>Optional</sup> <a name="token" id="@cdklabs/cdk-appflow.GitHubOAuthEndpoints.property.token"></a>
+
+```typescript
+public readonly token: string;
+```
+
+- *Type:* string
+
+The OAuth token endpoint URI.
+
+---
+
+### GitHubOAuthFlow <a name="GitHubOAuthFlow" id="@cdklabs/cdk-appflow.GitHubOAuthFlow"></a>
+
+Represents the OAuth flow enabled for GitHub.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubOAuthFlow.Initializer"></a>
+
+```typescript
+import { GitHubOAuthFlow } from '@cdklabs/cdk-appflow'
+
+const gitHubOAuthFlow: GitHubOAuthFlow = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthFlow.property.refreshTokenGrant">refreshTokenGrant</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow">GitHubRefreshTokenGrantFlow</a></code> | The details required for executing the refresh token grant flow. |
+
+---
+
+##### `refreshTokenGrant`<sup>Required</sup> <a name="refreshTokenGrant" id="@cdklabs/cdk-appflow.GitHubOAuthFlow.property.refreshTokenGrant"></a>
+
+```typescript
+public readonly refreshTokenGrant: GitHubRefreshTokenGrantFlow;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow">GitHubRefreshTokenGrantFlow</a>
+
+The details required for executing the refresh token grant flow.
+
+---
+
+### GitHubOAuthSettings <a name="GitHubOAuthSettings" id="@cdklabs/cdk-appflow.GitHubOAuthSettings"></a>
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubOAuthSettings.Initializer"></a>
+
+```typescript
+import { GitHubOAuthSettings } from '@cdklabs/cdk-appflow'
+
+const gitHubOAuthSettings: GitHubOAuthSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings.property.accessToken">accessToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | The access token to be used when interacting with GitHub. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthSettings.property.endpoints">endpoints</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubOAuthEndpoints">GitHubOAuthEndpoints</a></code> | The OAuth token and authorization endpoints. |
+
+---
+
+##### `accessToken`<sup>Required</sup> <a name="accessToken" id="@cdklabs/cdk-appflow.GitHubOAuthSettings.property.accessToken"></a>
+
+```typescript
+public readonly accessToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The access token to be used when interacting with GitHub.
+
+Note: Currently only non-expiring access tokens are supported as
+"User access tokens that expire are currently an optional feature and are subject to change."
+
+---
+
+##### `endpoints`<sup>Optional</sup> <a name="endpoints" id="@cdklabs/cdk-appflow.GitHubOAuthSettings.property.endpoints"></a>
+
+```typescript
+public readonly endpoints: GitHubOAuthEndpoints;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubOAuthEndpoints">GitHubOAuthEndpoints</a>
+
+The OAuth token and authorization endpoints.
+
+---
+
+### GitHubRefreshTokenGrantFlow <a name="GitHubRefreshTokenGrantFlow" id="@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow"></a>
+
+The OAuth elements required for the execution of the refresh token grant flow.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.Initializer"></a>
+
+```typescript
+import { GitHubRefreshTokenGrantFlow } from '@cdklabs/cdk-appflow'
+
+const gitHubRefreshTokenGrantFlow: GitHubRefreshTokenGrantFlow = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientId">clientId</a></code> | <code>aws-cdk-lib.SecretValue</code> | The id of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientSecret">clientSecret</a></code> | <code>aws-cdk-lib.SecretValue</code> | The secret of the client app. |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.refreshToken">refreshToken</a></code> | <code>aws-cdk-lib.SecretValue</code> | A non-expired refresh token. |
+
+---
+
+##### `clientId`<sup>Optional</sup> <a name="clientId" id="@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientId"></a>
+
+```typescript
+public readonly clientId: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The id of the client app.
+
+---
+
+##### `clientSecret`<sup>Optional</sup> <a name="clientSecret" id="@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.clientSecret"></a>
+
+```typescript
+public readonly clientSecret: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+The secret of the client app.
+
+---
+
+##### `refreshToken`<sup>Optional</sup> <a name="refreshToken" id="@cdklabs/cdk-appflow.GitHubRefreshTokenGrantFlow.property.refreshToken"></a>
+
+```typescript
+public readonly refreshToken: SecretValue;
+```
+
+- *Type:* aws-cdk-lib.SecretValue
+
+A non-expired refresh token.
+
+---
+
+### GitHubSourceProps <a name="GitHubSourceProps" id="@cdklabs/cdk-appflow.GitHubSourceProps"></a>
+
+Properties of a Google Analytics v4 Source.
+
+#### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GitHubSourceProps.Initializer"></a>
+
+```typescript
+import { GitHubSourceProps } from '@cdklabs/cdk-appflow'
+
+const gitHubSourceProps: GitHubSourceProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubSourceProps.property.apiVersion">apiVersion</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubSourceProps.property.object">object</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubSourceProps.property.profile">profile</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile">GitHubConnectorProfile</a></code> | *No description.* |
+
+---
+
+##### `apiVersion`<sup>Required</sup> <a name="apiVersion" id="@cdklabs/cdk-appflow.GitHubSourceProps.property.apiVersion"></a>
+
+```typescript
+public readonly apiVersion: string;
+```
+
+- *Type:* string
+
+---
+
+##### `object`<sup>Required</sup> <a name="object" id="@cdklabs/cdk-appflow.GitHubSourceProps.property.object"></a>
+
+```typescript
+public readonly object: string;
+```
+
+- *Type:* string
+
+---
+
+##### `profile`<sup>Required</sup> <a name="profile" id="@cdklabs/cdk-appflow.GitHubSourceProps.property.profile"></a>
+
+```typescript
+public readonly profile: GitHubConnectorProfile;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile">GitHubConnectorProfile</a>
+
+---
+
 ### GoogleAdsConnectorProfileProps <a name="GoogleAdsConnectorProfileProps" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps"></a>
 
 #### Initializer <a name="Initializer" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfileProps.Initializer"></a>
@@ -15185,6 +15789,74 @@ public readonly properties: TaskProperty[];
 ---
 
 
+### GitHubSource <a name="GitHubSource" id="@cdklabs/cdk-appflow.GitHubSource"></a>
+
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+
+A class that represents a Google Analytics v4 Source.
+
+#### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GitHubSource.Initializer"></a>
+
+```typescript
+import { GitHubSource } from '@cdklabs/cdk-appflow'
+
+new GitHubSource(props: GitHubSourceProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubSource.Initializer.parameter.props">props</a></code> | <code><a href="#@cdklabs/cdk-appflow.GitHubSourceProps">GitHubSourceProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="@cdklabs/cdk-appflow.GitHubSource.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.GitHubSourceProps">GitHubSourceProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubSource.bind">bind</a></code> | *No description.* |
+
+---
+
+##### `bind` <a name="bind" id="@cdklabs/cdk-appflow.GitHubSource.bind"></a>
+
+```typescript
+public bind(scope: IFlow): SourceFlowConfigProperty
+```
+
+###### `scope`<sup>Required</sup> <a name="scope" id="@cdklabs/cdk-appflow.GitHubSource.bind.parameter.scope"></a>
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+
+---
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubSource.property.connectorType">connectorType</a></code> | <code><a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a></code> | The AppFlow type of the connector that this source is implemented for. |
+
+---
+
+##### `connectorType`<sup>Required</sup> <a name="connectorType" id="@cdklabs/cdk-appflow.GitHubSource.property.connectorType"></a>
+
+```typescript
+public readonly connectorType: ConnectorType;
+```
+
+- *Type:* <a href="#@cdklabs/cdk-appflow.ConnectorType">ConnectorType</a>
+
+The AppFlow type of the connector that this source is implemented for.
+
+---
+
+
 ### GoogleAdsSource <a name="GoogleAdsSource" id="@cdklabs/cdk-appflow.GoogleAdsSource"></a>
 
 - *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
@@ -17998,7 +18670,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 - *Extends:* aws-cdk-lib.IResource
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.AsanaConnectorProfile">AsanaConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile">GoogleAdsConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile">GoogleBigQueryConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile">HubSpotConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MailchimpConnectorProfile">MailchimpConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile">AmazonRdsForPostgreSqlConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.AsanaConnectorProfile">AsanaConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ConnectorProfileBase">ConnectorProfileBase</a>, <a href="#@cdklabs/cdk-appflow.GitHubConnectorProfile">GitHubConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsConnectorProfile">GoogleAdsConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile">GoogleAnalytics4ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile">GoogleBigQueryConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.HubSpotConnectorProfile">HubSpotConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile">JdbcSmallDataScaleConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MailchimpConnectorProfile">MailchimpConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MarketoConnectorProfile">MarketoConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile">MicrosoftDynamics365ConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile">MicrosoftSharepointOnlineConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.RedshiftConnectorProfile">RedshiftConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataConnectorProfile">SAPOdataConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceConnectorProfile">SalesforceConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile">SalesforceMarketingCloudConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowConnectorProfile">ServiceNowConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SlackConnectorProfile">SlackConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeConnectorProfile">SnowflakeConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.ZendeskConnectorProfile">ZendeskConnectorProfile</a>, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 
 #### Properties <a name="Properties" id="Properties"></a>
@@ -18410,7 +19082,7 @@ public bind(flow: IFlow, source: ISource): TaskProperty[]
 
 - *Extends:* <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AsanaSource">AsanaSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.HubSpotSource">HubSpotSource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AsanaSource">AsanaSource</a>, <a href="#@cdklabs/cdk-appflow.GitHubSource">GitHubSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.HubSpotSource">HubSpotSource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
 
 A source of an AppFlow flow.
 
@@ -18509,7 +19181,7 @@ A representation of a validation operation, that is an operation testing records
 
 ### IVertex <a name="IVertex" id="@cdklabs/cdk-appflow.IVertex"></a>
 
-- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.AsanaSource">AsanaSource</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.HubSpotDestination">HubSpotDestination</a>, <a href="#@cdklabs/cdk-appflow.HubSpotSource">HubSpotSource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
+- *Implemented By:* <a href="#@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination">AmazonRdsForPostgreSqlDestination</a>, <a href="#@cdklabs/cdk-appflow.AsanaSource">AsanaSource</a>, <a href="#@cdklabs/cdk-appflow.EventBridgeDestination">EventBridgeDestination</a>, <a href="#@cdklabs/cdk-appflow.GitHubSource">GitHubSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAdsSource">GoogleAdsSource</a>, <a href="#@cdklabs/cdk-appflow.GoogleAnalytics4Source">GoogleAnalytics4Source</a>, <a href="#@cdklabs/cdk-appflow.GoogleBigQuerySource">GoogleBigQuerySource</a>, <a href="#@cdklabs/cdk-appflow.HubSpotDestination">HubSpotDestination</a>, <a href="#@cdklabs/cdk-appflow.HubSpotSource">HubSpotSource</a>, <a href="#@cdklabs/cdk-appflow.JdbcSmallDataScaleSource">JdbcSmallDataScaleSource</a>, <a href="#@cdklabs/cdk-appflow.MailchimpSource">MailchimpSource</a>, <a href="#@cdklabs/cdk-appflow.MarketoSource">MarketoSource</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftDynamics365Source">MicrosoftDynamics365Source</a>, <a href="#@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource">MicrosoftSharepointOnlineSource</a>, <a href="#@cdklabs/cdk-appflow.RedshiftDestination">RedshiftDestination</a>, <a href="#@cdklabs/cdk-appflow.S3Destination">S3Destination</a>, <a href="#@cdklabs/cdk-appflow.S3Source">S3Source</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataDestination">SAPOdataDestination</a>, <a href="#@cdklabs/cdk-appflow.SAPOdataSource">SAPOdataSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceDestination">SalesforceDestination</a>, <a href="#@cdklabs/cdk-appflow.SalesforceMarketingCloudSource">SalesforceMarketingCloudSource</a>, <a href="#@cdklabs/cdk-appflow.SalesforceSource">SalesforceSource</a>, <a href="#@cdklabs/cdk-appflow.ServiceNowSource">ServiceNowSource</a>, <a href="#@cdklabs/cdk-appflow.SlackSource">SlackSource</a>, <a href="#@cdklabs/cdk-appflow.SnowflakeDestination">SnowflakeDestination</a>, <a href="#@cdklabs/cdk-appflow.ZendeskSource">ZendeskSource</a>, <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 An interface representing a vertex, i.e. a source or a destination of an AppFlow flow.
 
@@ -18655,6 +19327,23 @@ The AppFlow type of the connector that this source is implemented for.
 
 
 ##### `SCHEDULED` <a name="SCHEDULED" id="@cdklabs/cdk-appflow.FlowType.SCHEDULED"></a>
+
+---
+
+
+### GitHubApiVersion <a name="GitHubApiVersion" id="@cdklabs/cdk-appflow.GitHubApiVersion"></a>
+
+An enum representing the GitHub API versions.
+
+#### Members <a name="Members" id="Members"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#@cdklabs/cdk-appflow.GitHubApiVersion.V3">V3</a></code> | *No description.* |
+
+---
+
+##### `V3` <a name="V3" id="@cdklabs/cdk-appflow.GitHubApiVersion.V3"></a>
 
 ---
 

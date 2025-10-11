@@ -1,12 +1,52 @@
 # Amazon AppFlow Construct Library
 
-*Note:* this library is currently in technical preview. 
+<!--BEGIN STABILITY BANNER-->
+
+---
+
+![Experimental](https://img.shields.io/badge/experimental-important.svg?style=for-the-badge)
+
+> **Experimental:** This construct library is experimental and under active development. 
+> It is subject to non-backward compatible changes or removal in any future version. 
+> These are not subject to the [Semantic Versioning](https://semver.org/) model and
+> breaking changes will be announced in the release notes. This means that while you may use them,
+> you may need to update your source code when upgrading to a newer version of this package.
+
+---
+
+<!--END STABILITY BANNER-->
 
 ## Introduction 
 
 Amazon AppFlow is a service that enables creating managed, bi-directional data transfer integrations between various SaaS applications and AWS services.
 
 For more information, see the [Amazon AppFlow User Guide](https://docs.aws.amazon.com/appflow/latest/userguide/what-is-appflow.html).
+
+## Supported Applications
+
+This library provides L2 constructs for the following applications and services:
+
+- Amazon RDS for PostgreSQL (destination)
+- Asana (source)
+- EventBridge (destination)
+- GitHub (source)
+- Google Ads (source)
+- Google Analytics 4 (source)
+- Google BigQuery (source)
+- HubSpot (source, destination)
+- Mailchimp (source)
+- Marketo (source)
+- Microsoft Dynamics 365 (source)
+- Microsoft SharePoint Online (source)
+- Redshift (destination)
+- S3 (source, destination)
+- Salesforce (source, destination)
+- Salesforce Marketing Cloud (source)
+- SAP OData (source, destination)
+- ServiceNow (source)
+- Slack (source)
+- Snowflake (destination)
+- Zendesk (source)
 
 ## Example
 
@@ -104,7 +144,7 @@ Tasks are steps that can be taken upon fields. Tasks compose higher level object
 
 - Mappings - 1-1 or many-to-1 operations from source fields to a destination field
 
-- Filters - operations that limit the source data on a particular conditions
+- Filters - operations that limit the source data on particular conditions
 
 - Validations - operations that work on a per-record level and can have either a record-level consequence (i.e. dropping the record) or a global one (terminating the flow).
 
@@ -152,7 +192,7 @@ const flow = new OnDemandFlow(stack, 'OnDemandFlow', {
 ## Monitoring
 
 
-### Metrcis
+### Metrics
 
 Each flow allows to access metrics through the methods:
 - `metricFlowExecutionsStarted`
@@ -164,7 +204,7 @@ Each flow allows to access metrics through the methods:
 
 For detailed information about AppFlow metrics refer to [the documentation](https://docs.aws.amazon.com/appflow/latest/userguide/monitoring-cloudwatch.html).
 
-It can be consume by CloudWatch alert using as in the example below: 
+It can be consumed by CloudWatch alarms as in the example below: 
 
 
 ```ts
@@ -254,7 +294,7 @@ This library relies on an internal `AppFlowPermissionsManager` class to automati
 
 ### Confused Deputy Problem
 
-Amazon AppFlow is an account-bound and a regional service. With this it is invurlnerable to the confused deputy problem (see, e.g. [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html)). However, `AppFlowPermissionsManager` still introduces the `aws:SourceAccount` condtition to the resource policies as a *best practice*.
+Amazon AppFlow is an account-bound and a regional service. With this it is invulnerable to the confused deputy problem (see, e.g. [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html)). However, `AppFlowPermissionsManager` still introduces the `aws:SourceAccount` condition to the resource policies as a *best practice*.
 
 ## Upgrading and breaking changes
 

@@ -7,6 +7,7 @@ export * from "./core";
 export * from "./amazonrdsforpostgresql";
 export * from "./asana";
 export * from "./eventbridge";
+export * from "./github";
 export * from "./googleanalytics4";
 export * from "./googlebigquery";
 export * from "./hubspot";
