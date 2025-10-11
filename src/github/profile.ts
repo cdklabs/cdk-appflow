@@ -2,12 +2,15 @@
 Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
-import { CfnConnectorProfile } from 'aws-cdk-lib/aws-appflow';
-import { Construct } from 'constructs';
-import { GitHubConnectorType } from './type';
-import { ConnectorAuthenticationType } from '../core/connectors/connector-authentication-type';
-import { ConnectorProfileBase, ConnectorProfileProps } from '../core/connectors/connector-profile';
-import { OAuth2GrantType as OAuthGrantType } from '../core/connectors/oauth2-granttype';
+import { CfnConnectorProfile } from "aws-cdk-lib/aws-appflow";
+import { Construct } from "constructs";
+import { GitHubConnectorType } from "./type";
+import { ConnectorAuthenticationType } from "../core/connectors/connector-authentication-type";
+import {
+  ConnectorProfileBase,
+  ConnectorProfileProps,
+} from "../core/connectors/connector-profile";
+import { OAuth2GrantType as OAuthGrantType } from "../core/connectors/oauth2-granttype";
 
 export interface GitHubConnectorProfileProps extends ConnectorProfileProps {
   readonly oAuth: GitHubOAuthSettings;
@@ -47,7 +50,6 @@ export interface GitHubRefreshTokenGrantFlow {
  * Represents the OAuth flow enabled for the GA4
  */
 export interface GitHubOAuthFlow {
-
   /**
    * The details required for executing the refresh token grant flow
    */
@@ -55,7 +57,6 @@ export interface GitHubOAuthFlow {
 }
 
 export interface GitHubOAuthSettings {
-
   /**
    * The access token to be used when interacting with GitHub
    *
@@ -79,25 +80,41 @@ export interface GitHubOAuthSettings {
 }
 
 export class GitHubConnectorProfile extends ConnectorProfileBase {
-
-  public static fromConnectionProfileArn(scope: Construct, id: string, arn: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { arn }) as GitHubConnectorProfile;
+  public static fromConnectionProfileArn(
+    scope: Construct,
+    id: string,
+    arn: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      arn,
+    }) as GitHubConnectorProfile;
   }
 
-  public static fromConnectionProfileName(scope: Construct, id: string, name: string) {
-    return this._fromConnectorProfileAttributes(scope, id, { name }) as GitHubConnectorProfile;
+  public static fromConnectionProfileName(
+    scope: Construct,
+    id: string,
+    name: string,
+  ) {
+    return this._fromConnectorProfileAttributes(scope, id, {
+      name,
+    }) as GitHubConnectorProfile;
   }
 
-  private static readonly defaultTokenEndpoint: string = 'https://github.com/login/oauth/access_token';
+  private static readonly defaultTokenEndpoint: string =
+    "https://github.com/login/oauth/access_token";
 
-  constructor(scope: Construct, id: string, props: GitHubConnectorProfileProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: GitHubConnectorProfileProps,
+  ) {
     super(scope, id, props, GitHubConnectorType.instance);
   }
 
   protected buildConnectorProfileProperties(
     props: ConnectorProfileProps,
   ): CfnConnectorProfile.ConnectorProfilePropertiesProperty {
-    const properties = (props as GitHubConnectorProfileProps);
+    const properties = props as GitHubConnectorProfileProps;
     return {
       customConnector: {
         oAuth2Properties: {
@@ -105,7 +122,9 @@ export class GitHubConnectorProfile extends ConnectorProfileBase {
           oAuth2GrantType: OAuthGrantType.AUTHORIZATION_CODE,
           // INFO: even if we provide only the access token this property is required
           // TODO: think about if this is correct. token can be IResolvable
-          tokenUrl: properties.oAuth.endpoints?.token ?? GitHubConnectorProfile.defaultTokenEndpoint,
+          tokenUrl:
+            properties.oAuth.endpoints?.token ??
+            GitHubConnectorProfile.defaultTokenEndpoint,
         },
       },
     };
@@ -114,13 +133,13 @@ export class GitHubConnectorProfile extends ConnectorProfileBase {
   protected buildConnectorProfileCredentials(
     props: ConnectorProfileProps,
   ): CfnConnectorProfile.ConnectorProfileCredentialsProperty {
-    const properties = (props as GitHubConnectorProfileProps);
+    const properties = props as GitHubConnectorProfileProps;
 
     return {
       customConnector: {
         oauth2: {
           // INFO: when using Refresh Token Grant Flow - access token property is required
-          accessToken: properties.oAuth.accessToken ?? 'dummyAccessToken',
+          accessToken: properties.oAuth.accessToken ?? "dummyAccessToken",
           refreshToken: properties.oAuth.flow?.refreshTokenGrant.refreshToken,
           clientId: properties.oAuth.flow?.refreshTokenGrant.clientId,
           clientSecret: properties.oAuth.flow?.refreshTokenGrant.clientSecret,
