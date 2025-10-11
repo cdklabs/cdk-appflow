@@ -117,6 +117,22 @@ export class GitHubConnectorProfile extends ConnectorProfileBase {
     id: string,
     props: GitHubConnectorProfileProps,
   ) {
+    // Validate that exactly one authentication method is provided
+    const hasBasicAuth = !!props.basicAuth;
+    const hasOAuth = !!props.oAuth;
+
+    if (!hasBasicAuth && !hasOAuth) {
+      throw new Error(
+        "GitHub connector profile requires either basicAuth or oAuth authentication method",
+      );
+    }
+
+    if (hasBasicAuth && hasOAuth) {
+      throw new Error(
+        "GitHub connector profile cannot have both basicAuth and oAuth authentication methods. Choose one.",
+      );
+    }
+
     super(scope, id, props, GitHubConnectorType.instance);
   }
 

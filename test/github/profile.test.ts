@@ -105,4 +105,32 @@ describe("GitHubConnectorProfile", () => {
       },
     );
   });
+
+  test("Throws error when no authentication method is provided", () => {
+    const stack = new Stack();
+
+    expect(() => {
+      new GitHubConnectorProfile(stack, "TestProfile", {});
+    }).toThrow(
+      "GitHub connector profile requires either basicAuth or oAuth authentication method",
+    );
+  });
+
+  test("Throws error when both authentication methods are provided", () => {
+    const stack = new Stack();
+
+    expect(() => {
+      new GitHubConnectorProfile(stack, "TestProfile", {
+        basicAuth: {
+          username: "testuser",
+          personalAccessToken: SecretValue.unsafePlainText("token"),
+        },
+        oAuth: {
+          accessToken: SecretValue.unsafePlainText("token"),
+        },
+      });
+    }).toThrow(
+      "GitHub connector profile cannot have both basicAuth and oAuth authentication methods. Choose one.",
+    );
+  });
 });
