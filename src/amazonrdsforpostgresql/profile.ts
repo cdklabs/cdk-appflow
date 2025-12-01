@@ -15,8 +15,7 @@ import {
 /**
  * Properties of the AmazonRdsForPostgreSqlConnectorProfile
  */
-export interface AmazonRdsForPostgreSqlConnectorProfileProps
-  extends ConnectorProfileProps {
+export interface AmazonRdsForPostgreSqlConnectorProfileProps extends ConnectorProfileProps {
   /**
    * The auth settings for the profile
    */

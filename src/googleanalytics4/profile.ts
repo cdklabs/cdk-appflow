@@ -13,8 +13,7 @@ import {
 } from "../core/connectors/connector-profile";
 import { OAuth2GrantType as OAuthGrantType } from "../core/connectors/oauth2-granttype";
 
-export interface GoogleAnalytics4ConnectorProfileProps
-  extends ConnectorProfileProps {
+export interface GoogleAnalytics4ConnectorProfileProps extends ConnectorProfileProps {
   readonly oAuth: GoogleAnalytics4OAuthSettings;
 }
 

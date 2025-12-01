@@ -16,8 +16,7 @@ import {
 /**
  * Properties for the JdbcSmallDataScaleConnectorProfile
  */
-export interface JdbcSmallDataScaleConnectorProfileProps
-  extends ConnectorProfileProps {
+export interface JdbcSmallDataScaleConnectorProfileProps extends ConnectorProfileProps {
   /**
    * The auth settings for the profile
    */
