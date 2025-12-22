@@ -13,8 +13,7 @@ import {
 } from "../core/connectors/connector-profile";
 import { OAuth2GrantType as OAuthGrantType } from "../core/connectors/oauth2-granttype";
 
-export interface SalesforceMarketingCloudConnectorProfileProps
-  extends ConnectorProfileProps {
+export interface SalesforceMarketingCloudConnectorProfileProps extends ConnectorProfileProps {
   readonly oAuth: SalesforceMarketingCloudOAuthSettings;
   readonly instanceUrl: string;
 }

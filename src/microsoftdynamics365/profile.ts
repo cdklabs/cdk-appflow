@@ -14,8 +14,7 @@ import {
 } from "../core/connectors/connector-profile";
 import { OAuth2GrantType as OAuthGrantType } from "../core/connectors/oauth2-granttype";
 
-export interface MicrosoftDynamics365ConnectorProfileProps
-  extends ConnectorProfileProps {
+export interface MicrosoftDynamics365ConnectorProfileProps extends ConnectorProfileProps {
   readonly oAuth: MicrosoftDynamics365OAuthSettings;
   readonly instanceUrl: string;
 }

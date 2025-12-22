@@ -13,8 +13,7 @@ import {
 } from "../core/connectors/connector-profile";
 import { OAuth2GrantType as OAuthGrantType } from "../core/connectors/oauth2-granttype";
 
-export interface GoogleBigQueryConnectorProfileProps
-  extends ConnectorProfileProps {
+export interface GoogleBigQueryConnectorProfileProps extends ConnectorProfileProps {
   readonly oAuth: GoogleBigQueryOAuthSettings;
 }
 
