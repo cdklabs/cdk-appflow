@@ -4,6 +4,8 @@
 
 ### AmazonRdsForPostgreSqlConnectorProfile <a name="AmazonRdsForPostgreSqlConnectorProfile" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 The connector profile for the Amazon RDS for PostgreSQL connector.
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlConnectorProfile.Initializer"></a>
@@ -318,6 +320,8 @@ public readonly credentials: ISecret;
 
 ### AsanaConnectorProfile <a name="AsanaConnectorProfile" id="@cdklabs/cdk-appflow.AsanaConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 A class that represents a Asana Connector Profile.
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.AsanaConnectorProfile.Initializer"></a>
@@ -610,7 +614,7 @@ public readonly credentials: ISecret;
 
 ### ConnectorProfileBase <a name="ConnectorProfileBase" id="@cdklabs/cdk-appflow.ConnectorProfileBase"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.ConnectorProfileBase.Initializer"></a>
 
@@ -855,7 +859,7 @@ public readonly credentials: ISecret;
 
 ### FlowBase <a name="FlowBase" id="@cdklabs/cdk-appflow.FlowBase"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.FlowBase.Initializer"></a>
 
@@ -1250,6 +1254,8 @@ The type of the flow.
 
 ### GitHubConnectorProfile <a name="GitHubConnectorProfile" id="@cdklabs/cdk-appflow.GitHubConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GitHubConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -1539,6 +1545,8 @@ public readonly credentials: ISecret;
 
 
 ### GoogleAdsConnectorProfile <a name="GoogleAdsConnectorProfile" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GoogleAdsConnectorProfile.Initializer"></a>
 
@@ -1830,6 +1838,8 @@ public readonly credentials: ISecret;
 
 ### GoogleAnalytics4ConnectorProfile <a name="GoogleAnalytics4ConnectorProfile" id="@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GoogleAnalytics4ConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -2119,6 +2129,8 @@ public readonly credentials: ISecret;
 
 
 ### GoogleBigQueryConnectorProfile <a name="GoogleBigQueryConnectorProfile" id="@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.GoogleBigQueryConnectorProfile.Initializer"></a>
 
@@ -2410,6 +2422,8 @@ public readonly credentials: ISecret;
 
 ### HubSpotConnectorProfile <a name="HubSpotConnectorProfile" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.HubSpotConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -2699,6 +2713,8 @@ public readonly credentials: ISecret;
 
 
 ### JdbcSmallDataScaleConnectorProfile <a name="JdbcSmallDataScaleConnectorProfile" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleConnectorProfile"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 The connector profile for the JDBC connector.
 
@@ -3014,6 +3030,8 @@ public readonly credentials: ISecret;
 
 ### MailchimpConnectorProfile <a name="MailchimpConnectorProfile" id="@cdklabs/cdk-appflow.MailchimpConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 A class that represents a Mailchimp Connector Profile.
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MailchimpConnectorProfile.Initializer"></a>
@@ -3306,6 +3324,8 @@ public readonly credentials: ISecret;
 
 ### MarketoConnectorProfile <a name="MarketoConnectorProfile" id="@cdklabs/cdk-appflow.MarketoConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MarketoConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -3595,6 +3615,8 @@ public readonly credentials: ISecret;
 
 
 ### MicrosoftDynamics365ConnectorProfile <a name="MicrosoftDynamics365ConnectorProfile" id="@cdklabs/cdk-appflow.MicrosoftDynamics365ConnectorProfile"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 A class that represents a Microsoft Dynamics 365 Connector Profile.
 
@@ -3890,6 +3912,8 @@ public readonly credentials: ISecret;
 
 ### MicrosoftSharepointOnlineConnectorProfile <a name="MicrosoftSharepointOnlineConnectorProfile" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 A class that represents a Microsoft Sharepoint Online Connector Profile.
 
 This connector profile allows to transfer document libraries residing on a Microsoft Sharepoint Online's site to Amazon S3.
@@ -4184,7 +4208,7 @@ public readonly credentials: ISecret;
 
 ### OnDemandFlow <a name="OnDemandFlow" id="@cdklabs/cdk-appflow.OnDemandFlow"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.OnDemandFlow.Initializer"></a>
 
@@ -4579,7 +4603,7 @@ The type of the flow.
 
 ### OnEventFlow <a name="OnEventFlow" id="@cdklabs/cdk-appflow.OnEventFlow"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.OnEventFlow.Initializer"></a>
 
@@ -5012,7 +5036,7 @@ The type of the flow.
 
 ### OnScheduleFlow <a name="OnScheduleFlow" id="@cdklabs/cdk-appflow.OnScheduleFlow"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.OnScheduleFlow.Initializer"></a>
 
@@ -5426,6 +5450,8 @@ The type of the flow.
 
 ### RedshiftConnectorProfile <a name="RedshiftConnectorProfile" id="@cdklabs/cdk-appflow.RedshiftConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.RedshiftConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -5715,6 +5741,8 @@ public readonly credentials: ISecret;
 
 
 ### SalesforceConnectorProfile <a name="SalesforceConnectorProfile" id="@cdklabs/cdk-appflow.SalesforceConnectorProfile"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SalesforceConnectorProfile.Initializer"></a>
 
@@ -6006,6 +6034,8 @@ public readonly credentials: ISecret;
 
 ### SalesforceMarketingCloudConnectorProfile <a name="SalesforceMarketingCloudConnectorProfile" id="@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SalesforceMarketingCloudConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -6295,6 +6325,8 @@ public readonly credentials: ISecret;
 
 
 ### SAPOdataConnectorProfile <a name="SAPOdataConnectorProfile" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SAPOdataConnectorProfile.Initializer"></a>
 
@@ -6586,6 +6618,8 @@ public readonly credentials: ISecret;
 
 ### ServiceNowConnectorProfile <a name="ServiceNowConnectorProfile" id="@cdklabs/cdk-appflow.ServiceNowConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.ServiceNowConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -6876,6 +6910,8 @@ public readonly credentials: ISecret;
 
 ### SlackConnectorProfile <a name="SlackConnectorProfile" id="@cdklabs/cdk-appflow.SlackConnectorProfile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
+
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SlackConnectorProfile.Initializer"></a>
 
 ```typescript
@@ -7165,6 +7201,8 @@ public readonly credentials: ISecret;
 
 
 ### SnowflakeConnectorProfile <a name="SnowflakeConnectorProfile" id="@cdklabs/cdk-appflow.SnowflakeConnectorProfile"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SnowflakeConnectorProfile.Initializer"></a>
 
@@ -7473,7 +7511,7 @@ For more details see {@link https://docs.snowflake.com/en/user-guide/data-load-s
 
 ### TriggeredFlowBase <a name="TriggeredFlowBase" id="@cdklabs/cdk-appflow.TriggeredFlowBase"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IFlow">IFlow</a>
 
 A base class for triggered flows.
 
@@ -7888,6 +7926,8 @@ The type of the flow.
 
 
 ### ZendeskConnectorProfile <a name="ZendeskConnectorProfile" id="@cdklabs/cdk-appflow.ZendeskConnectorProfile"></a>
+
+- *Implements:* constructs.IConstruct, constructs.IDependable, aws-cdk-lib.IResource, <a href="#@cdklabs/cdk-appflow.IConnectorProfile">IConnectorProfile</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.ZendeskConnectorProfile.Initializer"></a>
 
@@ -15226,7 +15266,7 @@ public readonly apiVersion: string;
 
 ### AmazonRdsForPostgreSqlDestination <a name="AmazonRdsForPostgreSqlDestination" id="@cdklabs/cdk-appflow.AmazonRdsForPostgreSqlDestination"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 Represents a destination for the Amazon RDS for PostgreSQL connector.
 
@@ -15296,7 +15336,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### AsanaSource <a name="AsanaSource" id="@cdklabs/cdk-appflow.AsanaSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Asana v3 Source.
 
@@ -15447,7 +15487,7 @@ public readonly asProfileConnectorLabel: string;
 
 ### EventBridgeDestination <a name="EventBridgeDestination" id="@cdklabs/cdk-appflow.EventBridgeDestination"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 This class represents AppFlow's EventBridge destination.
 
@@ -15555,7 +15595,7 @@ EventSources.salesforceEventSource(suffix?: string)
 
 ### Filter <a name="Filter" id="@cdklabs/cdk-appflow.Filter"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IFilter">IFilter</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IOperation">IOperation</a>, <a href="#@cdklabs/cdk-appflow.IFilter">IFilter</a>
 
 A representation of a mapping operation, that is an operation filtering records at the source.
 
@@ -16155,7 +16195,7 @@ public readonly properties: TaskProperty[];
 
 ### GitHubSource <a name="GitHubSource" id="@cdklabs/cdk-appflow.GitHubSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Google Analytics v4 Source.
 
@@ -16223,7 +16263,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### GoogleAdsSource <a name="GoogleAdsSource" id="@cdklabs/cdk-appflow.GoogleAdsSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Google Ads v4 Source.
 
@@ -16291,7 +16331,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### GoogleAnalytics4Source <a name="GoogleAnalytics4Source" id="@cdklabs/cdk-appflow.GoogleAnalytics4Source"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Google Analytics v4 Source.
 
@@ -16359,7 +16399,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### GoogleBigQuerySource <a name="GoogleBigQuerySource" id="@cdklabs/cdk-appflow.GoogleBigQuerySource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Google BigQuery Source.
 
@@ -16427,7 +16467,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### HubSpotDestination <a name="HubSpotDestination" id="@cdklabs/cdk-appflow.HubSpotDestination"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.HubSpotDestination.Initializer"></a>
 
@@ -16493,7 +16533,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### HubSpotSource <a name="HubSpotSource" id="@cdklabs/cdk-appflow.HubSpotSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Hubspot Source.
 
@@ -16561,7 +16601,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### JdbcSmallDataScaleSource <a name="JdbcSmallDataScaleSource" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.JdbcSmallDataScaleSource.Initializer"></a>
 
@@ -16627,7 +16667,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### MailchimpSource <a name="MailchimpSource" id="@cdklabs/cdk-appflow.MailchimpSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Mailchimp v3 Source.
 
@@ -16695,7 +16735,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### Mapping <a name="Mapping" id="@cdklabs/cdk-appflow.Mapping"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IMapping">IMapping</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IOperation">IOperation</a>, <a href="#@cdklabs/cdk-appflow.IMapping">IMapping</a>
 
 A representation of an instance of a mapping operation, that is an operation translating source to destination fields.
 
@@ -17007,7 +17047,7 @@ MarketoInstanceUrlBuilder.buildFromAccount(account: string)
 
 ### MarketoSource <a name="MarketoSource" id="@cdklabs/cdk-appflow.MarketoSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.MarketoSource.Initializer"></a>
 
@@ -17113,7 +17153,7 @@ MicrosoftDynamics365ApiUrlBuilder.buildApiUrl(org: string)
 
 ### MicrosoftDynamics365Source <a name="MicrosoftDynamics365Source" id="@cdklabs/cdk-appflow.MicrosoftDynamics365Source"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Microsoft Dynamics 365 Source.
 
@@ -17223,7 +17263,7 @@ MicrosoftDynamics365TokenUrlBuilder.buildTokenUrl(tenantId?: string)
 
 ### MicrosoftSharepointOnlineSource <a name="MicrosoftSharepointOnlineSource" id="@cdklabs/cdk-appflow.MicrosoftSharepointOnlineSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Microsoft Sharepoint Online Source.
 
@@ -17388,7 +17428,7 @@ public bind(flow: IFlow, source: ISource): TaskProperty[]
 
 ### RedshiftDestination <a name="RedshiftDestination" id="@cdklabs/cdk-appflow.RedshiftDestination"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.RedshiftDestination.Initializer"></a>
 
@@ -17454,7 +17494,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### S3Destination <a name="S3Destination" id="@cdklabs/cdk-appflow.S3Destination"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.S3Destination.Initializer"></a>
 
@@ -17520,7 +17560,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### S3Source <a name="S3Source" id="@cdklabs/cdk-appflow.S3Source"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.S3Source.Initializer"></a>
 
@@ -17586,7 +17626,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### SalesforceDestination <a name="SalesforceDestination" id="@cdklabs/cdk-appflow.SalesforceDestination"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SalesforceDestination.Initializer"></a>
 
@@ -17652,7 +17692,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### SalesforceMarketingCloudSource <a name="SalesforceMarketingCloudSource" id="@cdklabs/cdk-appflow.SalesforceMarketingCloudSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A class that represents a Salesforce Marketing Cloud Source.
 
@@ -17720,7 +17760,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### SalesforceSource <a name="SalesforceSource" id="@cdklabs/cdk-appflow.SalesforceSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SalesforceSource.Initializer"></a>
 
@@ -17786,7 +17826,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### SAPOdataDestination <a name="SAPOdataDestination" id="@cdklabs/cdk-appflow.SAPOdataDestination"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SAPOdataDestination.Initializer"></a>
 
@@ -17852,7 +17892,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### SAPOdataSource <a name="SAPOdataSource" id="@cdklabs/cdk-appflow.SAPOdataSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SAPOdataSource.Initializer"></a>
 
@@ -17958,7 +17998,7 @@ ServiceNowInstanceUrlBuilder.buildFromDomain(domain: string)
 
 ### ServiceNowSource <a name="ServiceNowSource" id="@cdklabs/cdk-appflow.ServiceNowSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.ServiceNowSource.Initializer"></a>
 
@@ -18064,7 +18104,7 @@ SlackInstanceUrlBuilder.buildFromWorkspace(workspace: string)
 
 ### SlackSource <a name="SlackSource" id="@cdklabs/cdk-appflow.SlackSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.SlackSource.Initializer"></a>
 
@@ -18130,7 +18170,7 @@ The AppFlow type of the connector that this source is implemented for.
 
 ### SnowflakeDestination <a name="SnowflakeDestination" id="@cdklabs/cdk-appflow.SnowflakeDestination"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IDestination">IDestination</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 A Snowflake destination.
 
@@ -18281,7 +18321,7 @@ public bind(_flow: IFlow, source: ISource): TaskProperty
 
 ### Transform <a name="Transform" id="@cdklabs/cdk-appflow.Transform"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IOperation">IOperation</a>, <a href="#@cdklabs/cdk-appflow.ITransform">ITransform</a>
 
 A representation of a transform operation, that is an operation modifying source fields.
 
@@ -18454,7 +18494,7 @@ the maximum length after truncation.
 
 ### Validation <a name="Validation" id="@cdklabs/cdk-appflow.Validation"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.IOperation">IOperation</a>, <a href="#@cdklabs/cdk-appflow.IValidation">IValidation</a>
 
 A representation of a validation operation, that is an operation testing records and acting on the test results.
 
@@ -18964,7 +19004,7 @@ ZendeskInstanceUrlBuilder.buildFromAccount(account: string)
 
 ### ZendeskSource <a name="ZendeskSource" id="@cdklabs/cdk-appflow.ZendeskSource"></a>
 
-- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>
+- *Implements:* <a href="#@cdklabs/cdk-appflow.ISource">ISource</a>, <a href="#@cdklabs/cdk-appflow.IVertex">IVertex</a>
 
 #### Initializers <a name="Initializers" id="@cdklabs/cdk-appflow.ZendeskSource.Initializer"></a>
 
